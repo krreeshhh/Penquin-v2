@@ -1,0 +1,105 @@
+{
+  "title": "2FA Functionality",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    },
+    {
+      "name": "Broken Access Control & Broken Authentication",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication",
+      "icon": "7️⃣"
+    }
+  ],
+  "sections": [
+    {
+      "type": "link_card",
+      "title": "Glassdoor disclosed on HackerOne: 2FA bypass by sending blank code",
+      "url": "https://hackerone.com/reports/897385",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Nextcloud disclosed on HackerOne: Two-factor authentication...",
+      "url": "https://hackerone.com/reports/1050244",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "GitLab disclosed on HackerOne: Ability to bypass email verification...",
+      "url": "https://hackerone.com/reports/922456",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Glassdoor disclosed on HackerOne: 2FA bypass by sending blank code",
+      "url": "https://hackerone.com/reports/897385",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Shopify disclosed on HackerOne: Email Confirmation Bypass in...",
+      "url": "https://hackerone.com/reports/910300",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "The $12,000 2FA Bypass — So Simple, Yet So Critical!",
+      "url": "https://medium.com/@rahulgairola/the-12-000-2fa-bypass-so-simple-yet-so-critical-e3f7d7e5751c",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "https://freedium.cfd/https://mokhansec.medium.com/bypassing-2fa-in-a-public-bug-bounty-program-a-6000-journey-bae8a5418461",
+      "url": "https://freedium.cfd/https://mokhansec.medium.com/bypassing-2fa-in-a-public-bug-bounty-program-a-6000-journey-bae8a5418461",
+      "source": "freedium.cfd"
+    },
+    {
+      "type": "link_card",
+      "title": "HackerOne disclosed on HackerOne: Changing the 2FA secret key and...",
+      "url": "https://hackerone.com/reports/1139535",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Nextcloud disclosed on HackerOne: Two-factor authentication...",
+      "url": "https://hackerone.com/reports/1050244",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Khan Academy disclosed on HackerOne: Email Verification Bypass...",
+      "url": "https://hackerone.com/reports/1636552",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Simple logic flaw lead to P3 bug in public BBP",
+      "url": "https://medium.com/@mohamed0xmuslim/simple-logic-flaw-lead-to-p3-bug-in-public-bbp-7cf21a4fb7c6",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Password Reset Functionality",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/password-reset-functionality"
+    },
+    "next": {
+      "title": "Oauth Functionality",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/oauth-functionality"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-09-29T04:55:49.521Z"
+  }
+}

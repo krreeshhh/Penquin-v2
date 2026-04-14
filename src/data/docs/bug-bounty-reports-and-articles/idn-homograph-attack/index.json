@@ -1,0 +1,58 @@
+{
+  "title": "IDN Homograph Attack",
+  "breadcrumb": [
+    {
+      "label": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    }
+  ],
+  "articles": [
+    {
+      "title": "IDN Homograph Attack and Response Manipulation - The Rarest Case",
+      "platform": "Medium",
+      "url": "https://shahjerry33.medium.com/idn-homograph-attack-and-response-manipulation-the-rarest-case-85f64c272a1c",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "IDN Homograph Attack - Reborn of the Rare Case",
+      "platform": "Medium",
+      "url": "https://shahjerry33.medium.com/idn-homograph-attack-reborn-of-the-rare-case-99fa1e342352",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "2FA Bypass - IDN Mischief",
+      "platform": "Medium",
+      "url": "https://shahjerry33.medium.com/2fa-bypass-idn-mischief-157f06cb6904",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "How I was able to change victim's password using IDN Homograph Attack",
+      "platform": "Medium",
+      "url": "https://medium.com/bugbountywriteup/how-i-was-able-to-change-victims-password-using-idn-homograph-attack-587111843aff",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "The Most Underrated 0-Click Account Takeover Using Punycode IDN Homograph Attacks",
+      "platform": "Medium",
+      "url": "https://coffinxp.medium.com/the-most-underrated-0-click-account-takeover-using-punycode-idn-attacks-c0afdb74a3dc",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "embeddedVideo": {
+    "url": "https://cdn.iframe.ly/7UeHYec1",
+    "embedStyle": "top: 0; left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 56.25%;"
+  },
+  "navigation": {
+    "previous": {
+      "title": "Miscellaneous Reports",
+      "url": "/docs/bug-bounty-reports-and-articles/miscellaneous-reports"
+    },
+    "next": {
+      "title": "WebSocket Writeups",
+      "url": "/docs/bug-bounty-reports-and-articles/websocket-writeups"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2025-06-30T14:52:30.822Z"
+  }
+}

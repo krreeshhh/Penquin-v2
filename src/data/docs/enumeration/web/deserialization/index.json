@@ -1,0 +1,111 @@
+{
+    "title": "Deserialization",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Vulnerable functions",
+            "type": "code_block",
+            "content": [
+                "# PHP",
+                "unserialize()",
+                "",
+                "# Python",
+                "pickle/c_pickle/_pickle with load/loads",
+                "PyYAML with load",
+                "jsonpickle with encode or store methods>/tmp/f",
+                "",
+                "# Java",
+                "# Whitebox",
+                "XMLdecoder with external user defined parameters",
+                "XStream with fromXML method (xstream version <= v1.46 is vulnerable to the serialization issue)",
+                "ObjectInputStream with readObject",
+                "Uses of readObject, readObjectNodData, readResolve or readExternal",
+                "ObjectInputStream.readUnshared",
+                "Serializable",
+                "# Blackbox",
+                "AC ED 00 05 in Hex",
+                "rO0 in Base64",
+                "Content-type: application/x-java-serialized-object",
+                "# ysoserial",
+                "java -jar ysoserial.jar CommonsCollections4 'command'",
+                "",
+                "# .Net",
+                "# Whithebox",
+                "TypeNameHandling",
+                "JavaScriptTypeResolver",
+                "# Blackbox",
+                "AAEAAAD/////",
+                "TypeObject",
+                "$type"
+            ]
+        },
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# Java",
+                "# Ysoserial: https://github.com/frohoff/ysoserial",
+                "java -jar ysoserial.jar CommonsCollections4 'command'",
+                "# Java Deserialization Scanner: https://github.com/federicodotta/Java-Deserialization-Scanner",
+                "# SerialKiller: https://github.com/ikkisoft/SerialKiller",
+                "# Serianalyzer: https://github.com/mbechler/serianalyzer",
+                "# Java Unmarshaller Security: https://github.com/mbechler/marshalsec",
+                "# Java Serial Killer: https://github.com/NetSPI/JavaSerialKiller",
+                "# Android Java Deserialization Vulnerability Tester: https://github.com/modzero/modjoda",
+                "# Java https://github.com/phith0n/zkar",
+                "",
+                "# .NET",
+                "# Ysoserial.net: https://github.com/pwntester/ysoserial.net",
+                "ysoserial.exe -g ObjectDataProvider -f Json.Net -c “command-here” -o base64",
+                "",
+                "# Burp-Plugins",
+                "# Java: https://github.com/DirectDefense/SuperSerial",
+                "# Java: https://github.com/DirectDefense/SuperSerial-Active",
+                "# Burp-ysoserial: https://github.com/summitt/burp-ysoserial"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2022-03-28T08:29:01.157Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/deserialization.md",
+        "previous_page": {
+            "title": "Command Injection",
+            "url": "/enumeration/web/command-injection"
+        },
+        "next_page": {
+            "title": "DNS rebinding",
+            "url": "/enumeration/web/dns-rebinding"
+        }
+    }
+}

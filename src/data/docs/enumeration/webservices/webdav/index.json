@@ -1,0 +1,56 @@
+{
+    "title": "WebDav",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "davtest -cleanup -url http://target",
+                "cadaver http://target"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-06-05T06:55:41.510Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/webdav.md",
+        "previous_page": {
+            "title": "Wordpress",
+            "url": "/enumeration/webservices/wordpress"
+        },
+        "next_page": {
+            "title": "Joomla",
+            "url": "/enumeration/webservices/joomla"
+        }
+    }
+}

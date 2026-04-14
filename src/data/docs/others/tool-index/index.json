@@ -1,0 +1,948 @@
+{
+    "title": "Tool Index",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Reconnaissance",
+            "subheadings": [
+                {
+                    "heading": "Subdomain Enumeration",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "amass",
+                            "Description": "In-depth DNS enumeration",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "subfinder",
+                            "Description": "Fast subdomain discovery",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "assetfinder",
+                            "Description": "Find related domains",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "findomain",
+                            "Description": "Cross-platform subdomain finder",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "github-subdomains",
+                            "Description": "Find subdomains in GitHub",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "crt.sh",
+                            "Description": "Certificate transparency",
+                            "Link": "Website"
+                        }
+                    ]
+                },
+                {
+                    "heading": "DNS Tools",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "dnsrecon",
+                            "Description": "DNS enumeration script",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "dnsx",
+                            "Description": "Fast DNS toolkit",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "massdns",
+                            "Description": "High-performance DNS resolver",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "puredns",
+                            "Description": "Fast domain resolver/bruteforcer",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Network Scanning",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "nmap",
+                            "Description": "Network exploration and security auditing",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "masscan",
+                            "Description": "Fast port scanner",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "rustscan",
+                            "Description": "Modern port scanner",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "naabu",
+                            "Description": "Fast port scanner",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "OSINT",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "theHarvester",
+                            "Description": "Email, subdomain, IP gathering",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Shodan",
+                            "Description": "Internet-connected device search",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "Censys",
+                            "Description": "Internet asset discovery",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "SpiderFoot",
+                            "Description": "OSINT automation",
+                            "Link": "GitHub"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Web Application Testing",
+            "subheadings": [
+                {
+                    "heading": "Scanners",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "Burp Suite",
+                            "Description": "Web security testing platform",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "OWASP ZAP",
+                            "Description": "Web app security scanner",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "Nikto",
+                            "Description": "Web server scanner",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "nuclei",
+                            "Description": "Vulnerability scanner",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Caido",
+                            "Description": "Modern web security tool",
+                            "Link": "Website"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Fuzzing",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "ffuf",
+                            "Description": "Fast web fuzzer",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "feroxbuster",
+                            "Description": "Recursive content discovery",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "gobuster",
+                            "Description": "Directory/DNS/VHost brute-forcer",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "dirsearch",
+                            "Description": "Web path scanner",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "wfuzz",
+                            "Description": "Web application fuzzer",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "SQL Injection",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "sqlmap",
+                            "Description": "Automatic SQL injection",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "ghauri",
+                            "Description": "Advanced SQL injection",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "NoSQLMap",
+                            "Description": "NoSQL injection",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "XSS",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "XSStrike",
+                            "Description": "XSS detection suite",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "dalfox",
+                            "Description": "Parameter analysis/XSS scanner",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "kxss",
+                            "Description": "Reflection checker",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "CMS Scanners",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "WPScan",
+                            "Description": "WordPress scanner",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Droopescan",
+                            "Description": "CMS scanner (Drupal, etc.)",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "joomscan",
+                            "Description": "Joomla scanner",
+                            "Link": "GitHub"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Exploitation",
+            "subheadings": [
+                {
+                    "heading": "Frameworks",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "Metasploit",
+                            "Description": "Exploitation framework",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "Cobalt Strike",
+                            "Description": "Adversary simulation",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "Sliver",
+                            "Description": "Open-source C2",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Havoc",
+                            "Description": "Modern C2 framework",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Binary Exploitation",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "pwntools",
+                            "Description": "CTF/exploit development",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "ROPgadget",
+                            "Description": "ROP chain builder",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "ropper",
+                            "Description": "ROP gadget finder",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "GEF",
+                            "Description": "GDB enhanced features",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "pwndbg",
+                            "Description": "GDB for hackers",
+                            "Link": "GitHub"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Post-Exploitation",
+            "subheadings": [
+                {
+                    "heading": "Windows",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "Mimikatz",
+                            "Description": "Credential extraction",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Rubeus",
+                            "Description": "Kerberos abuse",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "SharpCollection",
+                            "Description": "Compiled .NET tools",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Seatbelt",
+                            "Description": "Host survey tool",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "PowerSploit",
+                            "Description": "PowerShell post-exploitation",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Linux",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "LinPEAS",
+                            "Description": "Linux privilege escalation",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "linEnum",
+                            "Description": "Linux enumeration",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "pspy",
+                            "Description": "Process monitor (no root)",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "GTFOBins",
+                            "Description": "Unix binary exploitation",
+                            "Link": "Website"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Active Directory",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "BloodHound",
+                            "Description": "AD attack path mapping",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Impacket",
+                            "Description": "Network protocols in Python",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "CrackMapExec",
+                            "Description": "AD Swiss army knife",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "NetExec",
+                            "Description": "CrackMapExec successor",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Certipy",
+                            "Description": "AD CS abuse",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "ldapdomaindump",
+                            "Description": "AD LDAP dumper",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Pivoting",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "Chisel",
+                            "Description": "TCP/UDP tunnel",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "ligolo-ng",
+                            "Description": "Tunneling/pivoting",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "proxychains",
+                            "Description": "Proxy through chains",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "sshuttle",
+                            "Description": "VPN over SSH",
+                            "Link": "GitHub"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Cloud Security",
+            "subheadings": [
+                {
+                    "heading": "AWS",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "Pacu",
+                            "Description": "AWS exploitation framework",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Prowler",
+                            "Description": "AWS security assessment",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "ScoutSuite",
+                            "Description": "Multi-cloud auditing",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "CloudMapper",
+                            "Description": "AWS visualization",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Azure",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "ROADtools",
+                            "Description": "Azure AD recon",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "AzureHound",
+                            "Description": "BloodHound for Azure",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "PowerZure",
+                            "Description": "Azure exploitation",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "MicroBurst",
+                            "Description": "Azure security tools",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "GCP",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "GCPBucketBrute",
+                            "Description": "GCS bucket brute-force",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "gcp_scanner",
+                            "Description": "GCP security scanner",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Kubernetes",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "kube-hunter",
+                            "Description": "K8s penetration testing",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "kubeletctl",
+                            "Description": "Kubelet exploitation",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "peirates",
+                            "Description": "K8s pentest tool",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Trivy",
+                            "Description": "Container scanner",
+                            "Link": "GitHub"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Mobile",
+            "subheadings": [
+                {
+                    "heading": "Android",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "Frida",
+                            "Description": "Dynamic instrumentation",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "Objection",
+                            "Description": "Runtime mobile exploration",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "jadx",
+                            "Description": "Dex to Java decompiler",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "apktool",
+                            "Description": "APK reverse engineering",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "MobSF",
+                            "Description": "Mobile security framework",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "iOS",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "Frida",
+                            "Description": "Dynamic instrumentation",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "Objection",
+                            "Description": "Runtime mobile exploration",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "ipatool",
+                            "Description": "IPA download",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "ios-deploy",
+                            "Description": "iOS app deployment",
+                            "Link": "GitHub"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Wireless",
+            "subheadings": [
+                {
+                    "heading": "WiFi",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "aircrack-ng",
+                            "Description": "WiFi security suite",
+                            "Link": "Website"
+                        },
+                        {
+                            "Tool": "Wifite2",
+                            "Description": "Automated WiFi auditing",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "hcxdumptool",
+                            "Description": "Capture PMKID/handshakes",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Bettercap",
+                            "Description": "MITM framework",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Bluetooth",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "Ubertooth",
+                            "Description": "Bluetooth sniffing",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "BlueHydra",
+                            "Description": "Bluetooth discovery",
+                            "Link": "GitHub"
+                        }
+                    ]
+                },
+                {
+                    "heading": "RFID/NFC",
+                    "type": "table",
+                    "headers": [
+                        "Tool",
+                        "Description",
+                        "Link"
+                    ],
+                    "rows": [
+                        {
+                            "Tool": "Proxmark3",
+                            "Description": "RFID/NFC research",
+                            "Link": "GitHub"
+                        },
+                        {
+                            "Tool": "Flipper Zero",
+                            "Description": "Multi-tool",
+                            "Link": "Website"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Password Cracking",
+            "type": "table",
+            "headers": [
+                "Tool",
+                "Description",
+                "Link"
+            ],
+            "rows": [
+                {
+                    "Tool": "Hashcat",
+                    "Description": "Advanced password recovery",
+                    "Link": "Website"
+                },
+                {
+                    "Tool": "John the Ripper",
+                    "Description": "Password cracker",
+                    "Link": "Website"
+                },
+                {
+                    "Tool": "CeWL",
+                    "Description": "Custom wordlist generator",
+                    "Link": "GitHub"
+                },
+                {
+                    "Tool": "Hydra",
+                    "Description": "Network login cracker",
+                    "Link": "GitHub"
+                }
+            ]
+        },
+        {
+            "heading": "Social Engineering",
+            "type": "table",
+            "headers": [
+                "Tool",
+                "Description",
+                "Link"
+            ],
+            "rows": [
+                {
+                    "Tool": "Gophish",
+                    "Description": "Phishing framework",
+                    "Link": "GitHub"
+                },
+                {
+                    "Tool": "Evilginx2",
+                    "Description": "MITM phishing",
+                    "Link": "GitHub"
+                },
+                {
+                    "Tool": "SET",
+                    "Description": "Social engineering toolkit",
+                    "Link": "GitHub"
+                },
+                {
+                    "Tool": "King Phisher",
+                    "Description": "Phishing campaigns",
+                    "Link": "GitHub"
+                }
+            ]
+        },
+        {
+            "heading": "Reporting",
+            "type": "table",
+            "headers": [
+                "Tool",
+                "Description",
+                "Link"
+            ],
+            "rows": [
+                {
+                    "Tool": "Ghostwriter",
+                    "Description": "Engagement management",
+                    "Link": "GitHub"
+                },
+                {
+                    "Tool": "Pwndoc",
+                    "Description": "Pentest report generation",
+                    "Link": "GitHub"
+                },
+                {
+                    "Tool": "PlexTrac",
+                    "Description": "Pentest reporting platform",
+                    "Link": "Website"
+                },
+                {
+                    "Tool": "Dradis",
+                    "Description": "Collaboration/reporting",
+                    "Link": "Website"
+                }
+            ]
+        },
+        {
+            "heading": "Wordlists",
+            "type": "table",
+            "headers": [
+                "Resource",
+                "Description",
+                "Link"
+            ],
+            "rows": [
+                {
+                    "Resource": "SecLists",
+                    "Description": "Security wordlists",
+                    "Link": "GitHub"
+                },
+                {
+                    "Resource": "PayloadsAllTheThings",
+                    "Description": "Useful payloads",
+                    "Link": "GitHub"
+                },
+                {
+                    "Resource": "fuzzdb",
+                    "Description": "Attack patterns",
+                    "Link": "GitHub"
+                },
+                {
+                    "Resource": "wordlists",
+                    "Description": "Common wordlists",
+                    "Link": "GitHub"
+                }
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/tool-index.md",
+        "previous_page": {
+            "title": "Browser Extension Security",
+            "url": "/others/browser-extension-security"
+        },
+        "next_page": {
+            "title": "Attack Index",
+            "url": "/others/attack-index"
+        }
+    }
+}

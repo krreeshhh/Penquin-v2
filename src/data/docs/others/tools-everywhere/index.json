@@ -1,0 +1,54 @@
+{
+    "title": "tools everywhere",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "type": "image",
+            "url": "../.gitbook/assets/assessment-mindset.png"
+        },
+        {
+            "type": "link",
+            "title": "https://inventory.raw.pm/tools.html",
+            "url": "https://inventory.raw.pm/tools.html"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-11-04T07:28:59.203Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/tools-everywhere.md",
+        "previous_page": {
+            "title": "Exploiting",
+            "url": "/others/exploiting"
+        },
+        "next_page": {
+            "title": "RT/EDR",
+            "url": "/others/rt-edr"
+        }
+    }
+}

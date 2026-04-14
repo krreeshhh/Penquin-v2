@@ -1,0 +1,683 @@
+{
+  "title": "Penquin's Bug Bounty Playbook",
+  "sections": [
+    {
+      "type": "page",
+      "title": "Introduction to Penquin's Bug Bounty Playbook",
+      "emoji": " ",
+      "url": "/docs"
+    },
+    {
+      "type": "group",
+      "title": "Mains",
+      "pages": [
+        {
+          "type": "page",
+          "title": "Resume For Cyber Security Freshie",
+          "emoji": " ",
+          "url": "/docs/mains/resume-for-cyber-security-freshie"
+        },
+        {
+          "type": "page",
+          "title": "Browser extension For Bug Bounty",
+          "emoji": " ",
+          "url": "/docs/mains/browser-extension"
+        },
+        {
+          "type": "page",
+          "title": "POC Videos YT Channel",
+          "emoji": " ",
+          "url": "/docs/mains/poc-videos-yt-channel"
+        },
+        {
+          "type": "page",
+          "title": "55 YouTube Channels To Learn Hacking",
+          "emoji": " ",
+          "url": "/docs/mains/55-youtube-channels-to-learn-hacking"
+        },
+        {
+          "type": "group",
+          "title": "Hackers to Follow on Social Media",
+          "emoji": " ",
+          "url": "/docs/mains/hackers-to-follow-on-social-media",
+          "pages": [
+            {
+              "type": "page",
+              "title": "Twitter",
+              "emoji": " ",
+              "url": "/docs/mains/hackers-to-follow-on-social-media/twitter"
+            },
+            {
+              "type": "page",
+              "title": "Medium",
+              "emoji": " ",
+              "url": "/docs/mains/hackers-to-follow-on-social-media/medium"
+            },
+            {
+              "type": "page",
+              "title": "YouTube",
+              "emoji": " ",
+              "url": "/docs/mains/hackers-to-follow-on-social-media/youtube"
+            },
+            {
+              "type": "page",
+              "title": "GitHub",
+              "emoji": " ",
+              "url": "/docs/mains/hackers-to-follow-on-social-media/github"
+            },
+            {
+              "type": "page",
+              "title": "Discord Server",
+              "emoji": " ",
+              "url": "/docs/mains/hackers-to-follow-on-social-media/discord-server"
+            },
+            {
+              "type": "page",
+              "title": "Security Gitbooks",
+              "emoji": " ",
+              "url": "/docs/mains/hackers-to-follow-on-social-media/security-gitbooks"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Learn The Basics",
+          "emoji": " ",
+          "url": "/docs/mains/learn-the-basics",
+          "pages": [
+            {
+              "type": "page",
+              "title": "Best Bug Bounty Platform",
+              "emoji": " ",
+              "url": "/docs/mains/learn-the-basics/best-bug-bounty-platform"
+            },
+            {
+              "type": "page",
+              "title": "Best InfoSec Writeups Website",
+              "emoji": " ",
+              "url": "/docs/mains/learn-the-basics/best-infosec-writeups-website"
+            },
+            {
+              "type": "page",
+              "title": "CLI Commands",
+              "emoji": " ",
+              "url": "/docs/mains/learn-the-basics/cli-commands"
+            },
+            {
+              "type": "page",
+              "title": "Common Job Roles",
+              "emoji": " ",
+              "url": "/docs/mains/learn-the-basics/common-job-roles"
+            },
+            {
+              "type": "page",
+              "title": "Get Started With InfoSec",
+              "emoji": " ",
+              "url": "/docs/mains/learn-the-basics/get-started-with-infosec"
+            },
+            {
+              "type": "page",
+              "title": "Hacking Books",
+              "emoji": " ",
+              "url": "/docs/mains/learn-the-basics/hacking-books"
+            },
+            {
+              "type": "page",
+              "title": "Learn WSL",
+              "emoji": " ",
+              "url": "/docs/mains/learn-the-basics/learn-wsl"
+            },
+            {
+              "type": "page",
+              "title": "Type Of Cyber Security",
+              "emoji": " ",
+              "url": "/docs/mains/learn-the-basics/type-of-cyber-security"
+            }
+          ]
+        },
+        {
+          "type": "page",
+          "title": "Fun Programming Codes",
+          "emoji": "",
+          "url": "/docs/mains/fun-programming-codes"
+        },
+        {
+          "type": "page",
+          "title": "Build your own Bug Bounty Methodology",
+          "emoji": "",
+          "url": "/docs/mains/build-your-own-bug-bounty-methodology"
+        },
+        {
+          "type": "page",
+          "title": "Bug Bounty Checklist",
+          "emoji": "",
+          "url": "/docs/mains/bug-bounty-checklist"
+        },
+        {
+          "type": "page",
+          "title": "JS Analysis for Bug Bounty",
+          "emoji": "",
+          "url": "/docs/mains/js-analysis-for-bug-bounty"
+        },
+        {
+          "type": "page",
+          "title": "Learn to Use Burp Suite",
+          "emoji": "",
+          "url": "/docs/mains/learn-to-use-burp-suite"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Learn Android Bug Bounty",
+      "icon": "android",
+      "pages": [
+        {
+          "type": "page",
+          "title": "Video Tutorials",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/video-tutorials"
+        },
+        {
+          "type": "page",
+          "title": "YouTube Channels",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/youtube-channels"
+        },
+        {
+          "type": "page",
+          "title": "Bug Bounty Reports",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/bug-bounty-reports"
+        },
+        {
+          "type": "page",
+          "title": "Blogs & Writeups",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/blogs-and-writeups"
+        },
+        {
+          "type": "page",
+          "title": "GitHub Repository",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/github-repository"
+        },
+        {
+          "type": "page",
+          "title": "Conference Talks",
+          "emoji": "👨‍👨",
+          "url": "/docs/learn-android-bug-bounty/conference-talks"
+        },
+        {
+          "type": "page",
+          "title": "Automated Scanners",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/automated-scanners"
+        },
+        {
+          "type": "page",
+          "title": "Intentionally Vulnerable Apps",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/intentionally-vulnerable-apps"
+        },
+        {
+          "type": "page",
+          "title": "Learn Drozer For Android Pentesting",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/learn-drozer-for-android-pentesting"
+        },
+        {
+          "type": "page",
+          "title": "Learn Frida For Android Pentesting",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/learn-frida-for-android-pentesting"
+        },
+        {
+          "type": "page",
+          "title": "Bypassing Security Protections in APKs via Objection and Frida",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/bypassing-security-protections-in-apks-via-objection-and-frida"
+        },
+        {
+          "type": "page",
+          "title": "Security Tools For Android Pentesting",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/security-tools-for-android-pentesting"
+        },
+        {
+          "type": "page",
+          "title": "PIDCAT for Android Bug Bounty Logging",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/pidcat-for-android-bug-bounty-logging"
+        },
+        {
+          "type": "page",
+          "title": "CLI Commands & Shortcuts",
+          "emoji": "",
+          "url": "/docs/learn-android-bug-bounty/cli-commands-and-shortcuts"
+        },
+        {
+          "type": "page",
+          "title": "My Android Bug Bounty Lab Setup",
+          "icon": "user-robot",
+          "url": "/docs/learn-android-bug-bounty/my-android-bug-bounty-lab-setup"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Learn Thick Client Pentesting",
+      "icon": "computer",
+      "pages": [
+        {
+          "type": "page",
+          "title": "Introduction Videos",
+          "emoji": "",
+          "url": "/docs/learn-thick-client-pentesting/introduction-videos"
+        },
+        {
+          "type": "page",
+          "title": "Introduction Articles",
+          "emoji": "",
+          "url": "/docs/learn-thick-client-pentesting/introduction-articles"
+        },
+        {
+          "type": "page",
+          "title": "Pentesting Checklist",
+          "emoji": "",
+          "url": "/docs/learn-thick-client-pentesting/pentesting-checklist"
+        },
+        {
+          "type": "page",
+          "title": "Bug Bounty Writeups",
+          "emoji": "",
+          "url": "/docs/learn-thick-client-pentesting/bug-bounty-writeups"
+        },
+        {
+          "type": "group",
+          "title": "Thick Client Vulnerabilities",
+          "emoji": "",
+          "url": "/docs/learn-thick-client-pentesting/thick-client-vulnerabilities",
+          "pages": [
+            {
+              "type": "page",
+              "title": "DLL Hijacking Basics",
+              "emoji": "",
+              "url": "/docs/learn-thick-client-pentesting/thick-client-vulnerabilities/dll-hijacking-basics"
+            }
+          ]
+        },
+        {
+          "type": "page",
+          "title": "Intentionally vulnerable labs",
+          "emoji": "",
+          "url": "/docs/learn-thick-client-pentesting/intentionally-vulnerable-labs"
+        },
+        {
+          "type": "page",
+          "title": "Tools for Thick Client Pentesting",
+          "emoji": "",
+          "url": "/docs/learn-thick-client-pentesting/tools-for-thick-client-pentesting"
+        },
+        {
+          "type": "page",
+          "title": "Bug Bounty Programs with Thick Client Scope",
+          "emoji": "",
+          "url": "/docs/learn-thick-client-pentesting/bug-bounty-programs-with-thick-client-scope"
+        },
+        {
+          "type": "page",
+          "title": "Paid Udemy Course",
+          "emoji": "",
+          "url": "/docs/learn-thick-client-pentesting/paid-udemy-course"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Learn Game Hacking",
+      "emoji": "",
+      "pages": [
+        {
+          "type": "page",
+          "title": "Youtube Videos",
+          "emoji": "",
+          "url": "/docs/learn-game-hacking/youtube-videos"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Bug Bounty Reports & Articles",
+      "pages": [
+        {
+          "type": "page",
+          "title": "Index",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/index"
+        },
+        {
+          "type": "page",
+          "title": "Takeover's (Accounts, Sub-domains, etc)",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc",
+          "has_children": true,
+          "children": [
+            {
+              "type": "page",
+              "title": "Sub Domain Takeover",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc/sub-domain-takeover"
+            },
+            {
+              "type": "page",
+              "title": "Account Takeover",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc/account-takeover"
+            },
+            {
+              "type": "page",
+              "title": "dependency confusion vulnerability",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc/dependency-confusion-vulnerability"
+            }
+          ]
+        },
+        {
+          "type": "page",
+          "title": "IDOR (Indirect Object Reference)",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/idor-indirect-object-reference"
+        },
+        {
+          "type": "page",
+          "title": "Leaks & Disclosure (PII, API Key, etc)",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/leaks-and-disclosure-pii-api-key-etc"
+        },
+        {
+          "type": "page",
+          "title": "Open Redirects",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/open-redirects"
+        },
+        {
+          "type": "page",
+          "title": "Request Forgery (CSRF & SSRF)",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf",
+          "has_children": true,
+          "children": [
+            {
+              "type": "page",
+              "title": "CSRF",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf/csrf"
+            },
+            {
+              "type": "page",
+              "title": "SSRF",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf/ssrf"
+            }
+          ]
+        },
+        {
+          "type": "page",
+          "title": "Injections (HTML, XSS, etc)",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc",
+          "has_children": true,
+          "children": [
+            {
+              "type": "page",
+              "title": "XSS",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/xss"
+            },
+            {
+              "type": "page",
+              "title": "HTML Injection",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/html-injection"
+            },
+            {
+              "type": "page",
+              "title": "SQL Injection",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/sql-injection"
+            },
+            {
+              "type": "page",
+              "title": "CR/LF Injection",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/cr-lf-injection"
+            },
+            {
+              "type": "page",
+              "title": "SSTI",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/ssti"
+            },
+            {
+              "type": "page",
+              "title": "Host Header Injection",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/host-header-injection"
+            },
+            {
+              "type": "page",
+              "title": "CSV Injection",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/csv-injection"
+            }
+          ]
+        },
+        {
+          "type": "page",
+          "title": "Broken Access Control & Broken Authentication",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication",
+          "has_children": true,
+          "children": [
+            {
+              "type": "page",
+              "title": "File Upload Functionality",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/file-upload-functionality"
+            },
+            {
+              "type": "page",
+              "title": "Password Reset Functionality",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/password-reset-functionality"
+            },
+            {
+              "type": "page",
+              "title": "2FA Functionality",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/2fa-functionality"
+            },
+            {
+              "type": "page",
+              "title": "Oauth Functionality",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/oauth-functionality"
+            },
+            {
+              "type": "page",
+              "title": "Bypassing",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/bypassing"
+            },
+            {
+              "type": "page",
+              "title": "Misconfiguration",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/misconfiguration"
+            },
+            {
+              "type": "page",
+              "title": "Captcha Bypass",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/captcha-bypass"
+            },
+            {
+              "type": "page",
+              "title": "Business Logic Flow",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/business-logic-flow"
+            }
+          ]
+        },
+        {
+          "type": "page",
+          "title": "Web Socket",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/web-socket"
+        },
+        {
+          "type": "page",
+          "title": "Miscellaneous Reports",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/miscellaneous-reports"
+        },
+        {
+          "type": "page",
+          "title": "IDN Homograph Attack",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/idn-homograph-attack"
+        },
+        {
+          "type": "page",
+          "title": "WebSocket Writeups",
+          "icon": "gears",
+          "url": "/docs/bug-bounty-reports-and-articles/websocket-writeups"
+        },
+        {
+          "type": "page",
+          "title": "User-Role Management Issue",
+          "emoji": "",
+          "url": "/docs/bug-bounty-reports-and-articles/user-role-management-issue"
+        },
+        {
+          "type": "group",
+          "title": "Cloud",
+          "emoji": "0",
+          "url": "/docs/bug-bounty-reports-and-articles/cloud",
+          "pages": [
+            {
+              "type": "page",
+              "title": "AWS S3",
+              "emoji": "",
+              "url": "/docs/bug-bounty-reports-and-articles/cloud/aws-s3"
+            }
+          ]
+        },
+        {
+          "type": "page",
+          "title": "Low Hanging Fruits",
+          "emoji": "1",
+          "url": "/docs/bug-bounty-reports-and-articles/low-hanging-fruits"
+        },
+        {
+          "type": "page",
+          "title": "Cache Vulnerabilities",
+          "emoji": "2",
+          "url": "/docs/bug-bounty-reports-and-articles/cache-poising"
+        },
+        {
+          "type": "page",
+          "title": "DOS/DDOS",
+          "emoji": "3",
+          "url": "/docs/bug-bounty-reports-and-articles/dos-ddos"
+        },
+        {
+          "type": "page",
+          "title": "Forced Browsing",
+          "emoji": "4",
+          "url": "/docs/bug-bounty-reports-and-articles/forced-browsing"
+        },
+        {
+          "type": "page",
+          "title": "RCE",
+          "emoji": "5",
+          "url": "/docs/bug-bounty-reports-and-articles/rce"
+        },
+        {
+          "type": "page",
+          "title": "OSINT",
+          "emoji": "6",
+          "url": "/docs/bug-bounty-reports-and-articles/osint"
+        },
+        {
+          "type": "page",
+          "title": "Prompt Injection",
+          "icon": "7",
+          "url": "/docs/bug-bounty-reports-and-articles/prompt-injection"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Bug Bounty Platforms",
+      "pages": [
+        {
+          "type": "page",
+          "title": "BugCrowd",
+          "emoji": "",
+          "url": "/docs/bug-bounty-platforms/bugcrowd"
+        },
+        {
+          "type": "page",
+          "title": "HackerOne",
+          "emoji": "",
+          "url": "/docs/bug-bounty-platforms/hackerone"
+        },
+        {
+          "type": "page",
+          "title": "Intigriti",
+          "emoji": "",
+          "url": "/docs/bug-bounty-platforms/intigriti"
+        },
+        {
+          "type": "page",
+          "title": "Open Bug Bounty",
+          "emoji": "",
+          "url": "/docs/bug-bounty-platforms/open-bug-bounty"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Exploiting Technologies",
+      "pages": [
+        {
+          "type": "page",
+          "title": "Introduction",
+          "emoji": "",
+          "url": "/docs/exploiting-technologies/introduction"
+        },
+        {
+          "type": "page",
+          "title": "Wordpress",
+          "emoji": "",
+          "url": "/docs/exploiting-technologies/wordpress"
+        },
+        {
+          "type": "page",
+          "title": "GraphQL API",
+          "emoji": "",
+          "url": "/docs/exploiting-technologies/graphql-api"
+        },
+        {
+          "type": "page",
+          "title": "IDOR Vulnerability",
+          "emoji": "",
+          "url": "/docs/exploiting-technologies/idor-vulnerability",
+          "active": true
+        }
+      ]
+    }
+  ]
+}

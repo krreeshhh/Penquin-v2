@@ -1,0 +1,85 @@
+{
+  "title": "Host Header Injection",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    },
+    {
+      "name": "Injections (HTML, XSS, etc)",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc",
+      "icon": "6️⃣"
+    }
+  ],
+  "sections": [
+    {
+      "type": "link_card",
+      "title": "Account Takeover [Via Host Header Injection]",
+      "url": "https://medium.com/@abdallahsamirabdallah60/account-takeover-via-host-header-injection-a0a711ec5994",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Unveiling Vulnerabilities: Host-header injection in OAuth Functionality",
+      "url": "https://medium.com/@iamxali/unveiling-vulnerabilities-host-header-injection-in-oauth-functionality-4ec80557ada7",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "What is HHI (Host Header Injection) & How to Simply Test the Vulnerability",
+      "url": "https://medium.com/fmisec/what-is-hhi-host-header-injection-how-to-simply-test-the-vulnerability-4f1f74a36f9d",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Finding Host header injection",
+      "url": "https://systemweakness.com/finding-host-header-injection-68f3b8f676bf",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Host Header Injection On Password Reset Functionality An Easy #P2",
+      "url": "https://medium.com/@tameemkhalid/host-header-injection-on-password-reset-functionality-an-easy-p2-5c6263c2e3d4",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Host Header injection to RCE",
+      "url": "https://aditya-chauhan17.medium.com/host-header-injection-to-rce-1619311b21bc",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Simple ATO in private program.",
+      "url": "https://medium.com/@oXnoOneXo/simple-ato-in-private-program-890cd1485675",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "HubSpot Full Account Takeover in Bug Bounty",
+      "url": "https://infosecwriteups.com/hubspot-full-account-takeover-in-bug-bounty-4e2047914ab5",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "SSTI",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/ssti"
+    },
+    "next": {
+      "title": "CSV Injection",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/csv-injection"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-09-29T04:59:27.318Z"
+  }
+}

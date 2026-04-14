@@ -1,0 +1,49 @@
+{
+  "title": "SSTI",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    },
+    {
+      "name": "Injections (HTML, XSS, etc)",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc",
+      "icon": "6️⃣"
+    }
+  ],
+  "sections": [
+    {
+      "type": "link_card",
+      "title": "Page not found - HackTricks",
+      "url": "https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection",
+      "source": "book.hacktricks.xyz",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhacktricks.wiki%2Fen%2Ffavicon.svg&width=20&dpr=3&quality=100&sign=af124db5&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "https://github.com/HackTricks-wiki/hacktricks/blob/master/pentesting-web/ssti-server-side-template-injection/README.md",
+      "url": "https://github.com/HackTricks-wiki/hacktricks/blob/master/pentesting-web/ssti-server-side-template-injection/README.md",
+      "source": "github.com"
+    },
+    {
+      "type": "link_card",
+      "title": "Client Side Template Injection (CSTI) - HackTricks",
+      "url": "https://book.hacktricks.xyz/pentesting-web/client-side-template-injection-csti",
+      "source": "HackTricks",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhacktricks.wiki%2Fen%2Ffavicon.svg&width=20&dpr=3&quality=100&sign=af124db5&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "CR/LF Injection",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/cr-lf-injection"
+    },
+    "next": {
+      "title": "Host Header Injection",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/host-header-injection"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2024-08-26T15:25:32.488Z"
+  }
+}

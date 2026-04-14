@@ -1,0 +1,57 @@
+{
+    "title": "Cloud",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        }
+    ],
+    "sections": [
+        {
+            "type": "list",
+            "content": [
+                "General",
+                "AWS",
+                "Azure",
+                "Google Cloud Platform",
+                "Cloud Info Gathering",
+                "Docker && Kubernetes",
+                "CDNs"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2023-11-29T11:41:54.390Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/cloud/README.md",
+        "previous_page": {
+            "title": "Others",
+            "url": "/enumeration/webservices/others"
+        },
+        "next_page": {
+            "title": "General",
+            "url": "/enumeration/cloud/general"
+        }
+    }
+}

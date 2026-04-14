@@ -1,0 +1,49 @@
+{
+    "title": "Web Technologies",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        }
+    ],
+    "sections": [
+        {
+            "type": "paragraph",
+            "content": "Check out in the left submenu what common attack you want review"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-08-14T09:13:15.108Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/README.md",
+        "previous_page": {
+            "title": "Tabnabbing",
+            "url": "/enumeration/web/tabnabbing"
+        },
+        "next_page": {
+            "title": "APIs",
+            "url": "/enumeration/webservices/apis"
+        }
+    }
+}

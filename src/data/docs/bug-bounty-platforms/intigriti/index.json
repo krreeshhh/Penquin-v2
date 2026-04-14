@@ -1,0 +1,49 @@
+{
+  "title": "Intigriti",
+  "description": "Here are all the programs on Intigriti I like to hunt are being documented.",
+  "breadcrumb": [
+    {
+      "label": "Bug Bounty Platforms",
+      "url": "/docs/bug-bounty-platforms"
+    }
+  ],
+  "programs": [
+    {
+      "title": "BMW Group - Bug Bounty Program - Intigriti",
+      "platform": "Intigriti",
+      "url": "https://app.intigriti.com/researcher/programs/bmw/bmwgroup/detail",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fapp.intigriti.com%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=9e6d8010&sv=2"
+    },
+    {
+      "title": "Soundtrack Your Brand - Bug Bounty Program - Intigriti",
+      "platform": "Intigriti",
+      "url": "https://app.intigriti.com/researcher/programs/syb/soundtrackyourbrand/detail",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fapp.intigriti.com%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=9e6d8010&sv=2"
+    },
+    {
+      "title": "DataCamp - Bug Bounty Program - Intigriti",
+      "platform": "Intigriti",
+      "url": "https://app.intigriti.com/researcher/programs/datacamp/datacamp/detail",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fapp.intigriti.com%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=9e6d8010&sv=2"
+    },
+    {
+      "title": "Intigriti - Bug Bounty & Agile Pentesting Platform",
+      "platform": "Intigriti",
+      "url": "https://app.intigriti.com/researcher/programs/coolblue/coolblue/detail",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fapp.intigriti.com%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=9e6d8010&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "HackerOne",
+      "url": "/docs/bug-bounty-platforms/hackerone"
+    },
+    "next": {
+      "title": "Open Bug Bounty",
+      "url": "/docs/bug-bounty-platforms/open-bug-bounty"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2024-06-29T09:40:52.043Z"
+  }
+}

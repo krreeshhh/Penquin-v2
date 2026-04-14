@@ -1,0 +1,838 @@
+{
+    "title": "/home/six2dez/.pentest-book",
+    "sections": [
+        {
+            "type": "group",
+            "title": "Recon",
+            "pages": [
+                {
+                    "type": "page",
+                    "title": "Public info gathering",
+                    "url": "/docs/recon/public-info-gathering"
+                },
+                {
+                    "type": "page",
+                    "title": "Root domains",
+                    "url": "/docs/recon/domain-enum"
+                },
+                {
+                    "type": "group",
+                    "title": "Subdomain Enum",
+                    "url": "/docs/recon/subdomain-enum",
+                    "pages": [
+                        {
+                            "type": "page",
+                            "title": "Subdomain Takeover",
+                            "url": "/docs/recon/subdomain-enum/subdomain-takeover"
+                        }
+                    ]
+                },
+                {
+                    "type": "page",
+                    "title": "Webs recon",
+                    "url": "/docs/recon/webs-recon"
+                },
+                {
+                    "type": "page",
+                    "title": "Network Scanning",
+                    "url": "/docs/recon/network-scanning"
+                },
+                {
+                    "type": "page",
+                    "title": "Host Scanning",
+                    "url": "/docs/recon/host-scanning"
+                },
+                {
+                    "type": "page",
+                    "title": "Packet Scanning",
+                    "url": "/docs/recon/packet-scanning"
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "title": "Enumeration",
+            "pages": [
+                {
+                    "type": "page",
+                    "title": "Files",
+                    "url": "/docs/enumeration/files"
+                },
+                {
+                    "type": "page",
+                    "title": "SSL/TLS",
+                    "url": "/docs/enumeration/ssl-tls"
+                },
+                {
+                    "type": "page",
+                    "title": "Ports",
+                    "url": "/docs/enumeration/ports"
+                },
+                {
+                    "type": "group",
+                    "title": "Web Attacks",
+                    "url": "/docs/enumeration/web",
+                    "pages": [
+                        {
+                            "type": "page",
+                            "title": "General Info",
+                            "url": "/docs/enumeration/web/general-info"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Quick tricks",
+                            "url": "/docs/enumeration/web/quick-tricks"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Header injections",
+                            "url": "/docs/enumeration/web/header-injections"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Bruteforcing",
+                            "url": "/docs/enumeration/web/bruteforcing"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Online hashes cracked",
+                            "url": "/docs/enumeration/web/online-hashes-cracked"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Crawl/Fuzz",
+                            "url": "/docs/enumeration/web/crawl-fuzz"
+                        },
+                        {
+                            "type": "page",
+                            "title": "LFI/RFI",
+                            "url": "/docs/enumeration/web/lfi-rfi"
+                        },
+                        {
+                            "type": "page",
+                            "title": "File upload",
+                            "url": "/docs/enumeration/web/upload-bypasses"
+                        },
+                        {
+                            "type": "page",
+                            "title": "SQLi",
+                            "url": "/docs/enumeration/web/sqli"
+                        },
+                        {
+                            "type": "page",
+                            "title": "SSRF",
+                            "url": "/docs/enumeration/web/ssrf"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Open redirects",
+                            "url": "/docs/enumeration/web/open-redirects"
+                        },
+                        {
+                            "type": "page",
+                            "title": "XSS",
+                            "url": "/docs/enumeration/web/xss"
+                        },
+                        {
+                            "type": "page",
+                            "title": "CSP",
+                            "url": "/docs/enumeration/web/csp"
+                        },
+                        {
+                            "type": "page",
+                            "title": "XXE",
+                            "url": "/docs/enumeration/web/xxe"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Cookie Padding",
+                            "url": "/docs/enumeration/web/cookie-padding"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Webshells",
+                            "url": "/docs/enumeration/web/web-shells"
+                        },
+                        {
+                            "type": "page",
+                            "title": "CORS",
+                            "url": "/docs/enumeration/web/cors"
+                        },
+                        {
+                            "type": "page",
+                            "title": "CSRF",
+                            "url": "/docs/enumeration/web/csrf"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Web Cache Poisoning",
+                            "url": "/docs/enumeration/web/web-cache-poisoning"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Broken Links",
+                            "url": "/docs/enumeration/web/broken-links"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Clickjacking",
+                            "url": "/docs/enumeration/web/clickjacking"
+                        },
+                        {
+                            "type": "page",
+                            "title": "HTTP Request Smuggling",
+                            "url": "/docs/enumeration/web/request-smuggling"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Web Sockets",
+                            "url": "/docs/enumeration/web/web-sockets"
+                        },
+                        {
+                            "type": "page",
+                            "title": "CRLF",
+                            "url": "/docs/enumeration/web/crlf"
+                        },
+                        {
+                            "type": "page",
+                            "title": "IDOR",
+                            "url": "/docs/enumeration/web/idor"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Web Cache Deception",
+                            "url": "/docs/enumeration/web/web-cache-deception"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Session fixation",
+                            "url": "/docs/enumeration/web/session-fixation"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Email attacks",
+                            "url": "/docs/enumeration/web/email-attacks"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Pastejacking",
+                            "url": "/docs/enumeration/web/pastejacking"
+                        },
+                        {
+                            "type": "page",
+                            "title": "HTTP Parameter pollution",
+                            "url": "/docs/enumeration/web/parameter-pollution"
+                        },
+                        {
+                            "type": "page",
+                            "title": "SSTI",
+                            "url": "/docs/enumeration/web/ssti"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Prototype Pollution",
+                            "url": "/docs/enumeration/web/prototype-pollution"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Command Injection",
+                            "url": "/docs/enumeration/web/command-injection"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Deserialization",
+                            "url": "/docs/enumeration/web/deserialization"
+                        },
+                        {
+                            "type": "page",
+                            "title": "DNS rebinding",
+                            "url": "/docs/enumeration/web/dns-rebinding"
+                        },
+                        {
+                            "type": "page",
+                            "title": "API Security",
+                            "url": "/docs/enumeration/web/api-security"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Supply Chain Attacks",
+                            "url": "/docs/enumeration/web/supply-chain"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Race Conditions",
+                            "url": "/docs/enumeration/web/race-conditions"
+                        },
+                        {
+                            "type": "page",
+                            "title": "GraphQL Deep Dive",
+                            "url": "/docs/enumeration/web/graphql-deep"
+                        },
+                        {
+                            "type": "page",
+                            "title": "OAuth/PKCE Attacks",
+                            "url": "/docs/enumeration/web/oauth-attacks"
+                        },
+                        {
+                            "type": "page",
+                            "title": "VHosts",
+                            "url": "/docs/enumeration/web/vhosts"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Tabnabbing",
+                            "url": "/docs/enumeration/web/tabnabbing"
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "title": "Web Technologies",
+                    "url": "/docs/enumeration/webservices",
+                    "pages": [
+                        {
+                            "type": "page",
+                            "title": "APIs",
+                            "url": "/docs/enumeration/webservices/apis"
+                        },
+                        {
+                            "type": "page",
+                            "title": "JS",
+                            "url": "/docs/enumeration/webservices/js"
+                        },
+                        {
+                            "type": "page",
+                            "title": "ASP.NET",
+                            "url": "/docs/enumeration/webservices/.net"
+                        },
+                        {
+                            "type": "page",
+                            "title": "JWT",
+                            "url": "/docs/enumeration/webservices/jwt"
+                        },
+                        {
+                            "type": "page",
+                            "title": "GitHub",
+                            "url": "/docs/enumeration/webservices/github"
+                        },
+                        {
+                            "type": "page",
+                            "title": "GitLab",
+                            "url": "/docs/enumeration/webservices/gitlab"
+                        },
+                        {
+                            "type": "page",
+                            "title": "WAFs",
+                            "url": "/docs/enumeration/webservices/wafs"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Firebird",
+                            "url": "/docs/enumeration/webservices/firebird"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Wordpress",
+                            "url": "/docs/enumeration/webservices/wordpress"
+                        },
+                        {
+                            "type": "page",
+                            "title": "WebDav",
+                            "url": "/docs/enumeration/webservices/webdav"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Joomla",
+                            "url": "/docs/enumeration/webservices/joomla"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Jenkins",
+                            "url": "/docs/enumeration/webservices/jenkins"
+                        },
+                        {
+                            "type": "page",
+                            "title": "IIS",
+                            "url": "/docs/enumeration/webservices/iis"
+                        },
+                        {
+                            "type": "page",
+                            "title": "VHosts",
+                            "url": "/docs/enumeration/webservices/vhosts"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Firebase",
+                            "url": "/docs/enumeration/webservices/firebase"
+                        },
+                        {
+                            "type": "page",
+                            "title": "OWA",
+                            "url": "/docs/enumeration/webservices/owa"
+                        },
+                        {
+                            "type": "page",
+                            "title": "OAuth",
+                            "url": "/docs/enumeration/webservices/oauth"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Flask",
+                            "url": "/docs/enumeration/webservices/flask"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Symfony && Twig",
+                            "url": "/docs/enumeration/webservices/symfony-and-and-twig"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Drupal",
+                            "url": "/docs/enumeration/webservices/drupal"
+                        },
+                        {
+                            "type": "page",
+                            "title": "NoSQL (MongoDB, CouchDB)",
+                            "url": "/docs/enumeration/webservices/nosql-and-and-mongodb"
+                        },
+                        {
+                            "type": "page",
+                            "title": "PHP",
+                            "url": "/docs/enumeration/webservices/php"
+                        },
+                        {
+                            "type": "page",
+                            "title": "RoR (Ruby on Rails)",
+                            "url": "/docs/enumeration/webservices/ror-ruby-on-rails"
+                        },
+                        {
+                            "type": "page",
+                            "title": "JBoss - Java Deserialization",
+                            "url": "/docs/enumeration/webservices/jboss-java-deserialization"
+                        },
+                        {
+                            "type": "page",
+                            "title": "OneLogin - SAML Login",
+                            "url": "/docs/enumeration/webservices/onelogin-saml-login"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Flash SWF",
+                            "url": "/docs/enumeration/webservices/flash-swf"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Nginx",
+                            "url": "/docs/enumeration/webservices/nginx"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Python",
+                            "url": "/docs/enumeration/webservices/python"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Tomcat",
+                            "url": "/docs/enumeration/webservices/tomcat"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Adobe AEM",
+                            "url": "/docs/enumeration/webservices/adobe-aem"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Magento",
+                            "url": "/docs/enumeration/webservices/magento"
+                        },
+                        {
+                            "type": "page",
+                            "title": "SAP",
+                            "url": "/docs/enumeration/webservices/sap"
+                        },
+                        {
+                            "type": "page",
+                            "title": "MFA/2FA",
+                            "url": "/docs/enumeration/webservices/mfa"
+                        },
+                        {
+                            "type": "page",
+                            "title": "GWT",
+                            "url": "/docs/enumeration/webservices/gwt"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Jira",
+                            "url": "/docs/enumeration/webservices/jira"
+                        },
+                        {
+                            "type": "page",
+                            "title": "OIDC (Open ID Connect)",
+                            "url": "/docs/enumeration/webservices/oidc-open-id-connect"
+                        },
+                        {
+                            "type": "page",
+                            "title": "ELK",
+                            "url": "/docs/enumeration/webservices/elk"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Sharepoint",
+                            "url": "/docs/enumeration/webservices/sharepoint"
+                        },
+                        {
+                            "type": "page",
+                            "title": "CI/CD Security",
+                            "url": "/docs/enumeration/webservices/ci-cd-security"
+                        },
+                        {
+                            "type": "page",
+                            "title": "SaaS Testing",
+                            "url": "/docs/enumeration/webservices/saas-testing"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Others",
+                            "url": "/docs/enumeration/webservices/others"
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "title": "Cloud",
+                    "url": "/docs/enumeration/cloud",
+                    "pages": [
+                        {
+                            "type": "page",
+                            "title": "General",
+                            "url": "/docs/enumeration/cloud/general"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Cloud Info Gathering",
+                            "url": "/docs/enumeration/cloud/cloud-info-recon"
+                        },
+                        {
+                            "type": "page",
+                            "title": "AWS",
+                            "url": "/docs/enumeration/cloud/aws"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Azure",
+                            "url": "/docs/enumeration/cloud/azure"
+                        },
+                        {
+                            "type": "page",
+                            "title": "GCP",
+                            "url": "/docs/enumeration/cloud/gcp"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Docker && Kubernetes",
+                            "url": "/docs/enumeration/cloud/docker-and-and-kubernetes"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Serverless Security",
+                            "url": "/docs/enumeration/cloud/serverless"
+                        },
+                        {
+                            "type": "page",
+                            "title": "CDN - Comain Fronting",
+                            "url": "/docs/enumeration/cloud/cdn-comain-fronting"
+                        },
+                        {
+                            "type": "page",
+                            "title": "Cloud AI Security",
+                            "url": "/docs/enumeration/cloud/cloud-ai-security"
+                        },
+                        {
+                            "type": "page",
+                            "title": "K8s Admission Bypass",
+                            "url": "/docs/enumeration/cloud/k8s-admission-bypass"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "title": "Exploitation",
+            "pages": [
+                {
+                    "type": "page",
+                    "title": "Payloads",
+                    "url": "/docs/exploitation/payloads"
+                },
+                {
+                    "type": "page",
+                    "title": "Reverse Shells",
+                    "url": "/docs/exploitation/reverse-shells"
+                },
+                {
+                    "type": "page",
+                    "title": "File transfer",
+                    "url": "/docs/exploitation/file-transfer"
+                },
+                {
+                    "type": "page",
+                    "title": "Privilege Escalation",
+                    "url": "/docs/exploitation/privilege-escalation"
+                },
+                {
+                    "type": "page",
+                    "title": "Buffer Overflow",
+                    "url": "/docs/exploitation/buffer-overflow"
+                },
+                {
+                    "type": "page",
+                    "title": "Web Exploits & C2",
+                    "url": "/docs/exploitation/web-exploits"
+                },
+                {
+                    "type": "page",
+                    "title": "Linux Kernel Exploits",
+                    "url": "/docs/exploitation/linux-kernel-2024"
+                },
+                {
+                    "type": "page",
+                    "title": "Modern C2 Frameworks",
+                    "url": "/docs/exploitation/modern-c2"
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "title": "Post Exploitation",
+            "pages": [
+                {
+                    "type": "page",
+                    "title": "Linux",
+                    "url": "/docs/post-exploitation/linux"
+                },
+                {
+                    "type": "page",
+                    "title": "macOS",
+                    "url": "/docs/post-exploitation/macos"
+                },
+                {
+                    "type": "page",
+                    "title": "Pivoting",
+                    "url": "/docs/post-exploitation/pivoting"
+                },
+                {
+                    "type": "group",
+                    "title": "Windows",
+                    "url": "/docs/post-exploitation/windows",
+                    "pages": [
+                        {
+                            "type": "page",
+                            "title": "Win11/Server2022 Evasion",
+                            "url": "/docs/post-exploitation/windows/win11-evasion"
+                        },
+                        {
+                            "type": "group",
+                            "title": "AD",
+                            "url": "/docs/post-exploitation/windows/ad",
+                            "pages": [
+                                {
+                                    "type": "page",
+                                    "title": "Kerberos",
+                                    "url": "/docs/post-exploitation/windows/ad/kerberos-attacks"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "page",
+                            "title": "PS tips & tricks",
+                            "url": "/docs/post-exploitation/windows/ps-tips-and-tricks"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "title": "Mobile",
+            "pages": [
+                {
+                    "type": "page",
+                    "title": "General",
+                    "url": "/docs/mobile/general"
+                },
+                {
+                    "type": "page",
+                    "title": "Android",
+                    "url": "/docs/mobile/android"
+                },
+                {
+                    "type": "page",
+                    "title": "iOS",
+                    "url": "/docs/mobile/ios"
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "title": "Others",
+            "pages": [
+                {
+                    "type": "page",
+                    "title": "Burp Suite",
+                    "url": "/docs/others/burp"
+                },
+                {
+                    "type": "page",
+                    "title": "Password cracking",
+                    "url": "/docs/others/password-cracking"
+                },
+                {
+                    "type": "page",
+                    "title": "VirtualBox",
+                    "url": "/docs/others/virtualbox"
+                },
+                {
+                    "type": "page",
+                    "title": "LLM/AI/ML/prompt testing",
+                    "url": "/docs/others/llm-ai-ml-prompt-testing"
+                },
+                {
+                    "type": "page",
+                    "title": "Code review",
+                    "url": "/docs/others/code-review"
+                },
+                {
+                    "type": "page",
+                    "title": "Pentesting Web checklist",
+                    "url": "/docs/others/web-checklist"
+                },
+                {
+                    "type": "page",
+                    "title": "Internal Pentest",
+                    "url": "/docs/others/internal-pentest"
+                },
+                {
+                    "type": "page",
+                    "title": "Web fuzzers review",
+                    "url": "/docs/others/web-fuzzers-comparision"
+                },
+                {
+                    "type": "page",
+                    "title": "Recon suites review",
+                    "url": "/docs/others/recon-suites-review"
+                },
+                {
+                    "type": "page",
+                    "title": "Subdomain tools review",
+                    "url": "/docs/others/subdomain-tools-review"
+                },
+                {
+                    "type": "page",
+                    "title": "Random",
+                    "url": "/docs/others/dictionaries"
+                },
+                {
+                    "type": "page",
+                    "title": "Master assessment mindmaps",
+                    "url": "/docs/others/master-assessment-mindmap"
+                },
+                {
+                    "type": "page",
+                    "title": "BugBounty",
+                    "url": "/docs/others/bugbounty"
+                },
+                {
+                    "type": "page",
+                    "title": "Exploiting",
+                    "url": "/docs/others/exploiting"
+                },
+                {
+                    "type": "page",
+                    "title": "tools everywhere",
+                    "url": "/docs/others/tools-everywhere"
+                },
+                {
+                    "type": "page",
+                    "title": "RT/EDR",
+                    "url": "/docs/others/rt-edr"
+                },
+                {
+                    "type": "page",
+                    "title": "Wireless Testing",
+                    "url": "/docs/others/wireless"
+                },
+                {
+                    "type": "page",
+                    "title": "Social Engineering",
+                    "url": "/docs/others/social-engineering"
+                },
+                {
+                    "type": "page",
+                    "title": "Reporting",
+                    "url": "/docs/others/reporting"
+                },
+                {
+                    "type": "page",
+                    "title": "Hardware Hacking",
+                    "url": "/docs/others/hardware"
+                },
+                {
+                    "type": "page",
+                    "title": "Purple Team",
+                    "url": "/docs/others/purple-team"
+                },
+                {
+                    "type": "page",
+                    "title": "IoT Protocols",
+                    "url": "/docs/others/iot-protocols"
+                },
+                {
+                    "type": "page",
+                    "title": "Automotive Security",
+                    "url": "/docs/others/automotive-security"
+                },
+                {
+                    "type": "page",
+                    "title": "WebAuthn & Passkeys",
+                    "url": "/docs/others/webauthn-passkeys"
+                },
+                {
+                    "type": "page",
+                    "title": "Browser Extension Security",
+                    "url": "/docs/others/browser-extension-security"
+                },
+                {
+                    "type": "page",
+                    "title": "Tool Index",
+                    "url": "/docs/others/tool-index"
+                },
+                {
+                    "type": "page",
+                    "title": "Attack Index",
+                    "url": "/docs/others/attack-index"
+                },
+                {
+                    "type": "page",
+                    "title": "Wordlist Reference",
+                    "url": "/docs/others/wordlist-reference"
+                },
+                {
+                    "type": "page",
+                    "title": "Learning Path",
+                    "url": "/docs/others/learning-path"
+                },
+                {
+                    "type": "page",
+                    "title": "Lab Setup Guide",
+                    "url": "/docs/others/lab-setup-guide"
+                },
+                {
+                    "type": "page",
+                    "title": "Automation & Scripting",
+                    "url": "/docs/others/automation-scripting"
+                }
+            ]
+        }
+    ]
+}

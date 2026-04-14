@@ -1,0 +1,226 @@
+{
+    "title": "Burp Suite",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Burp MCP + Codex CLI",
+            "type": "paragraph",
+            "content": "Everything is documented and updated at https://github.com/six2dez/burp-mcp-agents\nThis guide shows how to connect Burp Suite MCP Server to Codex CLI so that Codex can reason directly on your real HTTP traffic — no API keys, no scanning, no fuzzing.\nYou end up with a reasoning engine wired directly into your interception stack.\n***"
+        },
+        {
+            "heading": "What you get",
+            "type": "paragraph",
+            "content": "• Passive vuln discovery\n• IDOR / auth bypass / SSRF / logic flaw detection\n• Report writing from real Burp evidence\n• No API keys\n• Full local traffic control\n***"
+        },
+        {
+            "heading": "1. Install Burp MCP Server",
+            "type": "paragraph",
+            "content": "Install MCP Server from Burp’s BApp Store.\nOnce installed, open its tab and click:\n> Extract server proxy jar\n../.gitbook/assets/image.png\n\nThis downloads:\n``\nmcp-proxy.jar\n``\nThis is the stdio MCP bridge Codex uses.\n***"
+        },
+        {
+            "heading": "2. Configure Codex MCP",
+            "type": "paragraph",
+            "content": "Edit:\n``\n~/.codex/config.toml\n`\nAppend:\n`\n[mcp_servers.burp]\ncommand = \"java\"\nargs = [\"-jar\", \"/absolute/path/to/mcp-proxy.jar\", \"--sse-url\", \"http://127.0.0.1:19876\"]\n``\n***"
+        },
+        {
+            "heading": "3. Install Caddy reverse proxy",
+            "type": "paragraph",
+            "content": "Burp MCP currently enforces strict Origin validation and rejects extra headers sent by Codex, which causes handshake failures see more here.\nWe solve this with a local reverse proxy.\nInstall Caddy:\n``\nbrew install caddy\n``\n***"
+        },
+        {
+            "heading": "4. Create the Caddyfile",
+            "type": "paragraph",
+            "content": "Create:\n``\n~/burp-mcp/Caddyfile\n`\nPaste:\n`\n:19876\nreverseproxy 127.0.0.1:9876 {\n# Match Origin and Host exactly (anti-DNS rebinding)\nheaderup Host \"127.0.0.1:9876\"\nheaderup Origin \"http://127.0.0.1:9876\"\n# Workaround for current Burp MCP SSE 403 bug\nheaderup -User-Agent\nheaderup -Accept\nheaderup -Accept-Encoding\nheader_up -Connection\n}\n``\n***"
+        },
+        {
+            "heading": "5. Start everything",
+            "type": "paragraph",
+            "content": "``\ncaddy run --config ~/burp-mcp/Caddyfile &\ncodex\n`\nVerify:\n`\n/mcp\n``\nYou should see:\n\n***"
+        },
+        {
+            "heading": "6. Test it",
+            "type": "paragraph",
+            "content": "Examples:\n``\nFrom Burp history, find all endpoints that use numeric IDs and lack Authorization headers.\n`\n`\nUsing Burp MCP, identify potential IDOR endpoints and suggest safe confirmation steps.\n`\n`\nFrom Burp data, write a vulnerability report with reproduction, impact and remediation.\n``\n***"
+        },
+        {
+            "heading": "7. One-command launcher (optional)",
+            "type": "paragraph",
+            "content": "\\\nAdd to your \\~/.zshrc (check your paths first):\n``bash\nburpcodex() {\nemulate -L zsh\nsetopt pipefail\nlocal CADDYFILE=\"$HOME/burp-mcp/Caddyfile\"\nlocal LOG=\"/tmp/burp-mcp-caddy.log\"\nlocal CADDYPID=\"\"\nif ! command -v caddy >/dev/null 2>&1; then\necho \"[!] caddy not found (brew install caddy)\"\nreturn 1\nfi\nif ! command -v codex >/dev/null 2>&1; then\necho \"[!] codex not found in PATH\"\nreturn 1\nfi\nif [[ ! -f \"$CADDYFILE\" ]]; then\necho \"[!] Caddyfile not found: $CADDYFILE\"\nreturn 1\nfi\ncleanup() {\n# 1) Kill captured PID (if still alive)\nif [[ -n \"$CADDYPID\" ]] && kill -0 \"$CADDYPID\" 2>/dev/null; then\nkill -TERM \"$CADDYPID\" 2>/dev/null\nsleep 0.2\nkill -KILL \"$CADDYPID\" 2>/dev/null\nwait \"$CADDYPID\" 2>/dev/null\nfi\n# 2) Fallback: kill anything still listening on 19876\nlocal pids\npids=\"$(lsof -ti tcp:19876 2>/dev/null | tr '\\n' ' ')\"\nif [[ -n \"$pids\" ]]; then\nkill -TERM $pids 2>/dev/null\nsleep 0.2\nkill -KILL $pids 2>/dev/null\nfi\n}\ntrap 'cleanup; return 130' INT TERM\ntrap 'cleanup' EXIT\n# Start caddy\ncaddy run --config \"$CADDYFILE\" >\"$LOG\" 2>&1 &\nCADDYPID=$!\necho \"[] Caddy started (pid=$CADDYPID) - log: $LOG\"\n# Run codex (foreground)\ncommand codex \"$@\"\n# Ensure cleanup even if trap didn't trigger for some reason\ncleanup\ntrap - INT TERM EXIT\n}\n`\nRun:\n`\nburpcodex\n``\n**"
+        },
+        {
+            "heading": "Tips",
+            "type": "code_block",
+            "content": [
+                "- If Render Page crash:",
+                "sudo sysctl -w kernel.unprivileged_userns_clone=1",
+                "",
+                "- If embedded browser crash due sandbox:",
+                "find .BurpSuite -name chrome-sandbox -exec chown root:root {} \\; -exec chmod 4755 {} \\;",
+                "",
+                "- Scope with all subdomains:",
+                ".*\\.test\\.com$",
+                "",
+                "- Use Intruder to target specific parameters for scanning ",
+                "  - Right click: actively scan defined insertion points ",
+                "",
+                "# Configuration",
+                "- Project Options -> HTTP -> Redirections -> Enable JavaScript-driven",
+                "- User Options -> Misc -> Proxy Interception -> Always disabled",
+                "- Target -> Site Map -> Show all && Show only in-scope items",
+                "",
+                "# XSS Validator extension",
+                "1) Start xss.js phantomjs $HOME/.BurpSuite/bapps/xss.js",
+                "2) Send Request to Intruder",
+                "3) Mark Position ",
+                "4) Import xss-payload-list from $Tools into xssValidator",
+                "5) Change Payload Type to Extension Generated",
+                "6) Change Payload Process to Invoke-Burp Extension - XSS Validator",
+                "7) Add Grep-Match rule as per XSS Validator",
+                "8) Start.",
+                "",
+                "# Filter the noise",
+                "https://gist.github.com/vsec7/d5518a432b70714bedad79e4963ff320",
+                "",
+                "# Filter the noise TLDR",
+                "# TLS Pass Through",
+                ".*\\.google\\.com",
+                ".*\\.gstatic\\.com",
+                ".*\\.googleapis\\.com",
+                ".*\\.pki\\.goog",
+                ".*\\.mozilla\\.com",
+                "",
+                "# Send swagger to burp",
+                "https://github.com/RhinoSecurityLabs/Swagger-EZ",
+                "# Hosted: ",
+                "https://rhinosecuritylabs.github.io/Swagger-EZ/",
+                "",
+                "# If some request/response breaks or slow down Burp",
+                "- Project options -> HTTP -> Streaming responses -> Add url and uncheck \"Store streaming responses....\"",
+                "",
+                "# Burp Extension rotate IP yo avoid IP restrictions",
+                "https://github.com/RhinoSecurityLabs/IPRotate_Burp_Extension",
+                "",
+                "# Collab/SSRF/pingback alternative",
+                "interactsh.com",
+                "ceye.io",
+                "requestcatcher.com",
+                "canarytokens.org",
+                "webhook.site",
+                "ngrok.com",
+                "pingb.in",
+                "swin.es",
+                "requestbin.net",
+                "ssrftest.com",
+                "rbnd.gl0.eu",
+                "dnslog.cn",
+                "beeceptor.com",
+                "",
+                "# Run private collaborator instance in AWS",
+                "https://github.com/Leoid/AWSBurpCollaborator",
+                "",
+                "# Run your own collab server",
+                "https://github.com/yeswehack/pwn-machine",
+                "",
+                "# Wordlist from burp project file",
+                "cat project.burp | strings | tok | sort -u > custom_wordlist.txt",
+                "",
+                "# Autorize:",
+                "  1. Copy cookies from low priv user and paste in Autorize",
+                "  2. Set filters (scope, regex)",
+                "  3. Set Autorize ON",
+                "  4. Navigate as high priv user",
+                "  ",
+                "# Turbo Intruder",
+                "basic.py -> Set %s in the injection point and specify wordlist in script",
+                "multipleParameters.py -> Set %s in all the injection points and specify the wordlists in script",
+                "",
+                "# Match and Replace",
+                "https://github.com/daffainfo/match-replace-burp",
+                "",
+                "# Customize Audit Scans",
+                "Configure your audit profile -> Issues reported -> Individual issues -> right-click on \"Extension generated issues\" -> \"Edit detection methods\"",
+                "Works on most of issues like SQLi",
+                "",
+                "# Send to local Burp from VPS",
+                "# In local computer",
+                "ssh -R 8080:127.0.0.1:8080 root@VPS_IP -f -N",
+                "# In VPS",
+                "curl URL -x http://127.0.0.1:8080",
+                "",
+                "# Ip rotation",
+                "https://github.com/ustayready/fireprox"
+            ]
+        },
+        {
+            "heading": "Proxy options",
+            "type": "paragraph",
+            "content": "Append something to the user-agent\nMatch \\^User-Agent: (.\\*)$\\\nReplace \\User-Agent: $1 BugBounty-Username\\"
+        },
+        {
+            "heading": "Preferred extensions",
+            "type": "paragraph",
+            "content": "{% embed url=\"https://portswigger.net/blog/make-burp-suite-your-own-high-powered-extensibility-to-customize-and-enhance-your-testing\" %}\n{% embed url=\"https://github.com/Ignitetechnologies/BurpSuite-For-Pentester\" %}\n Burp Bounty Pro: Active and passive checks customizable based on patterns.\n Active Scan ++ More active and passive scans.\n Software Vulnerability Scanner Passive scan to detect vulnerable software versions\n Param Miner Passive scan to detect hidden or unlinked parameters, cache poisoning\n Backslash Powered Scanner Active scan for SSTI detection\n CSRF Scanner Passive CSRF detection\n Freddy Active and Passive scan for Java and .NET deserialization\n JSON Web Tokens decode and manipulate JSON web tokens\n Reissue Request Scripter generates scripts for Python, Ruby, Perl, PHP and PowerShell\n Burp-exporter other extension for export request to multiple languages\n Retire.js Passive scan to find vulnerable JavaScript libraries\n Web Cache Deception Scanner Active scan for Web Cache Deception vulnerability\n Cookie decrypter Passive check for decrypt/decode Netscaler, F5 BigIP, and Flask cookies\n Reflector Passive scan to find reflected XSS\n J2EEScan Active checks to discover different kind of J2EE vulnerabilities\n HTTP Request Smuggler Active scanner and launcher for HTTP Request Smuggling attacks\n Flow History of all burp tools, extensions and tests\n Taborator Allows Burp Collaborator in a new tab\n Turbo Intruder Useful for sending large numbers of HTTP requests (Race cond, fuzz, user enum)\n Auto Repeater Automatically repeats requests with replacement rules and response diffing\n Upload Scanner Tests multiple upload vulnerabilities\n poi Slinger: Active scan check to find PHP object injection\n Java Deserialization Scanner Active and passive scanner to find Java deserialization vulnerabilities\n Autorize Used to detect IDORs\n Match/Replace Session Action Provides a match and replace function as a Session Handling Rule.\n .NET Beautifier Easy view for VIEWSTATE parameter\n Wsdler generates SOAP requests from WSDL request\n Collaborator Everywhere Inject headers to reveal backend systems by causing pingbacks\n Collabfiltrator Exfiltrate blind remote code execution output over DNS\n Bypass WAF Add some headers to bypass some WAFs\n SAMLRaider for testing SAML infrastructures, messages and certificates\n GoldenNuggets-1 create wordlists from target\n Logger++ Log for every burp tool and allows highlight, filter, grep, export...\n OpenAPI Parser Parse and fetch OpenAPI documents directly from a URL\n CO2: Multiple functions such sqlmapper, cewler\n XSSValidator: XSS intruder payload generator and checker\n Shelling: command injection payload generator\n burp-send-to: Adds a customizable \"Send to...\"-context-menu.\n* ssrf-king: Automates SSRF detection"
+        },
+        {
+            "heading": "Private collaborator server",
+            "type": "paragraph",
+            "content": "{% embed url=\"https://github.com/putsi/privatecollaborator\" %}\n{% embed url=\"https://blog.roughwire.com/?p=24\" %}\n{% embed url=\"https://teamrot.fi/self-hosted-burp-collaborator-with-custom-domain\" %}"
+        },
+        {
+            "heading": "Burp macros",
+            "type": "link",
+            "title": "https://akshita-infosec.medium.com/burp-macros-what-why-how-151df8901641",
+            "url": "https://akshita-infosec.medium.com/burp-macros-what-why-how-151df8901641"
+        },
+        {
+            "heading": "Collaborator SSRF explotation mindmap",
+            "type": "paragraph",
+            "content": ")"
+        },
+        {
+            "heading": "DOM Invader",
+            "type": "link",
+            "title": "https://caramel-calcium-f39.notion.site/DOM-Invader-1a78e4ba7acc4ca3987b8136bcf1ddd5",
+            "url": "https://caramel-calcium-f39.notion.site/DOM-Invader-1a78e4ba7acc4ca3987b8136bcf1ddd5"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-01-28T07:40:10.031Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/burp.md",
+        "previous_page": {
+            "title": "iOS",
+            "url": "/mobile/ios"
+        },
+        "next_page": {
+            "title": "Password cracking",
+            "url": "/others/password-cracking"
+        }
+    }
+}

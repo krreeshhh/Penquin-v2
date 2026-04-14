@@ -1,0 +1,57 @@
+{
+    "title": "Broken Links",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/stevenvachon/broken-link-checker ",
+                "blc -rfoi --exclude linkedin.com --exclude youtube.com --filter-level 3 https://example.com/"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-09-09T06:02:20.361Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/broken-links.md",
+        "previous_page": {
+            "title": "Web Cache Poisoning",
+            "url": "/enumeration/web/web-cache-poisoning"
+        },
+        "next_page": {
+            "title": "Clickjacking",
+            "url": "/enumeration/web/clickjacking"
+        }
+    }
+}

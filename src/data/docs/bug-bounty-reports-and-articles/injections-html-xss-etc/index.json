@@ -1,0 +1,48 @@
+{
+  "title": "Injections (HTML, XSS, etc)",
+  "subtitle": "Injection vulnerabilities, including HTML injection and Cross-Site Scripting (XSS), occur when untrusted data is sent to an interpreter as part of a command or query, leading to unintended actions. HTML injection allows attackers to insert malicious HTML code into web pages viewed by other users, potentially defacing web pages and stealing session cookies.",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    }
+  ],
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "Injection vulnerabilities, including HTML injection and Cross-Site Scripting (XSS), occur when untrusted data is sent to an interpreter as part of a command or query, leading to unintended actions. HTML injection allows attackers to insert malicious HTML code into web pages viewed by other users, potentially defacing web pages and stealing session cookies."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/vjyiZio"
+    },
+    {
+      "type": "link_card",
+      "title": "XSS",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/xss",
+      "icon": "🟡"
+    },
+    {
+      "type": "link_card",
+      "title": "HTML Injection",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/html-injection",
+      "icon": "🟠"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "SSRF",
+      "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf/ssrf"
+    },
+    "next": {
+      "title": "XSS",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/xss"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2024-06-29T09:14:13.568Z"
+  }
+}

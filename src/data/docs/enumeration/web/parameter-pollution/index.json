@@ -1,0 +1,61 @@
+{
+    "title": "HTTP Parameter pollution",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "# Inject existing extra parameters in GET:",
+                "https://www.bank.com/transfer?from=12345&to=67890&amount=5000&from=ABCDEF",
+                "https://www.site.com/sharer.php?u=https://site2.com/blog/introducing?&u=https://site3.com/test"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": ")"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-10-25T16:24:32.649Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/parameter-pollution.md",
+        "previous_page": {
+            "title": "Pastejacking",
+            "url": "/enumeration/web/pastejacking"
+        },
+        "next_page": {
+            "title": "SSTI",
+            "url": "/enumeration/web/ssti"
+        }
+    }
+}

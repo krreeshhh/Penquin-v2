@@ -1,0 +1,52 @@
+{
+  "title": "Broken Access Control & Broken Authentication",
+  "subtitle": "Broken Access Control: This vulnerability arises when an application fails to enforce appropriate permissions, allowing users to access unauthorized resources or actions. It can lead to data breaches, unauthorized modifications, and exposure of sensitive information.\n\nBroken Authentication: This occurs when an application's authentication mechanisms are poorly implemented, allowing attackers to compromise user identities. Common issues include weak password policies, insufficient protection of credentials, and improper session handling.",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    }
+  ],
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "Broken Access Control: This vulnerability arises when an application fails to enforce appropriate permissions, allowing users to access unauthorized resources or actions. It can lead to data breaches, unauthorized modifications, and exposure of sensitive information."
+    },
+    {
+      "type": "paragraph",
+      "content": "Broken Authentication: This occurs when an application’s authentication mechanisms are poorly implemented, allowing attackers to compromise user identities. Common issues include weak password policies, insufficient protection of credentials, and improper session handling."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/Y1u2gPe"
+    },
+    {
+      "type": "link_card",
+      "title": "Password Reset Functionality",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/password-reset-functionality",
+      "icon": "⚙️"
+    },
+    {
+      "type": "link_card",
+      "title": "File Upload Functionality",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/file-upload-functionality",
+      "icon": "⚙️"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "CSV Injection",
+      "url": "/docs/bug-bounty-reports-and-articles/injections-html-xss-etc/csv-injection"
+    },
+    "next": {
+      "title": "File Upload Functionality",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/file-upload-functionality"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2024-06-29T09:18:39.911Z"
+  }
+}

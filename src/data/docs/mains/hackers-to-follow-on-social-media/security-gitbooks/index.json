@@ -1,0 +1,100 @@
+{
+  "title": "Security GitBooks",
+  "breadcrumb": [
+    {
+      "label": "Mains",
+      "url": "/docs/mains"
+    },
+    {
+      "label": "Hackers to Follow on Social Media",
+      "url": "/docs/mains/hackers-to-follow-on-social-media"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Introduction | Book of BugBounty Tips",
+      "url": "https://gowsundar.gitbook.io/book-of-bugbounty-tips",
+      "domain": "gowsundar.gitbook.io",
+      "icon": "https://gowsundar.gitbook.io/book-of-bugbounty-tips/~gitbook/image?url=https%3A%2F%2F1889062997-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-LbWrDBBrbM1WtGeIKRO%252Favatar.png%3Fgeneration%3D1554280595427688%26alt%3Dmedia&width=48&height=48&sign=876aedc7&sv=2"
+    },
+    {
+      "title": "Introduction | Bug Hunter Handbook",
+      "url": "https://gowthams.gitbook.io/bughunter-handbook",
+      "domain": "gowthams.gitbook.io",
+      "icon": "https://gowthams.gitbook.io/bughunter-handbook/~gitbook/image?url=https%3A%2F%2F3284959579-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-LmdDaax1PAvLD05wJYt%252Favatar-1602267486079.png%3Fgeneration%3D1602267486531079%26alt%3Dmedia&width=48&height=48&sign=e0a87d23&sv=2"
+    },
+    {
+      "title": "Pentest Book",
+      "url": "https://pentestbook.six2dez.com/",
+      "domain": "pentestbook.six2dez.com",
+      "icon": "https://www.pentest-book.com/~gitbook/image?url=https%3A%2F%2F1729840239-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-M5x1LJiRQvXWpt04_ee%252Favatar-1589202873787.png%3Fgeneration%3D1589202874039238%26alt%3Dmedia&width=48&height=48&sign=1dafa1f5&sv=2"
+    },
+    {
+      "title": "https://notes.learnsec101.com/101",
+      "url": "https://notes.learnsec101.com/101",
+      "domain": "notes.learnsec101.com",
+      "icon": null
+    },
+    {
+      "title": "API-Sec | Sec-88",
+      "url": "https://sallam.gitbook.io/sec-88/api-sec",
+      "domain": "sallam.gitbook.io",
+      "icon": "https://sallam.gitbook.io/sec-88/~gitbook/image?url=https%3A%2F%2F2308035028-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FWeYzWCIl8fzqyot9mus5%252Ficon%252FkBr19BKU3cdKLxDXM44a%252Fphoto_2024-01-06_01-15-59.jpg%3Falt%3Dmedia%26token%3Dc0a4021c-ef0d-4553-9a29-8722f7db2cce&width=48&height=48&sign=de61c35c&sv=2"
+    },
+    {
+      "title": "Internal All The Things",
+      "url": "https://swisskyrepo.github.io/InternalAllTheThings/",
+      "domain": "swisskyrepo.github.io",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fswisskyrepo.github.io%2FInternalAllTheThings%2Fassets%2Fimages%2Ffavicon.png&width=20&dpr=3&quality=100&sign=4261db&sv=2"
+    },
+    {
+      "title": "Pentesting Pocket Book for hackers and developers. | HackBook.io",
+      "url": "https://www.hackbook.io/",
+      "domain": "www.hackbook.io",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwww.hackbook.io%2F%7Egitbook%2Ficon%3Fsize%3Dsmall%26theme%3Dlight&width=20&dpr=3&quality=100&sign=c4c83194&sv=2"
+    },
+    {
+      "title": "All of the Best Links and Resources on Cyber Security. | s0cm0nkey's Security Reference Guide",
+      "url": "https://s0cm0nkey.gitbook.io/s0cm0nkeys-security-reference-guide",
+      "domain": "s0cm0nkey.gitbook.io",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fs0cm0nkey.gitbook.io%2Fs0cm0nkeys-security-reference-guide%2F%7Egitbook%2Ficon%3Fsize%3Dsmall%26theme%3Dlight&width=20&dpr=3&quality=100&sign=664e47a8&sv=2"
+    },
+    {
+      "title": "HowToHunt.md | HowToHunt",
+      "url": "https://kathan19.gitbook.io/howtohunt",
+      "domain": "kathan19.gitbook.io",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fkathan19.gitbook.io%2Fhowtohunt%2F%7Egitbook%2Ficon%3Fsize%3Dsmall%26theme%3Dlight&width=20&dpr=3&quality=100&sign=b95b78ba&sv=2"
+    },
+    {
+      "title": "The Hacker Recipes",
+      "url": "https://www.thehacker.recipes/",
+      "domain": "www.thehacker.recipes",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwww.thehacker.recipes%2Fimages%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=7d94ccef&sv=2"
+    },
+    {
+      "title": "Pentesting - SecurityBoat Workbook",
+      "url": "https://workbook.securityboat.net/Pentesting/",
+      "domain": "workbook.securityboat.net",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fworkbook.securityboat.net%2Fassets%2Fsb_short_logo.png&width=20&dpr=3&quality=100&sign=8942b4f2&sv=2"
+    },
+    {
+      "title": "Talkback",
+      "url": "https://talkback.sh/",
+      "domain": "Talkback",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fs3.talkback.sh%2Fstatic%2Ftalkback%2Ffavicon%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=a7b27d4b&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Discord Server",
+      "url": "/docs/mains/hackers-to-follow-on-social-media/discord-server"
+    },
+    "next": {
+      "title": "Learn The Basics",
+      "url": "/docs/mains/learn-the-basics"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2024-10-01T06:21:50.831Z"
+  }
+}

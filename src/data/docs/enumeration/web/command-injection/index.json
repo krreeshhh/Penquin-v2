@@ -1,0 +1,60 @@
+{
+    "title": "Command Injection",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "XSS - Cross-site scripting attacks",
+                "SSRF - Server-side request forgery",
+                "LFI/RFI - File inclusion vulnerabilities",
+                "Web Exploits - RCE exploitation chains",
+                "Reverse Shells - Shell payloads"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/command-injection.md",
+        "previous_page": {
+            "title": "Prototype Pollution",
+            "url": "/enumeration/web/prototype-pollution"
+        },
+        "next_page": {
+            "title": "Deserialization",
+            "url": "/enumeration/web/deserialization"
+        }
+    }
+}

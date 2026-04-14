@@ -1,0 +1,286 @@
+{
+    "title": "Learning Path",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "🟢 Beginner Path",
+            "type": "paragraph",
+            "content": "Start here if you're new to penetration testing."
+        },
+        {
+            "heading": "Week 1-2: Foundations",
+            "type": "ordered_list",
+            "content": [
+                "Public Info Gathering - OSINT basics",
+                "Subdomain Enumeration - DNS and discovery",
+                "Network Scanning - Nmap fundamentals",
+                "Host Scanning - Service identification"
+            ]
+        },
+        {
+            "heading": "Week 3-4: Web Basics",
+            "type": "ordered_list",
+            "content": [
+                "Web Attacks Overview - Introduction",
+                "Crawl/Fuzz - Directory discovery",
+                "XSS - Cross-site scripting",
+                "CSRF - Request forgery"
+            ]
+        },
+        {
+            "heading": "Week 5-6: First Exploitation",
+            "type": "ordered_list",
+            "content": [
+                "Reverse Shells - Getting shells",
+                "File Transfer - Moving files",
+                "Payloads - Common payloads",
+                "Webshells - Web-based access"
+            ]
+        },
+        {
+            "heading": "Resources for Beginners",
+            "type": "paragraph",
+            "content": "- Pentesting Web Checklist\n- Wordlist Reference\n- Tool Index\n---"
+        },
+        {
+            "heading": "🟡 Intermediate Path",
+            "type": "paragraph",
+            "content": "For those comfortable with basics, ready to deepen skills."
+        },
+        {
+            "heading": "Web Application Testing",
+            "type": "ordered_list",
+            "content": [
+                "SQLi - SQL injection mastery",
+                "SSRF - Server-side request forgery",
+                "XXE - XML attacks",
+                "LFI/RFI - File inclusion",
+                "Deserialization - Object attacks",
+                "SSTI - Template injection"
+            ]
+        },
+        {
+            "heading": "Authentication & Authorization",
+            "type": "ordered_list",
+            "content": [
+                "Bruteforcing - Credential attacks",
+                "JWT - Token attacks",
+                "OAuth - OAuth flaws",
+                "IDOR - Access control bypass",
+                "API Security - API testing"
+            ]
+        },
+        {
+            "heading": "Post-Exploitation Basics",
+            "type": "ordered_list",
+            "content": [
+                "Linux Post-Exploitation - Linux privesc",
+                "Pivoting - Network movement",
+                "Privilege Escalation - Overview"
+            ]
+        },
+        {
+            "heading": "Cloud Fundamentals",
+            "type": "paragraph",
+            "content": "1. Cloud Overview - Cloud concepts\n2. AWS - AWS attacks\n3. Docker & Kubernetes - Container basics\n---"
+        },
+        {
+            "heading": "🔴 Advanced Path",
+            "type": "paragraph",
+            "content": "For experienced testers looking to master advanced techniques."
+        },
+        {
+            "heading": "Advanced Exploitation",
+            "type": "ordered_list",
+            "content": [
+                "Buffer Overflow - Binary exploitation",
+                "Web Exploits - RCE chains",
+                "Request Smuggling - HTTP desync",
+                "Supply Chain - Dependency attacks"
+            ]
+        },
+        {
+            "heading": "Windows & Active Directory",
+            "type": "ordered_list",
+            "content": [
+                "Windows Post-Exploitation - Windows techniques",
+                "Active Directory - AD attacks",
+                "Kerberos Attacks - Kerberos abuse"
+            ]
+        },
+        {
+            "heading": "Cloud Security",
+            "type": "ordered_list",
+            "content": [
+                "Azure - Azure attacks",
+                "GCP - GCP attacks",
+                "Serverless - Function exploitation"
+            ]
+        },
+        {
+            "heading": "Evasion & Stealth",
+            "type": "ordered_list",
+            "content": [
+                "RT/EDR Evasion - Defense bypass",
+                "Purple Team - Detection engineering"
+            ]
+        },
+        {
+            "heading": "Mobile Security",
+            "type": "ordered_list",
+            "content": [
+                "Android - Android testing",
+                "iOS - iOS testing"
+            ]
+        },
+        {
+            "heading": "Specialized Topics",
+            "type": "paragraph",
+            "content": "1. Wireless Testing - WiFi/Bluetooth\n2. Hardware Hacking - Physical security\n3. Social Engineering - Human factors\n---"
+        },
+        {
+            "heading": "📋 Certification Paths",
+            "subheadings": [
+                {
+                    "heading": "OSCP-Focused",
+                    "type": "ordered_list",
+                    "content": [
+                        "Network Scanning → Host Scanning → Ports",
+                        "Web Attacks (SQLi, LFI, Command Injection)",
+                        "Reverse Shells → File Transfer",
+                        "Linux Privesc → Windows Privesc",
+                        "Pivoting",
+                        "Buffer Overflow basics"
+                    ]
+                },
+                {
+                    "heading": "Web Application Focus (BSCP/eWPT)",
+                    "type": "ordered_list",
+                    "content": [
+                        "All Web Attacks sections",
+                        "API Security",
+                        "JWT, OAuth, OIDC",
+                        "Web Technologies (all subsections)",
+                        "Request Smuggling, Cache Poisoning"
+                    ]
+                },
+                {
+                    "heading": "Cloud Security Focus",
+                    "type": "ordered_list",
+                    "content": [
+                        "AWS → Azure → GCP",
+                        "Docker & Kubernetes",
+                        "Serverless",
+                        "Cloud Info Gathering"
+                    ]
+                },
+                {
+                    "heading": "Red Team Focus",
+                    "type": "paragraph",
+                    "content": "1. All Post-Exploitation\n2. AD & Kerberos\n3. RT/EDR Evasion\n4. Purple Team\n5. Social Engineering\n6. C2 Framework basics (Web Exploits)\n---"
+                }
+            ]
+        },
+        {
+            "heading": "🎯 Quick Reference by Task",
+            "type": "table",
+            "headers": [
+                "I want to...",
+                "Go to..."
+            ],
+            "rows": [
+                {
+                    "I want to...": "Find subdomains",
+                    "Go to...": "Subdomain Enum"
+                },
+                {
+                    "I want to...": "Scan a network",
+                    "Go to...": "Network Scanning"
+                },
+                {
+                    "I want to...": "Test for SQLi",
+                    "Go to...": "SQLi"
+                },
+                {
+                    "I want to...": "Get a shell",
+                    "Go to...": "Reverse Shells"
+                },
+                {
+                    "I want to...": "Escalate on Linux",
+                    "Go to...": "Linux Post-Exploitation"
+                },
+                {
+                    "I want to...": "Escalate on Windows",
+                    "Go to...": "Windows Post-Exploitation"
+                },
+                {
+                    "I want to...": "Attack Active Directory",
+                    "Go to...": "AD Attacks"
+                },
+                {
+                    "I want to...": "Test an API",
+                    "Go to...": "API Security"
+                },
+                {
+                    "I want to...": "Test AWS",
+                    "Go to...": "AWS"
+                },
+                {
+                    "I want to...": "Bypass EDR",
+                    "Go to...": "RT/EDR Evasion"
+                },
+                {
+                    "I want to...": "Write a report",
+                    "Go to...": "Reporting"
+                },
+                {
+                    "I want to...": "Find a tool",
+                    "Go to...": "Tool Index"
+                },
+                {
+                    "I want to...": "Find an attack",
+                    "Go to...": "Attack Index"
+                }
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/learning-path.md",
+        "previous_page": {
+            "title": "Wordlist Reference",
+            "url": "/others/wordlist-reference"
+        },
+        "next_page": {
+            "title": "Lab Setup Guide",
+            "url": "/others/lab-setup-guide"
+        }
+    }
+}

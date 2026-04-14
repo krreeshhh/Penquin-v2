@@ -1,0 +1,64 @@
+{
+    "title": "Learn to Use Burp Suite",
+    "breadcrumb": [],
+    "sections": [
+        {
+            "type": "list",
+            "items": [
+                {
+                    "title": "Bitten Tech",
+                    "url": "https://www.youtube.com/playlist?list=PLkW9FMxqUvybgx3pI9x9HyU-_HcJJFWQY"
+                },
+                {
+                    "title": "Ethical Sharmaji",
+                    "url": "https://www.youtube.com/watch?v=mK3Hr6ktgNg&t=4118s"
+                },
+                {
+                    "title": "hackbin",
+                    "url": "https://www.youtube.com/watch?v=eKPpGLn9G3w&t=185s"
+                },
+                {
+                    "title": "David Bombal",
+                    "url": "https://www.youtube.com/watch?v=IWWYNDiwYOA"
+                },
+                {
+                    "title": "PortSwigger",
+                    "url": "https://www.youtube.com/playlist?list=PLoX0sUafNGbEXtfr-f4n0g4AqzU-CDvcQ"
+                },
+                {
+                    "title": "Cyber World Hindi",
+                    "url": "https://www.youtube.com/playlist?list=PLSbrmTUy4daN1ep7pkBZw4PRRmx7F0EaS"
+                },
+                {
+                    "title": "Cyberwings Security",
+                    "url": "https://www.youtube.com/playlist?list=PLa2xctTiNSCjVzFfxTn_UKkd-sS34EQaF"
+                },
+                {
+                    "title": "Technical MotaBhai",
+                    "url": "https://www.youtube.com/playlist?list=PLBCWFgREB971jxEXKbiAZSNQZqIxH9L47"
+                },
+                {
+                    "title": "Introduction To Burpsuite By CryptoCat",
+                    "url": "https://www.youtube.com/watch?v=24dUQ1LvopE&list=PLHUKi1UlEgOLychy09fmLH8zPFL1cvcMv&index=1"
+                },
+                {
+                    "title": "Your Guide to Burp by",
+                    "url": "https://www.youtube.com/watch?v=ltgfOgN1GIo"
+                }
+            ]
+        }
+    ],
+    "navigation": {
+        "previous": {
+            "title": "JS Analysis for Bug Bounty",
+            "url": "/docs/mains/js-analysis-for-bug-bounty"
+        },
+        "next": {
+            "title": "Video Tutorials",
+            "url": "/docs/learn-android-bug-bounty/video-tutorials"
+        }
+    },
+    "metadata": {
+        "lastUpdated": "2025-07-19T18:00:11.140Z"
+    }
+}

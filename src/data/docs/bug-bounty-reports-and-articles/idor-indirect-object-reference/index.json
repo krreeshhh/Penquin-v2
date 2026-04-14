@@ -1,0 +1,107 @@
+{
+  "title": "IDOR (Indirect Object Reference)",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    }
+  ],
+  "sections": [
+    {
+      "type": "divider"
+    },
+    {
+      "type": "link_card",
+      "title": "Chaining IDOR and Host Header can takeover 18 Million of users account",
+      "url": "https://nullr3x.medium.com/chaining-idor-and-host-header-can-takeover-18-million-of-users-account-39d402f6a79e",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "($$$$) Critical IDOR Vulnerability Leads to User Information Disclosure",
+      "url": "https://medium.com/@Tanvir0x1/critical-idor-vulnerability-leads-to-user-information-disclosure-b0bb7f06aef5",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "IDOR at Election Commission Website",
+      "url": "https://cyberspecs.medium.com/idor-at-election-commission-website-e3f99c28c62d",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Acronis disclosed on HackerOne: IDOR vulnerability (Price...",
+      "url": "https://hackerone.com/reports/1403176",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "GitLab disclosed on HackerOne: Add and Access to Labels of any...",
+      "url": "https://hackerone.com/reports/439729",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Automattic disclosed on HackerOne: IDOR leads to Edit Anyone's...",
+      "url": "https://hackerone.com/reports/974222",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Reddit disclosed on HackerOne: IDOR allows an attacker to modify...",
+      "url": "https://hackerone.com/reports/1661113",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "HackerOne disclosed on HackerOne: IDOR - Delete all Licenses and...",
+      "url": "https://hackerone.com/reports/2122671",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "HackerOne disclosed on HackerOne: Insecure Direct Object Reference...",
+      "url": "https://hackerone.com/reports/1969141",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "https://bepractical.tech/blogs/all-about-idor/",
+      "url": "https://bepractical.tech/blogs/all-about-idor/",
+      "source": "bepractical.tech"
+    },
+    {
+      "type": "link_card",
+      "title": "How I (Ethically) Hacked My College Portal with a JWT Token — and Reported It Responsibly",
+      "url": "https://medium.com/legionhunters/how-i-ethically-hacked-my-college-portal-with-a-jwt-token-and-reported-it-responsibly-16aa97a5255e",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/wLzTY4J"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "dependency confusion vulnerability",
+      "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc/dependency-confusion-vulnerability"
+    },
+    "next": {
+      "title": "Leaks & Disclosure (PII, API Key, etc)",
+      "url": "/docs/bug-bounty-reports-and-articles/leaks-and-disclosure-pii-api-key-etc"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-09-29T05:00:17.609Z"
+  }
+}

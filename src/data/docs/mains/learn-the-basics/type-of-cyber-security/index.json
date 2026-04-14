@@ -1,0 +1,124 @@
+{
+  "title": "Type Of Cyber Security",
+  "breadcrumb": [
+    {
+      "label": "Mains",
+      "url": "/docs/mains"
+    },
+    {
+      "label": "Learn The Basics",
+      "url": "/docs/mains/learn-the-basics"
+    }
+  ],
+  "cybersecurityTypes": [
+    {
+      "type": "Network Security",
+      "description": "Protects network infrastructure from intrusions and attacks.",
+      "jobRoles": "Network Security Engineer, SOC Analyst, Firewall Administrator",
+      "beginnerFriendly": "Yes – Start with basics of networking and firewalls"
+    },
+    {
+      "type": "Web Application Security",
+      "description": "Secures websites and web applications from vulnerabilities.",
+      "jobRoles": "Web App Pentester, Application Security Engineer, Bug Bounty Hunter",
+      "beginnerFriendly": "Yes – OWASP Top 10 is a good starting point"
+    },
+    {
+      "type": "Endpoint Security",
+      "description": "Protects individual devices (PCs, mobiles) from threats.",
+      "jobRoles": "Endpoint Security Analyst, IT Security Administrator",
+      "beginnerFriendly": "Yes – Easy to understand via antivirus, EDR tools"
+    },
+    {
+      "type": "Mobile Security (Android/iOS)",
+      "description": "Focuses on securing mobile apps and OS against malware and exploitation.",
+      "jobRoles": "Mobile Security Researcher, Android Pentester, iOS Security Analyst",
+      "beginnerFriendly": "Moderate – Better after basic pentesting"
+    },
+    {
+      "type": "Cloud Security",
+      "description": "Secures cloud platforms like AWS, Azure, and GCP.",
+      "jobRoles": "Cloud Security Engineer, Cloud Architect, DevSecOps Engineer",
+      "beginnerFriendly": "No – Requires cloud and networking background"
+    },
+    {
+      "type": "IoT Security",
+      "description": "Protects Internet of Things devices from remote attacks.",
+      "jobRoles": "IoT Security Analyst, Embedded Security Engineer",
+      "beginnerFriendly": "No – Needs hardware and embedded systems knowledge"
+    },
+    {
+      "type": "Operational Security (OPSEC)",
+      "description": "Manages processes and decisions around protecting sensitive data.",
+      "jobRoles": "OPSEC Analyst, Risk Management Specialist",
+      "beginnerFriendly": "Yes – Learn basic data handling and privacy"
+    },
+    {
+      "type": "Information Security (InfoSec)",
+      "description": "General protection of information assets from unauthorized access.",
+      "jobRoles": "InfoSec Analyst, Compliance Officer, ISO Auditor",
+      "beginnerFriendly": "Yes – A good entry point into cybersecurity"
+    },
+    {
+      "type": "Application Security",
+      "description": "Involves secure coding, code review, and protecting software during development.",
+      "jobRoles": "AppSec Engineer, Secure Code Reviewer, Software Security Consultant",
+      "beginnerFriendly": "No – Requires programming knowledge"
+    },
+    {
+      "type": "Identity and Access Management (IAM)",
+      "description": "Controls user access to systems and data.",
+      "jobRoles": "IAM Analyst, Identity Governance Engineer",
+      "beginnerFriendly": "Moderate – Learn access control models first"
+    },
+    {
+      "type": "Cryptography",
+      "description": "Uses encryption to protect data confidentiality and integrity.",
+      "jobRoles": "Cryptographer, Crypto Analyst, PKI Specialist",
+      "beginnerFriendly": "No – Needs strong math background"
+    },
+    {
+      "type": "Incident Response",
+      "description": "Detects and responds to security breaches and threats.",
+      "jobRoles": "Incident Responder, SOC Analyst, Digital Forensic Expert",
+      "beginnerFriendly": "Yes – Start in SOC roles"
+    },
+    {
+      "type": "Penetration Testing (Red Teaming)",
+      "description": "Simulates attacks to find weaknesses before attackers do.",
+      "jobRoles": "Penetration Tester, Red Team Operator, Ethical Hacker",
+      "beginnerFriendly": "Yes – With basic hacking knowledge"
+    },
+    {
+      "type": "Blue Teaming",
+      "description": "Defends systems and detects attacks in real time.",
+      "jobRoles": "Blue Team Analyst, Threat Hunter, SOC Analyst",
+      "beginnerFriendly": "Yes – Good for defense-focused beginners"
+    },
+    {
+      "type": "Digital Forensics",
+      "description": "Investigates cybercrimes by analyzing digital evidence.",
+      "jobRoles": "Forensic Analyst, Cybercrime Investigator",
+      "beginnerFriendly": "No – Requires forensic tools knowledge"
+    },
+    {
+      "type": "Governance, Risk, and Compliance (GRC)",
+      "description": "Ensures security practices comply with legal and regulatory standards.",
+      "jobRoles": "GRC Analyst, Compliance Manager, Risk Analyst",
+      "beginnerFriendly": "Yes – Suitable for non-technical entry"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Learn The Basics",
+      "url": "/docs/mains/learn-the-basics"
+    },
+    "next": {
+      "title": "Common Job Roles",
+      "url": "/docs/mains/learn-the-basics/common-job-roles"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2025-08-06T03:52:03.078Z"
+  }
+}

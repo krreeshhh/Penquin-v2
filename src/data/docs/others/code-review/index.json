@@ -1,0 +1,310 @@
+{
+    "title": "Code Review & SAST",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "skill_level": "Intermediate to Advanced",
+    "prerequisites": "Programming knowledge, security concepts",
+    "sections": [
+        {
+            "heading": "Methodology",
+            "subheadings": [
+                {
+                    "heading": "Phase 1: Reconnaissance",
+                    "type": "code_block",
+                    "content": [
+                        "# Understand the application",
+                        "1. What language/framework is used?",
+                        "2. What's the application's purpose?",
+                        "3. How does authentication work?",
+                        "4. What data does it process?",
+                        "5. What external services does it connect to?",
+                        "",
+                        "# Get codebase statistics",
+                        "cloc . --exclude-dir=node_modules,vendor,venv",
+                        "tokei .",
+                        "",
+                        "# Find entry points",
+                        "grep -rn \"app.get\\|app.post\\|@RequestMapping\\|@GetMapping\\|Route\\|def index\" ."
+                    ]
+                },
+                {
+                    "heading": "Phase 2: High-Value Targets",
+                    "type": "code_block",
+                    "content": [
+                        "# Priority areas to review:",
+                        "1. Authentication & Authorization",
+                        "2. Input validation & sanitization",
+                        "3. Database queries",
+                        "4. File operations",
+                        "5. Cryptographic implementations",
+                        "6. Session management",
+                        "7. API endpoints",
+                        "8. Configuration files",
+                        "9. Third-party integrations",
+                        "10. Error handling & logging"
+                    ]
+                },
+                {
+                    "heading": "Phase 3: Vulnerability Patterns",
+                    "type": "code_block",
+                    "content": [
+                        "# SQL Injection patterns",
+                        "grep -rn \"execute\\|query\\|cursor\\|raw\\|sprintf.*SELECT\\|%s.*SELECT\" . --include=\"*.py\" --include=\"*.php\" --include=\"*.java\"",
+                        "",
+                        "# Command Injection",
+                        "grep -rn \"exec\\|system\\|popen\\|subprocess\\|shell_exec\\|passthru\\|eval\" . --include=\"*.py\" --include=\"*.php\" --include=\"*.rb\"",
+                        "",
+                        "# Path Traversal",
+                        "grep -rn \"open(\\|file_get_contents\\|readfile\\|include\\|require\\|fopen\" . --include=\"*.py\" --include=\"*.php\"",
+                        "",
+                        "# XSS patterns",
+                        "grep -rn \"innerHTML\\|document.write\\|v-html\\|dangerouslySetInnerHTML\\|\\$sce.trustAsHtml\" . --include=\"*.js\" --include=\"*.jsx\" --include=\"*.vue\"",
+                        "",
+                        "# Hardcoded secrets",
+                        "grep -rni \"password\\s*=\\|secret\\s*=\\|api_key\\s*=\\|token\\s*=\" . --include=\"*.py\" --include=\"*.js\" --include=\"*.java\"",
+                        "",
+                        "# Deserialization",
+                        "grep -rn \"pickle.loads\\|yaml.load\\|unserialize\\|readObject\\|JSON.parse\" ."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "SAST Tools",
+            "subheadings": [
+                {
+                    "heading": "Multi-Language Scanners",
+                    "type": "code_block",
+                    "content": [
+                        "# Semgrep (recommended - fast, customizable)",
+                        "# https://github.com/returntocorp/semgrep",
+                        "semgrep --config=auto .",
+                        "semgrep --config=p/security-audit .",
+                        "semgrep --config=p/owasp-top-ten .",
+                        "",
+                        "# Custom rules",
+                        "semgrep --config=my-rules.yaml .",
+                        "",
+                        "# Snyk Code",
+                        "# https://snyk.io/product/snyk-code/",
+                        "snyk code test",
+                        "",
+                        "# SonarQube (comprehensive)",
+                        "# https://www.sonarqube.org/downloads/",
+                        "docker run -d --name sonarqube -p 9000:9000 sonarqube:community",
+                        "sonar-scanner -Dsonar.projectKey=myproject -Dsonar.sources=.",
+                        "",
+                        "# CodeQL (GitHub's SAST)",
+                        "# https://github.com/github/codeql",
+                        "codeql database create mydb --language=javascript",
+                        "codeql database analyze mydb codeql/javascript-queries:codeql-suites/javascript-security-extended.qls --format=csv --output=results.csv"
+                    ]
+                },
+                {
+                    "heading": "Secret Detection",
+                    "type": "code_block",
+                    "content": [
+                        "# Gitleaks",
+                        "# https://github.com/gitleaks/gitleaks",
+                        "gitleaks detect -v",
+                        "gitleaks detect --source=. --report-path=leaks.json",
+                        "",
+                        "# TruffleHog",
+                        "# https://github.com/trufflesecurity/trufflehog",
+                        "trufflehog filesystem . --only-verified",
+                        "trufflehog git https://github.com/org/repo --only-verified",
+                        "",
+                        "# detect-secrets",
+                        "# https://github.com/Yelp/detect-secrets",
+                        "detect-secrets scan . --all-files > .secrets.baseline",
+                        "detect-secrets audit .secrets.baseline"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "General",
+            "type": "code_block",
+            "content": [
+                "# Guidelines",
+                "https://rules.sonarsource.com/",
+                "",
+                "# Resource",
+                "https://vladtoie.gitbook.io/secure-coding/",
+                "",
+                "# Tools",
+                "https://www.sonarqube.org/downloads/",
+                "https://deepsource.io/signup/",
+                "https://github.com/pyupio/safety",
+                "https://github.com/returntocorp/semgrep",
+                "https://github.com/WhaleShark-Team/cobra",
+                "https://github.com/mhaskar/Bughound",
+                "",
+                "# Find interesting strings",
+                "https://github.com/s0md3v/hardcodes",
+                "https://github.com/micha3lb3n/SourceWolf",
+                "https://libraries.io/pypi/detect-secrets",
+                "",
+                "# Tips",
+                "1.Important functions first",
+                "2.Follow user input",
+                "3.Hardcoded secrets and credentials",
+                "4.Use of dangerous functions and outdated dependencies",
+                "5.Developer comments, hidden debug functionalities, configuration files, and the .git directory",
+                "6.Hidden paths, deprecated endpoints, and endpoints in development",
+                "7.Weak cryptography or hashing algorithms",
+                "8.Missing security checks on user input and regex strength",
+                "9.Missing cookie flags",
+                "10.Unexpected behavior, conditionals, unnecessarily complex and verbose functions",
+                "# Guidelines",
+                "https://rules.sonarsource.com/",
+                "",
+                "# Resource",
+                "https://vladtoie.gitbook.io/secure-coding/",
+                "",
+                "# Tools",
+                "https://www.sonarqube.org/downloads/",
+                "https://deepsource.io/signup/",
+                "https://github.com/pyupio/safety",
+                "https://github.com/returntocorp/semgrep",
+                "https://github.com/WhaleShark-Team/cobra",
+                "https://github.com/mhaskar/Bughound",
+                "",
+                "# Find interesting strings",
+                "https://github.com/s0md3v/hardcodes",
+                "https://github.com/micha3lb3n/SourceWolf",
+                "https://libraries.io/pypi/detect-secrets",
+                "",
+                "# Tips",
+                "1.Important functions first",
+                "2.Follow user input",
+                "3.Hardcoded secrets and credentials",
+                "4.Use of dangerous functions and outdated dependencies",
+                "5.Developer comments, hidden debug functionalities, configuration files, and the .git directory",
+                "6.Hidden paths, deprecated endpoints, and endpoints in development",
+                "7.Weak cryptography or hashing algorithms",
+                "8.Missing security checks on user input and regex strength",
+                "9.Missing cookie flags",
+                "10.Unexpected behavior, conditionals, unnecessarily complex and verbose functions"
+            ]
+        },
+        {
+            "heading": "JavaScript",
+            "type": "code_block",
+            "content": [
+                "https://jshint.com/",
+                "https://github.com/jshint/jshint/"
+            ]
+        },
+        {
+            "heading": "NodeJS",
+            "type": "code_block",
+            "content": [
+                "https://github.com/ajinabraham/nodejsscan"
+            ]
+        },
+        {
+            "heading": "Electron",
+            "type": "code_block",
+            "content": [
+                "https://github.com/doyensec/electronegativity",
+                "https://github.com/doyensec/awesome-electronjs-hacking"
+            ]
+        },
+        {
+            "heading": "Python",
+            "type": "code_block",
+            "content": [
+                "# bandit",
+                "https://github.com/PyCQA/bandit",
+                "# pyt",
+                "https://github.com/python-security/pyt",
+                "# atheris",
+                "https://github.com/google/atheris",
+                "# aura",
+                "https://github.com/SourceCode-AI/aura"
+            ]
+        },
+        {
+            "heading": ".NET",
+            "type": "code_block",
+            "content": [
+                "# dnSpy",
+                "https://github.com/0xd4d/dnSpy",
+                "",
+                "# .NET compilation",
+                "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe test.cs",
+                "",
+                "# Cheatsheet",
+                "https://www.c-sharpcorner.com/UploadFile/ajyadav123/net-penetration-testing-cheat-sheet/"
+            ]
+        },
+        {
+            "heading": "PHP",
+            "type": "code_block",
+            "content": [
+                "# phpvuln",
+                "https://github.com/ecriminal/phpvuln"
+            ]
+        },
+        {
+            "heading": "C/C++",
+            "type": "code_block",
+            "content": [
+                "# flawfinder",
+                "https://github.com/david-a-wheeler/flawfinder"
+            ]
+        },
+        {
+            "heading": "Kotlin",
+            "type": "code_block",
+            "content": [
+                "https://github.com/detekt/detekt",
+                ""
+            ]
+        },
+        {
+            "heading": "Java",
+            "type": "paragraph",
+            "content": "``\n# JD-Gui\nhttps://github.com/java-decompiler/jd-gui\n# Java compilation step-by-step\njavac -source 1.8 -target 1.8 test.java\nmkdir META-INF\necho \"Main-Class: test\" > META-INF/MANIFEST.MF\njar cmvf META-INF/MANIFEST.MF test.jar test.class\n``\n| Task            | Command                                                   |\n| --------------- | --------------------------------------------------------- |\n| Execute Jar     | java -jar \\[jar]                                          |\n| Unzip Jar       | unzip -d \\[output directory] \\[jar]                       |\n| Create Jar      | jar -cmf META-INF/MANIFEST.MF \\[output jar] \\            |\n| Base64 SHA256   | sha256sum \\[file] \\| cut -d' ' -f1 \\| xxd -r -p \\| base64 |\n| Remove Signing  | rm META-INF/.SF META-INF/.RSA META-INF/\\.DSA           |\n| Delete from Jar | zip -d \\[jar] \\[file to remove]                           |\n| Decompile class | procyon -o . \\[path to class]                             |\n| Decompile Jar   | procyon -jar \\[jar] -o \\[output directory]                |\n| Compile class   | javac \\[path to .java file]                               |"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/code-review.md",
+        "previous_page": {
+            "title": "LLM/AI/ML/prompt testing",
+            "url": "/others/llm-ai-ml-prompt-testing"
+        },
+        "next_page": {
+            "title": "Pentesting Web checklist",
+            "url": "/others/web-checklist"
+        }
+    }
+}

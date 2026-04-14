@@ -1,0 +1,61 @@
+{
+    "title": "Firebird",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/InfosecMatter/Scripts/blob/master/firebird-bruteforce.sh ",
+                "./firebird\\_bruteforce.sh IP DB /PATH/pwdlist.txt",
+                "",
+                "# https://www.infosecmatter.com/firebird-database-exploitation/",
+                "apt-get -y install firebird3.0-utils",
+                "isql-fb"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-09-09T06:29:29.017Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/firebird.md",
+        "previous_page": {
+            "title": "WAFs",
+            "url": "/enumeration/webservices/wafs"
+        },
+        "next_page": {
+            "title": "Wordpress",
+            "url": "/enumeration/webservices/wordpress"
+        }
+    }
+}

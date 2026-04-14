@@ -1,0 +1,54 @@
+{
+    "title": "Clickjacking",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "General",
+            "type": "paragraph",
+            "content": "{% hint style=\"info\" %}\nClickjacking is an interface-based attack in which a user is tricked into clicking on actionable content on a hidden website by clicking on some other content in a decoy website.\n Preventions:\n X-Frame-Options: deny/sameorigin/allow-from\n* CSP: policy/frame-ancestors 'none/self/domain.com'\n{% endhint %}\n``markup\n# An example using the style tag and parameters is as follows:\n\n#targetwebsite {\nposition:relative;\nwidth:128px;\nheight:128px;\nopacity:0.00001;\nz-index:2;\n}\n#decoywebsite {\nposition:absolute;\nwidth:300px;\nheight:400px;\nz-index:1;\n}\n\n...\n\n...decoy web content here...\n\n``"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-09-09T06:04:06.104Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/clickjacking.md",
+        "previous_page": {
+            "title": "Broken Links",
+            "url": "/enumeration/web/broken-links"
+        },
+        "next_page": {
+            "title": "HTTP Request Smuggling",
+            "url": "/enumeration/web/request-smuggling"
+        }
+    }
+}

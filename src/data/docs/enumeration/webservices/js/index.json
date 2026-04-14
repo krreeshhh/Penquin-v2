@@ -1,0 +1,84 @@
+{
+    "title": "JS",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "# JSScanner",
+                "# https://github.com/dark-warlord14/JSScanner",
+                "# https://securityjunky.com/scanning-js-files-for-endpoint-and-secrets/",
+                "bash install.sh",
+                "# Configure domain in alive.txt",
+                "bash script.sh",
+                "cat js/*",
+                "cd db && grep -oriahE \"https?://[^\\\"\\\\'> ]+\"",
+                "",
+                "# https://github.com/KathanP19/JSFScan.sh",
+                "bash JSFScan.sh -l targets.txt -e -s -m -o ",
+                "",
+                "# https://github.com/bp0lr/linkz",
+                "",
+                "# FindSecrets in JS files",
+                "https://github.com/m4ll0k/SecretFinder",
+                "python3 SecretFinder.py -i https://example.com/1.js -o results.html",
+                "",
+                "# Js vuln scanner, like retire.js with crawling",
+                "https://github.com/callforpapers-source/jshole",
+                "",
+                "# get Shell from xss",
+                "https://github.com/shelld3v/JSshell",
+                "",
+                "# Find JS sourcemap",
+                "1) Find JavaScript files",
+                "2) ffuf -w js_files.txt -u FUZZ -mr \"sourceMappingURL\"",
+                "3) Download sourcemap",
+                "4) https://github.com/chbrown/unmap",
+                "5) Browse configs or just grep for API keys/Creds"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-12-30T15:04:48.547Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/js.md",
+        "previous_page": {
+            "title": "APIs",
+            "url": "/enumeration/webservices/apis"
+        },
+        "next_page": {
+            "title": "ASP.NET",
+            "url": "/enumeration/webservices/.net"
+        }
+    }
+}

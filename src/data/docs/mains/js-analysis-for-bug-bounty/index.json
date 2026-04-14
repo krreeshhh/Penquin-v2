@@ -1,0 +1,117 @@
+{
+  "title": "JS Analysis for Bug Bounty",
+  "breadcrumb": [
+    {
+      "name": "Mains",
+      "url": "/docs/mains"
+    }
+  ],
+  "sections": [
+    {
+      "type": "link_card",
+      "title": "How to JS for Bug Bounty/Pentest : Edition 2023 - Kongsec",
+      "url": "https://bytebloggerbase.com/main/66712d92f41aa70380676f5e",
+      "source": "ByteBloggerBase",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fbytebloggerbase.com%2FFavicon%2FFavicon.png&width=20&dpr=3&quality=100&sign=8f281db8&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "How to JS for Bug Bounties : Edition 2023",
+      "url": "https://kongsec.medium.com/how-to-js-for-bug-bounties-edition-2023-7108b56d9db6",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "JS for Bug Bounties 2.0 Extreme Edition 2024",
+      "url": "https://kongsec.medium.com/js-for-bug-bounties-2-0-extreme-edition-2024-f167fa48276a",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "All About JavaScript Analysis For Bug Bounty Hunting",
+      "url": "https://medium.com/@ahmed.elshaepe/all-about-javascript-analysis-for-bug-bounty-hunting-3e0f941c9676",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "How to URLing for Bug Bounties -Mastering URLs : Edition 2025",
+      "url": "https://kongsec.medium.com/how-to-urling-for-bug-bounties-mastering-urls-edition-2025-a9dca9e2a97f",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "JS Recon To HTML Injection 😎",
+      "url": "https://medium.com/legionhunters/js-recon-to-html-injection-4cdca8fd88cf",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Exposed Client Secret in JavaScript Resulted in Quick Bug Bounty $$$",
+      "url": "https://infosecwriteups.com/exposed-client-secret-in-javascript-resulted-in-quick-bug-bounty-35a609be138d",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "kpwn.de",
+      "url": "https://kpwn.de/2023/05/javascript-analysis-for-pentesters/",
+      "source": "kpwn.de",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fkpwn.de%2Fimg%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=57431674&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Javascript for bug bounty hunters — part 1",
+      "url": "https://bitthebyte.medium.com/javascript-for-bug-bounty-hunters-part-1-dd08ed34b5a8",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Javascript for bug bounty hunters — part 2",
+      "url": "https://bitthebyte.medium.com/javascript-for-bug-bounty-hunters-part-2-f82164917e7",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Javascript for bug bounty hunters — part 3",
+      "url": "https://bitthebyte.medium.com/javascript-for-bug-bounty-hunters-part-3-3b987f24ab27",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/JS6guAXL"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/AcA0k4yh"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/rrry6FA7"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/y10mruAW"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Bug Bounty Checklist",
+      "url": "/docs/mains/bug-bounty-checklist"
+    },
+    "next": {
+      "title": "Learn to Use Burp Suite",
+      "url": "/docs/learn-to-use-burp-suite"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-12-02T12:47:57.343Z"
+  }
+}

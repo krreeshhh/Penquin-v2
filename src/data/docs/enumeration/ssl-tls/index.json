@@ -1,0 +1,339 @@
+{
+    "title": "SSL/TLS",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Modern Testing Tools",
+            "type": "code_block",
+            "content": [
+                "# Comprehensive TLS testing (recommended)",
+                "# testssl.sh - https://github.com/drwetter/testssl.sh",
+                "testssl.sh https://example.com",
+                "",
+                "# With specific checks",
+                "testssl.sh --vulnerable https://example.com",
+                "testssl.sh --cipher-per-proto https://example.com",
+                "",
+                "# SSLyze - Python-based",
+                "# https://github.com/nabla-c0d3/sslyze",
+                "sslyze --regular example.com:443",
+                "",
+                "# tlsx - Fast TLS prober",
+                "# https://github.com/projectdiscovery/tlsx",
+                "tlsx -u example.com -port 443",
+                "",
+                "# Nmap SSL scripts",
+                "nmap --script ssl-* -p 443 example.com"
+            ]
+        },
+        {
+            "heading": "2025 Best Practices",
+            "subheadings": [
+                {
+                    "heading": "Recommended Configuration",
+                    "type": "code_block",
+                    "content": [
+                        "# Protocols",
+                        "✅ TLS 1.3 (preferred)",
+                        "✅ TLS 1.2 (acceptable)",
+                        "❌ TLS 1.1 (deprecated)",
+                        "❌ TLS 1.0 (deprecated)",
+                        "❌ SSLv3 (insecure)",
+                        "❌ SSLv2 (insecure)",
+                        "",
+                        "# Cipher Suites (TLS 1.3)",
+                        "TLS_AES_256_GCM_SHA384",
+                        "TLS_CHACHA20_POLY1305_SHA256",
+                        "TLS_AES_128_GCM_SHA256",
+                        "",
+                        "# Cipher Suites (TLS 1.2)",
+                        "ECDHE-ECDSA-AES256-GCM-SHA384",
+                        "ECDHE-RSA-AES256-GCM-SHA384",
+                        "ECDHE-ECDSA-CHACHA20-POLY1305",
+                        "ECDHE-RSA-CHACHA20-POLY1305",
+                        "ECDHE-ECDSA-AES128-GCM-SHA256",
+                        "ECDHE-RSA-AES128-GCM-SHA256",
+                        "",
+                        "# Key Exchange",
+                        "✅ ECDHE (Elliptic Curve Diffie-Hellman Ephemeral)",
+                        "⚠️ DHE (only with 2048+ bit parameters)",
+                        "❌ RSA key exchange (no forward secrecy)",
+                        "❌ DH < 2048 bits",
+                        "",
+                        "# Certificates",
+                        "✅ RSA 2048+ bits or ECDSA 256+ bits",
+                        "✅ SHA-256 or better signature",
+                        "❌ SHA-1 signatures",
+                        "❌ MD5 signatures"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Quick Vulnerability Checks",
+            "type": "code_block",
+            "content": [
+                "# Check supported protocols",
+                "openssl s_client -connect example.com:443 -tls1_3",
+                "openssl s_client -connect example.com:443 -tls1_2",
+                "openssl s_client -connect example.com:443 -tls1_1",
+                "openssl s_client -connect example.com:443 -tls1",
+                "",
+                "# Check certificate details",
+                "openssl s_client -connect example.com:443 </dev/null 2>/dev/null | openssl x509 -noout -text",
+                "",
+                "# Check certificate expiry",
+                "echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -dates",
+                "",
+                "# Check certificate chain",
+                "openssl s_client -connect example.com:443 -showcerts"
+            ]
+        },
+        {
+            "heading": "DROWN",
+            "type": "code_block",
+            "content": [
+                "# Check for \"SSLv2 supported\"",
+                "nmap -p- -sV -sC example.com",
+                "testssl.sh --drown example.com"
+            ]
+        },
+        {
+            "heading": "TLS\\FALLBACK\\SCSV",
+            "type": "code_block",
+            "content": [
+                "# Check in the lower port",
+                "openssl s_client –tls1 -fallback_scsv -connect example.com:443",
+                "# - Response:",
+                "# tlsv1 alert inappropriate fallback:s3_pkt.c:1262:SSL alert number 86"
+            ]
+        },
+        {
+            "heading": "BEAST",
+            "type": "code_block",
+            "content": [
+                "# TLSv1.0 and CBC ciphers",
+                "openssl s_client -[sslv3/tls1] -cipher CBC_CIPHER -connect example.com:443"
+            ]
+        },
+        {
+            "heading": "LUCKY13",
+            "type": "code_block",
+            "content": [
+                "openssl s_client -cipher CBC_CIPHER -connect example.com:443"
+            ]
+        },
+        {
+            "heading": "Sweet32",
+            "type": "code_block",
+            "content": [
+                "openssl s_client -cipher 3DES -connect example.com:443"
+            ]
+        },
+        {
+            "heading": "Logjam",
+            "type": "code_block",
+            "content": [
+                "# Check the \"Server Temp Key\" response is bigger than 1024 (only in OpenSSL 1.0.2 or better)",
+                "openssl s_client -connect www.example.com:443 -cipher \"EDH\""
+            ]
+        },
+        {
+            "heading": "SSLv2 Support",
+            "type": "code_block",
+            "content": [
+                "# If is supported this will return the server certificate information if not, error",
+                "openssl s_client –ssl2 -connect example.com:443"
+            ]
+        },
+        {
+            "heading": "SSLv3 Support",
+            "type": "code_block",
+            "content": [
+                "# If is supported this will return the server certificate information if not, error",
+                "openssl s_client -ssl3 -connect google.com:443"
+            ]
+        },
+        {
+            "heading": "Cipher suites",
+            "type": "code_block",
+            "content": [
+                "# Cipher Suites",
+                "nmap --script ssl-enum-ciphers -p 443 example.com",
+                "",
+                "# - Anon cypher (fail)",
+                "openssl s_client -cipher aNULL -connect example.com:443",
+                "",
+                "# - DES Cipher (fail)",
+                "openssl s_client -cipher DES -connect example.com:443",
+                "",
+                "# - 3DES Cipher (fail)",
+                "openssl s_client -cipher 3DES -connect example.com:443",
+                "",
+                "# - Export Cipher (fail)",
+                "openssl s_client -cipher EXPORT -connect example.com:443",
+                "",
+                "# - Low Cipher (fail)",
+                "openssl s_client -cipher LOW -connect example.com:443",
+                "",
+                "# - RC4 Cipher (fail)",
+                "openssl s_client -cipher RC4 -connect example.com:443",
+                "",
+                "# - NULL Cipher (fail)",
+                "openssl s_client -cipher NULL -connect example.com:443",
+                "",
+                "# - Perfect Forward Secrecy Cipher (This should NOT fail):",
+                "openssl s_client -cipher EECDH, EDH NULL -connect example.com:443"
+            ]
+        },
+        {
+            "heading": "Secure renegotiation",
+            "type": "code_block",
+            "content": [
+                "# Check secure renegotiation is not supported",
+                "# If not, send request in the renegotiation",
+                "# Once sent, if it's vulnerable it shouldn't return error",
+                "openssl s_client -connect example.com:443",
+                "HEAD / HTTP/1.0",
+                "R",
+                "# <Enter or Return key>"
+            ]
+        },
+        {
+            "heading": "CRIME",
+            "type": "code_block",
+            "content": [
+                "# Check for \"Compression: NONE\"",
+                "openssl s_client -connect example.com:443"
+            ]
+        },
+        {
+            "heading": "BREACH",
+            "type": "code_block",
+            "content": [
+                "# If the response contains encoded data, host is vulnerable",
+                "openssl s_client -connect example.com:443",
+                "GET / HTTP/1.1",
+                "Host: example.com",
+                "Accept-Encoding: compress, gzip"
+            ]
+        },
+        {
+            "heading": "Heartbleed",
+            "type": "code_block",
+            "content": [
+                "# Heartbleed",
+                "nmap -p 443 --script ssl-heartbleed --script-args vulns.showall example.com",
+                "",
+                "# Heartbleed checker oneliner from sites list",
+                "cat list.txt | while read line ; do echo \"QUIT\" | openssl s_client -connect $line:443 2>&1 | grep 'server extension \"heartbeat\" (id=15)' || echo $line: safe; done"
+            ]
+        },
+        {
+            "heading": "Change cipher spec injection",
+            "type": "code_block",
+            "content": [
+                "nmap -p 443 --script ssl-ccs-injection example.com"
+            ]
+        },
+        {
+            "heading": "Cipher order enforcement",
+            "type": "code_block",
+            "content": [
+                "# Choose a protocol and 2 different ciphers, one stronger than other",
+                "# Make 2 request with different cipher order anc check in the response if the cipher is the first of the request in both cases",
+                "nmap -p 443 --script ssl-enum-ciphers example.com",
+                "openssl s_client –tls1_2 –cipher ‘AES128-GCM-SHA256:AES128-SHA’ –connect contextis.co.uk:443",
+                "openssl s_client –tls1_2 –cipher ‘AES128-SHA:AES128-GCM-SHA256’ –connect contextis.co.uk:443"
+            ]
+        },
+        {
+            "heading": "Additional Vulnerabilities",
+            "subheadings": [
+                {
+                    "heading": "POODLE",
+                    "type": "code_block",
+                    "content": [
+                        "# SSLv3 + CBC = vulnerable",
+                        "openssl s_client -ssl3 -connect example.com:443",
+                        "testssl.sh --poodle example.com"
+                    ]
+                },
+                {
+                    "heading": "ROBOT",
+                    "type": "code_block",
+                    "content": [
+                        "# Return Of Bleichenbacher's Oracle Threat",
+                        "# RSA key exchange vulnerability",
+                        "testssl.sh --robot example.com"
+                    ]
+                },
+                {
+                    "heading": "Certificate Issues",
+                    "type": "code_block",
+                    "content": [
+                        "# Check for certificate issues",
+                        "testssl.sh --cert example.com",
+                        "",
+                        "# Common issues:",
+                        "# - Expired certificate",
+                        "# - Self-signed certificate",
+                        "# - Wrong hostname (CN/SAN mismatch)",
+                        "# - Weak signature algorithm (SHA-1, MD5)",
+                        "# - Short key length (< 2048 bits RSA)",
+                        "# - Missing intermediate certificates"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Resources",
+            "type": "list",
+            "content": [
+                "SSL Labs Server Test",
+                "testssl.sh",
+                "Mozilla SSL Configuration Generator",
+                "OWASP TLS Cheat Sheet"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/ssl-tls.md",
+        "previous_page": {
+            "title": "Files",
+            "url": "/enumeration/files"
+        },
+        "next_page": {
+            "title": "Ports",
+            "url": "/enumeration/ports"
+        }
+    }
+}

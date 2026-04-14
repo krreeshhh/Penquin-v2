@@ -1,0 +1,67 @@
+{
+    "title": "Symfony && Twig",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "**Tools**",
+                "# Server-Side Template Injection and Code Injection Detection and Exploitation Tool ",
+                "# https://github.com/epinna/tplmap",
+                "./tplmap.py -u 'http://www.target.com/page?name=John'",
+                "# https://github.com/ambionics/symfony-exploits",
+                "",
+                "# Symfony:",
+                "Check for www.example.com/_profiler/ it contains errors and server variables",
+                "# Symfony debug looter:",
+                "https://github.com/synacktiv/eos/",
+                "",
+                "# Twig:",
+                "https://medium.com/server-side-template-injection/server-side-template-injection-faf88d0c7f34"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2021-12-01T22:28:20.290Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/symfony-and-and-twig.md",
+        "previous_page": {
+            "title": "Flask",
+            "url": "/enumeration/webservices/flask"
+        },
+        "next_page": {
+            "title": "Drupal",
+            "url": "/enumeration/webservices/drupal"
+        }
+    }
+}

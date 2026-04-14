@@ -1,0 +1,329 @@
+{
+  "title": "Learn WSL",
+  "breadcrumb": [
+    {
+      "name": "Mains",
+      "url": "/docs/mains"
+    },
+    {
+      "name": "Learn The Basics",
+      "url": "/docs/mains/learn-the-basics",
+      "icon": "🏅"
+    }
+  ],
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "Here's a README file for your WSL guide:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "# WSL Guide (Windows Subsystem for Linux)\n\nThis guide provides step-by-step instructions for installing and configuring the Windows Subsystem for Linux (WSL) and using additional tools like Win-KeX for graphical interface support.\n\n## 1. Installation\n\n### 1.1 Enable Windows Features\nEnable the following features in the Windows Feature app:\n- **Windows Subsystem for Linux**\n- **Virtual Machine Platform**\n\n### 1.2 Install WSL\nOpen CMD as an administrator and type:\n```bash\nwsl --install\n```"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-1.3-restart-your-pc",
+      "content": "1.3 Restart Your PC"
+    },
+    {
+      "type": "paragraph",
+      "content": "Restart your computer to apply changes."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-1.4-install-applications-from-microsoft-store",
+      "content": "1.4 Install Applications from Microsoft Store"
+    },
+    {
+      "type": "paragraph",
+      "content": "Go to the Microsoft Store and install the following:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Windows Subsystem for Linux",
+        "Your preferred Linux Distribution (e.g., Ubuntu, Kali Linux, Debian, Oracle, Arch, etc.)"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-1.5-set-up-the-linux-distribution",
+      "content": "1.5 Set Up the Linux Distribution"
+    },
+    {
+      "type": "paragraph",
+      "content": "Open the Linux app and complete the installation process for your chosen Linux distribution."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-1.6-final-restart",
+      "content": "1.6 Final Restart"
+    },
+    {
+      "type": "paragraph",
+      "content": "Restart your PC to finalize the setup."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-1.7-installation-complete",
+      "content": "1.7 Installation Complete"
+    },
+    {
+      "type": "paragraph",
+      "content": "Your WSL installation is now complete."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "id-2.-extra-wsl-commands-to-get-started",
+      "content": "2. Extra WSL Commands to Get Started"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-2.1-update-wsl",
+      "content": "2.1 Update WSL"
+    },
+    {
+      "type": "paragraph",
+      "content": "To update the WSL version:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "wsl --update"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-2.2-wsl-version-information",
+      "content": "2.2 WSL Version Information"
+    },
+    {
+      "type": "paragraph",
+      "content": "To get information about WSL, WSLg, and the kernel version:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "wsl --version"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-2.3-list-installed-distributions",
+      "content": "2.3 List Installed Distributions"
+    },
+    {
+      "type": "paragraph",
+      "content": "To get a list of all installed distributions:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "wsl --list"
+    },
+    {
+      "type": "paragraph",
+      "content": "Additional options:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "List all distributions, including those being installed or uninstalled:\nwsl --all",
+        "List only currently running distributions:\nwsl --running",
+        "Show only distribution names:\nwsl --quiet",
+        "Show detailed information about all distributions:\nwsl --verbose",
+        "List available distributions for installation:\nwsl --online"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-2.4-set-default-distribution",
+      "content": "2.4 Set Default Distribution"
+    },
+    {
+      "type": "paragraph",
+      "content": "To set the default Linux distribution:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "wsl --set-default <Distro>"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "id-3.-wslg-installation",
+      "content": "3. WSLg Installation"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-3.1-update-and-upgrade-linux-distribution",
+      "content": "3.1 Update and Upgrade Linux Distribution"
+    },
+    {
+      "type": "paragraph",
+      "content": "Open your Linux distribution and run:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "sudo apt update && sudo apt upgrade"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-3.2-install-win-kex",
+      "content": "3.2 Install Win-KeX"
+    },
+    {
+      "type": "paragraph",
+      "content": "Install Win-KeX for GUI support:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "sudo apt install kali-win-kex"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-3.3-configure-win-kex",
+      "content": "3.3 Configure Win-KeX"
+    },
+    {
+      "type": "paragraph",
+      "content": "Follow the prompts to fill in the required information."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-3.4-start-gui",
+      "content": "3.4 Start GUI"
+    },
+    {
+      "type": "paragraph",
+      "content": "To start the GUI, type in the terminal:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "kex"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "id-4.-additional-info-on-wslg",
+      "content": "4. Additional Info on WSLg"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "modes",
+      "content": "Modes"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Window Mode (default): [none]",
+        "Enhanced Session Mode: --esm - Launch Win-KeX desktop in a dedicated window using Windows native RDP.",
+        "Seamless Mode: --sl - Integrate Win-KeX into the Windows desktop seamlessly.",
+        "Window Mode: --win - Launch Win-KeX desktop in a dedicated window."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "commands",
+      "content": "Commands"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Start Win-KeX server and client: [none]",
+        "Start Win-KeX server: --start",
+        "Start Win-KeX client: --start-client",
+        "Launch in Windows Terminal: --wtstart",
+        "Stop Win-KeX server: --stop",
+        "Check Win-KeX server status: --status",
+        "Stop server and kill processes: --kill",
+        "Set server password: --passwd",
+        "Start/Stop Windows sound server: --start-sound / --stop-sound",
+        "Manage WSLg unix socket: --wslg-restore, --wslg-remove, --wslg-status",
+        "Display Win-KeX version: --version",
+        "Display help: --help"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "optional-parameters",
+      "content": "Optional Parameters"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Use container IP address: --ip or -i",
+        "Optimized for multiscreen: --multiscreen or -m",
+        "Sound support: --sound or -s",
+        "Disable Windows OpenGL: --nowgl or -n",
+        "Disable client reconnecting: --norc or -r",
+        "Wait longer for desktop in SL mode: --wait or -w",
+        "Verbose output: --verbose"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "examples",
+      "content": "Examples"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Start Win-KeX server in window mode and launch Win-KeX client with sound support:\nkex -s",
+        "Start Win-KeX in seamless mode and launch Win-KeX client with sound support:\nkex --sl -s",
+        "Start Win-KeX in Enhanced Session Mode with ARM workaround and launch Win-KeX client with sound support:\nkex --esm -i -s",
+        "Start Win-KeX server as root in window mode and launch Win-KeX client:\nsudo kex"
+      ]
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "\nThis README provides a comprehensive guide to installing and configuring WSL and WSLg on Windows. Let me know if you need any changes or additions!"
+    }
+  ],
+  "images": [],
+  "hyperlinks": [
+    {
+      "text": "Mains",
+      "url": "/docs/mains"
+    },
+    {
+      "text": "Learn The Basics",
+      "url": "/docs/mains/learn-the-basics"
+    },
+    {
+      "text": "Previous",
+      "url": "/docs/mains/learn-the-basics/cli-commands",
+      "relation": "prev"
+    },
+    {
+      "text": "Next",
+      "url": "/docs/mains/fun-programming-codes",
+      "relation": "next"
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2024-08-02T14:27:03.808Z"
+  }
+}

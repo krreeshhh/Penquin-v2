@@ -1,0 +1,30 @@
+{
+  "title": "Hackers to Follow on Social Media",
+  "description": "Learn from the Best: Many top hackers share their techniques, tools, and methodologies. Learning directly from their experiences and insights can significantly improve your own skills and understanding",
+  "breadcrumb": [
+    {
+      "label": "Mains",
+      "url": "/docs/mains"
+    }
+  ],
+  "content": {
+    "introductoryText": "This comprehensive list contains 4 Major Platforms: \n1. Twitter\n2. Medium\n3. YouTube\n4. GitHub",
+    "embeddedVideo": {
+      "url": "https://cdn.iframe.ly/hkPZavs",
+      "embedStyle": "top: 0; left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 56.092%;"
+    }
+  },
+  "navigation": {
+    "previous": {
+      "title": "55 YouTube Channels To Learn Hacking",
+      "url": "/docs/mains/55-youtube-channels-to-learn-hacking"
+    },
+    "next": {
+      "title": "Twitter",
+      "url": "/docs/mains/hackers-to-follow-on-social-media/twitter"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2024-06-29T02:45:14.748Z"
+  }
+}

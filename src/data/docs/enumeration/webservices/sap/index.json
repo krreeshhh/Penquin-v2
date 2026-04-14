@@ -1,0 +1,68 @@
+{
+    "title": "SAP",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "# Fuzzing dictionary",
+                "https://raw.githubusercontent.com/jackrichardzon/s4p0/master/S4P-DIR.txt",
+                "",
+                "# SAP-RECON",
+                "https://github.com/chipik/SAP_RECON",
+                "",
+                "# SAP multiple",
+                "https://github.com/shipcod3/mySapAdventures",
+                "",
+                "# SAP wordlist",
+                "https://github.com/emadshanab/SAP-wordlist/blob/main/SAP-wordlist.txt",
+                "",
+                "# SAP ports",
+                "https://buddysap.com/list-of-sap-port-used-in-sap-abap-and-java-system/"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2021-06-18T23:56:50.452Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/sap.md",
+        "previous_page": {
+            "title": "Magento",
+            "url": "/enumeration/webservices/magento"
+        },
+        "next_page": {
+            "title": "MFA/2FA",
+            "url": "/enumeration/webservices/mfa"
+        }
+    }
+}

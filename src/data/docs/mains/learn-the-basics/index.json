@@ -1,0 +1,65 @@
+{
+  "title": "Learn The Basics",
+  "description": "Learn the Basics",
+  "breadcrumb": [
+    {
+      "label": "Mains",
+      "url": "/docs/mains"
+    }
+  ],
+  "subtopics": [
+    {
+      "emoji": "🎖️",
+      "title": "Type Of Cyber Security",
+      "url": "/docs/mains/learn-the-basics/type-of-cyber-security"
+    },
+    {
+      "emoji": "🥈",
+      "title": "Common Job Roles",
+      "url": "/docs/mains/learn-the-basics/common-job-roles"
+    },
+    {
+      "emoji": "🥉",
+      "title": "Get Started With InfoSec",
+      "url": "/docs/mains/learn-the-basics/get-started-with-infosec"
+    },
+    {
+      "emoji": "⚕️",
+      "title": "Best Bug Bounty Platform",
+      "url": "/docs/mains/learn-the-basics/best-bug-bounty-platform"
+    },
+    {
+      "emoji": "🗞️",
+      "title": "Best InfoSec Writeups Website",
+      "url": "/docs/mains/learn-the-basics/best-infosec-writeups-website"
+    },
+    {
+      "emoji": "🍪",
+      "title": "Hacking Books",
+      "url": "/docs/mains/learn-the-basics/hacking-books"
+    },
+    {
+      "emoji": "🥂",
+      "title": "CLI Commands",
+      "url": "/docs/mains/learn-the-basics/cli-commands"
+    },
+    {
+      "emoji": "💿",
+      "title": "Learn WSL",
+      "url": "/docs/mains/learn-the-basics/learn-wsl"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Security GitBooks",
+      "url": "/docs/mains/hackers-to-follow-on-social-media/security-gitbooks"
+    },
+    "next": {
+      "title": "Type Of Cyber Security",
+      "url": "/docs/mains/learn-the-basics/type-of-cyber-security"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2024-08-02T15:05:23.955Z"
+  }
+}

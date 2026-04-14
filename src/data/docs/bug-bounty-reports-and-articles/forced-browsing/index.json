@@ -1,0 +1,31 @@
+{
+  "title": "4️ Forced Browsing",
+  "breadcrumb": [],
+  "articles": [
+    {
+      "title": "Forced Browsing to Access Admin Panel",
+      "platform": "Medium",
+      "url": "https://vijetareigns.medium.com/forced-browsing-to-access-admin-panel-214a7defa2a5",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "Force Browsing bug at Facebook business plan ($500 Bounty)",
+      "platform": "Medium",
+      "url": "https://dewcode.medium.com/force-browsing-bug-at-facebook-business-plan-500-bounty-73d1bb4883af",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "DOS/DDOS",
+      "url": "/docs/bug-bounty-reports-and-articles/dos-ddos"
+    },
+    "next": {
+      "title": "RCE",
+      "url": "/docs/rce"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2025-07-16T11:28:45.357Z"
+  }
+}

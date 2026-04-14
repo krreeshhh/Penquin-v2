@@ -1,0 +1,137 @@
+{
+    "title": "BugBounty",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "https://github.com/bugcrowd/templates",
+            "type": "link",
+            "title": "https://github.com/bugcrowd/templates",
+            "url": "https://github.com/bugcrowd/templates"
+        },
+        {
+            "heading": "Good PoC",
+            "type": "table",
+            "headers": [
+                "Issue type",
+                "PoC"
+            ],
+            "rows": [
+                {
+                    "Issue type": "Cross-site scripting",
+                    "PoC": "alert(document.domain) or ` setIntervalalert\\x28document.domain\\x29  if you have to use backticks. [\\[1\\]](https://medium.com/@know.0nix/jumping-to-the-hell-with-10-attempts-to-bypass-devils-waf-4275bfe679dd) Using document.domain instead of alert(1)` can help avoid reporting XSS bugs in sandbox domains."
+                },
+                {
+                    "Issue type": "Command execution",
+                    "PoC": "Depends of program rules:\n- Read (Linux-based): cat /proc/1/maps\n- Write (Linux-based): touch /root/your_username\n- Execute (Linux-based): id"
+                },
+                {
+                    "Issue type": "Code execution",
+                    "PoC": "This involves the manipulation of a web app such that server-side code (e.g. PHP) is executed.\n- PHP: <?php echo 7*7; ?>"
+                },
+                {
+                    "Issue type": "SQL injection",
+                    "PoC": "Zero impact\n- MySQL and MSSQL: SELECT @@version\n- Oracle: SELECT version FROM v$instance;\n- Postgres SQL: SELECT version()"
+                },
+                {
+                    "Issue type": "Unvalidated redirect",
+                    "PoC": "- Set the redirect endpoint to a known safe domain (e.g. google.com), or if looking to demonstrate potential impact, to your own website with an example login screen resembling the target's.\n- If the target uses OAuth, you can try to leak the OAuth token to your server to maximise impact."
+                },
+                {
+                    "Issue type": "Information exposure",
+                    "PoC": "Investigate only with the IDs of your own test accounts — do not leverage the issue against other users' data — and describe your full reproduction process in the report."
+                },
+                {
+                    "Issue type": "Cross-site request forgery",
+                    "PoC": "When designing a real-world example, either hide the form (style=\"display:none;\") and make it submit automatically, or design it so that it resembles a component from the target's page."
+                },
+                {
+                    "Issue type": "Server-side request forgery",
+                    "PoC": "The impact of a SSRF bug will vary — a non-exhaustive list of proof of concepts includes:\n- reading local files\n- obtaining cloud instance metadata\n- making requests to internal services (e.g. Redis)\n- accessing firewalled databases"
+                },
+                {
+                    "Issue type": "Local file read",
+                    "PoC": "Make sure to only retrieve a harmless file. Check the program security policy as a specific file may be designated for testing."
+                },
+                {
+                    "Issue type": "XML external entity processing",
+                    "PoC": "Output random harmless data."
+                },
+                {
+                    "Issue type": "Sub-domain takeover",
+                    "PoC": "Claim the sub-domain discreetly and serve a harmless file on a hidden page. Do not serve content on the index page."
+                }
+            ]
+        },
+        {
+            "heading": "Good Report",
+            "type": "code_block",
+            "content": [
+                "# Writeups",
+                "# https://github.com/devanshbatham/Awesome-Bugbounty-Writeups",
+                "# Bug bounty Report",
+                "",
+                "# Summary",
+                "...",
+                "",
+                "# Vulnerability details",
+                "...",
+                "",
+                "# Impact",
+                "...",
+                "",
+                "# Proof of concept",
+                "...",
+                "",
+                "# Browsers verified in",
+                "...",
+                "",
+                "# Mitigation",
+                "..."
+            ]
+        },
+        {
+            "heading": "Report flow",
+            "type": "paragraph",
+            "content": ""
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2025-03-14T13:31:54.169Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/bugbounty.md",
+        "previous_page": {
+            "title": "Master assessment mindmaps",
+            "url": "/others/master-assessment-mindmap"
+        },
+        "next_page": {
+            "title": "Exploiting",
+            "url": "/others/exploiting"
+        }
+    }
+}

@@ -1,0 +1,127 @@
+{
+    "title": "Subdomain Enum",
+    "breadcrumb": [
+        {
+            "title": "Recon",
+            "url": "/recon"
+        }
+    ],
+    "skill_level": "Beginner",
+    "prerequisites": "Basic DNS understanding",
+    "sections": [
+        {
+            "heading": "Passive sources",
+            "type": "paragraph",
+            "content": "```bash\n# https://github.com/OWASP/Amass\n# https://github.com/OWASP/Amass/blob/master/examples/config.ini\namass enum -passive -d domain.com\n# https://github.com/projectdiscovery/subfinder\n# https://github.com/projectdiscovery/subfinder#post-installation-instructions\nsubfinder -d domain.com -all -silent\n# https://github.com/tomnomnom/assetfinder\nassetfinder example.com\n# https://github.com/tomnomnom/waybackurls\n# https://github.com/tomnomnom/unfurl\necho domain.com | waybackurls | unfurl -u domains\n# https://github.com/lc/gau\n# https://github.com/tomnomnom/unfurl\ngau --subs example.com | unfurl -u domains"
+        },
+        {
+            "heading": "Cert Transparency",
+            "type": "paragraph",
+            "content": "# https://certificate.transparency.dev/\n# https://crt.sh/\n# https://github.com/glebarez/cero\ncero example.com\n# https://github.com/UnaPibaGeek/ctfr\npython3 ctfr.py -d domain.com\n# Active crtsh monitoring\n#https://github.com/g0ldencybersec/gungnir\ngungnir -r domains.txt\n# https://github.com/gwen001/github-subdomains\ngithub-subdomains -d example.com -t tokens.txt -o output.txt\n# https://github.com/christophetd/censys-subdomain-finder\npython3 censys-subdomain-finder.py example.com\n# https://github.com/SmoZy92/Shodomain\npython shodomain.py  example.com\n# https://github.com/Cgboal/SonarSearch\ncrobat -s example.com\n```"
+        },
+        {
+            "heading": "Active DNS resolution",
+            "type": "paragraph",
+            "content": "```bash\n# Generate custom resolvers list, always\n# https://github.com/vortexau/dnsvalidator\ndnsvalidator -tL https://public-dns.info/nameservers.txt -threads 200\n# https://github.com/d3mondev/puredns\npuredns resolve subdomains.txt -r ~/Tools/resolvers.txt"
+        },
+        {
+            "heading": "BF",
+            "type": "paragraph",
+            "content": "# https://github.com/d3mondev/puredns\npuredns bruteforce ~/Tools/subdomains.txt united.com -r ~/Tools/resolvers.txt\n# https://github.com/projectdiscovery/shuffledns\nshuffledns -d example.com -list example-subdomains.txt -r resolvers.txt\n```"
+        },
+        {
+            "heading": "Alterations and permutations",
+            "type": "code_block",
+            "content": [
+                "#https://github.com/Josue87/gotator",
+                "gotator -sub subdomains/subdomains.txt -perm permutations_list.txt -depth 1 -numbers 10 -mindup -adv -md"
+            ]
+        },
+        {
+            "heading": "Crawling",
+            "type": "code_block",
+            "content": [
+                "# 1st resolve subdomains on valid websites",
+                "# https://github.com/projectdiscovery/httpx",
+                "cat subdomains.txt | httpx -follow-host-redirects -random-agent -status-code -silent -retries 2 -title -web-server -tech-detect -location -o webs_info.txt",
+                "# Clean output",
+                "cat webs_info.txt | cut -d ' ' -f1 | grep \".domain.com\" | sort -u > websites.txt",
+                "# Crawl them",
+                "# https://github.com/jaeles-project/gospider",
+                "gospider -S websites.txt --js -t 20 -d 2 --sitemap --robots -w -r > urls.txt",
+                "# Clean output",
+                "# https://github.com/tomnomnom/unfurl",
+                "cat urls.txt | sed '/^.\\{2048\\}./d' | grep -Eo 'https?://[^ ]+' | sed 's/]$//' | unfurl -u domains | grep \".domain.com\""
+            ]
+        },
+        {
+            "heading": "DNS records",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/projectdiscovery/dnsx",
+                "dnsx -retry 3 -a -aaaa -cname -ns -ptr -mx -soa -resp -silent -l subdomains.txt"
+            ]
+        },
+        {
+            "heading": "DNS wordlists",
+            "type": "code_block",
+            "content": [
+                "# https://gist.githubusercontent.com/six2dez/a307a04a222fab5a57466c51e1569acf/raw",
+                "# https://wordlists-cdn.assetnote.io/data/manual/best-dns-wordlist.txt",
+                "# https://gist.github.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a"
+            ]
+        },
+        {
+            "heading": "Other techniques",
+            "subheadings": [
+                {
+                    "heading": "Google Analytics ID",
+                    "type": "code_block",
+                    "content": [
+                        "# https://github.com/Josue87/AnalyticsRelationships",
+                        "cat subdomains.txt | analyticsrelationships"
+                    ]
+                },
+                {
+                    "heading": "Subdomain discovery with Burp",
+                    "type": "paragraph",
+                    "content": "Navigate through target main website with Burp:\n Without passive scanner\n Set forms auto submit\n Scope in advanced, any protocol and one keyword (\"tesla\")\n Last step, select all sitemap, Engagement Tools -> Analyze target"
+                }
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/recon/subdomain-enum/README.md",
+        "previous_page": {
+            "title": "Root domains",
+            "url": "/recon/domain-enum"
+        },
+        "next_page": {
+            "title": "Subdomain Takeover",
+            "url": "/recon/subdomain-enum/subdomain-takeover"
+        }
+    }
+}

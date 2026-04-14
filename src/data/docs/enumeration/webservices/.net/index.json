@@ -1,0 +1,62 @@
+{
+    "title": "ASP.NET",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "# Look for trace",
+                "example.com/trace.axd",
+                "example.com/any.aspx/trace.axd"
+            ]
+        },
+        {
+            "type": "link",
+            "title": "https://www.securifera.com/blog/2023/03/06/attacking-net-web-services/",
+            "url": "https://www.securifera.com/blog/2023/03/06/attacking-net-web-services/"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2023-04-01T14:06:01.784Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/.net.md",
+        "previous_page": {
+            "title": "JS",
+            "url": "/enumeration/webservices/js"
+        },
+        "next_page": {
+            "title": "JWT",
+            "url": "/enumeration/webservices/jwt"
+        }
+    }
+}

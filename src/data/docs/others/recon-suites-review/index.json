@@ -1,0 +1,434 @@
+{
+    "title": "Recon suites review",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Intro",
+            "type": "paragraph",
+            "content": "What? This is a December 2020 hunting/pentesting recon suites review made by myself. I have compared and review every tool one by one and obtained a general view of the \"state-of-the-art\" of the most used recon tools.\nWhy? Lately there has been an explosion in the creation of these types of tools, and I was simply curious about how each one faced the challenge of profiling one or more objectives.\nHow? First, I have analyzed what features the suites have and then what tools they used to achieve those functionalities.\nFrom my POV a recon tool should get as much information as possible from a target regardless of its size. From subdomains enumeration to analyze all JS and their possible secrets, through SSL failures or consult information in public sources. Neither am I looking for a tool that will get all the low-hanging fruit for P1 automatically continuously, let's be honest, most people are looking for this, and you don't have the necessary to set up a competent infrastructure to achieve it.\nI thought about making measurements on the number of subdomains that each tool retrieves and the number of information that they retrieve in general, but this poses several problems. In the end, these suites launch existing subdomain enumeration tools, so I'll do that other day (spoiler! 😲) and it doesn't really depend on the suite itself. On the other hand, each tool does different processes with different tools, so it would not be fair (or measurable, I think) to make a comparison of the quantity or quality of information they obtain.\nMy perfect recon suite should be able to do the following: run a command, review its contents, and then run another tool with that information, like \"subdomain enum | httpx | gf | dalfox\". Yeah I know, it's a simple oneliner, but also, I want a lot of different checks in an easy readable and organized way. Easy? Let's see.\n{% hint style=\"info\" %}\nThis is not intended to be a serious investigation, a technical paper, or anything like that, just a series of tests that I have done for fun. The results shown are my opinion and if at any time you don't like them, or you don't agree, you can stop reading or explain to me how I could have done it better 😉\n{% endhint %}\nAll the results of my runs and tests are posted here, it has three sheets (Summary, features and tools).\n{% embed url=\"https://docs.google.com/spreadsheets/d/1XVi9eKWvVZw9zrX46XEZD3LfiEMRCg327hOn4AbTZWs/edit?usp=sharing\" %}"
+        },
+        {
+            "heading": "Tools",
+            "type": "paragraph",
+            "content": "Small summary of each tool with the features and results that I got. This section not follows any special order."
+        },
+        {
+            "heading": "Bheem",
+            "subheadings": [
+                {
+                    "heading": "Pros",
+                    "type": "list",
+                    "content": [
+                        "Superb workflow.",
+                        "Easy to understand and adapt for your needs.",
+                        "Best and trendy tools like nuclei, dalfox or gf patterns.",
+                        "Scope defined workflows."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "No web screenshots.",
+                        "Lack of output customization."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "3klcon",
+            "subheadings": [
+                {
+                    "heading": "Pros",
+                    "type": "list",
+                    "content": [
+                        "ASN and acquisitions collector.",
+                        "Provides Dorks to check manually."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Python2 died a year ago, too much for a live project imho.",
+                        "No subdomain bruteforce.",
+                        "No web screenshots."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Sudomy",
+            "subheadings": [
+                {
+                    "heading": "Pros",
+                    "type": "list",
+                    "content": [
+                        "Uses Shodan for fast port scan.",
+                        "Vhosts checker.",
+                        "Wordlist generator from target.",
+                        "Slack notifications."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Needs API keys.",
+                        "No vulns scanner.",
+                        "No endpoints checks like xss, params, js, etc."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Osmedeus",
+            "subheadings": [
+                {
+                    "heading": "Pros",
+                    "type": "list",
+                    "content": [
+                        "Web interface.",
+                        "Nice report output.",
+                        "Slack notifications.",
+                        "ffuf for fuzzing."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "No WAF checker",
+                        "Jaeles for vulns scan feels buggy.",
+                        "No endpoints analysis like potential xss, params, js, etc."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "FinalRecon",
+            "subheadings": [
+                {
+                    "heading": "Pros",
+                    "type": "list",
+                    "content": [
+                        "Very good cli output.",
+                        "Customizable files output.",
+                        "Not use external tools, does almost everything by its own."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Need API keys.",
+                        "Only passive subdomain enumeration.",
+                        "Lack of features surprisingly."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "reNgine",
+            "subheadings": [
+                {
+                    "heading": "Pros",
+                    "type": "list",
+                    "content": [
+                        "Web interface.",
+                        "Customizable files output.",
+                        "Schedule feature and dashboard.",
+                        "Exclude subdomains feature."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "No cli output.",
+                        "No subdomains permutations or bruteforce.",
+                        "Displaying directory enumeration in web interface is not good at all."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Rock-ON",
+            "subheadings": [
+                {
+                    "heading": "Pros",
+                    "type": "list",
+                    "content": [
+                        "ASN enumeration.",
+                        "Vhosts detection.",
+                        "Slack integration."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "API keys needed.",
+                        "No endpoints analysis like potential xss, params, js, etc."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "recon-pipeline",
+            "subheadings": [
+                {
+                    "heading": "Pros",
+                    "type": "list",
+                    "content": [
+                        "PIpeline customizable definition.",
+                        "Absolutely customizable approach.",
+                        "Scheduler."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Searchsploit for vulns detection.",
+                        "No endpoints analysis like potential xss, params, js, etc."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "OneForAll",
+            "subheadings": [
+                {
+                    "heading": "Pros‌",
+                    "type": "list",
+                    "content": [
+                        "More than 40 API keys integration.",
+                        "Zone transfer checker.",
+                        "Scheduler."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Searchsploit for vulns detection.",
+                        "No endpoints analysis like potential xss, params, js, etc."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "chomp-scan",
+            "subheadings": [
+                {
+                    "heading": "Pros‌",
+                    "type": "list",
+                    "content": [
+                        "Really good cli output.",
+                        "CORS specific checks.",
+                        "ffuf for fuzzing."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Nikto for web vulns.",
+                        "Notica for notifications."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "ReconPi",
+            "subheadings": [
+                {
+                    "heading": "Pros‌",
+                    "type": "list",
+                    "content": [
+                        "Best and trendy tools like nuclei, dalfox or gf patterns.",
+                        "Slack and Discord notifications.",
+                        "Lot of passive subdomains tools included."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Need API keys.",
+                        "Installer install tools not used in the script."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "HydraRecon",
+            "subheadings": [
+                {
+                    "heading": "Pros‌",
+                    "type": "list",
+                    "content": [
+                        "JS extractor.",
+                        "No use 3rd parties tools."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Lack of features.",
+                        "No endpoints analysis like potential xss, params, js, etc."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "lazyrecon",
+            "subheadings": [
+                {
+                    "heading": "Pros‌",
+                    "type": "list",
+                    "content": [
+                        "Exclude subdomains feature.",
+                        "Wordlist generation."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "No vulns/tech scanner.",
+                        "No endpoints analysis like potential xss, params, js, etc."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Sn1per",
+            "subheadings": [
+                {
+                    "heading": "Pros‌",
+                    "type": "list",
+                    "content": [
+                        "ASN enumeration.",
+                        "Transfer zone, vhosts and and waf checks.",
+                        "Most complete in features tool."
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Too heavy to do recon (docker image > 6 GB).",
+                        "No endpoints analysis like potential xss, params, etc."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Rapidscan",
+            "subheadings": [
+                {
+                    "heading": "Pros‌",
+                    "type": "list",
+                    "content": [
+                        "Really nice cli output results.",
+                        "Suggests resolution for each bug found.",
+                        "Transfer zone"
+                    ]
+                },
+                {
+                    "heading": "Cons",
+                    "type": "list",
+                    "content": [
+                        "Oldie tools like nikto, uniscan.",
+                        "Python2 died a year ago, too much for a live project imho."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Results",
+            "subheadings": [
+                {
+                    "heading": "Features",
+                    "type": "ordered_list",
+                    "content": [
+                        "Sn1per",
+                        "Sudomy",
+                        "Bheem & osmedeus",
+                        "ReconPi & ChompScan",
+                        "Rapidscan & lazyrecon & 3klcon"
+                    ]
+                },
+                {
+                    "heading": "Workflow and usage",
+                    "type": "ordered_list",
+                    "content": [
+                        "Bheem",
+                        "ReconPi",
+                        "Osmedeus & 3klcon",
+                        "Sudomy",
+                        "rapidscan & chompscan"
+                    ]
+                },
+                {
+                    "heading": "General",
+                    "type": "ordered_list",
+                    "content": [
+                        "Bheem",
+                        "ReconPi",
+                        "Sn1per & osmedeus",
+                        "Sudomy & 3klcon",
+                        "rapidscan & chompscan"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Final thoughts",
+            "type": "paragraph",
+            "content": "I was very surprised by the amount of very good tools that exist for recognition, I have discovered many very good tools that I did not know and others I have been able to understand better how they work. I was also surprised by how quickly nuclei has established itself as one of the best tools that exist in the panorama and on the other hand, that dorking is no longer used, even if it is simply to return a list of urls to check manually. Bheem seems to me to be the best tool that adapts to my work methodology and I hope they continue to maintain and update it because it does the job very well.\nFinally, thanks to all the tool developers who facilitate our work and implement the recon methodology better and better."
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2021-07-03T15:12:12.287Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/recon-suites-review.md",
+        "previous_page": {
+            "title": "Web fuzzers review",
+            "url": "/others/web-fuzzers-comparision"
+        },
+        "next_page": {
+            "title": "Subdomain tools review",
+            "url": "/others/subdomain-tools-review"
+        }
+    }
+}

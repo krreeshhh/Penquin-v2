@@ -1,0 +1,948 @@
+{
+    "title": "Attack Index",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "By MITRE ATT&CK Tactic",
+            "subheadings": [
+                {
+                    "heading": "Initial Access (TA0001)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "Phishing",
+                            "Description": "Spearphishing, credential harvesting",
+                            "Related Section": "Social Engineering"
+                        },
+                        {
+                            "Technique": "Drive-by Compromise",
+                            "Description": "Exploit via malicious website",
+                            "Related Section": "XSS"
+                        },
+                        {
+                            "Technique": "Exploit Public-Facing App",
+                            "Description": "Web app vulnerabilities",
+                            "Related Section": "Web Attacks"
+                        },
+                        {
+                            "Technique": "External Remote Services",
+                            "Description": "VPN, RDP exploitation",
+                            "Related Section": "Ports"
+                        },
+                        {
+                            "Technique": "Valid Accounts",
+                            "Description": "Credential reuse, default creds",
+                            "Related Section": "Bruteforcing"
+                        },
+                        {
+                            "Technique": "Supply Chain Compromise",
+                            "Description": "Package/dependency attacks",
+                            "Related Section": "Supply Chain"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Execution (TA0002)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "Command Injection",
+                            "Description": "OS command execution",
+                            "Related Section": "Command Injection"
+                        },
+                        {
+                            "Technique": "Scripting",
+                            "Description": "PowerShell, Python, Bash",
+                            "Related Section": "Reverse Shells"
+                        },
+                        {
+                            "Technique": "Exploitation for Client Execution",
+                            "Description": "Browser/doc exploits",
+                            "Related Section": "Buffer Overflow"
+                        },
+                        {
+                            "Technique": "User Execution",
+                            "Description": "Social engineering execution",
+                            "Related Section": "Social Engineering"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Persistence (TA0003)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "Account Manipulation",
+                            "Description": "Modify accounts/groups",
+                            "Related Section": "AD Attacks"
+                        },
+                        {
+                            "Technique": "Boot/Logon Autostart",
+                            "Description": "Registry run keys, startup",
+                            "Related Section": "Windows Post-Exploitation"
+                        },
+                        {
+                            "Technique": "Scheduled Task/Job",
+                            "Description": "Cron, Task Scheduler",
+                            "Related Section": "Windows Post-Exploitation"
+                        },
+                        {
+                            "Technique": "Web Shell",
+                            "Description": "Persistent web backdoor",
+                            "Related Section": "Webshells"
+                        },
+                        {
+                            "Technique": "Create Account",
+                            "Description": "Add backdoor accounts",
+                            "Related Section": "Linux Post-Exploitation"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Privilege Escalation (TA0004)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "Exploitation for Privilege Escalation",
+                            "Description": "Kernel/service exploits",
+                            "Related Section": "Privilege Escalation"
+                        },
+                        {
+                            "Technique": "Access Token Manipulation",
+                            "Description": "Token impersonation",
+                            "Related Section": "Windows Post-Exploitation"
+                        },
+                        {
+                            "Technique": "Sudo/SUID Abuse",
+                            "Description": "Linux permission abuse",
+                            "Related Section": "Linux Post-Exploitation"
+                        },
+                        {
+                            "Technique": "DLL Hijacking",
+                            "Description": "Malicious DLL loading",
+                            "Related Section": "Windows Post-Exploitation"
+                        },
+                        {
+                            "Technique": "Bypass UAC",
+                            "Description": "User Account Control bypass",
+                            "Related Section": "Windows Post-Exploitation"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Defense Evasion (TA0005)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "Obfuscated Files/Information",
+                            "Description": "Encoding, encryption",
+                            "Related Section": "RT/EDR Evasion"
+                        },
+                        {
+                            "Technique": "Process Injection",
+                            "Description": "Code injection",
+                            "Related Section": "RT/EDR Evasion"
+                        },
+                        {
+                            "Technique": "Indicator Removal",
+                            "Description": "Log clearing",
+                            "Related Section": "Purple Team"
+                        },
+                        {
+                            "Technique": "AMSI Bypass",
+                            "Description": "Antimalware bypass",
+                            "Related Section": "RT/EDR Evasion"
+                        },
+                        {
+                            "Technique": "Timestomping",
+                            "Description": "Modify file times",
+                            "Related Section": "Purple Team"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Credential Access (TA0006)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "OS Credential Dumping",
+                            "Description": "Mimikatz, LSASS",
+                            "Related Section": "Windows Post-Exploitation"
+                        },
+                        {
+                            "Technique": "Credentials from Password Stores",
+                            "Description": "Browser, Keychain",
+                            "Related Section": "Linux Post-Exploitation"
+                        },
+                        {
+                            "Technique": "Kerberoasting",
+                            "Description": "SPN ticket cracking",
+                            "Related Section": "Kerberos Attacks"
+                        },
+                        {
+                            "Technique": "AS-REP Roasting",
+                            "Description": "Pre-auth disabled accounts",
+                            "Related Section": "Kerberos Attacks"
+                        },
+                        {
+                            "Technique": "Brute Force",
+                            "Description": "Password guessing",
+                            "Related Section": "Bruteforcing"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Discovery (TA0007)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "Network Service Scanning",
+                            "Description": "Port/service discovery",
+                            "Related Section": "Network Scanning"
+                        },
+                        {
+                            "Technique": "Remote System Discovery",
+                            "Description": "AD enumeration",
+                            "Related Section": "AD Attacks"
+                        },
+                        {
+                            "Technique": "File and Directory Discovery",
+                            "Description": "Sensitive file search",
+                            "Related Section": "Files"
+                        },
+                        {
+                            "Technique": "Cloud Service Discovery",
+                            "Description": "AWS/Azure/GCP enum",
+                            "Related Section": "Cloud"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Lateral Movement (TA0008)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "Remote Services",
+                            "Description": "SSH, RDP, WinRM",
+                            "Related Section": "Pivoting"
+                        },
+                        {
+                            "Technique": "Pass the Hash",
+                            "Description": "NTLM hash reuse",
+                            "Related Section": "AD Attacks"
+                        },
+                        {
+                            "Technique": "Pass the Ticket",
+                            "Description": "Kerberos ticket reuse",
+                            "Related Section": "Kerberos Attacks"
+                        },
+                        {
+                            "Technique": "Internal Spearphishing",
+                            "Description": "Lateral phishing",
+                            "Related Section": "Social Engineering"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Collection (TA0009)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "Data from Information Repositories",
+                            "Description": "SharePoint, Confluence",
+                            "Related Section": "Enumeration"
+                        },
+                        {
+                            "Technique": "Archive Collected Data",
+                            "Description": "Compression, staging",
+                            "Related Section": "File Transfer"
+                        },
+                        {
+                            "Technique": "Screen Capture",
+                            "Description": "Screenshot collection",
+                            "Related Section": "Post-Exploitation"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Exfiltration (TA0010)",
+                    "type": "table",
+                    "headers": [
+                        "Technique",
+                        "Description",
+                        "Related Section"
+                    ],
+                    "rows": [
+                        {
+                            "Technique": "Exfiltration Over Web Service",
+                            "Description": "Cloud storage",
+                            "Related Section": "File Transfer"
+                        },
+                        {
+                            "Technique": "Exfiltration Over DNS",
+                            "Description": "DNS tunneling",
+                            "Related Section": "Wireless Testing"
+                        },
+                        {
+                            "Technique": "Exfiltration Over Alternative Protocol",
+                            "Description": "ICMP, custom",
+                            "Related Section": "Pivoting"
+                        },
+                        {
+                            "Technique": "---",
+                            "Description": "",
+                            "Related Section": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "By Vulnerability Type",
+            "subheadings": [
+                {
+                    "heading": "Injection Attacks",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "SQL Injection",
+                            "Description": "Database query manipulation",
+                            "Section": "SQLi"
+                        },
+                        {
+                            "Attack": "Command Injection",
+                            "Description": "OS command execution",
+                            "Section": "Command Injection"
+                        },
+                        {
+                            "Attack": "LDAP Injection",
+                            "Description": "LDAP query manipulation",
+                            "Section": "AD Attacks"
+                        },
+                        {
+                            "Attack": "XPath Injection",
+                            "Description": "XML query manipulation",
+                            "Section": "XXE"
+                        },
+                        {
+                            "Attack": "SSTI",
+                            "Description": "Template engine injection",
+                            "Section": "SSTI"
+                        },
+                        {
+                            "Attack": "NoSQL Injection",
+                            "Description": "MongoDB/CouchDB injection",
+                            "Section": "NoSQL"
+                        },
+                        {
+                            "Attack": "Header Injection",
+                            "Description": "HTTP header manipulation",
+                            "Section": "Header Injections"
+                        },
+                        {
+                            "Attack": "CRLF Injection",
+                            "Description": "Response splitting",
+                            "Section": "CRLF"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Cross-Site Attacks",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "XSS (Reflected)",
+                            "Description": "Script injection via URL",
+                            "Section": "XSS"
+                        },
+                        {
+                            "Attack": "XSS (Stored)",
+                            "Description": "Persistent script injection",
+                            "Section": "XSS"
+                        },
+                        {
+                            "Attack": "XSS (DOM)",
+                            "Description": "Client-side DOM manipulation",
+                            "Section": "XSS"
+                        },
+                        {
+                            "Attack": "CSRF",
+                            "Description": "Cross-site request forgery",
+                            "Section": "CSRF"
+                        },
+                        {
+                            "Attack": "CORS Misconfiguration",
+                            "Description": "Cross-origin resource sharing",
+                            "Section": "CORS"
+                        },
+                        {
+                            "Attack": "Clickjacking",
+                            "Description": "UI redressing",
+                            "Section": "Clickjacking"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Authentication/Authorization",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "Brute Force",
+                            "Description": "Password guessing",
+                            "Section": "Bruteforcing"
+                        },
+                        {
+                            "Attack": "Credential Stuffing",
+                            "Description": "Reused credential attacks",
+                            "Section": "Bruteforcing"
+                        },
+                        {
+                            "Attack": "Session Fixation",
+                            "Description": "Session ID manipulation",
+                            "Section": "Session Fixation"
+                        },
+                        {
+                            "Attack": "IDOR",
+                            "Description": "Insecure direct object reference",
+                            "Section": "IDOR"
+                        },
+                        {
+                            "Attack": "JWT Attacks",
+                            "Description": "Token manipulation",
+                            "Section": "JWT"
+                        },
+                        {
+                            "Attack": "OAuth Flaws",
+                            "Description": "OAuth flow manipulation",
+                            "Section": "OAuth"
+                        },
+                        {
+                            "Attack": "MFA Bypass",
+                            "Description": "Multi-factor bypass",
+                            "Section": "MFA"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Server-Side Attacks",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "SSRF",
+                            "Description": "Server-side request forgery",
+                            "Section": "SSRF"
+                        },
+                        {
+                            "Attack": "XXE",
+                            "Description": "XML external entity",
+                            "Section": "XXE"
+                        },
+                        {
+                            "Attack": "LFI/RFI",
+                            "Description": "Local/Remote file inclusion",
+                            "Section": "LFI/RFI"
+                        },
+                        {
+                            "Attack": "File Upload",
+                            "Description": "Malicious file upload",
+                            "Section": "File Upload"
+                        },
+                        {
+                            "Attack": "Deserialization",
+                            "Description": "Insecure deserialization",
+                            "Section": "Deserialization"
+                        },
+                        {
+                            "Attack": "Request Smuggling",
+                            "Description": "HTTP desync attacks",
+                            "Section": "Request Smuggling"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Cache/Proxy Attacks",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "Web Cache Poisoning",
+                            "Description": "Cache manipulation",
+                            "Section": "Cache Poisoning"
+                        },
+                        {
+                            "Attack": "Web Cache Deception",
+                            "Description": "Cache rule abuse",
+                            "Section": "Cache Deception"
+                        },
+                        {
+                            "Attack": "DNS Rebinding",
+                            "Description": "DNS TTL manipulation",
+                            "Section": "DNS Rebinding"
+                        }
+                    ]
+                },
+                {
+                    "heading": "API Attacks",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "BOLA",
+                            "Description": "Broken object-level authorization",
+                            "Section": "API Security"
+                        },
+                        {
+                            "Attack": "Mass Assignment",
+                            "Description": "Unexpected parameter binding",
+                            "Section": "API Security"
+                        },
+                        {
+                            "Attack": "GraphQL Attacks",
+                            "Description": "Introspection, batching abuse",
+                            "Section": "API Security"
+                        },
+                        {
+                            "Attack": "Rate Limit Bypass",
+                            "Description": "Throttling circumvention",
+                            "Section": "API Security"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Active Directory Attacks",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "Kerberoasting",
+                            "Description": "SPN ticket cracking",
+                            "Section": "Kerberos"
+                        },
+                        {
+                            "Attack": "AS-REP Roasting",
+                            "Description": "Pre-auth disabled abuse",
+                            "Section": "Kerberos"
+                        },
+                        {
+                            "Attack": "Golden Ticket",
+                            "Description": "Forged TGT",
+                            "Section": "Kerberos"
+                        },
+                        {
+                            "Attack": "Silver Ticket",
+                            "Description": "Forged service ticket",
+                            "Section": "Kerberos"
+                        },
+                        {
+                            "Attack": "DCSync",
+                            "Description": "Replicate DC credentials",
+                            "Section": "AD"
+                        },
+                        {
+                            "Attack": "Pass the Hash",
+                            "Description": "NTLM relay",
+                            "Section": "AD"
+                        },
+                        {
+                            "Attack": "Pass the Ticket",
+                            "Description": "Kerberos ticket reuse",
+                            "Section": "Kerberos"
+                        },
+                        {
+                            "Attack": "AD CS Abuse",
+                            "Description": "Certificate services attacks",
+                            "Section": "AD"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Cloud Attacks",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "Metadata Service Abuse",
+                            "Description": "IMDS exploitation",
+                            "Section": "AWS"
+                        },
+                        {
+                            "Attack": "S3 Bucket Misconfiguration",
+                            "Description": "Public bucket access",
+                            "Section": "AWS"
+                        },
+                        {
+                            "Attack": "IAM Privilege Escalation",
+                            "Description": "Permission escalation",
+                            "Section": "GCP"
+                        },
+                        {
+                            "Attack": "Managed Identity Abuse",
+                            "Description": "Token theft",
+                            "Section": "Azure"
+                        },
+                        {
+                            "Attack": "Container Escape",
+                            "Description": "Breakout from containers",
+                            "Section": "Docker/K8s"
+                        },
+                        {
+                            "Attack": "Serverless Exploitation",
+                            "Description": "Lambda/Functions abuse",
+                            "Section": "Serverless"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Wireless Attacks",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "WPA2 Cracking",
+                            "Description": "Handshake/PMKID attacks",
+                            "Section": "Wireless"
+                        },
+                        {
+                            "Attack": "Evil Twin",
+                            "Description": "Rogue access point",
+                            "Section": "Wireless"
+                        },
+                        {
+                            "Attack": "Bluetooth Attacks",
+                            "Description": "BLE exploitation",
+                            "Section": "Wireless"
+                        },
+                        {
+                            "Attack": "RFID Cloning",
+                            "Description": "Badge duplication",
+                            "Section": "Hardware"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Physical/Social Engineering",
+                    "type": "table",
+                    "headers": [
+                        "Attack",
+                        "Description",
+                        "Section"
+                    ],
+                    "rows": [
+                        {
+                            "Attack": "Phishing",
+                            "Description": "Credential harvesting",
+                            "Section": "Social Engineering"
+                        },
+                        {
+                            "Attack": "Vishing",
+                            "Description": "Voice phishing",
+                            "Section": "Social Engineering"
+                        },
+                        {
+                            "Attack": "USB Drops",
+                            "Description": "Malicious USB devices",
+                            "Section": "Hardware"
+                        },
+                        {
+                            "Attack": "Tailgating",
+                            "Description": "Physical access",
+                            "Section": "Social Engineering"
+                        },
+                        {
+                            "Attack": "Badge Cloning",
+                            "Description": "RFID/NFC cloning",
+                            "Section": "Hardware"
+                        },
+                        {
+                            "Attack": "---",
+                            "Description": "",
+                            "Section": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "By CWE (Common Weakness Enumeration)",
+            "type": "table",
+            "headers": [
+                "CWE ID",
+                "Name",
+                "Section"
+            ],
+            "rows": [
+                {
+                    "CWE ID": "CWE-78",
+                    "Name": "OS Command Injection",
+                    "Section": "Command Injection"
+                },
+                {
+                    "CWE ID": "CWE-79",
+                    "Name": "Cross-site Scripting (XSS)",
+                    "Section": "XSS"
+                },
+                {
+                    "CWE ID": "CWE-89",
+                    "Name": "SQL Injection",
+                    "Section": "SQLi"
+                },
+                {
+                    "CWE ID": "CWE-94",
+                    "Name": "Code Injection",
+                    "Section": "SSTI"
+                },
+                {
+                    "CWE ID": "CWE-98",
+                    "Name": "PHP File Inclusion",
+                    "Section": "LFI/RFI"
+                },
+                {
+                    "CWE ID": "CWE-120",
+                    "Name": "Buffer Overflow",
+                    "Section": "Buffer Overflow"
+                },
+                {
+                    "CWE ID": "CWE-200",
+                    "Name": "Information Exposure",
+                    "Section": "Recon"
+                },
+                {
+                    "CWE ID": "CWE-287",
+                    "Name": "Authentication Issues",
+                    "Section": "Bruteforcing"
+                },
+                {
+                    "CWE ID": "CWE-352",
+                    "Name": "Cross-Site Request Forgery",
+                    "Section": "CSRF"
+                },
+                {
+                    "CWE ID": "CWE-434",
+                    "Name": "Unrestricted Upload",
+                    "Section": "File Upload"
+                },
+                {
+                    "CWE ID": "CWE-502",
+                    "Name": "Deserialization",
+                    "Section": "Deserialization"
+                },
+                {
+                    "CWE ID": "CWE-611",
+                    "Name": "XXE",
+                    "Section": "XXE"
+                },
+                {
+                    "CWE ID": "CWE-639",
+                    "Name": "IDOR",
+                    "Section": "IDOR"
+                },
+                {
+                    "CWE ID": "CWE-918",
+                    "Name": "SSRF",
+                    "Section": "SSRF"
+                },
+                {
+                    "CWE ID": "---",
+                    "Name": "",
+                    "Section": ""
+                }
+            ]
+        },
+        {
+            "heading": "Quick Reference: Attack → Defense Mapping",
+            "type": "table",
+            "headers": [
+                "Attack",
+                "Detection",
+                "Prevention"
+            ],
+            "rows": [
+                {
+                    "Attack": "SQLi",
+                    "Detection": "WAF rules, query logging",
+                    "Prevention": "Parameterized queries, input validation"
+                },
+                {
+                    "Attack": "XSS",
+                    "Detection": "CSP violations, WAF",
+                    "Prevention": "Output encoding, CSP, sanitization"
+                },
+                {
+                    "Attack": "Command Injection",
+                    "Detection": "Process monitoring, syscall audit",
+                    "Prevention": "Input validation, avoid shell"
+                },
+                {
+                    "Attack": "SSRF",
+                    "Detection": "Outbound request monitoring",
+                    "Prevention": "Allowlisting, network segmentation"
+                },
+                {
+                    "Attack": "LFI/RFI",
+                    "Detection": "File access logging",
+                    "Prevention": "Input validation, chroot"
+                },
+                {
+                    "Attack": "Credential Stuffing",
+                    "Detection": "Failed login monitoring",
+                    "Prevention": "MFA, rate limiting, CAPTCHA"
+                },
+                {
+                    "Attack": "Kerberoasting",
+                    "Detection": "Event ID 4769 monitoring",
+                    "Prevention": "Strong service account passwords"
+                },
+                {
+                    "Attack": "Pass the Hash",
+                    "Detection": "NTLM relay detection",
+                    "Prevention": "Credential Guard, SMB signing"
+                },
+                {
+                    "Attack": "Container Escape",
+                    "Detection": "Syscall monitoring (seccomp)",
+                    "Prevention": "Rootless containers, gVisor"
+                },
+                {
+                    "Attack": "---",
+                    "Detection": "",
+                    "Prevention": ""
+                }
+            ]
+        },
+        {
+            "heading": "Resources",
+            "type": "list",
+            "content": [
+                "MITRE ATT&CK",
+                "OWASP Top 10",
+                "CWE Top 25",
+                "HackTricks",
+                "PayloadsAllTheThings"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/attack-index.md",
+        "previous_page": {
+            "title": "Tool Index",
+            "url": "/others/tool-index"
+        },
+        "next_page": {
+            "title": "Wordlist Reference",
+            "url": "/others/wordlist-reference"
+        }
+    }
+}

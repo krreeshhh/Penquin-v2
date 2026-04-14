@@ -1,0 +1,81 @@
+{
+    "title": "VHosts",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/jobertabma/virtual-host-discovery",
+                "ruby scan.rb --ip=192.168.1.101 --host=domain.tld",
+                "",
+                "# https://github.com/dariusztytko/vhosts-sieve",
+                "python3 vhosts-sieve.py -d domains.txt -o vhosts.txt",
+                "",
+                "# Enum vhosts",
+                "fierce -dns example.com",
+                "",
+                "# https://github.com/codingo/VHostScan",
+                "VHostScan -t example.com"
+            ]
+        },
+        {
+            "heading": "Techniques",
+            "type": "code_block",
+            "content": [
+                "# ffuf",
+                "badresponse=$(curl -s -H \"host: totallynotexistsforsure.bugcrowd.com\" https://bugcrowd.com | wc -c)",
+                "ffuf -u https://TARGET.com -H \"Host: FUZZ.TARGET.com\" -w werdlists/dns-hostnames/nmap-vhosts-all.txt -fs $badresponse",
+                "",
+                "# Manual with subdomains list",
+                "for sub in $(cat subdomains.txt); do",
+                "\t\t\techo \"$sub $(dig +short a $sub | tail -n1)\" | anew -q subdomains_ips.txt",
+                "done",
+                ""
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2021-03-17T09:44:01.651Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/vhosts.md",
+        "previous_page": {
+            "title": "IIS",
+            "url": "/enumeration/webservices/iis"
+        },
+        "next_page": {
+            "title": "Firebase",
+            "url": "/enumeration/webservices/firebase"
+        }
+    }
+}

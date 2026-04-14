@@ -1,0 +1,63 @@
+{
+    "title": "Subdomain Takeover",
+    "breadcrumb": [
+        {
+            "title": "Recon",
+            "url": "/recon"
+        },
+        {
+            "title": "Subdomain Enum",
+            "url": "/recon/subdomain-enum"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Explanation",
+            "type": "ordered_list",
+            "content": [
+                "Domain name (sub.example.com) uses a CNAME record for another domain (sub.example.com CNAME anotherdomain.com).",
+                "At some point, anotherdomain.com expires and is available for anyone's registration.",
+                "Since the CNAME record is not removed from the DNS zone of example.com, anyone who records anotherdomain.com has full control over sub.example.com until the DNS record is present."
+            ]
+        },
+        {
+            "heading": "Resources",
+            "type": "paragraph",
+            "content": "{% embed url=\"https://0xpatrik.com/takeover-proofs/\" %}\n{% embed url=\"https://github.com/EdOverflow/can-i-take-over-xyz\" %}"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2021-12-31T16:34:25.655Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/recon/subdomain-enum/subdomain-takeover.md",
+        "previous_page": {
+            "title": "Subdomain Enum",
+            "url": "/recon/subdomain-enum"
+        },
+        "next_page": {
+            "title": "Webs recon",
+            "url": "/recon/webs-recon"
+        }
+    }
+}

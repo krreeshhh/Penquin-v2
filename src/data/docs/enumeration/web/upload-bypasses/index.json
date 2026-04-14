@@ -1,0 +1,54 @@
+{
+    "title": "File upload",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Cheatsheet",
+            "type": "paragraph",
+            "content": "``\nupload.random123\t\t---\tTo test if random file extensions can be uploaded.\nupload.php\t\t\t---\ttry to upload a simple php file.\nupload.php.jpeg \t\t--- \tTo bypass the blacklist.\nupload.jpg.php \t\t\t---\tTo bypass the blacklist.\nupload.php \t\t\t---\tand Then Change the content type of the file to image or jpeg.\nupload.php*\t\t\t---\tversion - 1 2 3 4 5 6 7.\nupload.PHP\t\t\t---\tTo bypass The BlackList.\nupload.PhP\t\t\t---\tTo bypass The BlackList.\nupload.pHp\t\t\t---\tTo bypass The BlackList.\nupload .htaccess \t\t--- \tBy uploading this [jpg,png] files can be executed as php with milicious code within it.\npixelFlood.jpg\t\t\t---\tTo test againt the DOS.\nframeflood.gif\t\t\t---\tupload gif file with 10^10 Frames\nMalicious zTXT  \t\t--- \tupload UBER.jpg\nUpload zip file\t\t\t---\ttest againts Zip slip (only when file upload supports zip file)\nCheck Overwrite Issue\t\t--- \tUpload file.txt and file.txt with different content and check if 2nd file.txt overwrites 1st file\nSVG to XSS\t\t\t---\tCheck if you can upload SVG files and can turn them to cause XSS on the target app\nSQLi Via File upload\t\t---\tTry uploading sleep(10)-- -.jpg as file\n``\n)"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2023-02-27T15:48:41.062Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/upload-bypasses.md",
+        "previous_page": {
+            "title": "LFI/RFI",
+            "url": "/enumeration/web/lfi-rfi"
+        },
+        "next_page": {
+            "title": "SQLi",
+            "url": "/enumeration/web/sqli"
+        }
+    }
+}

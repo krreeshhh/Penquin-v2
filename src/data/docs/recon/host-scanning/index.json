@@ -1,0 +1,95 @@
+{
+    "title": "Host Scanning",
+    "breadcrumb": [
+        {
+            "title": "Recon",
+            "url": "/recon"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "nmap",
+            "type": "code_block",
+            "content": [
+                "# Fast simple scan",
+                "nmap 10.11.1.111",
+                "",
+                "# Nmap ultra fast",
+                "nmap 10.11.1.111 --max-retries 1 --min-rate 1000",
+                "",
+                "# Get open ports",
+                "nmap -p - -Pn -n 10.10.10.10",
+                "",
+                "# Comprehensive fast and accurate",
+                "nmap --top-ports 200 -sV -n --max-retries 2 -Pn --open -iL ips.txt -oA portscan_active",
+                "",
+                "# Get sV from ports",
+                "nmap -pXX,XX,XX,XX,XX -Pn -sV -n 10.10.10.10",
+                "",
+                "# Full complete slow scan with output",
+                "nmap -v -A -p- -Pn --script vuln -oA full 10.11.1.111",
+                "",
+                "# Network filtering evasion",
+                "nmap --source-port 53 -p 5555 10.11.1.111",
+                "    # If work, set IPTABLES to bind this port",
+                "    iptables -t nat -A POSTROUTING -d 10.11.1.111 -p tcp -j SNAT --to :53",
+                "",
+                "# Scan for UDP",
+                "nmap 10.11.1.111 -sU",
+                "nmap -sU -F -Pn -v -d -sC -sV --open --reason -T5 10.11.1.111",
+                "",
+                "# FW evasion",
+                "nmap -f <IP>",
+                "nmap --mtu 24 <IP>",
+                "nmap --data-length 30 <IP>",
+                "nmap --source-port 53 <IP>",
+                "",
+                "# Nmap better speed flags",
+                "--max-rtt-timeout: Time response per probe",
+                "--script-timeout: Time response per script",
+                "--host-timeout: Time response for host",
+                "--open: Avoid detection if filtered or closed",
+                "--min-rate"
+            ]
+        },
+        {
+            "heading": "shodan",
+            "type": "paragraph",
+            "content": "``bash\n# https://cli.shodan.io/\nshodan host 151.101.1.68\n``\n)\n)"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2021-12-31T16:41:45.273Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/recon/host-scanning.md",
+        "previous_page": {
+            "title": "Network Scanning",
+            "url": "/recon/network-scanning"
+        },
+        "next_page": {
+            "title": "Packet Scanning",
+            "url": "/recon/packet-scanning"
+        }
+    }
+}

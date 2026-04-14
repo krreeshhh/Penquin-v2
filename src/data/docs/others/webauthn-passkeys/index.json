@@ -1,0 +1,460 @@
+{
+    "title": "WebAuthn & Passkeys Security",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Overview",
+            "type": "code_block",
+            "content": [
+                "WebAuthn/FIDO2 provides phishing-resistant authentication using:",
+                "- Public key cryptography",
+                "- Hardware authenticators (YubiKey, etc.)",
+                "- Platform authenticators (Touch ID, Windows Hello)",
+                "- Passkeys (synced across devices)",
+                "",
+                "Components:",
+                "- Relying Party (RP): The website/service",
+                "- Authenticator: Hardware or platform key",
+                "- Client: Browser implementing WebAuthn API"
+            ]
+        },
+        {
+            "heading": "Attack Surface",
+            "type": "code_block",
+            "content": [
+                "Potential weaknesses:",
+                "1. RP implementation bugs",
+                "2. Authenticator vulnerabilities",
+                "3. Attestation bypass",
+                "4. Fallback authentication",
+                "5. Account recovery flows",
+                "6. Session management post-auth",
+                "7. Origin validation issues"
+            ]
+        },
+        {
+            "heading": "Registration Flow Testing",
+            "subheadings": [
+                {
+                    "heading": "Intercept Registration",
+                    "type": "code_block",
+                    "content": [
+                        "// Monitor registration in browser console",
+                        "navigator.credentials.create({",
+                        "    publicKey: {",
+                        "        challenge: new Uint8Array([...]),",
+                        "        rp: { name: \"Target\", id: \"target.com\" },",
+                        "        user: { id: new Uint8Array([...]), name: \"user@target.com\", displayName: \"User\" },",
+                        "        pubKeyCredParams: [{ type: \"public-key\", alg: -7 }],  // ES256",
+                        "        authenticatorSelection: { authenticatorAttachment: \"platform\" },",
+                        "        timeout: 60000,",
+                        "        attestation: \"none\"",
+                        "    }",
+                        "}).then(cred => console.log(cred));"
+                    ]
+                },
+                {
+                    "heading": "Test Cases",
+                    "type": "code_block",
+                    "content": [
+                        "Registration attacks to test:",
+                        "",
+                        "1. Replay registration response",
+                        "   - Capture authenticatorData and clientDataJSON",
+                        "   - Replay to different user account",
+                        "",
+                        "2. Tamper with clientDataJSON",
+                        "   - Modify origin field",
+                        "   - Modify challenge",
+                        "",
+                        "3. Weak attestation",
+                        "   - Accept \"none\" attestation when direct required",
+                        "   - Accept self-attestation",
+                        "",
+                        "4. No challenge validation",
+                        "   - Use expired/static challenge",
+                        "",
+                        "5. Multiple credential registration",
+                        "   - Register same authenticator to multiple accounts"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Authentication Flow Testing",
+            "subheadings": [
+                {
+                    "heading": "Intercept Authentication",
+                    "type": "code_block",
+                    "content": [
+                        "// Monitor authentication in browser console",
+                        "navigator.credentials.get({",
+                        "    publicKey: {",
+                        "        challenge: new Uint8Array([...]),",
+                        "        rpId: \"target.com\",",
+                        "        allowCredentials: [{",
+                        "            type: \"public-key\",",
+                        "            id: new Uint8Array([...]),",
+                        "            transports: [\"usb\", \"nfc\", \"ble\", \"internal\"]",
+                        "        }],",
+                        "        userVerification: \"preferred\",",
+                        "        timeout: 60000",
+                        "    }",
+                        "}).then(assertion => console.log(assertion));"
+                    ]
+                },
+                {
+                    "heading": "Test Cases",
+                    "type": "code_block",
+                    "content": [
+                        "Authentication attacks to test:",
+                        "",
+                        "1. Signature replay",
+                        "   - Capture assertion signature",
+                        "   - Replay on different session",
+                        "",
+                        "2. Counter validation bypass",
+                        "   - Authenticators maintain sign counter",
+                        "   - Counter going backwards = cloned key",
+                        "   - Check if RP validates counter",
+                        "",
+                        "3. User verification bypass",
+                        "   - Set userVerification: \"discouraged\"",
+                        "   - Bypass biometric/PIN requirement",
+                        "",
+                        "4. Cross-origin attack",
+                        "   - Modify origin in clientDataJSON",
+                        "   - Test RP ID matching"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Common Vulnerabilities",
+            "subheadings": [
+                {
+                    "heading": "Weak Challenge Generation",
+                    "type": "code_block",
+                    "content": [
+                        "# Vulnerable: Predictable challenge",
+                        "def generate_challenge():",
+                        "    return base64.b64encode(str(time.time()).encode())",
+                        "",
+                        "# Should be:",
+                        "def generate_challenge():",
+                        "    return base64.b64encode(os.urandom(32))"
+                    ]
+                },
+                {
+                    "heading": "Missing RP ID Validation",
+                    "type": "code_block",
+                    "content": [
+                        "// Test with subdomain",
+                        "// If RP ID is \"target.com\", test from \"evil.target.com\"",
+                        "// Should fail but misconfigured RPs may accept",
+                        "",
+                        "// In browser on evil.target.com:",
+                        "navigator.credentials.get({",
+                        "    publicKey: {",
+                        "        challenge: challenge,",
+                        "        rpId: \"target.com\",  // RP ID of legitimate site",
+                        "        allowCredentials: [...]",
+                        "    }",
+                        "});"
+                    ]
+                },
+                {
+                    "heading": "Fallback Authentication Bypass",
+                    "type": "code_block",
+                    "content": [
+                        "1. Register WebAuthn credential",
+                        "2. Trigger \"lost authenticator\" flow",
+                        "3. Check if weaker auth method available:",
+                        "   - Email link",
+                        "   - SMS OTP",
+                        "   - Security questions",
+                        "   - Password reset",
+                        "",
+                        "If fallback exists, WebAuthn security is undermined."
+                    ]
+                },
+                {
+                    "heading": "Origin Confusion",
+                    "type": "code_block",
+                    "content": [
+                        "# Check how RP validates origin in clientDataJSON",
+                        "",
+                        "# clientDataJSON contains:",
+                        "{",
+                        "    \"type\": \"webauthn.get\",",
+                        "    \"challenge\": \"...\",",
+                        "    \"origin\": \"https://target.com\",  # Must match RP",
+                        "    \"crossOrigin\": false",
+                        "}",
+                        "",
+                        "# Test cases:",
+                        "# origin: \"https://target.com.\"  (trailing dot)",
+                        "# origin: \"https://Target.com\"   (case sensitivity)",
+                        "# origin: \"https://target.com:443\" (explicit port)",
+                        "# crossOrigin: true (from iframe)"
+                    ]
+                },
+                {
+                    "heading": "Counter Bypass",
+                    "type": "code_block",
+                    "content": [
+                        "# Authenticators maintain a signature counter",
+                        "# Cloned keys don't sync counters",
+                        "",
+                        "# Test: Accept decreasing counter",
+                        "# 1. Authenticate (counter = 100)",
+                        "# 2. Clone/modify to send counter = 50",
+                        "# 3. If accepted, counter validation is broken",
+                        "",
+                        "def verify_assertion(stored_counter, received_counter):",
+                        "    if received_counter <= stored_counter:",
+                        "        raise SecurityError(\"Possible cloned authenticator\")",
+                        "    # Update stored counter"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Passkey-Specific Testing",
+            "subheadings": [
+                {
+                    "heading": "Synced Credentials",
+                    "type": "code_block",
+                    "content": [
+                        "Passkeys sync across devices via:",
+                        "- iCloud Keychain (Apple)",
+                        "- Google Password Manager",
+                        "- Microsoft Account",
+                        "",
+                        "Test scenarios:",
+                        "1. Credential export/import",
+                        "2. Cross-platform sync security",
+                        "3. Account recovery with synced credentials",
+                        "4. Revocation of synced credentials"
+                    ]
+                },
+                {
+                    "heading": "Hybrid/Cross-Device Auth",
+                    "type": "code_block",
+                    "content": [
+                        "FIDO2 CTAP 2.2 allows phone as authenticator:",
+                        "1. User scans QR code on desktop",
+                        "2. Authenticates on phone via BLE proximity",
+                        "3. Desktop receives credential",
+                        "",
+                        "Test:",
+                        "- BLE relay attacks",
+                        "- QR code capture/replay",
+                        "- Man-in-the-middle on transport"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Testing Tools",
+            "subheadings": [
+                {
+                    "heading": "Browser DevTools",
+                    "type": "code_block",
+                    "content": [
+                        "// Chrome: Enable WebAuthn emulator",
+                        "// DevTools → More tools → WebAuthn",
+                        "",
+                        "// Firefox: about:webauthn for debugging",
+                        "",
+                        "// View credential details",
+                        "navigator.credentials.get({",
+                        "    publicKey: {",
+                        "        challenge: new Uint8Array(32),",
+                        "        rpId: location.hostname,",
+                        "        userVerification: \"discouraged\"",
+                        "    }",
+                        "}).then(c => {",
+                        "    console.log(\"Credential ID:\", btoa(String.fromCharCode(...new Uint8Array(c.rawId))));",
+                        "    console.log(\"Client Data:\", JSON.parse(new TextDecoder().decode(c.response.clientDataJSON)));",
+                        "});"
+                    ]
+                },
+                {
+                    "heading": "WebAuthn Debugger",
+                    "type": "code_block",
+                    "content": [
+                        "# Chrome extension for debugging",
+                        "# \"WebAuthn Developer Tool\"",
+                        "",
+                        "# Allows:",
+                        "# - Virtual authenticator creation",
+                        "# - Credential inspection",
+                        "# - Attestation testing"
+                    ]
+                },
+                {
+                    "heading": "Burp Suite",
+                    "type": "code_block",
+                    "content": [
+                        "1. Intercept registration/authentication requests",
+                        "2. Modify challenge, origin, credential data",
+                        "3. Test signature validation",
+                        "4. Check for timing attacks",
+                        "",
+                        "Extensions:",
+                        "- \"FIDO2/WebAuthn Tester\" (if available)"
+                    ]
+                },
+                {
+                    "heading": "Python Testing",
+                    "type": "code_block",
+                    "content": [
+                        "from fido2.client import Fido2Client",
+                        "from fido2.webauthn import PublicKeyCredentialCreationOptions",
+                        "from fido2.server import Fido2Server",
+                        "",
+                        "# Create test server",
+                        "server = Fido2Server({\"id\": \"localhost\", \"name\": \"Test\"})",
+                        "",
+                        "# Generate registration options",
+                        "options, state = server.register_begin(",
+                        "    {\"id\": b\"user_id\", \"name\": \"test\", \"displayName\": \"Test User\"},",
+                        "    credentials=[]",
+                        ")",
+                        "",
+                        "# Test with malformed options",
+                        "# Modify challenge, origin, etc."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Bypass Techniques",
+            "subheadings": [
+                {
+                    "heading": "Attestation Bypass",
+                    "type": "code_block",
+                    "content": [
+                        "If RP requires specific attestation:",
+                        "",
+                        "1. \"none\" attestation - No verification",
+                        "2. \"self\" attestation - Self-signed",
+                        "3. \"packed\" attestation - May accept any",
+                        "",
+                        "Test: Change attestation statement format",
+                        "Test: Provide invalid attestation but valid signature"
+                    ]
+                },
+                {
+                    "heading": "User Verification Bypass",
+                    "type": "code_block",
+                    "content": [
+                        "// Force authentication without biometric/PIN",
+                        "options.userVerification = \"discouraged\";",
+                        "",
+                        "// Check if RP accepts UV=false when UV=required configured",
+                        "// Some implementations don't enforce UV flag"
+                    ]
+                },
+                {
+                    "heading": "Resident Credential Attacks",
+                    "type": "code_block",
+                    "content": [
+                        "Resident/discoverable credentials stored on authenticator:",
+                        "- Don't need allowCredentials list",
+                        "- Can enumerate usernames",
+                        "",
+                        "Test:",
+                        "1. Register resident credential",
+                        "2. Check if username leaked in assertion",
+                        "3. Test for credential enumeration"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Account Recovery Testing",
+            "type": "code_block",
+            "content": [
+                "When user loses authenticator:",
+                "",
+                "1. What recovery options exist?",
+                "   - Backup codes (should be WebAuthn-protected)",
+                "   - Email link (weak)",
+                "   - Support process (social engineering)",
+                "",
+                "2. Can attacker trigger recovery?",
+                "3. Does recovery bypass MFA entirely?",
+                "4. Are backup codes WebAuthn-generated?"
+            ]
+        },
+        {
+            "heading": "Implementation Checklist",
+            "type": "code_block",
+            "content": [
+                "For pentesters to verify:",
+                "",
+                "[ ] Challenge is cryptographically random (32+ bytes)",
+                "[ ] Challenge expires (< 5 minutes)",
+                "[ ] Challenge is single-use",
+                "[ ] Origin validation is strict",
+                "[ ] RP ID validation is correct",
+                "[ ] Signature counter is validated",
+                "[ ] User verification flag checked if required",
+                "[ ] Attestation verified (if required)",
+                "[ ] No weaker fallback auth methods",
+                "[ ] Credential binding to user account",
+                "[ ] Rate limiting on authentication"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "OIDC - WebAuthn + OIDC integration",
+                "OAuth - OAuth with WebAuthn",
+                "JWT - Token-based auth comparison"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/webauthn-passkeys.md",
+        "previous_page": {
+            "title": "Automotive Security",
+            "url": "/others/automotive-security"
+        },
+        "next_page": {
+            "title": "Browser Extension Security",
+            "url": "/others/browser-extension-security"
+        }
+    }
+}

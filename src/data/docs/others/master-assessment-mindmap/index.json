@@ -1,0 +1,161 @@
+{
+    "title": "Master assessment mindmaps",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Web Application Pentesting Mindmap",
+            "type": "paragraph",
+            "content": "Key areas to assess during web application security testing:"
+        },
+        {
+            "heading": "Reconnaissance",
+            "type": "list",
+            "content": [
+                "Subdomain enumeration",
+                "Technology fingerprinting",
+                "Hidden content discovery",
+                "API endpoint mapping"
+            ]
+        },
+        {
+            "heading": "Authentication Testing",
+            "type": "list",
+            "content": [
+                "Brute force protection",
+                "Password policies",
+                "Session management",
+                "Multi-factor authentication bypass",
+                "Account lockout mechanisms"
+            ]
+        },
+        {
+            "heading": "Authorization Testing",
+            "type": "list",
+            "content": [
+                "Horizontal privilege escalation (IDOR)",
+                "Vertical privilege escalation",
+                "Function-level access control",
+                "Insecure direct object references"
+            ]
+        },
+        {
+            "heading": "Input Validation",
+            "type": "list",
+            "content": [
+                "SQL Injection (all types)",
+                "XSS (Reflected, Stored, DOM)",
+                "Command Injection",
+                "SSRF / CSRF",
+                "XXE Injection",
+                "Template Injection (SSTI)"
+            ]
+        },
+        {
+            "heading": "Business Logic",
+            "type": "list",
+            "content": [
+                "Workflow bypass",
+                "Price manipulation",
+                "Quantity tampering",
+                "Feature abuse"
+            ]
+        },
+        {
+            "heading": "Infrastructure",
+            "type": "paragraph",
+            "content": "- Server misconfigurations\n- Default credentials\n- Exposed admin panels\n- Information disclosure\n)"
+        },
+        {
+            "heading": "Bug Bounty Methodology",
+            "type": "image",
+            "url": "https://blog.it-securityguard.com/pbbt.png"
+        },
+        {
+            "heading": "Comprehensive Pentest Methodology",
+            "subheadings": [
+                {
+                    "heading": "Phase 1: Information Gathering",
+                    "type": "ordered_list",
+                    "content": [
+                        "Passive reconnaissance (OSINT)",
+                        "Active scanning and enumeration",
+                        "Vulnerability identification"
+                    ]
+                },
+                {
+                    "heading": "Phase 2: Exploitation",
+                    "type": "ordered_list",
+                    "content": [
+                        "Vulnerability validation",
+                        "Exploit development/selection",
+                        "Initial access"
+                    ]
+                },
+                {
+                    "heading": "Phase 3: Post-Exploitation",
+                    "type": "ordered_list",
+                    "content": [
+                        "Privilege escalation",
+                        "Persistence",
+                        "Lateral movement",
+                        "Data exfiltration"
+                    ]
+                },
+                {
+                    "heading": "Phase 4: Reporting",
+                    "type": "paragraph",
+                    "content": "1. Finding documentation\n2. Risk assessment\n3. Remediation recommendations\n../.gitbook/assets/Methodology\\[1].png"
+                }
+            ]
+        },
+        {
+            "heading": "Additional Resources",
+            "type": "list",
+            "content": [
+                "OWASP Testing Guide",
+                "PortSwigger Web Security Academy",
+                "HackTricks",
+                "PayloadsAllTheThings"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/master-assessment-mindmap.md",
+        "previous_page": {
+            "title": "Random",
+            "url": "/others/dictionaries"
+        },
+        "next_page": {
+            "title": "BugBounty",
+            "url": "/others/bugbounty"
+        }
+    }
+}

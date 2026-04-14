@@ -1,0 +1,107 @@
+{
+    "title": "General",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Cloud",
+            "url": "/enumeration/cloud"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# Non provider specific and general purpose",
+                "# https://github.com/nccgroup/ScoutSuite",
+                "# https://github.com/SygniaLabs/security-cloud-scout",
+                "# https://github.com/initstring/cloud_enum",
+                "python3 cloud_enum.py -k companynameorkeyword",
+                "# https://github.com/cyberark/SkyArk",
+                "# https://github.com/SecurityFTW/cs-suite",
+                "    cd /tmp",
+                "    mkdir .aws",
+                "    cat > .aws/config <<EOF",
+                "        [default]",
+                "        output = json",
+                "        region = us-east-1",
+                "    EOF",
+                "    cat > .aws/credentials <<EOF",
+                "        [default]",
+                "        aws_access_key_id = XXXXXXXXXXXXXXX",
+                "        aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXX",
+                "    EOF",
+                "    docker run -v `pwd`/.aws:/root/.aws -v `pwd`/reports:/app/reports securityftw/cs-suite -env aws",
+                "",
+                "# Dictionary",
+                "https://gist.github.com/BuffaloWill/fa96693af67e3a3dd3fb",
+                "",
+                "Searching for bad configurations",
+                "",
+                "No auditable items:",
+                "• DoS testing",
+                "• Intense fuzzing",
+                "• Phishing the cloud provider’s employees",
+                "• Testing other company’s assets",
+                "• Etc."
+            ]
+        },
+        {
+            "heading": "Audit policies",
+            "type": "paragraph",
+            "content": "{% embed url=\"https://www.microsoft.com/en-us/msrc/pentest-rules-of-engagement\" %}\n{% embed url=\"https://aws.amazon.com/security/penetration-testing\" %}\n{% embed url=\"https://support.google.com/cloud/answer/6262505?hl=en\" %}"
+        },
+        {
+            "heading": "Comparison table",
+            "type": "paragraph",
+            "content": ")"
+        },
+        {
+            "heading": "Recon",
+            "type": "paragraph",
+            "content": "``bash\n# PoC from Forward DNS dataset\n# This data is created by extracting domain names from a number of sources and then sending DNS queries for each domain.\n# https://opendata.rapid7.com/sonar.fdnsv2/\ncat CNAME-DATASET-NAME | pigz -dc | grep -E \"\\.azurewebsites\\.com\"\ncat CNAME-DATASET-NAME | pigz -dc | grep -E \"\\.s3\\.amazonaws\\.com\"\n# https://github.com/99designs/clouddetect\nclouddetect -ip=151.101.1.68\n• First step should be to determine what services are in use\n• More and more orgs are moving assets to the cloud one at a time\n• Many have limited deployment to cloud providers, but some have fully embraced the cloud and are using it for AD, production assets, security products, and more\n• Determine things like AD connectivity, mail gateways, web apps, file storage, etc.\n• Traditional host discovery still applies\n• After host discovery resolve all names, then perform whois\nlookups to determine where they are hosted\n• Microsoft, Amazon, Google IP space usually indicates cloud service usage\n◇ More later on getting netblock information for each cloud service\n• MX records can show cloud-hosted mail providers\n• Certificate Transparency (crt.sh)\n• Monitors and logs digital certs\n• Creates a public, searchable log\n• Can help discover additional subdomains\n• More importantly… you can potentially find more Top Level Domains (TLD’s)!\n• Single cert can be scoped for multiple domains\n• Search (Google, Bing, Baidu, DuckDuckGo): site:targetdomain.com -site:www.targetdomain.com\n• Shodan.io and Censys.io zoomeye.org\n• Internet-wide portscans\n• Certificate searches\n• Shodan query examples:\n◇ org:”Target Name”\n◇ net:”CIDR Range”\n◇ port:”443”\n• DNS Brute Forcing\n• Performs lookups on a list of potential subdomains\n• Make sure to use quality lists\n• SecLists: https://github.com/danielmiessler/SecLists/tree/master/Discovery/DNS\n• MX Records can help us identify cloud services in use\n◇ O365 = target-domain.mail.protection.outlook.com\n◇ G-Suite = google.com | googlemail.com\n◇ Proofpoint = pphosted.com\n• If you find commonalities between subdomains try iterating names\n•  Other Services\n◇ HackerTarget https://hackertarget.com/\n◇ ThreatCrowd  https://www.threatcrowd.org/\n◇ DNSDumpster  https://dnsdumpster.com/\n◇ ARIN Searches  https://whois.arin.net/ui/\n▪ Search bar accepts wild cards “”\n▪ Great for finding other netblocks owned by the same organization\n• Azure Netblocks\n▪ Public: https://www.microsoft.com/en-us/download/details.aspx?id=56519\n▪ US Gov: http://www.microsoft.com/en-us/download/details.aspx?id=57063\n▪ Germany: http://www.microsoft.com/en-us/download/details.aspx?id=57064\n▪ China: http://www.microsoft.com/en-us/download/details.aspx?id=57062\n• AWS Netblocks\n◇ https://ip-ranges.amazonaws.com/ip-ranges.json\n• GCP Netblocks\n◇ Google made it complicated so there’s a script on the next page to get the current IP netblocks.\n• Box.com Usage\n◇ Look for any login portals\n▪ https://companyname.account.box.com\n◇ Can find cached Box account data too\n• Employees\n◇ LinkedIn\n◇ PowerMeta https://github.com/dafthack/PowerMeta\n◇ FOCA https://github.com/ElevenPaths/FOCA\n◇ hunter.io\nTools:\n• Recon-NG https://github.com/lanmaster53/recon-ng\n• OWASP Amass https://github.com/OWASP/Amass\n• Spiderfoot https://www.spiderfoot.net/\n• Gobuster https://github.com/OJ/gobuster\n• Sublist3r https://github.com/aboul3la/Sublist3r\nFoothold:\n• Find ssh keys in shhgit.darkport.co.uk https://github.com/eth0izzle/shhgit\n• GitLeaks https://github.com/zricethezav/gitleaks\n• Gitrob https://github.com/michenriksen/gitrob\n• Truffle Hog https://github.com/dxa4481/truffleHog\nPassword attacks:\n• Password Spraying\n◇ Trying one password for every user at an org to avoid account lockouts (Spring2020)\n• Most systems have some sort of lockout policy\n◇ Example: 5 attempts in 30 mins = lockout\n• If we attempt to auth as each individual username one time every 30 mins we lockout nobody\n• Credential Stuffing\n◇ Using previously breached credentials to attempt to exploit password reuse on corporate accounts\n• People tend to reuse passwords for multiple sites including corporate accounts\n• Various breaches end up publicly posted\n• Search these and try out creds\n• Try iterating creds\nWeb server explotation\n• Out-of-date web technologies with known vulns\n• SQL or command injection vulns\n• Server-Side Request Forgery (SSRF)\n• Good place to start post-shell:\n• Creds in the Metadata Service\n• Certificates\n• Environment variables\n• Storage accounts\n• Reused access certs as private keys on web servers\n◇ Compromise web server\n◇ Extract certificate with Mimikatz\n◇ Use it to authenticate to Azure\n• Mimikatz can export “non-exportable” certificates:\nmimikatz# crypto::capi\nmimikatz# privilege::debug\nmimikatz# crypto::cng\nmimikatz# crypto::certificates /systemstore:localmachine /store:my /export\nPhising\n• Phishing is still the #1 method of compromise\n• Target Cloud engineers, Developers, DevOps, etc.\n• Two primary phishing techniques:\n◇ Cred harvesting / session hijacking\n◇ Remote workstation compromise w/ C2\n• Attack designed to steal creds and/or session cookies\n• Can be useful when security protections prevent getting shells\n• Email a link to a target employee pointing to cloned auth portal\n◇ Examples: Microsoft Online (O365, Azure, etc.), G-Suite, AWS Console\n• They auth and get real session cookies… we get them too.\nPhishing: Remote Access\n• Phish to compromise a user’s workstation\n• Enables many other options for gaining access to cloud resources\n• Steal access tokens from disk\n• Session hijack\n• Keylog\n• Web Config and App Config files\n◇ Commonly found on pentests to include cleartext creds\n◇ WebApps often need read/write access to cloud storage or DBs\n◇ Web.config and app.config files might contain creds or access tokens\n◇ Look for management cert and extract to pfx like publishsettings files\n◇ Often found in root folder of webapp\n• Internal Code Repositories\n◇ Gold mine for keys\n◇ Find internal repos:\n▪ A. Portscan internal web services (80, 443, etc.) then use EyeWitness to screenshot each service to quickly analyze\n▪ B. Query AD for all hostnames, look for subdomains git, code, repo, bitbucket, gitlab, etc..\n◇ Can use automated tools (gitleaks, trufflehog, gitrob) or use built-in search features\n▪ Search for AccessKey, AKIA, idrsa, credentials, secret, password, and token\n• Command history\n• The commands ran previously may indicate where to look\n• Sometimes creds get passed to the command line\n• Linux hosts command history is here:\n◇ ~/.bashhistory\n• PowerShell command history is here:\n◇ %USERPROFILE%\\AppData\\Roaming\\Microsoft\\Windows\\PowerShell\\PSReadLine\\ConsoleHost_history.txt\nPost-Compromise Recon\n• Who do we have access as?\n• What roles do we have?\n• Is MFA enabled?\n• What can we access (webapps, storage, etc.?)\n• Who are the admins?\n• How are we going to escalate to admin?\n• Any security protections in place (ATP, GuardDuty, etc.)?\nService metadata summary\nAWS\nhttp://169.254.169.254/metadata/v1/\nGoogle Cloud\nhttp://metadata.google.internal/computeMetadata/v1/\nDigitalOcean\nhttp://169.254.169.254/metadata/v1/\nDocker\nhttp://127.0.0.1:2375/v1.24/containers/json\nKubernetes ETCD\nhttp://127.0.0.1:2379/v2/keys/?recursive=true\nAlibaba Cloud\nhttp://100.100.100.200/latest/meta-data/\nMicrosoft Azure\nhttp://169.254.169.254/metadata/v1/\n``\n)"
+        },
+        {
+            "heading": "Cloud Labs",
+            "type": "paragraph",
+            "content": "AWS Labs \n flaws.cloud \n flaws2.cloud \n https://github.com/OWASP/Serverless-Goat \n https://n0j.github.io/2017/10/02/aws-s3-ctf.html\n https://github.com/RhinoSecurityLabs/cloudgoat \n https://github.com/appsecco/attacking-cloudgoat2 \n https://github.com/m6a-UdS/dvca \n https://github.com/OWASP/DVSA \n https://github.com/nccgroup/sadcloud \n https://github.com/torque59/AWS-Vulnerable-Lambda\n https://github.com/wickett/lambhack \n https://github.com/BishopFox/iam-vulnerable \n GCP Labs \n http://thunder-ctf.cloud/ https://gcpgoat.joshuajebaraj.com/\n Azure Labs \n* https://github.com/azurecitadel/azure-security-lab"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2021-12-31T16:46:55.032Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/cloud/general.md",
+        "previous_page": {
+            "title": "Cloud",
+            "url": "/enumeration/cloud"
+        },
+        "next_page": {
+            "title": "Cloud Info Gathering",
+            "url": "/enumeration/cloud/cloud-info-recon"
+        }
+    }
+}

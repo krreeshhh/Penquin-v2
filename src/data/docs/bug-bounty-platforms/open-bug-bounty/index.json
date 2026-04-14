@@ -1,0 +1,49 @@
+{
+  "title": "Open Bug Bounty",
+  "description": "Here are all the programs have open Bug Bounty I like to hunt are being documented.",
+  "breadcrumb": [
+    {
+      "label": "Bug Bounty Platforms",
+      "url": "/docs/bug-bounty-platforms"
+    }
+  ],
+  "programs": [
+    {
+      "title": "Bug Bounty Program",
+      "platform": "www.glia.com",
+      "url": "https://www.glia.com/security-bounty",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fcdn.prod.website-files.com%2F680f1550811d9719bdbcf21b%2F6835fd24df8f27db76725ac5_favicon%2520%283%29.png&width=20&dpr=3&quality=100&sign=b3baeee&sv=2"
+    },
+    {
+      "title": "Bug Bounty | SquareX",
+      "platform": "getsquarex",
+      "url": "https://sqrx.com/bugbounty",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fsqrx.com%2Fstatic%2Ffavicon%2Ffavicon.png&width=20&dpr=3&quality=100&sign=15aaa31e&sv=2"
+    },
+    {
+      "title": "Bug bounty",
+      "platform": "agicap.com",
+      "url": "https://agicap.com/en/bug-bounty/",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fagicap.com%2Ficon-144.png&width=20&dpr=3&quality=100&sign=fdb4feb2&sv=2"
+    },
+    {
+      "title": "Bug bounty program - UNGUESS",
+      "platform": "UNGUESS - Be smart from the start",
+      "url": "https://unguess.io/bug-bounty-program/",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Funguess.io%2Fwp-content%2Fuploads%2F2022%2F12%2Fcropped-favicon-192x192.webp&width=20&dpr=3&quality=100&sign=9625fad&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Intigriti",
+      "url": "/docs/bug-bounty-platforms/intigriti"
+    },
+    "next": {
+      "title": "Introduction",
+      "url": "/docs/exploiting-technologies/docs"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2024-06-29T09:42:00.450Z"
+  }
+}

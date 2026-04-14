@@ -1,0 +1,137 @@
+{
+    "title": "Files",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Common",
+            "type": "code_block",
+            "content": [
+                "# Check real file type",
+                "file file.xxx",
+                "",
+                "# Analyze strings",
+                "strings file.xxx",
+                "strings -a -n 15 file.xxx # Check the entire file and outputs strings longer than 15 chars",
+                "",
+                "# Check embedded files",
+                "binwalk file.xxx # Check",
+                "binwalk -e file.xxx # Extract",
+                "",
+                "# Check as binary file in hex",
+                "ghex file.xxx",
+                "",
+                "# Check metadata",
+                "exiftool file.xxx",
+                "",
+                "# Stego tool for multiple formats",
+                "wget https://embeddedsw.net/zip/OpenPuff_release.zip",
+                "unzip OpenPuff_release.zip -d ./OpenPuff",
+                "wine OpenPuff/OpenPuff_release/OpenPuff.exe",
+                "",
+                "# Compressed files",
+                "fcrackzip file.zip",
+                "# https://github.com/priyankvadaliya/Zip-Cracker-",
+                "python zipcracker.py -f testfile.zip -d passwords.txt",
+                "python zipcracker.py -f testfile.zip -d passwords.txt -o extractdir",
+                "",
+                "# Office documents",
+                "https://github.com/assafmo/xioc",
+                "",
+                "# Zip files in website",
+                "pip install remotezip",
+                "# list contents of a remote zip file",
+                "remotezip -l \"http://site/bigfile.zip\"",
+                "# extract file.txt from a remote zip file",
+                "remotezip \"http://site/bigfile.zip\" \"file.txt\"",
+                "",
+                "# Grep inside any files",
+                "# https://github.com/phiresky/ripgrep-all",
+                "rga \"whatever\" folder/"
+            ]
+        },
+        {
+            "heading": "Disk files",
+            "type": "code_block",
+            "content": [
+                "# guestmount can mount any kind of disk file",
+                "sudo apt-get install libguestfs-tools",
+                "guestmount --add yourVirtualDisk.vhdx --inspector --ro /mnt/anydirectory"
+            ]
+        },
+        {
+            "heading": "Audio",
+            "type": "code_block",
+            "content": [
+                "# Check spectrogram",
+                "wget https://code.soundsoftware.ac.uk/attachments/download/2561/sonic-visualiser_4.0_amd64.deb",
+                "dpkg -i sonic-visualiser_4.0_amd64.deb",
+                "",
+                "# Check for Stego",
+                "hideme stego.mp3 -f && cat output.txt #AudioStego"
+            ]
+        },
+        {
+            "heading": "Images",
+            "type": "code_block",
+            "content": [
+                "# Stego",
+                "wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar",
+                "chmod +x stegsolve.jar",
+                "java -jar stegsolve.jar",
+                "",
+                "# Stegpy",
+                "stegpy -p file.png",
+                "",
+                "# Check png corrupted",
+                "pngcheck -v image.jpeg",
+                "",
+                "# Check what kind of image is",
+                "identify -verbose image.jpeg",
+                "",
+                "# Stegseek",
+                "# https://github.com/RickdeJager/stegseek",
+                "stegseek --seed file.jpg",
+                "stegseek file.jpg rockyou.txt "
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-12-16T14:52:29.322Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/files.md",
+        "previous_page": {
+            "title": "Packet Scanning",
+            "url": "/recon/packet-scanning"
+        },
+        "next_page": {
+            "title": "SSL/TLS",
+            "url": "/enumeration/ssl-tls"
+        }
+    }
+}

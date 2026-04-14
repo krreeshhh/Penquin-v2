@@ -1,0 +1,81 @@
+{
+    "title": "Web Cache Deception",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Attacks",
+            "url": "/enumeration/web"
+        }
+    ],
+    "sections": [
+        {
+            "type": "paragraph",
+            "content": "{% hint style=\"info\" %}\nThese preconditions can be exploited for the Web Cache Deception attack in the following manner:"
+        },
+        {
+            "type": "list",
+            "content": [
+                "Step 1: An attacker entices the victim to open a maliciously crafted link:"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": "https://www.example.com/my_profile/test.jpg"
+        },
+        {
+            "type": "paragraph",
+            "content": "The application ignores the 'test.jpg' part of the URL, the victim profile page is loaded. The caching mechanism identifies the resource as an image, caching it."
+        },
+        {
+            "type": "list",
+            "content": [
+                "Step 2: The attacker sends a GET request for the cached page:"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": "https://www.example.com/my_profile/test.jpg"
+        },
+        {
+            "type": "paragraph",
+            "content": "The cached resource, which is in fact the victim profile page is returned to the attacker \\(and to anyone else requesting it\\).\n{% endhint %}"
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-09-09T06:10:48.627Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/web-cache-deception.md",
+        "previous_page": {
+            "title": "IDOR",
+            "url": "/enumeration/web/idor"
+        },
+        "next_page": {
+            "title": "Session fixation",
+            "url": "/enumeration/web/session-fixation"
+        }
+    }
+}

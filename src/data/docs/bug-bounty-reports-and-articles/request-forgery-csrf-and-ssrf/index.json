@@ -1,0 +1,48 @@
+{
+  "title": "Request Forgery (CSRF & SSRF)",
+  "subtitle": "Request forgery vulnerabilities pose serious risks by leveraging the trust and capabilities of web applications to perform unauthorized actions. Implementing robust security measures to prevent these",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    }
+  ],
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "Request forgery vulnerabilities pose serious risks by leveraging the trust and capabilities of web applications to perform unauthorized actions. Implementing robust security measures to prevent these vulnerabilities is crucial for maintaining the integrity and security of web applications."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/ErHCfRJ"
+    },
+    {
+      "type": "link_card",
+      "title": "CSRF",
+      "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf/csrf",
+      "icon": "🟢"
+    },
+    {
+      "type": "link_card",
+      "title": "SSRF",
+      "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf/ssrf",
+      "icon": "🔴"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Open Redirects",
+      "url": "/docs/bug-bounty-reports-and-articles/open-redirects"
+    },
+    "next": {
+      "title": "CSRF",
+      "url": "/docs/bug-bounty-reports-and-articles/request-forgery-csrf-and-ssrf/csrf"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2024-06-29T09:08:32.208Z"
+  }
+}

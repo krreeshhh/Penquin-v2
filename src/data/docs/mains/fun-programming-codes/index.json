@@ -1,0 +1,152 @@
+{
+  "title": "Fun Programming Codes",
+  "breadcrumb": [
+    {
+      "name": "Mains",
+      "url": "/docs/mains"
+    }
+  ],
+  "sections": [
+    {
+      "type": "heading",
+      "level": 2,
+      "id": "id-1.-cpp-codes",
+      "content": "1. CPP Codes"
+    },
+    {
+      "type": "code_block",
+      "language": "cpp",
+      "content": "#include <iostream>\n#include <vector>\n#include <windows.h>\nusing namespace std;\n\n// Print Disco Colors in terminal\nint main()\n{\n    vector<string> combinations = {\"00\",\"10\",\"20\",\"30\",\"40\",\"50\",\"60\",\"70\",\"80\",\n    \"90\",\"a0\",\"b0\",\"c0\",\"d0\",\"e0\",\"f0\"};\n    \n    cout << \"\\n\\n\\t\\tThis is Disco\\n\\n\\t\\t\";\n\n    while (true)\n    {\n        for (const string& combination : combinations)\n        {\n            string command = \"color \" + combination;\n            system(command.c_str());\n            Sleep(100);\n        }\n    }\n}"
+    },
+    {
+      "type": "code_block",
+      "language": "cpp",
+      "content": "#include <iostream>\n#include <windows.h>\n\nusing namespace std;\n\n// Loading Screen in C++\nvoid loadingBar()\n{\n\tsystem(\"cls\");\n\tsystem(\"color 9F\");\n\n\tchar a = 177, b = 219;\n\t// cout<<\"\\n\\n\\n\\n\\t\\t\\t\\tStudent's Data Management System\";\n\tcout << \"\\n\\t\\t\\t\\tLoading Screen By Raunak Gupta\";\n\tcout << \"\\n\\n\\n\\t\\t\\t\\tLoading...\\n\";\n\tcout << endl;\n\tcout << \"\\t\\t\\t\\t\";\n\n\tfor (int i = 0; i < 26; i++)\n\t{\n\t\tcout << a;\n\t}\n\tcout << \"\\r\";\n\tcout << \"\\t\\t\\t\\t\";\n\tfor (int i = 0; i < 26; i++)\n\t{\n\t\tcout << b;\n\t\tSleep(200);\n\t}\n}\n\nint main()\n{\n\tloadingBar();\n}"
+    },
+    {
+      "type": "code_block",
+      "language": "cpp",
+      "content": "#include <bits/stdc++.h>\n#include <chrono> // Include for chrono\n#include <thread> // Include for this_thread\nusing namespace std;\n\n// Hacker Like Output in terminal\nint main()\n{\n    string Word;\n    cout << \"Enter a string: \";\n    getline(cin, Word);\n\n    string Letters = \"abcdefghijklmnopqrstuvwxyz \";\n    string target_word = \"\";\n    int Counter = 0, random_number;\n\n    srand(time(0)); // Seed the random number generator with current time\n\n    while (target_word != Word)\n    {\n        random_number = rand() % Letters.length();\n\n        if (Letters[random_number] == Word[Counter])\n        {\n            target_word += Word[Counter];\n            Counter++;\n            this_thread::sleep_for(chrono::duration<double, std::ratio<1, 2>>(0.1));\n            cout << target_word << endl;\n        }\n        else\n        {\n            this_thread::sleep_for(chrono::duration<double, std::ratio<1, 2>>(0.1));\n            cout << target_word + Letters[random_number] << endl;\n        }\n    }\n\n    return 0;\n}"
+    },
+    {
+      "type": "code_block",
+      "language": "cpp",
+      "content": "#include <iostream>\nusing namespace std;\n\n// Performing Loop without using loop in c++\nint main()\n{\n    int x=0;\n    \ns:\n    cout << ++x << \"  \";\n    if (x >= 10)\n    exit;\n    else\n    goto s;\n}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "id": "id-2.-c-programming",
+      "content": "2. C Programming"
+    },
+    {
+      "type": "code_block",
+      "language": "c",
+      "content": "#include <stdio.h>\n\n// Color Palet Code\nint main()\n{\n    int i, j;\n    for (i = 0; i < 8; i++)\n    {\n        for (j = 0; j < 8; j++)\n        {\n            printf(\"\\033[1;%d;%dm\", 30 + i, 40 + j);\n            printf(\"Color %d-%d\", i, j);\n            printf(\"\\033[0m\\t\");\n        }\n        printf(\"\\n\");\n    }\n}\n//    printf(\"\\033[31m\"); // set text color to red\n//    printf(\"This text is red!\\n\");\n//    printf(\"\\033[43m\"); // set background color to yellow\n//    printf(\"This text has a yellow background!\\n\");\n//    printf(\"\\033[1m\"); // set text to bold\n//    printf(\"This text is bold!\\n\");\n//    printf(\"\\033[0m\"); // reset text color and style"
+    },
+    {
+      "type": "code_block",
+      "language": "c",
+      "content": "#include <stdio.h>\n\n// ForeGround Color\nint main()\n{\n    int i;\n    printf(\"\\t------------------------------------------------\\n\");\n    printf(\"\\t\\tColors in c Programming\\n\\n\");\n    for (i = 0; i < 8; i++)\n    {\n        printf(\"\\033[1;%dm\", 30 + i);\n        printf(\"\\t\\tYou what's uppppp!!!!!\\n\");\n    }\n    printf(\"\\t------------------------------------------------\\n\");\n}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "id": "id-3.-python-codes",
+      "content": "3. Python Codes"
+    },
+    {
+      "type": "code_block",
+      "language": "python",
+      "content": "# Making Taskmanager unresponsive\nimport time\nbig_list = []\nwhile True:\n    big_list.append('A' * 10965757868)\n    time.sleep(0.1)"
+    },
+    {
+      "type": "code_block",
+      "language": "python",
+      "content": "# Downloading YT playlist\n\nimport yt_dlp\n\nplaylist_url = 'https://www.youtube.com/playlist?list=PL6gx4Cwl9DGCkg2uj3PxUWhMDuTw3VKjM'\n\nydl_opts = {\n    'outtmpl': '%(title)s.%(ext)s',\n}\n\nwith yt_dlp.YoutubeDL(ydl_opts) as ydl:\n    ydl.download([playlist_url])"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "id": "id-4.-vbs-codes",
+      "content": "4. VBS Codes"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "some-cool-bombing-script",
+      "content": "Some cool Bombing script"
+    },
+    {
+      "type": "code_block",
+      "language": "vbscript",
+      "content": "do\nmsgbox \"Potential Virus Found\"\nloop"
+    },
+    {
+      "type": "code_block",
+      "language": "vbscript",
+      "content": "name=inputbox(\"Whats your name?                                                                                                                         Please write your name in the box below :                                                                                            Created by Raunak\", \"Your Name\")\n\nmsgbox(\"Have a good day \") + name\nmsgbox(\"Don't forget to change your nappy \") + name\nmsgbox(\"Hahahahahaha \")"
+    },
+    {
+      "type": "code_block",
+      "language": "vbscript",
+      "content": "Set wshShell = wscript.CreateObject(\"WScript.Shell\")\ndo\nwscript.sleep 100\nwshshell.sendkeys \"~(enter)\"\nloop"
+    },
+    {
+      "type": "code_block",
+      "language": "vbscript",
+      "content": "Set wshShell = wscript.CreateObject(\"WScript.Shell\")\ndo\nwscript.sleep 100\nwshshell.sendkeys \"~(enter)\"\nloop"
+    },
+    {
+      "type": "code_block",
+      "language": "vbscript",
+      "content": "Set raunak = CreateObject(\"WScript.Shell\") \nraunak.run \"Notepad\" \nWScript.Sleep 100\nraunak.sendkeys \"H\"\nWScript.Sleep 100\nraunak.sendkeys \"I\"\nWScript.Sleep 100\nraunak.sendkeys \" \"\nWScript.Sleep 100\nraunak.sendkeys \"T\"\nWScript.Sleep 100\nraunak.sendkeys \"H\"\nWScript.Sleep 100\nraunak.sendkeys \"I\"\nWScript.Sleep 100\nraunak.sendkeys \"S\"\nWScript.Sleep 100\nraunak.sendkeys \" \"\nWScript.Sleep 100\nraunak.sendkeys \"I\"\nWScript.Sleep 100\nraunak.sendkeys \"S\"\nWScript.Sleep 100\nraunak.sendkeys \" \"\nWScript.Sleep 100\nraunak.sendkeys \"A\"\nWScript.Sleep 100\nraunak.sendkeys \"U\"\nWScript.Sleep 100\nraunak.sendkeys \"T\"\nWScript.Sleep 100\nraunak.sendkeys \"O\"\nWScript.Sleep 100\nraunak.sendkeys \"T\"\nWScript.Sleep 100\nraunak.sendkeys \"Y\"\nWScript.Sleep 100\nraunak.sendkeys \"P\"\nWScript.Sleep 100\nraunak.sendkeys \"I\"\nWScript.Sleep 100\nraunak.sendkeys \"N\"\nWScript.Sleep 100\nraunak.sendkeys \"G\"\nWScript.Sleep 100\nraunak.sendkeys \"!\"\nWScript.Sleep 100\nraunak.sendkeys \"!\""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "id": "batch-code",
+      "content": "Batch Code"
+    },
+    {
+      "type": "code_block",
+      "language": "batch",
+      "content": ":start\n   start\n   goto start"
+    },
+    {
+      "type": "code_block",
+      "language": "batch",
+      "content": "@echo off\nsetlocal enabledelayedexpansion\n\nREM Define an array of combinations\nset \"combinations=ff fe fd fc fb fa f9 f8 f7 f6 f5 f4 f3 f2 f1 ef ee ed ec eb ea e9 e8 e7 e6 e5 e4 e3 e2 e1 df de dd dc db da d9 d8 d7 d6 d5 d4 d3 d2 d1 cf ce cd cc cb ca c9 c8 c7 c6 c5 c4 c3 c2 c1 bf be bd bc bb ba b9 b8 b7 b6 b5 b4 b3 b2 b1 af ae ad ac ab aa a9 a8 a7 a6 a5 a4 a3 a2 a1 9f 9e 9d 9c 9b 9a 99 98 97 96 95 94 93 92 91 8f 8e 8d 8c 8b 8a 89 88 87 86 85 84 83 82 81\"\n\nREM Split the combinations into an array\nfor %%c in (%combinations%) do (\n    color %%c\n    echo Color Bombo %%c\n    REM Add your command here to run the combination, for example:\n    REM echo %%c >> output.txt\n    REM Replace the above line with your actual command\n)\ncolor 07"
+    },
+    {
+      "type": "code_block",
+      "language": "batch",
+      "content": ":1\nstart cmd.exe\ngoto 1"
+    },
+    {
+      "type": "code_block",
+      "language": "batch",
+      "content": "@echo off\nfor /L %%i in (1,1,5) do (\n    echo %%i\n)\n::@echo off: This line turns off command echoing, so you don't see \n::each command as it is executed in the console.\n\n::for /L %%i in (1,1,5) do This is the for loop structure. \n::It uses the /L option to indicate that it's a numeric loop. %%i is the loop \n::variable that will hold the current value. (1,1,5) specifies the range: start from 1, increment by 1, and end at 5.\n\n::echo %%i: This line inside the loop echoes the current value of %%i to \n::the console."
+    }
+  ],
+  "images": [],
+  "hyperlinks": [
+    {
+      "text": "Mains",
+      "url": "/docs/mains"
+    },
+    {
+      "text": "Previous",
+      "url": "/docs/mains/learn-the-basics/learn-wsl",
+      "relation": "prev"
+    },
+    {
+      "text": "Next",
+      "url": "/docs/mains/build-your-own-bug-bounty-methodology",
+      "relation": "next"
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2024-08-02T15:13:48.656Z"
+  }
+}

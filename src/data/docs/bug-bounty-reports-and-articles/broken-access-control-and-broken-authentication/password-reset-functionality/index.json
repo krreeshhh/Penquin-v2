@@ -1,0 +1,92 @@
+{
+  "title": "Password Reset Functionality",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    },
+    {
+      "name": "Broken Access Control & Broken Authentication",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication",
+      "icon": "7️⃣"
+    }
+  ],
+  "sections": [
+    {
+      "type": "link_card",
+      "title": "Semrush disclosed on HackerOne: Password reset token leakage via...",
+      "url": "https://hackerone.com/reports/342693",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Aspen disclosed on HackerOne: Password reset token leak on third...",
+      "url": "https://hackerone.com/reports/272379",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Stripo Inc disclosed on HackerOne: Password token leak via Host header",
+      "url": "https://hackerone.com/reports/737042",
+      "source": "HackerOne",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "TOYOTA's Password reset token and Email Address leak via Referer header",
+      "url": "https://medium.com/@rubiojhayz1234/toyotas-password-reset-token-and-email-address-leak-via-referer-header-b0ede6507c6a",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Password Reset Token Leak Via Referrer",
+      "url": "https://shahjerry33.medium.com/password-reset-token-leak-via-referrer-2e622500c2c1",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Password reset token leak via \"Host header and URL\" on untrusted third party website",
+      "url": "https://medium.com/@raia39499/password-reset-token-leak-via-host-header-and-url-on-untrusted-third-party-website-e3d77813c65c",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Story of Http password reset link for $500",
+      "url": "https://bytebloggerbase.com/main/6679ad1b0feb2bdcde239992",
+      "source": "ByteBloggerBase",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fbytebloggerbase.com%2FFavicon%2FFavicon.png&width=20&dpr=3&quality=100&sign=8f281db8&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Admin Access Without Approval: BBC Studios' Critical Security Flaw",
+      "url": "https://bytebloggerbase.com/main/66a685835c37aa01dff248ff",
+      "source": "ByteBloggerBase",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fbytebloggerbase.com%2FFavicon%2FFavicon.png&width=20&dpr=3&quality=100&sign=8f281db8&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "0 Click Account Takeover Via reset password weird behavior",
+      "url": "https://medium.com/@0xSnowmn/0-click-account-takeover-via-reset-password-weird-behavior-026846e5f850",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "File Upload Functionality",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/file-upload-functionality"
+    },
+    "next": {
+      "title": "2FA Functionality",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/2fa-functionality"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2024-08-16T17:41:52.875Z"
+  }
+}

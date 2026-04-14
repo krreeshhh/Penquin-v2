@@ -1,0 +1,43 @@
+{
+  "title": "Captcha Bypass",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    },
+    {
+      "name": "Broken Access Control & Broken Authentication",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication",
+      "icon": "7️⃣"
+    }
+  ],
+  "sections": [
+    {
+      "type": "link_card",
+      "title": "Registration captcha bypass",
+      "url": "https://cysky0x1.medium.com/registration-captcha-bypass-ecdb6cd382d1",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "API Loophole: How I Bypassed CAPTCHA to Create Unlimited Accounts",
+      "url": "https://medium.com/@rahulgairola/api-loophole-how-i-bypassed-captcha-to-create-unlimited-accounts-0d21de1f96e2",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Misconfiguration",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/misconfiguration"
+    },
+    "next": {
+      "title": "Business Logic Flow",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/business-logic-flow"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-03-17T13:42:50.440Z"
+  }
+}

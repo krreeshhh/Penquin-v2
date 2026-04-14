@@ -1,0 +1,142 @@
+{
+  "title": "GitHub Repository",
+  "breadcrumb": [],
+  "sections": [
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "android-pentesting-tools-and-resources",
+      "content": "Android Pentesting Tools & Resources"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "github-repositories",
+      "content": "GitHub Repositories"
+    },
+    {
+      "type": "list",
+      "items": [
+        {
+          "title": "Learn Android Bug Bounty",
+          "url": "https://github.com/Raunaksplanet/Learn-android-bug-bounty"
+        },
+        {
+          "title": "Frida Labs",
+          "url": "https://github.com/DERE-ad2001/Frida-Labs"
+        },
+        {
+          "title": "Objection Framework",
+          "url": "https://github.com/sensepost/objection"
+        },
+        {
+          "title": "r0capture (Frida Capture Tool)",
+          "url": "https://github.com/r0ysue/r0capture"
+        },
+        {
+          "title": "Frida",
+          "url": "https://github.com/frida/frida"
+        },
+        {
+          "title": "APK MITM",
+          "url": "https://github.com/niklashigi/apk-mitm"
+        },
+        {
+          "title": "BeVigil OSINT CLI",
+          "url": "https://github.com/Bevigil/BeVigil-OSINT-CLI"
+        },
+        {
+          "title": "APKiD",
+          "url": "https://github.com/rednaga/APKiD"
+        },
+        {
+          "title": "Genymotion ARM Translation",
+          "url": "https://github.com/m9rco/Genymotion_ARM_Translation"
+        },
+        {
+          "title": "Drozer Agent",
+          "url": "https://github.com/ReversecLabs/drozer-agent"
+        },
+        {
+          "title": "Drozer Framework",
+          "url": "https://github.com/ReversecLabs/drozer"
+        },
+        {
+          "title": "APKLeaks",
+          "url": "https://github.com/dwisiswant0/apkleaks"
+        },
+        {
+          "title": "JADX Decompiler",
+          "url": "https://github.com/skylot/jadx"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "checklists-and-guides",
+      "content": "Checklists & Guides"
+    },
+    {
+      "type": "list",
+      "items": [
+        {
+          "title": "Android Pentesting Checklist (HackTricks)",
+          "url": "https://book.hacktricks.wiki/en/mobile-pentesting/android-checklist.html"
+        },
+        {
+          "title": "Mobile App Pentest Cheatsheet",
+          "url": "https://github.com/tanprathan/MobileApp-Pentest-Cheatsheet"
+        },
+        {
+          "title": "Android PentestBook",
+          "url": "https://github.com/six2dez/pentest-book/blob/master/mobile/android.md"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "comprehensive-resources",
+      "content": "Comprehensive Resources"
+    },
+    {
+      "type": "list",
+      "items": [
+        {
+          "title": "All Things Android Security",
+          "url": "https://github.com/jdonsec/AllThingsAndroid"
+        },
+        {
+          "title": "Android Reports & Resources",
+          "url": "https://github.com/B3nac/Android-Reports-and-Resources"
+        },
+        {
+          "title": "Awesome Android Security",
+          "url": "https://github.com/saeidshirazi/awesome-android-security"
+        },
+        {
+          "title": "Android Security Awesome",
+          "url": "https://github.com/ashishb/android-security-awesome"
+        },
+        {
+          "title": "Awesome Mobile CTF Resources",
+          "url": "https://github.com/xtiankisutsa/awesome-mobile-CTF"
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Blogs & Writeups",
+      "url": "/docs/blogs-and-writeups"
+    },
+    "next": {
+      "title": "Conference Talks",
+      "url": "/docs/conference-talks"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-05-21T08:13:15.843Z"
+  }
+}

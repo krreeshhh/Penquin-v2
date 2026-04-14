@@ -1,0 +1,204 @@
+{
+  "title": "Sub Domain Takeover",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    },
+    {
+      "name": "Takeover's (Accounts, Sub-domains, etc)",
+      "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc",
+      "icon": "1️⃣"
+    }
+  ],
+  "sections": [
+    {
+      "type": "divider"
+    },
+    {
+      "type": "link_card",
+      "title": "What I learnt from reading 217* Subdomain Takeover bug reports.",
+      "url": "https://medium.com/@BrownBearSec/what-i-learnt-from-reading-217-subdomain-takeover-bug-reports-c0b94eda4366",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain takeover via AWS s3 bucket",
+      "url": "https://infosecwriteups.com/subdomain-takeover-via-aws-s3-bucket-9c54b1b71c46",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Simple Subdomain Takeover",
+      "url": "https://infosecwriteups.com/simple-subdomain-takeover-15129e19bbb4",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "https://bepractical.tech/blogs/subdomain-takeover/",
+      "url": "https://bepractical.tech/blogs/subdomain-takeover/",
+      "source": "bepractical.tech"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain Takeover in Azure: making a PoC",
+      "url": "https://godiego.co/posts/STO-Azure/",
+      "source": "GoDiego",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgodiego.co%2Fassets%2Fimg%2Ffavicons%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=8a75ce4d&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain Takeover: Starbucks points to Azure",
+      "url": "https://0xpatrik.com/subdomain-takeover-starbucks/",
+      "source": "Patrik Hudak",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2F0xpatrik.com%2Ffavicon.png&width=20&dpr=3&quality=100&sign=61fbe267&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain Takeover: Yet another Starbucks case",
+      "url": "https://0xpatrik.com/subdomain-takeover-starbucks-ii/",
+      "source": "Patrik Hudak",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2F0xpatrik.com%2Ffavicon.png&width=20&dpr=3&quality=100&sign=61fbe267&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain Hijacking Of Any Qwilr's Customer - 0xPrial",
+      "url": "https://0xprial.com/subdomain-hijacking-of-any-qwilrs-customer/",
+      "source": "Prial Islam - Ethical Hacker | Cyber Security Researcher",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2F0xprial.com%2Fwp-content%2Fuploads%2F2022%2F04%2Fcropped-favico-192x192.png&width=20&dpr=3&quality=100&sign=9753f7a0&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Unclaimed Medium Publication takeover in WeTransfer - 0xPrial",
+      "url": "https://0xprial.com/wetransfer-unclaimed-medium-publication-takeover/",
+      "source": "Prial Islam - Ethical Hacker | Cyber Security Researcher",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2F0xprial.com%2Fwp-content%2Fuploads%2F2022%2F04%2Fcropped-favico-192x192.png&width=20&dpr=3&quality=100&sign=9753f7a0&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain takeover due to misconfigured project settings - 0xPrial",
+      "url": "https://0xprial.com/subdomain-takeover-due-to-misconfigured-settings/",
+      "source": "Prial Islam - Ethical Hacker | Cyber Security Researcher",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2F0xprial.com%2Fwp-content%2Fuploads%2F2022%2F04%2Fcropped-favico-192x192.png&width=20&dpr=3&quality=100&sign=9753f7a0&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "UBER Wildcard Subdomain Takeover | BugBounty POC",
+      "url": "https://blog.securitybreached.org/2017/11/20/uber-wildcard-subdomain-takeover/",
+      "source": "Security Breached Blog",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fi0.wp.com%2Fblog.securitybreached.org%2Fwp-content%2Fuploads%2F2022%2F05%2FSecurity-Breached-Logo-White.png%3Ffit%3D192%252C192%26ssl%3D1&width=20&dpr=3&quality=100&sign=6e17755d&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain Takeover worth 200",
+      "url": "https://alirazzaq.medium.com/subdomain-takeover-worth-200-ed73f0a58ffe",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain Takeover Through Expired Cloudfront Distribution | live.lamborghini.com - Security Breached Blog",
+      "url": "https://blog.securitybreached.org/2017/10/10/subdomain-takeover-lamborghini-hacked/",
+      "source": "Security Breached Blog",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fi0.wp.com%2Fblog.securitybreached.org%2Fwp-content%2Fuploads%2F2022%2F05%2FSecurity-Breached-Logo-White.png%3Ffit%3D192%252C192%26ssl%3D1&width=20&dpr=3&quality=100&sign=6e17755d&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain Takeover leading to Full Account Takeover",
+      "url": "https://hacktus.tech/subdomain-takeover-leading-to-full-account-takeover",
+      "source": "Hacktus",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhacktus.tech%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=4639a514&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Dangling DNS: AWS EC2",
+      "url": "https://infosecwriteups.com/dangling-dns-aws-ec2-e2d801701e8",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Fastly Subdomain Takeover $2000",
+      "url": "https://infosecwriteups.com/fastly-subdomain-takeover-2000-217bb180730f",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "How i buy a subdomain of Tokopedia's website (yeah you read it right)",
+      "url": "https://infosecwriteups.com/how-i-bought-my-way-to-subdomain-takeover-on-tokopedia-8c6697c85b4d",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "The unexpected bounty: a story of Zendesk takeover on REDACTED.com",
+      "url": "https://infosecwriteups.com/the-unexpected-bounty-a-story-of-zendesk-takeover-on-redacted-com-f2aa96ce2026",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Unauthorized Sign-up on Subdomain of Subdomain leading to Organization takeover worth $2000",
+      "url": "https://infosecwriteups.com/unauthorized-sign-up-on-subdomain-of-subdomain-leading-to-organization-takeover-worth-2000-a7199952d80b",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Again? Subdomain takeover via ideanote.io",
+      "url": "https://kresec.medium.com/again-subdomain-takeover-via-ideanote-io-6c7221161ba",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Subdomain takeover via nolt.io",
+      "url": "https://kresec.medium.com/subdomain-takeover-via-nolt-io-be536c275974",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "How I Took Over 2 Subdomains with Azure CDN Profiles",
+      "url": "https://m0chan.github.io/2019/12/16/Subdomain-Takeover-Azure-CDN.html",
+      "source": "m0chan Blog - Info Sec, CTF & Hacking"
+    },
+    {
+      "type": "link_card",
+      "title": "https://freedium.cfd/https://medium.com/entersoftsecurity/weird-subdomain-take-over-pattern-of-amazon-s3-75165ab2e883",
+      "url": "https://freedium.cfd/https://medium.com/entersoftsecurity/weird-subdomain-take-over-pattern-of-amazon-s3-75165ab2e883",
+      "source": "freedium.cfd"
+    },
+    {
+      "type": "link_card",
+      "title": "Passive Recon with Spyse (Part-II)",
+      "url": "https://remonsec.com/posts/passive-recon-with-spyse-part-II/",
+      "source": "remonsec",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fremonsec.com%2Fassets%2Fimg%2Ffavicons%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=ef47450c&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "How i hijacked 12 Subdomains in one Program",
+      "url": "https://nvk0x.medium.com/how-i-hijacked-12-subdomains-in-one-program-eea468bcd64f",
+      "source": "Medium",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Takeover's (Accounts, Sub-domains, etc)",
+      "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc"
+    },
+    "next": {
+      "title": "Account Takeover",
+      "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc/account-takeover"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-05-01T03:27:19.582Z"
+  }
+}

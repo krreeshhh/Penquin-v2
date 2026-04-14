@@ -1,0 +1,468 @@
+{
+    "title": "Password cracking",
+    "breadcrumb": [
+        {
+            "title": "Others",
+            "url": "/others"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "Identify hash",
+            "type": "code_block",
+            "content": [
+                "# https://github.com/noraj/haiti",
+                "haiti [hash]"
+            ]
+        },
+        {
+            "heading": "Dictionary creation",
+            "type": "code_block",
+            "content": [
+                "# Pydictor",
+                "# https://www.github.com/landgrey/pydictor.git",
+                "pydictor.py -extend TERM --leet 0 1 2 11 21 --len 4 20",
+                "",
+                "# Username generator",
+                "# https://github.com/benbusby/namebuster",
+                "namebuster https://example.com",
+                "namebuster \"term1, term2\"",
+                "",
+                "https://app.wgen.io/",
+                ""
+            ]
+        },
+        {
+            "heading": "Examples",
+            "type": "code_block",
+            "content": [
+                "# Numeric dictionary length 4",
+                "python3 pydictor.py -base d --len 4 4",
+                "",
+                "# Capital letters dictionary length 4",
+                "python3 pydictor.py -base c --len 4 4",
+                "",
+                "# Prepend word + digits 5 length",
+                "python3 pydictor.py --len 5 5 --head raj -base d",
+                "",
+                "# Append word after digits 5 length",
+                "python3 pydictor.py --len 5 5 --tail raj -base d",
+                "",
+                "# Permute chars in word",
+                "python3 pydictor.py -char raj",
+                "",
+                "# Multiple permutations",
+                "python3 pydictor.py -chunk abc ABC 666 . _ @ \"'\"",
+                "",
+                "# Dictionary based in word, added complexity 4 and fixed length",
+                "python pydictor.py -extend raj --level 4 --len 1 6",
+                "",
+                "# Interactive mode",
+                "python3 pydictor.py --sedb"
+            ]
+        },
+        {
+            "heading": "Options",
+            "type": "code_block",
+            "content": [
+                "-base dLc # Base digits, Lowercase letters and Capital letters",
+                "--encode b64 # Encode output"
+            ]
+        },
+        {
+            "heading": "jtr",
+            "type": "code_block",
+            "content": [
+                "john --wordlist=/usr/share/wordlists/rockyou.txt hash",
+                "john --rules --wordlist=/usr/share/wordlists/rockyou.txt hash"
+            ]
+        },
+        {
+            "heading": "Hashcat",
+            "subheadings": [
+                {
+                    "heading": "Wiki",
+                    "type": "link",
+                    "title": "https://hashcat.net/wiki/doku.php?id=hashcat",
+                    "url": "https://hashcat.net/wiki/doku.php?id=hashcat"
+                },
+                {
+                    "heading": "Hashes",
+                    "type": "paragraph",
+                    "content": "{% embed url=\"https://openwall.info/wiki/john/sample-hashes\" %}\n{% embed url=\"https://hashcat.net/wiki/doku.php?id=example_hashes\" %}"
+                },
+                {
+                    "heading": "Examples",
+                    "type": "code_block",
+                    "content": [
+                        "# Dictionary",
+                        "hashcat -m 0 -a 0 hashfile dictionary.txt -O --user -o result.txt",
+                        "",
+                        "# Dictionary + rules",
+                        "hashcat -m 0 -w 3 -a 0 hashfile dictionary.txt -O -r haku34K.rule --user -o result.txt",
+                        "",
+                        "# Mask bruteforce (length 1-8 A-Z a-z 0-9)",
+                        "hashcat -m 0 -w 3 -a 3 hashfile ?1?1?1?1?1?1?1?1 --increment -1 --user ?l?d?u",
+                        "hashcat -m 0 -w 3 -a 3 hashfile suffix?1?1?1 -i -1 --user ?l?d",
+                        "",
+                        "# Modes",
+                        "-a 0 = Dictionary (also with rules)",
+                        "-a 3 = Bruteforce with mask ",
+                        "",
+                        "# Max performance options",
+                        "--force -O -w 3 --opencl-device-types 1,2",
+                        "",
+                        "# Output results",
+                        "-o result.txt",
+                        "",
+                        "# Ignore usernames in hashfile",
+                        "--user/--username",
+                        "",
+                        "# Masks",
+                        "?l = abcdefghijklmnopqrstuvwxyz",
+                        "?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                        "?d = 0123456789",
+                        "?s = «space»!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
+                        "?a = ?l?u?d?s",
+                        "?b = 0x00 - 0xff"
+                    ]
+                },
+                {
+                    "heading": "Linux Hashes - /etc/shadow",
+                    "type": "table",
+                    "headers": [
+                        "ID",
+                        "Description"
+                    ],
+                    "rows": [
+                        {
+                            "ID": "500",
+                            "Description": "md5crypt $1$, MD5(Unix)"
+                        },
+                        {
+                            "ID": "200",
+                            "Description": "bcrypt $2\\*$, Blowfish(Unix)"
+                        },
+                        {
+                            "ID": "400",
+                            "Description": "sha256crypt $5$, SHA256(Unix)"
+                        },
+                        {
+                            "ID": "1800",
+                            "Description": "sha512crypt $6$, SHA512(Unix)"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Windows Hashes",
+                    "type": "table",
+                    "headers": [
+                        "ID",
+                        "Description"
+                    ],
+                    "rows": [
+                        {
+                            "ID": "3000",
+                            "Description": "LM"
+                        },
+                        {
+                            "ID": "1000",
+                            "Description": "NTLM"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Common Hashes",
+                    "type": "table",
+                    "headers": [
+                        "ID",
+                        "Description",
+                        "Type"
+                    ],
+                    "rows": [
+                        {
+                            "ID": "900",
+                            "Description": "MD4",
+                            "Type": "Raw Hash"
+                        },
+                        {
+                            "ID": "0",
+                            "Description": "MD5",
+                            "Type": "Raw Hash"
+                        },
+                        {
+                            "ID": "5100",
+                            "Description": "Half MD5",
+                            "Type": "Raw Hash"
+                        },
+                        {
+                            "ID": "100",
+                            "Description": "SHA1",
+                            "Type": "Raw Hash"
+                        },
+                        {
+                            "ID": "10800",
+                            "Description": "SHA-384",
+                            "Type": "Raw Hash"
+                        },
+                        {
+                            "ID": "1400",
+                            "Description": "SHA-256",
+                            "Type": "Raw Hash"
+                        },
+                        {
+                            "ID": "1700",
+                            "Description": "SHA-512",
+                            "Type": "Raw Hash"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Common Files with password",
+                    "type": "table",
+                    "headers": [
+                        "ID",
+                        "Description"
+                    ],
+                    "rows": [
+                        {
+                            "ID": "11600",
+                            "Description": "7-Zip"
+                        },
+                        {
+                            "ID": "12500",
+                            "Description": "RAR3-hp"
+                        },
+                        {
+                            "ID": "13000",
+                            "Description": "RAR5"
+                        },
+                        {
+                            "ID": "13200",
+                            "Description": "AxCrypt"
+                        },
+                        {
+                            "ID": "13300",
+                            "Description": "AxCrypt in-memory SHA1"
+                        },
+                        {
+                            "ID": "13600",
+                            "Description": "WinZip"
+                        },
+                        {
+                            "ID": "9700",
+                            "Description": "MS Office <= 2003 $0/$1, MD5 + RC4"
+                        },
+                        {
+                            "ID": "9710",
+                            "Description": "MS Office <= 2003 $0/$1, MD5 + RC4, collider #1"
+                        },
+                        {
+                            "ID": "9720",
+                            "Description": "MS Office <= 2003 $0/$1, MD5 + RC4, collider #2"
+                        },
+                        {
+                            "ID": "9800",
+                            "Description": "MS Office <= 2003 $3/$4, SHA1 + RC4"
+                        },
+                        {
+                            "ID": "9810",
+                            "Description": "MS Office <= 2003 $3, SHA1 + RC4, collider #1"
+                        },
+                        {
+                            "ID": "9820",
+                            "Description": "MS Office <= 2003 $3, SHA1 + RC4, collider #2"
+                        },
+                        {
+                            "ID": "9400",
+                            "Description": "MS Office 2007"
+                        },
+                        {
+                            "ID": "9500",
+                            "Description": "MS Office 2010"
+                        },
+                        {
+                            "ID": "9600",
+                            "Description": "MS Office 2013"
+                        },
+                        {
+                            "ID": "10400",
+                            "Description": "PDF 1.1 - 1.3 (Acrobat 2 - 4)"
+                        },
+                        {
+                            "ID": "10410",
+                            "Description": "PDF 1.1 - 1.3 (Acrobat 2 - 4), collider #1"
+                        },
+                        {
+                            "ID": "10420",
+                            "Description": "PDF 1.1 - 1.3 (Acrobat 2 - 4), collider #2"
+                        },
+                        {
+                            "ID": "10500",
+                            "Description": "PDF 1.4 - 1.6 (Acrobat 5 - 8)"
+                        },
+                        {
+                            "ID": "10600",
+                            "Description": "PDF 1.7 Level 3 (Acrobat 9)"
+                        },
+                        {
+                            "ID": "10700",
+                            "Description": "PDF 1.7 Level 8 (Acrobat 10 - 11)"
+                        },
+                        {
+                            "ID": "16200",
+                            "Description": "Apple Secure Notes"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Database Hashes",
+                    "type": "table",
+                    "headers": [
+                        "ID",
+                        "Description",
+                        "Type",
+                        "Example Hash"
+                    ],
+                    "rows": [
+                        {
+                            "ID": "12",
+                            "Description": "PostgreSQL",
+                            "Type": "Database Server",
+                            "Example Hash": "a6343a68d964ca596d9752250d54bb8a:postgres"
+                        },
+                        {
+                            "ID": "131",
+                            "Description": "MSSQL (2000)",
+                            "Type": "Database Server",
+                            "Example Hash": "0x01002702560500000000000000000000000000000000000000008db43dd9b1972a636ad0c7d4b8c515cb8ce46578"
+                        },
+                        {
+                            "ID": "132",
+                            "Description": "MSSQL (2005)",
+                            "Type": "Database Server",
+                            "Example Hash": "0x010018102152f8f28c8499d8ef263c53f8be369d799f931b2fbe"
+                        },
+                        {
+                            "ID": "1731",
+                            "Description": "MSSQL (2012, 2014)",
+                            "Type": "Database Server",
+                            "Example Hash": "0x02000102030434ea1b17802fd95ea6316bd61d2c94622ca3812793e8fb1672487b5c904a45a31b2ab4a78890d563d2fcf5663e46fe797d71550494be50cf4915d3f4d55ec375"
+                        },
+                        {
+                            "ID": "200",
+                            "Description": "MySQL323",
+                            "Type": "Database Server",
+                            "Example Hash": "7196759210defdc0"
+                        },
+                        {
+                            "ID": "300",
+                            "Description": "MySQL4.1/MySQL5",
+                            "Type": "Database Server",
+                            "Example Hash": "fcf7c1b8749cf99d88e5f34271d636178fb5d130"
+                        },
+                        {
+                            "ID": "3100",
+                            "Description": "Oracle H: Type (Oracle 7+)",
+                            "Type": "Database Server",
+                            "Example Hash": "7A963A529D2E3229:3682427524"
+                        },
+                        {
+                            "ID": "112",
+                            "Description": "Oracle S: Type (Oracle 11+)",
+                            "Type": "Database Server",
+                            "Example Hash": "ac5f1e62d21fd0529428b84d42e8955b04966703:38445748184477378130"
+                        },
+                        {
+                            "ID": "12300",
+                            "Description": "Oracle T: Type (Oracle 12+)",
+                            "Type": "Database Server",
+                            "Example Hash": "78281A9C0CF626BD05EFC4F41B515B61D6C4D95A250CD4A605CA0EF97168D670EBCB5673B6F5A2FB9CC4E0C0101E659C0C4E3B9B3BEDA846CD15508E88685A2334141655046766111066420254008225"
+                        },
+                        {
+                            "ID": "8000",
+                            "Description": "Sybase ASE",
+                            "Type": "Database Server",
+                            "Example Hash": "0xc00778168388631428230545ed2c976790af96768afa0806fe6c0da3b28f3e132137eac56f9bad027ea2"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Kerberos Hashes",
+                    "type": "table",
+                    "headers": [
+                        "ID",
+                        "Type",
+                        "Example"
+                    ],
+                    "rows": [
+                        {
+                            "ID": "13100",
+                            "Type": "Type 23",
+                            "Example": "$krb5tgs$23$"
+                        },
+                        {
+                            "ID": "19600",
+                            "Type": "Type 17",
+                            "Example": "$krb5tgs$17$"
+                        },
+                        {
+                            "ID": "19700",
+                            "Type": "Type 18",
+                            "Example": "$krb5tgs$18$"
+                        },
+                        {
+                            "ID": "18200",
+                            "Type": "ASREP Type 23",
+                            "Example": "$krb5asrep$23$"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Files",
+            "type": "code_block",
+            "content": [
+                "https://github.com/kaonashi-passwords/Kaonashi",
+                "https://github.com/NotSoSecure/password_cracking_rules",
+                "https://crackstation.net/files/crackstation-human-only.txt.gz",
+                "https://crackstation.net/files/crackstation.txt.gz"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2023-06-18T21:51:44.297Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/password-cracking.md",
+        "previous_page": {
+            "title": "Burp Suite",
+            "url": "/others/burp"
+        },
+        "next_page": {
+            "title": "VirtualBox",
+            "url": "/others/virtualbox"
+        }
+    }
+}

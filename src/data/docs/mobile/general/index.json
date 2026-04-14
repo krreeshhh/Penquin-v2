@@ -1,0 +1,73 @@
+{
+    "title": "General",
+    "breadcrumb": [
+        {
+            "title": "Mobile",
+            "url": "/mobile"
+        }
+    ],
+    "sections": [
+        {
+            "type": "code_block",
+            "content": [
+                "# MobSF",
+                "docker pull opensecurity/mobile-security-framework-mobsf",
+                "docker run -it -p 8000:8000 opensecurity/mobile-security-framework-mobsf:latest",
+                "",
+                "# Burp",
+                "Add proxy in Mobile WIFI settings connected to Windows Host Wifi pointing to 192.168.X.1:8080",
+                "Vbox Settings Machine -> Network -> Port Forwarding -> 8080",
+                "Burp Proxy -> Options -> Listen all interfaces",
+                "",
+                "# Tools",
+                "https://github.com/tanprathan/MobileApp-Pentest-Cheatsheet",
+                "https://github.com/MobSF/Mobile-Security-Framework-MobSF",
+                "https://github.com/m0bilesecurity/RMS-Runtime-Mobile-Security",
+                "",
+                "# Flutter apps",
+                "https://github.com/Hamz-a/boring-flutter",
+                "https://github.com/ptswarm/reFlutter",
+                "",
+                "# Frida",
+                "https://learnfrida.info/",
+                "",
+                "# MobSF from cli",
+                "https://github.com/MobSF/mobsfscan"
+            ]
+        }
+    ],
+    "images": [
+        {
+            "description": "GitHub icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron down icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Hashtag icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron left icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
+        },
+        {
+            "description": "Chevron right icon",
+            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2024-09-19T10:17:57.475Z",
+        "edit_url": "https://github.com/six2dez/pentest-book/blob/master/mobile/general.md",
+        "previous_page": {
+            "title": "PS tips & tricks",
+            "url": "/post-exploitation/windows/ps-tips-and-tricks"
+        },
+        "next_page": {
+            "title": "Android",
+            "url": "/mobile/android"
+        }
+    }
+}
