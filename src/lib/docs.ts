@@ -194,9 +194,9 @@ function loadDocs(): LoadedDocs {
     : [];
 
   const combinedSidebarSections = [
-    { type: "divider", title: "Getting Started" },
+    { type: "divider", title: "Starters" },
     ...primarySections,
-    ...(secondarySections.length ? [{ type: "divider", title: "Pentest Book" }, ...secondarySections] : []),
+    ...(secondarySections.length ? [{ type: "divider", title: "Main Course" }, ...secondarySections] : []),
   ];
 
   const sidebar = buildSidebar(combinedSidebarSections);
