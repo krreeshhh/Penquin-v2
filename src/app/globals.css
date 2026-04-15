@@ -35,6 +35,9 @@
 }
 
 :root {
+  /* Runtime font vars (used by body font-family) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
   --vp-c-bg: #ffffff;
   --vp-c-bg-alt: #f6f6f7;
   --vp-c-bg-elv: #ffffff;
@@ -791,6 +794,14 @@ body {
 .image-bg {
   background-image: var(--vp-home-hero-image-background-image);
   filter: var(--vp-home-hero-image-filter);
+}
+
+/* Keep Home feature cards visually even */
+.VPHomeFeatures .details {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media (min-width: 640px) {

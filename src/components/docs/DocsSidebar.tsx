@@ -13,13 +13,15 @@ interface DocsSidebarProps {
   items: SidebarNode[];
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  /** When true, behaves like the docs layout (visible on desktop). */
+  alwaysVisibleOnDesktop?: boolean;
 }
 
 function keyForPath(parts: string[]) {
   return parts.join("::");
 }
 
-export function DocsSidebar({ items, open, onOpenChange }: DocsSidebarProps) {
+export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop = true }: DocsSidebarProps) {
   const pathname = usePathname() || "/";
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
@@ -60,7 +62,8 @@ export function DocsSidebar({ items, open, onOpenChange }: DocsSidebarProps) {
   };
 
   const sidebarClasses =
-    "VPSidebar fixed top-0 left-0 bottom-0 z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto transition-transform duration-200 will-change-transform lg:translate-x-0 " +
+    "VPSidebar fixed top-0 left-0 bottom-0 z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto transition-transform duration-200 will-change-transform " +
+    (alwaysVisibleOnDesktop ? "lg:translate-x-0 " : "") +
     (open ? "translate-x-0" : "-translate-x-full");
 
   const renderNode = (node: SidebarNode, level: number, parts: string[] = []) => {
@@ -196,7 +199,7 @@ export function DocsSidebar({ items, open, onOpenChange }: DocsSidebarProps) {
         type="button"
         aria-label="Close sidebar"
         onClick={() => onOpenChange(false)}
-        className={`fixed inset-0 z-[65] bg-black/30 transition-opacity duration-200 lg:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-[65] bg-black/30 transition-opacity duration-200 ${alwaysVisibleOnDesktop ? "lg:hidden " : ""}${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       <aside className={sidebarClasses}>
