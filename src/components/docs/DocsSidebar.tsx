@@ -203,7 +203,7 @@ export function DocsSidebar({ items, open, onOpenChange }: DocsSidebarProps) {
         <div className="pt-3 pb-3 flex items-center justify-between px-4 lg:px-0">
           <Link href="/" className="flex items-center gap-3 px-0 group transition-all duration-300" onClick={() => onOpenChange(false)}>
             <img className="w-12 h-12 rounded-lg ml-1 group-hover:scale-105 transition-transform duration-300" src="/v2/PFPs/Transparent/2.png" alt="Logo" />
-            <span className="text-[22px] font-semibold text-[var(--vp-c-text-1)] tracking-tight">Wotaku</span>
+            <span className="text-[22px] font-semibold text-[var(--vp-c-text-1)] tracking-tight">Penquin</span>
           </Link>
 
           <button
