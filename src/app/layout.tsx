@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Wotaku - The Wotaku Index",
-  description: "Websites for anime, manga, novels & tokusatsu",
+  title: "Penquin - Hunt bugs, Not noise",
+  description: "A no-BS index of resources, techniques, and field-tested workflows — for people in the field",
 };
 
 export default function RootLayout({

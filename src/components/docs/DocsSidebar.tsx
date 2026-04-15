@@ -25,6 +25,17 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
   const pathname = usePathname() || "/";
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
+  React.useEffect(() => {
+    // Scroll active item into view with a small delay for animations
+    const timer = setTimeout(() => {
+      const activeItem = document.querySelector(".VPSidebar .is-active");
+      if (activeItem) {
+        activeItem.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
   const isActive = (url: string) => pathname === url || (url !== "/" && pathname.startsWith(url + "/"));
 
   const hasActiveDescendant = (node: SidebarNode): boolean => {

@@ -27,9 +27,10 @@ export const Hero = () => {
           </a>
 
           <h1 className="heading flex flex-col items-center md:items-start text-[32px] sm:text-[48px] md:text-[56px] font-bold leading-[40px] sm:leading-[56px] md:leading-[64px] tracking-[-0.4px]">
-            <span className="name clip">Penquin</span>
-            <span className="text text-[var(--vp-c-text-1)]">The Penquin Index</span>
+            <span className="name clip">Hunt bugs</span>
+            <span className="text text-[var(--vp-c-text-1)]">Not noise</span>
           </h1>
+          <p className="text-[16px] leading-[24px] mt-4 text-[var(--vp-c-text-2)]">A no-BS index of resources, techniques, and field-tested workflows — for people in the field</p>
         </div>
       </div>
     </section>
