@@ -12,7 +12,7 @@ const categories = [
     icon: CookingPot,
     title: 'Main Course',
     description: 'Heavy plates only with real commands and real execution in the field',
-    link: '/docs/recon',
+    link: '/docs/recon#main-course',
   },
   {
     icon: Sparkles,

@@ -26,11 +26,16 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
   React.useEffect(() => {
-    // Scroll active item into view with a small delay for animations
+    // Scroll active item or hash item into view with a small delay for animations
     const timer = setTimeout(() => {
+      const hash = window.location.hash.slice(1);
+      const hashItem = hash ? document.getElementById(hash) : null;
       const activeItem = document.querySelector(".VPSidebar .is-active");
-      if (activeItem) {
-        activeItem.scrollIntoView({ behavior: "smooth", block: "center" });
+      
+      const target = hashItem || activeItem;
+      
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: hashItem ? "start" : "center" });
       }
     }, 100);
     return () => clearTimeout(timer);
@@ -81,8 +86,9 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
     const key = keyForPath([...parts, node.title]);
 
     if (node.type === "divider") {
+      const dividerId = node.title.toLowerCase().replace(/\s+/g, "-");
       return (
-        <div key={key} className="px-4 py-4">
+        <div key={key} id={dividerId} className="px-4 py-4">
           <div className="flex items-center gap-3">
             <div className="h-px flex-1 bg-[var(--vp-c-divider)] opacity-70" />
             <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--vp-c-text-3)]">
@@ -95,7 +101,7 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
     }
 
     const isOpen = isGroupOpen(key);
-    const active = node.url ? pathname === node.url : false;
+    const active = node.url ? isActive(node.url) : false;
     const hasActive = hasActiveDescendant(node);
 
     if (node.type === "page") {
