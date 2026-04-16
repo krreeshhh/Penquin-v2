@@ -6,7 +6,7 @@ const categories = [
     icon: Soup,
     title: 'Starters',
     description: 'Small plates packed with core knowledge so you learn fast without frying your brain',
-    link: '/docs',
+    link: '/docs#starters',
   },
   {
     icon: CookingPot,
