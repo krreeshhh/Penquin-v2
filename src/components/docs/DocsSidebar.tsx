@@ -25,17 +25,17 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
   const pathname = usePathname() || "/";
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
+  const navRef = React.useRef<HTMLDivElement>(null);
+
   React.useEffect(() => {
-    // Scroll active item or hash item into view with a small delay for animations
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+
+    // Only scroll to hash on pathname change (specifically for navigation from home)
     const timer = setTimeout(() => {
-      const hash = window.location.hash.slice(1);
-      const hashItem = hash ? document.getElementById(hash) : null;
-      const activeItem = document.querySelector(".VPSidebar .is-active");
-      
-      const target = hashItem || activeItem;
-      
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: hashItem ? "start" : "center" });
+      const hashItem = document.getElementById(hash);
+      if (hashItem) {
+        hashItem.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }, 100);
     return () => clearTimeout(timer);
@@ -139,7 +139,7 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
         >
           <div className="indicator" />
           {node.url ? (
-            <Link className="VPLink link link" href={node.url} onClick={() => onOpenChange(false)}>
+            <Link className="VPLink link link" href={node.url} onClick={() => onOpenChange(false)} scroll={false}>
               {level === 0 ? (
                 <div className="text">
                   <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center">
@@ -219,7 +219,7 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
         className={`fixed inset-0 z-[65] bg-black/30 transition-opacity duration-200 ${alwaysVisibleOnDesktop ? "lg:hidden " : ""}${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
-      <aside className={sidebarClasses}>
+      <aside className={sidebarClasses} ref={navRef}>
         <div className="pt-3 pb-3 flex items-center justify-between px-4 lg:px-0">
           <Link href="/" className="flex items-center gap-3 px-0 group transition-all duration-300" onClick={() => onOpenChange(false)}>
             <img className="w-12 h-12 rounded-lg ml-1 group-hover:scale-105 transition-transform duration-300" src="/v2/PFPs/Transparent/2.png" alt="Logo" />
@@ -308,7 +308,7 @@ function SidebarLink({
             </div>
           </a>
         ) : (
-          <Link className="VPLink link link" href={node.url || "#"} onClick={onNavigate}>
+          <Link className="VPLink link link" href={node.url || "#"} onClick={onNavigate} scroll={false}>
             <div className="text">
               <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center">
                 <DocIcon emoji={node.emoji} icon={node.icon} fallback={defaultDocIcons.page} className="w-[18px] h-[18px]" />
