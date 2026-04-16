@@ -21,7 +21,7 @@ export const Hero = () => {
         <div className="main relative z-10 md:order-1 md:flex-none md:w-[592px] flex flex-col items-center md:items-start text-center md:text-left">
           <a
             href="#"
-            className="mb-3 inline-flex items-center rounded-[8px] bg-[var(--vp-c-bg-soft)] px-4 py-1 text-[14px] font-semibold leading-5 text-[var(--vp-c-text-2)] hover:text-[var(--vp-c-text-1)] transition-colors"
+            className="mb-3 inline-flex items-center rounded-[8px] bg-[var(--vp-c-bg-soft)] px-4 py-1 text-[14px] font-semibold leading-5 text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-text-1)] transition-colors"
           >
             Mihon & Aniyomi Extensions
           </a>
