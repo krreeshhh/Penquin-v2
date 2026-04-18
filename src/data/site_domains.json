@@ -1,0 +1,158 @@
+{
+  "Platform & Code Repositories": [
+    {
+      "domain": "github.com",
+      "icon": "https://cdn.simpleicons.org/github"
+    },
+    {
+      "domain": "gitlab.com",
+      "icon": "https://cdn.simpleicons.org/gitlab"
+    },
+    {
+      "domain": "bitbucket.org",
+      "icon": "https://cdn.simpleicons.org/bitbucket"
+    }
+  ],
+  "Blogs, Learning & Tech Articles": [
+    {
+      "domain": "medium.com",
+      "icon": "https://cdn.simpleicons.org/medium"
+    },
+    {
+      "domain": "gitbook.io",
+      "icon": "https://cdn.simpleicons.org/gitbook"
+    },
+    {
+      "domain": "notion.site",
+      "icon": "https://cdn.simpleicons.org/notion"
+    },
+    {
+      "domain": "hacktricks.xyz",
+      "icon": "https://cdn.simpleicons.org/gitbook"
+    },
+    {
+      "domain": "geeksforgeeks.org",
+      "icon": "https://cdn.simpleicons.org/geeksforgeeks"
+    },
+    {
+      "domain": "tutorialspoint.com",
+      "icon": "https://cdn.simpleicons.org/tutorialspoint"
+    },
+    {
+      "domain": "blog.netspi.com",
+      "icon": "https://cdn.simpleicons.org/rss"
+    },
+    {
+      "domain": "blog.intigriti.com",
+      "icon": "https://cdn.simpleicons.org/intigriti"
+    },
+    {
+      "domain": "blog.trailofbits.com",
+      "icon": "https://cdn.simpleicons.org/rss"
+    }
+  ],
+  "Hacking Labs & Bug Bounty Platforms": [
+    {
+      "domain": "hackthebox.com",
+      "icon": "https://cdn.simpleicons.org/hackthebox"
+    },
+    {
+      "domain": "tryhackme.com",
+      "icon": "https://cdn.simpleicons.org/tryhackme"
+    },
+    {
+      "domain": "portswigger.net",
+      "icon": "https://cdn.simpleicons.org/burpsuite"
+    },
+    {
+      "domain": "hackerone.com",
+      "icon": "https://cdn.simpleicons.org/hackerone"
+    },
+    {
+      "domain": "bugcrowd.com",
+      "icon": "https://cdn.simpleicons.org/bugcrowd"
+    },
+    {
+      "domain": "intigriti.com",
+      "icon": "https://cdn.simpleicons.org/intigriti"
+    },
+    {
+      "domain": "pentesterlab.com",
+      "icon": "https://cdn.simpleicons.org/linux"
+    },
+    {
+      "domain": "exploit-db.com",
+      "icon": "https://cdn.simpleicons.org/kalilinux"
+    }
+  ],
+  "Social Media": [
+    {
+      "domain": "x.com",
+      "icon": "https://cdn.simpleicons.org/x"
+    },
+    {
+      "domain": "youtube.com",
+      "icon": "https://cdn.simpleicons.org/youtube"
+    },
+    {
+      "domain": "discord.com",
+      "icon": "https://cdn.simpleicons.org/discord"
+    },
+    {
+      "domain": "linkedin.com",
+      "icon": "https://cdn.simpleicons.org/linkedin"
+    },
+    {
+      "domain": "facebook.com",
+      "icon": "https://cdn.simpleicons.org/facebook"
+    }
+  ],
+  "Search Engines & OSINT Tools": [
+    {
+      "domain": "google.com",
+      "icon": "https://cdn.simpleicons.org/google"
+    },
+    {
+      "domain": "shodan.io",
+      "icon": "https://cdn.simpleicons.org/shodan"
+    },
+    {
+      "domain": "censys.io",
+      "icon": "https://cdn.simpleicons.org/censys"
+    },
+    {
+      "domain": "virustotal.com",
+      "icon": "https://cdn.simpleicons.org/virustotal"
+    },
+    {
+      "domain": "crt.sh",
+      "icon": "https://cdn.simpleicons.org/letsencrypt"
+    },
+    {
+      "domain": "dnsdumpster.com",
+      "icon": "https://cdn.simpleicons.org/icloud"
+    },
+    {
+      "domain": "bgpview.io",
+      "icon": "https://cdn.simpleicons.org/icloud"
+    },
+    {
+      "domain": "haveibeenpwned.com",
+      "icon": "https://cdn.simpleicons.org/haveibeenpwned"
+    }
+  ],
+  "Cloud & Tech Infrastructure": [
+    {
+      "domain": "aws.amazon.com",
+      "icon": "https://cdn.simpleicons.org/amazonaws"
+    },
+    {
+      "domain": "azure.com",
+      "icon": "https://cdn.simpleicons.org/microsoftazure"
+    },
+    {
+      "domain": "googleapis.com",
+      "icon": "https://cdn.simpleicons.org/google"
+    }
+  ]
+}

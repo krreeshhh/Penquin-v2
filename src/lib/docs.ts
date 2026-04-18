@@ -251,3 +251,38 @@ export function getPageDescription(page: JsonRecord) {
   const value = description ?? subtitle ?? introText;
   return value;
 }
+
+export function getNeighbors(route: string) {
+  const docs = loadDocs();
+  const sidebar = docs.sidebar;
+  const flatList: Array<{ title: string; url: string }> = [];
+  const seenUrls = new Set<string>();
+
+  function flatten(nodes: SidebarNode[]) {
+    for (const node of nodes) {
+      if (node.url && !seenUrls.has(node.url)) {
+        // Resolve alias if needed to compare correctly
+        const resolvedUrl = docs.aliasRoutes.get(node.url) ?? node.url;
+        seenUrls.add(resolvedUrl);
+        flatList.push({ title: node.title, url: resolvedUrl });
+      }
+      if (node.children) {
+        flatten(node.children);
+      }
+    }
+  }
+
+  flatten(sidebar);
+
+  const resolvedTarget = docs.aliasRoutes.get(route) ?? route;
+  const currentIndex = flatList.findIndex((item) => item.url === resolvedTarget);
+
+  if (currentIndex === -1) {
+    return { previous: null, next: null };
+  }
+
+  return {
+    previous: currentIndex > 0 ? flatList[currentIndex - 1] : null,
+    next: currentIndex < flatList.length - 1 ? flatList[currentIndex + 1] : null,
+  };
+}

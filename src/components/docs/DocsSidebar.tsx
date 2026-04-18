@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { DocIcon, defaultDocIcons } from "@/components/docs/doc-icons";
 import type { SidebarNode } from "@/lib/docs";
 import { motion, AnimatePresence } from "motion/react";
+import { SiteKeyModal } from "@/components/docs/SiteKeyModal";
 
 interface DocsSidebarProps {
   items: SidebarNode[];
@@ -24,6 +25,7 @@ function keyForPath(parts: string[]) {
 export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop = true }: DocsSidebarProps) {
   const pathname = usePathname() || "/";
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
+  const [isSiteKeyOpen, setIsSiteKeyOpen] = useState(false);
 
   const navRef = React.useRef<HTMLDivElement>(null);
 
@@ -41,7 +43,11 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
     return () => clearTimeout(timer);
   }, [pathname]);
 
-  const isActive = (url: string) => pathname === url || (url !== "/" && pathname.startsWith(url + "/"));
+  const isActive = (url: string) => {
+    const normalizedPath = pathname.replace(/\/$/, "") || "/";
+    const normalizedUrl = url.replace(/\/$/, "") || "/";
+    return normalizedPath === normalizedUrl;
+  };
 
   const hasActiveDescendant = (node: SidebarNode): boolean => {
     if (node.url && isActive(node.url)) return true;
@@ -249,33 +255,38 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
               {items.map((node) => renderNode(node, 0))}
             </div>
           </div>
-        </nav>
-
         {/* Bottom Artwork Card (Premium) */}
         <div className="mt-8 mb-4">
-          <div className="bg-[var(--vp-c-bg-soft)] hover:bg-[var(--vp-c-bg-alt)] border border-[var(--vp-c-divider)] transition-all duration-300 overflow-hidden hover:-translate-y-1 rounded-xl group/card">
+          <button
+            type="button"
+            onClick={() => setIsSiteKeyOpen(true)}
+            className="w-full text-left bg-[var(--vp-c-bg-soft)] hover:bg-[var(--vp-c-bg-alt)] border border-[var(--vp-c-divider)] transition-all duration-300 overflow-hidden hover:-translate-y-1 rounded-xl group/card"
+          >
             <div className="h-24 w-full overflow-hidden">
               <img
                 src="/v2/Banners/1.png"
-                alt="Icon Key Banner"
+                alt="Site Key Banner"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110"
                 loading="lazy"
               />
             </div>
             <div className="p-4">
-              <Link href="/iconkey" className="block w-full text-left" onClick={() => onOpenChange(false)}>
-                <div className="flex items-center gap-2">
-                  <BadgeInfo className="w-4 h-4 text-[var(--vp-c-brand-1)]" strokeWidth={2.5} />
-                  <div className="text-[14px] font-bold text-[var(--vp-c-text-1)]">Icon key</div>
-                </div>
-                <div className="text-[12px] text-[var(--vp-c-text-2)] mt-2 leading-relaxed">
-                  Reference guide for all labels & symbols used.
-                </div>
-              </Link>
+              <div className="flex items-center gap-2">
+                <BadgeInfo className="w-4 h-4 text-[var(--vp-c-brand-1)]" strokeWidth={2.5} />
+                <div className="text-[14px] font-bold text-[var(--vp-c-text-1)]">Site key</div>
+              </div>
+              <div className="text-[12px] text-[var(--vp-c-text-2)] mt-2 leading-relaxed">
+                Reference guide for all external sites & platforms linked.
+              </div>
             </div>
-          </div>
+          </button>
         </div>
+        </nav>
+
       </aside>
+
+      {/* Site Key Modal */}
+      <SiteKeyModal isOpen={isSiteKeyOpen} onClose={() => setIsSiteKeyOpen(false)} />
     </>
   );
 }

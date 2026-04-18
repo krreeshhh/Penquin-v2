@@ -173,11 +173,11 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
             <button
               type="button"
               onClick={() => setIsSearchOpen(true)}
-              className={`DocSearch flex items-center justify-center sm:justify-start gap-2 px-3 h-9 rounded-lg bg-[#1e1e20] transition-all group ${isDocs ? 'w-10 sm:w-[160px]' : 'w-10 sm:w-[150px]'}`}
+              className={`DocSearch flex items-center justify-center sm:justify-start gap-2 px-3 h-9 rounded-lg bg-[var(--vp-c-bg-soft)] hover:bg-[var(--vp-c-bg-elv)] border border-transparent hover:border-[var(--vp-c-brand-1)] transition-all group ${isDocs ? 'w-10 sm:w-[160px]' : 'w-10 sm:w-[150px]'}`}
             >
-              <Search className="w-4 h-4 text-[#9ca3af] group-hover:text-white transition-colors" strokeWidth={2} />
-              <span className="text-[14px] font-medium text-[#9ca3af] hidden sm:inline-block">Search</span>
-              <kbd className="ml-auto font-sans font-medium text-[10px] text-[#9ca3af] border border-[#9ca3af]/20 bg-[#9ca3af]/5 px-1.5 py-0.5 rounded-[4px] hidden md:flex items-center">Ctrl K</kbd>
+              <Search className="w-4 h-4 text-[var(--vp-c-text-3)] group-hover:text-[var(--vp-c-text-1)] transition-colors" strokeWidth={2} />
+              <span className="text-[14px] font-medium text-[var(--vp-c-text-3)] group-hover:text-[var(--vp-c-text-1)] hidden sm:inline-block transition-colors">Search</span>
+              <kbd className="ml-auto font-sans font-medium text-[10px] text-[var(--vp-c-text-3)] group-hover:text-[var(--vp-c-text-1)] group-hover:border-[var(--vp-c-brand-1)] transition-colors border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg)] px-1.5 py-0.5 rounded-[4px] hidden md:flex items-center">Ctrl K</kbd>
             </button>
           </div>
         </div>

@@ -43,5 +43,5 @@ export default async function DocsPage({ params }: { params: Promise<Params> }) 
     notFound();
   }
 
-  return <DocsContent page={page} />;
+  return <DocsContent page={page} route={route} />;
 }

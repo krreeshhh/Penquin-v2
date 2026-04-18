@@ -55,7 +55,7 @@
         {
             "heading": "shodan",
             "type": "paragraph",
-            "content": "``bash\n# https://cli.shodan.io/\nshodan host 151.101.1.68\n``\n)\n)"
+            "content": "``bash\n# https://cli.shodan.io/\nshodan host 151.101.1.68\n``"
         }
     ],
     "images": [

@@ -9,7 +9,7 @@ export const Hero = () => {
         <div className="image md:order-2 md:flex-none md:w-[560px] md:h-[168px] relative h-[320px] w-[calc(100%+48px)] -mt-[76px] -mx-6 -mb-12 md:m-0">
           <div className="image-container relative w-[320px] h-[320px] mx-auto md:w-full md:h-full md:-translate-x-8 md:-translate-y-8">
             {/* Blurred gradient blob: should flow behind the cards (not above). */}
-            <div className="image-bg pointer-events-none absolute z-0 left-1/2 top-[160px] md:top-[84px] -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] md:w-[360px] md:h-[360px] rounded-full" />
+            <div className="image-bg opacity-50 pointer-events-none absolute z-0 left-1/2 top-[160px] md:top-[84px] -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] md:w-[360px] md:h-[360px] rounded-full" />
             <img
               className="VPImage image-src absolute z-10 left-1/2 top-[160px] md:top-[84px] -translate-x-1/2 -translate-y-1/2 w-[220px] h-[208px] md:w-[360px] md:h-[341px] object-contain drop-shadow-[0_0_100px_rgba(59,130,246,0.2)]"
               src="/v2/Hero Section.png"

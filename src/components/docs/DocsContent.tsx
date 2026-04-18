@@ -3,9 +3,12 @@
 import React from "react";
 import { CalendarDays, ChevronLeft, ChevronRight, ExternalLink, FolderOpen } from "lucide-react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { DocIcon, defaultDocIcons } from "@/components/docs/doc-icons";
 import { CopyButton } from "@/components/docs/CopyButton";
+import { getNeighbors } from "@/lib/docs";
 
 type DocLink = {
   title?: string;
@@ -64,7 +67,7 @@ function stripDecorations(value: string) {
 function formatLabel(value: string) {
   const clean = stripDecorations(value);
   if (!clean) return "";
-  
+
   return clean
     .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
     .replace(/[_-]+/g, " ")
@@ -94,16 +97,100 @@ function normalizeDocHref(url?: string) {
   return url.startsWith("/docs") ? url : `/docs${url}`;
 }
 
-	function getAssetUrl(value?: string | { url?: string }) {
-	  if (!value) return undefined;
-	  const url = typeof value === "string" ? value : value.url;
-	  if (typeof url !== "string" || !url.startsWith("http")) return undefined;
-	
-	  // Ignore GitBook proxy URLs as they are often broken/expired
-	  if (url.includes("gitbook.io/docs/~gitbook/image")) return undefined;
-	
-	  return url;
-	}
+function MarkdownContent({ content, className }: { content: string; className?: string }) {
+  if (!content) return null;
+
+  // Pre-process content to fix mangled backticks and ensure tables have spacing
+  const processedContent = content
+    .replace(/^(?:``|`)([\w-]+)\n/gm, "```$1\n") // Fix opening code blocks
+    .replace(/\n(?:``|`)$/gm, "\n```")           // Fix closing code blocks
+    .replace(/^`$/gm, "```")                     // Fix single backtick
+    .replace(/([^\n\r])\r?\n(\|[^\n\r]+\|\r?\n\|[ \t\-:|]+\|)/g, "$1\n\n$2") // Ensure blank line before tables
+    .replace(/{%\s*embed\s+url="([^"]+)"\s*%}/g, "[$1]($1)"); // Convert GitBook embeds to markdown links
+
+  return (
+    <div className={className}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          p: ({ children }) => <span className="block mt-4 first:mt-0">{children}</span>,
+          code: ({ node, className, children }: any) => {
+            const match = /language-(\w+)/.exec(className || "");
+            return match ? (
+              <div className="relative mt-4 group">
+                <div className="absolute right-3 top-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <CopyButton value={String(children).replace(/\n$/, "")} />
+                </div>
+                <pre className="overflow-x-auto rounded-[14px] border border-[var(--vp-code-border)] bg-[var(--vp-code-bg)] px-4 py-4 font-mono text-[12px] leading-6 text-[var(--vp-code-text)]">
+                  <code className={className}>
+                    {children}
+                  </code>
+                </pre>
+              </div>
+            ) : (
+              <code className="rounded bg-[var(--vp-code-bg)] px-1.5 py-0.5 font-mono text-[13px] text-[var(--vp-code-text)]">
+                {children}
+              </code>
+            );
+          },
+          a: ({ href, children }) => (
+            <a
+              href={normalizeDocHref(href)}
+              className="text-[var(--vp-c-brand-1)] underline-offset-4 hover:underline"
+              target={isExternalHref(href) ? "_blank" : undefined}
+              rel={isExternalHref(href) ? "noreferrer" : undefined}
+            >
+              {children}
+            </a>
+          ),
+          ul: ({ children }) => <ul className="mt-4 list-disc pl-5 space-y-2">{children}</ul>,
+          ol: ({ children }) => <ol className="mt-4 list-decimal pl-5 space-y-2">{children}</ol>,
+          li: ({ children }) => <li className="text-[15px] leading-7">{children}</li>,
+          table: ({ children }) => (
+            <div className="my-8 overflow-x-auto rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg)] shadow-sm">
+              <table className="w-full text-left text-[13.5px] border-collapse">
+                {children}
+              </table>
+            </div>
+          ),
+          thead: ({ children }) => (
+            <thead className="bg-[var(--vp-c-bg-soft)] border-b border-[var(--vp-c-divider)]">
+              {children}
+            </thead>
+          ),
+          th: ({ children }) => (
+            <th className="px-5 py-3.5 font-bold text-[var(--vp-c-text-1)] whitespace-nowrap">
+              {children}
+            </th>
+          ),
+          td: ({ children }) => (
+            <td className="px-5 py-4 border-t border-[var(--vp-c-divider)]/50 text-[var(--vp-c-text-2)] leading-relaxed">
+              {children}
+            </td>
+          ),
+          tr: ({ children }) => (
+            <tr className="transition-colors hover:bg-[var(--vp-c-bg-soft)]/40 align-top">
+              {children}
+            </tr>
+          ),
+        }}
+      >
+        {processedContent}
+      </ReactMarkdown>
+    </div>
+  );
+}
+
+function getAssetUrl(value?: string | { url?: string }) {
+  if (!value) return undefined;
+  const url = typeof value === "string" ? value : value.url;
+  if (typeof url !== "string" || !url.startsWith("http")) return undefined;
+
+  // Ignore GitBook proxy URLs as they are often broken/expired
+  if (url.includes("gitbook.io/docs/~gitbook/image")) return undefined;
+
+  return url;
+}
 
 function getFallbackSiteIcon(url?: string) {
   if (!url || !/^https?:\/\//.test(url)) return undefined;
@@ -185,7 +272,7 @@ function renderPrimitive(value: unknown) {
 
 function renderListItem(item: unknown, key: React.Key): React.ReactNode {
   if (typeof item === "string") {
-    return <li key={key}>{item}</li>;
+    return <li key={key} className="mt-1"><MarkdownContent content={item} /></li>;
   }
 
   if (!isRecord(item)) {
@@ -210,7 +297,9 @@ function renderListItem(item: unknown, key: React.Key): React.ReactNode {
         <span className="font-medium text-[var(--vp-c-text-1)]">{stripDecorations(label)}</span>
       )}
       {typeof item.description === "string" && item.description.trim() ? (
-        <p className="mt-1 text-[14px] leading-6 text-[var(--vp-c-text-2)]">{item.description}</p>
+        <div className="mt-1 text-[14px] leading-6 text-[var(--vp-c-text-2)]">
+          <MarkdownContent content={item.description} />
+        </div>
       ) : null}
       {typeof item.secondary_url === "string" ? (
         <p className="mt-1 text-[13px] leading-6 text-[var(--vp-c-text-2)]">
@@ -276,7 +365,9 @@ function renderStructuredListItemCard(item: Record<string, unknown>, key: React.
             <div className="font-semibold text-[var(--vp-c-text-1)]">{label}</div>
           )}
           {typeof docItem.description === "string" && docItem.description.trim() ? (
-            <p className="mt-1 text-[14px] leading-6 text-[var(--vp-c-text-2)]">{docItem.description}</p>
+            <div className="mt-1 text-[14px] leading-6 text-[var(--vp-c-text-2)]">
+              <MarkdownContent content={docItem.description} />
+            </div>
           ) : null}
           {typeof docItem.secondary_url === "string" ? (
             <p className="mt-1 text-[13px] leading-6 text-[var(--vp-c-text-2)]">
@@ -303,7 +394,7 @@ function renderStructuredListItemCard(item: Record<string, unknown>, key: React.
                   return (
                     <a
                       key={`${String(key)}-${index}`}
-                        href={normalizeDocHref(subLink.url)}
+                      href={normalizeDocHref(subLink.url)}
                       className="block rounded-[10px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg)] px-3 py-2 text-[14px] text-[var(--vp-c-text-1)] transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:text-[var(--vp-c-brand-1)]"
                       target={isExternalHref(subLink.url) ? "_blank" : undefined}
                       rel={isExternalHref(subLink.url) ? "noreferrer" : undefined}
@@ -336,27 +427,43 @@ const DocHeading = React.memo(function DocHeading({
 }) {
   const Tag = as;
   const resolvedVariant = variant ?? "default";
+
+  // Clean up children for port styling
+  const textContent = typeof children === "string" ? children : "";
+  const portMatch = textContent.match(/^(Port\s*\d+(?:\/\d+)?(?:\s*-\s*)?)(.*)$/i);
+
   const base =
     resolvedVariant === "gitbook"
       ? as === "h1"
-        ? "text-[36px] leading-[45px]"
+        ? "text-[32px] md:text-[40px] leading-[1.1] tracking-tight mb-8"
         : as === "h2"
-          ? "text-[30px] leading-[36px] font-semibold mt-8 pt-6"
-          : "text-[24px] leading-[32px] font-semibold mt-6 pt-4"
+          ? "text-[26px] md:text-[30px] leading-[36px] font-semibold mt-12 pb-2 border-b border-[var(--vp-c-divider)]"
+          : "text-[20px] md:text-[24px] leading-[32px] font-semibold mt-8"
       : as === "h1"
-        ? "text-[40px] leading-[1.15] tracking-[-0.02em]"
+        ? "text-[36px] md:text-[44px] leading-[1.1] tracking-tight mb-10"
         : as === "h2"
-          ? "text-[24px] mt-10"
-          : "text-[18px] mt-8";
+          ? "text-[24px] md:text-[28px] mt-16 pb-3 border-b border-[var(--vp-c-divider)] group/h2"
+          : "text-[18px] md:text-[20px] mt-10 font-semibold";
 
   return (
-    <Tag id={id} className={`group scroll-mt-[88px] font-bold text-[var(--vp-c-text-1)] ${base}`}>
-      <span className="inline-flex items-center gap-2">
-        {children}
+    <Tag id={id} className={`group scroll-mt-[100px] font-bold text-[var(--vp-c-text-1)] ${base}`}>
+      <span className="relative inline-flex items-center gap-2">
+        {as === "h2" && !portMatch && (
+          <span className="absolute -left-4 top-1/2 -translate-y-1/2 h-6 w-1 rounded-full bg-[var(--vp-c-brand-1)] opacity-0 transition-opacity group-hover/h2:opacity-100 hidden md:block" />
+        )}
+        {portMatch ? (
+          <span className="flex items-baseline gap-2.5">
+            <span className="text-[var(--vp-c-brand-1)] font-extrabold tracking-tight">
+              {portMatch[1].replace(/\s*-\s*$/, "").toUpperCase().trim()}
+            </span>
+            <span className="text-[var(--vp-c-text-3)] font-medium">|</span>
+            <span className="text-[var(--vp-c-text-1)]">{portMatch[2].trim()}</span>
+          </span>
+        ) : children}
         <a
           href={`#${id}`}
           aria-label={`Permalink to ${typeof children === "string" ? children : "section"}`}
-          className="header-anchor opacity-0 group-hover:opacity-100 transition-opacity text-[var(--vp-c-text-3)] hover:text-[var(--vp-c-text-1)]"
+          className="header-anchor opacity-0 group-hover:opacity-100 transition-opacity text-[var(--vp-c-text-3)] hover:text-[var(--vp-c-text-1)] ml-1"
         >
           #
         </a>
@@ -562,9 +669,9 @@ function renderExtraSection(title: string, value: unknown, keyPrefix: string, de
 
       if (grouped) {
         return (
-          <section key={keyPrefix} className="mt-8">
+          <section key={keyPrefix} className="mt-12 bg-[var(--vp-c-bg-soft)]/30 rounded-[20px] p-6 border border-[var(--vp-c-divider)]/50">
             {depth === 0 && title && <DocHeading as="h2" id={slugify(title)}>{title}</DocHeading>}
-            <div className={`mt-4 ${depth === 0 ? "space-y-8" : "space-y-6"}`}>
+            <div className={`mt-6 ${depth === 0 ? "space-y-12" : "space-y-8"}`}>
               {records.map((item, index) => {
                 const heading = typeof item.name === "string"
                   ? item.name
@@ -574,14 +681,14 @@ function renderExtraSection(title: string, value: unknown, keyPrefix: string, de
                       ? item.label
                       : `${title} ${index + 1}`;
 
-                const nestedEntries = Object.entries(item).filter(([k, entry]) => 
+                const nestedEntries = Object.entries(item).filter(([k, entry]) =>
                   (Array.isArray(entry) || isRecord(entry)) && k !== "name" && k !== "title" && k !== "label" && k !== "url" && k !== "emoji" && k !== "icon"
                 );
 
                 return (
-                  <section key={`${keyPrefix}-${index}`}>
+                  <section key={`${keyPrefix}-${index}`} className="relative">
                     <DocHeading as="h3" id={slugify(`${title}-${heading}`)}>{stripDecorations(String(heading))}</DocHeading>
-                    <div className="mt-3 space-y-6">
+                    <div className="mt-4 space-y-6">
                       {nestedEntries.map(([nestedKey, nestedValue]) => renderExtraSection(formatLabel(nestedKey), nestedValue, `${keyPrefix}-${index}-${nestedKey}`, depth + 1))}
                     </div>
                   </section>
@@ -593,7 +700,7 @@ function renderExtraSection(title: string, value: unknown, keyPrefix: string, de
       }
 
       return (
-        <section key={keyPrefix} className="mt-8">
+        <section key={keyPrefix} className="mt-10 mb-14">
           {depth === 0 && title && <DocHeading as="h2" id={slugify(title)}>{title}</DocHeading>}
           <GenericTable rows={records} />
         </section>
@@ -643,7 +750,9 @@ function renderExtraSection(title: string, value: unknown, keyPrefix: string, de
     return (
       <section key={keyPrefix} className="mt-8">
         {depth === 0 && title && <DocHeading as="h2" id={slugify(title)}>{title}</DocHeading>}
-        <p className="mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)] whitespace-pre-wrap">{renderPrimitive(value)}</p>
+        <div className="mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)]">
+          <MarkdownContent content={renderPrimitive(value)} />
+        </div>
       </section>
     );
   }
@@ -688,33 +797,35 @@ function GenericTable({ rows }: { rows: Array<Record<string, unknown>> }) {
       return Object.values(value as Record<string, unknown>).join(" ");
     }
 
-    return String(value ?? "");
+    return <MarkdownContent content={String(value ?? "")} />;
   };
 
   return (
-    <div className="mt-4 overflow-hidden rounded-[14px] border border-[var(--vp-c-divider)]">
-      <table className="w-full text-left text-[13px]">
-        <thead className="bg-[var(--vp-c-bg-soft)]">
-          <tr>
-            {columns.map((column) => (
-              <th key={column} className="px-4 py-3 font-semibold capitalize text-[var(--vp-c-text-2)]">
-                {column.replace(/_/g, " ")}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <tr key={index} className="border-t border-[var(--vp-c-divider)]/70 align-top">
+    <div className="mt-6 overflow-hidden rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg)] shadow-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-[13.5px] border-collapse">
+          <thead className="bg-[var(--vp-c-bg-soft)] border-b border-[var(--vp-c-divider)]">
+            <tr>
               {columns.map((column) => (
-                <td key={column} className="px-4 py-3 text-[var(--vp-c-text-1)]">
-                  {renderCell(row[column])}
-                </td>
+                <th key={column} className="px-5 py-3.5 font-bold capitalize text-[var(--vp-c-text-1)] whitespace-nowrap">
+                  {column.replace(/_/g, " ")}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-[var(--vp-c-divider)]/50">
+            {rows.map((row, index) => (
+              <tr key={index} className="transition-colors hover:bg-[var(--vp-c-bg-soft)]/40 align-top">
+                {columns.map((column) => (
+                  <td key={column} className="px-5 py-4 text-[var(--vp-c-text-2)] leading-relaxed">
+                    {renderCell(row[column])}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
@@ -758,8 +869,8 @@ function ToolsTable({ rows }: { rows: Array<{ category: string; tool: string; pu
             {rows.map((row, index) => (
               <tr key={`${row.category}-${row.tool}-${index}`} className="border-t border-[var(--vp-c-divider)]/70 align-top">
                 <td className="px-4 py-3 text-[var(--vp-c-text-2)]">{row.category}</td>
-                <td className="px-4 py-3 font-medium text-[var(--vp-c-text-1)]">{row.tool}</td>
-                <td className="px-4 py-3 text-[var(--vp-c-text-1)]">{row.purpose}</td>
+                <td className="px-4 py-3 font-medium text-[var(--vp-c-text-1)]"><MarkdownContent content={row.tool} /></td>
+                <td className="px-4 py-3 text-[var(--vp-c-text-1)]"><MarkdownContent content={row.purpose} /></td>
               </tr>
             ))}
           </tbody>
@@ -810,15 +921,15 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
     }
     case "paragraph":
       return (
-        <p
+        <div
           className={
             variant === "gitbook"
-              ? "mt-4 text-[16px] leading-[26px] text-[var(--vp-c-text-2)] whitespace-pre-wrap"
-              : "mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)] whitespace-pre-wrap"
+              ? "mt-4 text-[16px] leading-[26px] text-[var(--vp-c-text-2)]"
+              : "mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)]"
           }
         >
-          {resolveTextContent(block.content)}
-        </p>
+          <MarkdownContent content={resolveTextContent(block.content)} />
+        </div>
       );
     case "divider":
       return <div className="mt-8 border-b border-[var(--vp-c-divider)]" />;
@@ -829,23 +940,73 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
           embedStyle={typeof block.embedStyle === "string" ? block.embedStyle : normalizeEmbedStyle(typeof block.aspect_ratio === "string" ? block.aspect_ratio : undefined)}
         />
       );
-    case "code_block":
+    case "code_block": {
+      const copyContent = joinContentLines(block.content);
+      const lines = copyContent.split("\n");
+
       return (
-        <div className="relative mt-4">
-          <div className="absolute right-3 top-3 z-10">
-            <CopyButton value={joinContentLines(block.content)} />
+        <div className="relative mt-4 group">
+          <div className="absolute right-3 top-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+            <CopyButton value={copyContent} />
           </div>
           <pre
             className={
               variant === "gitbook"
-                ? "overflow-x-auto rounded-[12px] border border-[var(--vp-code-border)] bg-[var(--vp-code-bg)] px-6 py-4 font-mono text-[16px] leading-[26px] text-[var(--vp-code-text)]"
-                : "overflow-x-auto rounded-[14px] border border-[var(--vp-code-border)] bg-[var(--vp-code-bg)] px-4 py-4 font-mono text-[12px] leading-6 text-[var(--vp-code-text)]"
+                ? "overflow-x-auto rounded-[12px] border border-[var(--vp-code-border)] bg-[var(--vp-code-bg)] px-6 py-4 font-mono text-[16px] leading-[26px] text-[#e6edf3]"
+                : "overflow-x-auto rounded-[14px] border border-[var(--vp-code-border)] bg-zinc-900 px-5 py-5 font-mono text-[13.5px] leading-7 text-[#e6edf3] shadow-sm"
             }
           >
-            <code>{joinContentLines(block.content)}</code>
+            <code>
+              {lines.map((line, idx) => {
+                const trimmed = line.trim();
+                
+                // Comments
+                if (trimmed.startsWith("#")) {
+                  return <span key={idx} className="block text-[#8b949e]">{line}</span>;
+                }
+                
+                // Prompts or bash commands
+                if (trimmed.startsWith("$ ")) {
+                  const cmdPart = line.substring(line.indexOf("$ ") + 2);
+                  const firstWord = cmdPart.split(" ")[0];
+                  const rest = cmdPart.substring(firstWord.length);
+                  return (
+                    <span key={idx} className="block">
+                      <span className="text-[#8b949e]">$ </span>
+                      <span className="text-[#7ee787] font-medium">{firstWord}</span>
+                      <span className="text-[#a5d6ff]">{rest}</span>
+                    </span>
+                  );
+                }
+
+                // Normal command execution (starts with word)
+                const cmdMatch = line.match(/^([a-zA-Z0-9_\-]+)(\s+|$)/);
+                if (cmdMatch && !trimmed.includes("=") && !trimmed.startsWith(".") && !trimmed.startsWith("debug1:") && !trimmed.startsWith("Password:")) {
+                  return (
+                    <span key={idx} className="block">
+                      <span className="text-[#7ee787] font-medium">{cmdMatch[1]}</span>
+                      <span className="text-[#a5d6ff]">{line.substring(cmdMatch[1].length)}</span>
+                    </span>
+                  );
+                }
+                
+                // Logs or standard output
+                if (trimmed.startsWith("debug1:")) {
+                   return (
+                     <span key={idx} className="block">
+                       <span className="text-[#7ee787] font-medium">debug1:</span>
+                       <span className="text-[#e6edf3]">{line.substring(line.indexOf("debug1:") + 7)}</span>
+                     </span>
+                   );
+                }
+
+                return <span key={idx} className="block text-[#e6edf3]">{line}</span>;
+              })}
+            </code>
           </pre>
         </div>
       );
+    }
     case "list":
     case "ordered_list": {
       const Tag = block.type === "ordered_list" ? "ol" : "ul";
@@ -906,7 +1067,9 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
       return <img className="mt-6 w-full rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] object-cover" src={src} alt={alt} />;
     }
     case "success_hint":
-      return <div className="mt-4 rounded-[14px] border border-[var(--vp-hint-success-border)] bg-[var(--vp-hint-success-bg)] px-4 py-3 text-[14px] leading-6 text-[var(--vp-hint-success-text)] whitespace-pre-wrap">{resolveTextContent(block.content)}</div>;
+      return <div className="mt-4 rounded-[14px] border border-[var(--vp-hint-success-border)] bg-[var(--vp-hint-success-bg)] px-4 py-3 text-[14px] leading-6 text-[var(--vp-hint-success-text)]">
+        <MarkdownContent content={resolveTextContent(block.content)} />
+      </div>;
     case "table":
       return <GenericTable rows={Array.isArray(block.rows) ? block.rows : []} />;
     default:
@@ -938,16 +1101,35 @@ function SectionBlock({ block, variant }: { block: DocBlock; variant: "default" 
     );
   }
 
+  const renderExtras = () => {
+    const knownKeys = new Set(["type", "content", "heading", "id", "subheadings", "title"]);
+    const extraKeys = Object.entries(block).filter(([key, value]) => !knownKeys.has(key) && value != null);
+    
+    if (!extraKeys.length) return null;
+
+    return (
+      <div className="mt-6 flex flex-col gap-6">
+        {extraKeys.map(([key, value]) => renderExtraSection(formatLabel(key), value, `extra-${key}`, 1))}
+      </div>
+    );
+  };
+
   if (heading && typeof block.type === "string" && block.type !== "heading") {
     return (
       <section className={variant === "gitbook" ? "mt-6" : "mt-10"}>
         <DocHeading as="h2" id={id ?? slugify("section")} variant={variant}>{heading}</DocHeading>
         <SectionBody block={block} variant={variant} />
+        {renderExtras()}
       </section>
     );
   }
 
-  return <SectionBody block={block} variant={variant} />;
+  return (
+    <>
+      <SectionBody block={block} variant={variant} />
+      {renderExtras()}
+    </>
+  );
 }
 
 function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLink }) {
@@ -977,7 +1159,7 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
   );
 }
 
-export function DocsContent({ page }: { page: Record<string, any> }) {
+export function DocsContent({ page, route }: { page: Record<string, any>; route?: string }) {
   const breadcrumbItems = Array.isArray(page.breadcrumb) ? page.breadcrumb : [];
   const title = typeof page.title === "string" ? page.title : "Untitled";
   const cleanTitle = stripDecorations(title);
@@ -989,8 +1171,16 @@ export function DocsContent({ page }: { page: Record<string, any> }) {
   const metadata = page.metadata ?? {};
   const isPentestBook = typeof metadata.edit_url === "string" && /github\.com\/six2dez\/pentest-book\b/.test(metadata.edit_url);
   const variant: "default" | "gitbook" = isPentestBook ? "gitbook" : "default";
-  const previous = navigation.previous ?? metadata.previous_page;
-  const next = navigation.next ?? metadata.next_page;
+
+  let previous = navigation.previous ?? metadata.previous_page;
+  let next = navigation.next ?? metadata.next_page;
+
+  if (route) {
+    const neighbors = getNeighbors(route);
+    if (neighbors.previous) previous = neighbors.previous;
+    if (neighbors.next) next = neighbors.next;
+  }
+
   const lastUpdated = page.footer?.lastUpdated ?? metadata.lastUpdated ?? metadata.last_updated;
   const topLevelVideos = Array.isArray(page.videos) ? page.videos : [];
   const contactLinks = Array.isArray(page.contactSection?.links) ? page.contactSection.links : [];
@@ -1039,8 +1229,12 @@ export function DocsContent({ page }: { page: Record<string, any> }) {
   return (
     <div
       data-doc-variant={variant}
-      className={isPentestBook ? "mx-auto px-4 md:px-12" : "mx-auto px-8"}
-      style={{ maxWidth: isPentestBook ? "860px" : "var(--content-max-width, 756px)", transition: "max-width 500ms cubic-bezier(0.16, 1, 0.3, 1)" }}
+      className={isPentestBook ? "mx-auto px-4 md:px-12" : "mx-auto px-6 md:px-10 lg:px-14"}
+      style={{ 
+        maxWidth: isPentestBook ? "860px" : "var(--content-max-width, 820px)", 
+        transition: "max-width 500ms cubic-bezier(0.16, 1, 0.3, 1)",
+        paddingBottom: "120px"
+      }}
     >
       <div>
         <div className={isPentestBook
@@ -1073,35 +1267,35 @@ export function DocsContent({ page }: { page: Record<string, any> }) {
 
         <DocHeading as="h1" id={slugify(cleanTitle)} variant={variant}>{cleanTitle}</DocHeading>
 
-        {description ? <p className="mt-5 text-[16px] leading-8 text-[var(--vp-c-text-2)] whitespace-pre-wrap">{description}</p> : null}
-        {subtitle ? <p className="mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)] whitespace-pre-wrap">{subtitle}</p> : null}
+        {description ? <div className="mt-5 text-[16px] leading-8 text-[var(--vp-c-text-2)]"><MarkdownContent content={description} /></div> : null}
+        {subtitle ? <div className="mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)]"><MarkdownContent content={subtitle} /></div> : null}
         <MetaHighlights skillLevel={skillLevel} prerequisites={prerequisites} />
 
         {page.coverImage?.url ? (
           <div className="mt-8 overflow-hidden rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)]">
-            <img 
-              src={page.coverImage.url} 
-              alt={cleanTitle} 
-              className="w-full object-cover" 
-              loading="lazy" 
-              decoding="async" 
+            <img
+              src={page.coverImage.url}
+              alt={cleanTitle}
+              className="w-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         ) : null}
 
         <EmbedVideo url={page.embeddedVideo?.url} embedStyle={page.embeddedVideo?.embedStyle} />
 
-        {typeof content.introductoryText === "string" ? <p className="mt-6 text-[15px] leading-7 text-[var(--vp-c-text-2)] whitespace-pre-wrap">{content.introductoryText}</p> : null}
+        {typeof content.introductoryText === "string" ? <div className="mt-6 text-[15px] leading-7 text-[var(--vp-c-text-2)]"><MarkdownContent content={content.introductoryText} /></div> : null}
         <EmbedVideo url={content.embeddedVideo?.url} embedStyle={content.embeddedVideo?.embedStyle} />
 
-         {content.resumeSection?.heading ? <DocHeading as="h2" id={slugify(content.resumeSection.heading)} variant={variant}>{content.resumeSection.heading}</DocHeading> : null}
+        {content.resumeSection?.heading ? <DocHeading as="h2" id={slugify(content.resumeSection.heading)} variant={variant}>{content.resumeSection.heading}</DocHeading> : null}
         {Array.isArray(content.resumeSection?.files) ? <div className="mt-4 grid gap-3">{content.resumeSection.files.map((item: DocLink, index: number) => <LinkCard key={`${item.url ?? item.fileName ?? index}`} item={item} />)}</div> : null}
 
-         {content.learningResourcesSection?.heading ? <DocHeading as="h2" id={slugify(content.learningResourcesSection.heading)} variant={variant}>{content.learningResourcesSection.heading}</DocHeading> : null}
+        {content.learningResourcesSection?.heading ? <DocHeading as="h2" id={slugify(content.learningResourcesSection.heading)} variant={variant}>{content.learningResourcesSection.heading}</DocHeading> : null}
         {Array.isArray(content.learningResourcesSection?.videos)
           ? content.learningResourcesSection.videos.map((video: { url?: string; embedStyle?: string }, index: number) => (
-              <EmbedVideo key={`${video.url ?? index}`} url={video.url} embedStyle={video.embedStyle} />
-            ))
+            <EmbedVideo key={`${video.url ?? index}`} url={video.url} embedStyle={video.embedStyle} />
+          ))
           : null}
 
         {sections.map((section: Record<string, any>, index: number) => (
@@ -1116,9 +1310,9 @@ export function DocsContent({ page }: { page: Record<string, any> }) {
             {topLevelVideos.map((video: { url?: string; embed_url?: string; embedStyle?: string; aspect_ratio?: string }, index: number) => {
               const normalizedVideo = normalizeVideo(video);
               return (
-              <div key={`${video.url ?? index}`} className="mt-4">
-                <EmbedVideo url={normalizedVideo.url} embedStyle={normalizedVideo.embedStyle} />
-              </div>
+                <div key={`${video.url ?? index}`} className="mt-4">
+                  <EmbedVideo url={normalizedVideo.url} embedStyle={normalizedVideo.embedStyle} />
+                </div>
               );
             })}
           </section>
@@ -1129,7 +1323,7 @@ export function DocsContent({ page }: { page: Record<string, any> }) {
         <LinkGrid title={articles.length ? "Articles" : undefined} items={articles} />
         <LinkGrid title={programs.length ? "Programs" : undefined} items={programs} />
         <LinkGrid title={contactLinks.length ? page.contactSection?.heading ?? "Contact" : undefined} items={contactLinks} />
-        
+
         {/* Render specialized sections that weren't in consumedKeys if they exist */}
         {page.extensions && <LinkGrid title="Extensions" items={page.extensions} />}
         {page.categories && page.categories.map((cat: any, i: number) => (
@@ -1141,11 +1335,11 @@ export function DocsContent({ page }: { page: Record<string, any> }) {
         <ToolsTable rows={toolsTable} />
 
         {usefulImages.map((image: { url: string; description?: string }, index: number) => (
-          <img 
-            key={`${image.url}-${index}`} 
-            className="mt-6 w-full rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] object-cover" 
-            src={image.url} 
-            alt={image.description ?? cleanTitle} 
+          <img
+            key={`${image.url}-${index}`}
+            className="mt-6 w-full rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] object-cover"
+            src={image.url}
+            alt={image.description ?? cleanTitle}
             loading="lazy"
             decoding="async"
           />
