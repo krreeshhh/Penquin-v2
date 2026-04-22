@@ -241,9 +241,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "CI/CD Security - Pipeline attacks",
-                "SSRF - GitLab SSRF vulnerabilities",
-                "Supply Chain - Code repository attacks"
+                "[CI/CD Security - Pipeline attacks](/enumeration/webservices/ci-cd-security)",
+                "[SSRF - GitLab SSRF vulnerabilities](/enumeration/web/ssrf)",
+                "[Supply Chain - Code repository attacks](/enumeration/web/supply-chain)"
             ]
         }
     ],

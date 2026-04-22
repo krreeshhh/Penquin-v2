@@ -10,115 +10,98 @@
     {
       "type": "link_card",
       "title": "Дослідження безпеки подарункових карток",
-      "url": "https://securityrise.com/ua/posts/gift-card-security-research/",
-      "source": "SecurityRise"
+      "url": "https://securityrise.com/ua/posts/gift-card-security-research/"
     },
     {
       "type": "link_card",
       "title": "Client Side Path Traversal (CSPT) Bug Bounty Reports and Techniques",
       "url": "https://medium.com/@renwa/client-side-path-traversal-cspt-bug-bounty-reports-and-techniques-8ee6cd2e7ca1",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Redacted bugs #3: Полювання на баги вартістю $7,750 у додатку для дорослих",
-      "url": "https://securityrise.com/ua/posts/redacted-bugs-3/",
-      "source": "SecurityRise"
+      "url": "https://securityrise.com/ua/posts/redacted-bugs-3/"
     },
     {
       "type": "link_card",
       "title": "How to get easy $$$ from bug bounty ( Web Parameter Tampering )",
       "url": "https://medium.com/@novan.rmd/how-to-get-easy-from-bug-bounty-web-parameter-tampering-e6aad5a68658",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Zoom Session Takeover - Cookie Tossing Payloads, OAuth Dirty Dancing, Browser Permissions Hijacking, and WAF abuse",
-      "url": "https://nokline.github.io/bugbounty/2024/06/07/Zoom-ATO.html",
-      "source": "Harel Security Research"
+      "url": "https://nokline.github.io/bugbounty/2024/06/07/Zoom-ATO.html"
     },
     {
       "type": "link_card",
       "title": "aem bug medium - Google Search",
       "url": "https://www.google.com/search?q=aem+bug+medium&oq=aem+bug+&gs_lcrp=EgZjaHJvbWUqBggBECMYJzIMCAAQRRg5GIAEGKIEMgYIARAjGCcyDQgCEAAYkQIYgAQYigUyDQgDEAAYhgMYgAQYigUyDQgEEAAYhgMYgAQYigUyCggFEAAYgAQYogTSAQgyNzMwajBqN6gCFLACAQ&client=ms-android-xiaomi-rvo2b&sourceid=chrome-mobile&ie=UTF-8",
-      "source": "www.google.com",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwww.google.com%2Fimages%2Fbranding%2Fgoogleg_gradient%2F1x%2Fgoogleg_gradient_standard_192dp.png&width=20&dpr=3&quality=100&sign=503eb51&sv=2"
     },
     {
       "type": "link_card",
       "title": "Dependency Confusion: How I Hacked Into Apple, Microsoft and Dozens of Other Companies",
       "url": "https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "How you could get hacked at a coffee shop. – mqst",
       "url": "https://www.muqsitbaig.com/blog/how-you-could-get-hacked-at-a-coffee-shop/",
-      "source": "www.muqsitbaig.com",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwww.muqsitbaig.com%2Fwp-content%2Fuploads%2F2020%2F06%2Ffavicon-1.ico&width=20&dpr=3&quality=100&sign=7c367be0&sv=2"
     },
     {
       "type": "link_card",
       "title": "HackerOne disclosed on HackerOne: LLM03: Training Data Poisoning...",
       "url": "https://hackerone.com/reports/2370955",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Using YouTube to steal your files",
       "url": "https://lyra.horse/blog/2024/09/using-youtube-to-steal-your-files/",
-      "source": "lyra's epic blog",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Flyra.horse%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=fb2973da&sv=2"
     },
     {
       "type": "link_card",
       "title": "I'm Lovin' It: Exploiting McDonald's APIs to hijack deliveries and order food for a penny",
-      "url": "https://eaton-works.com/2024/12/19/mcdelivery-india-hack/",
-      "source": "eaton-works.com"
+      "url": "https://eaton-works.com/2024/12/19/mcdelivery-india-hack/"
     },
     {
       "type": "link_card",
       "title": "Hacking Swagger UI - 101",
       "url": "https://infosecwriteups.com/hacking-swagger-ui-101-ccbce66ba028",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "LDAP — Ports 389, 636, 3268, 3269 — How to exploit?",
       "url": "https://medium.verylazytech.com/ldap-ports-389-636-3268-3269-how-to-exploit-48af0aaac0ae",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "https://freedium.cfd/https://medium.com/@loyalonlytoday/7a6562df2aba",
-      "url": "https://freedium.cfd/https://medium.com/@loyalonlytoday/7a6562df2aba",
-      "source": "freedium.cfd"
+      "url": "https://freedium.cfd/https://medium.com/@loyalonlytoday/7a6562df2aba"
     },
     {
       "type": "link_card",
       "title": "Privilege Escalation using Client-Side Path Traversal",
       "url": "https://aboalezz1.medium.com/privilege-escalation-using-client-side-path-traversal-e1d0762a966d",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Rate Limit Bypass using Tor Network",
       "url": "https://systemweakness.com/using-tor-network-to-bypass-rate-limits-9fe2b174c316",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "IP Leakage Write-up - s8n",
-      "url": "https://0xs8n.github.io/blog/ip-leakage.html",
-      "source": "0xs8n.github.io"
+      "url": "https://0xs8n.github.io/blog/ip-leakage.html"
     }
   ],
   "navigation": {

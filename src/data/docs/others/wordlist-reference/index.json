@@ -1,5 +1,5 @@
 {
-    "title": "Wordlist Reference",
+    "title": "Essential Wordlist Reference",
     "breadcrumb": [
         {
             "title": "Others",
@@ -8,339 +8,139 @@
     ],
     "sections": [
         {
-            "heading": "Primary Resources",
+            "heading": "The Wordlist Ecosystem",
             "subheadings": [
                 {
-                    "heading": "SecLists",
-                    "type": "paragraph",
-                    "content": "The most comprehensive collection of security testing wordlists.\n``bash\n# Installation\ngit clone https://github.com/danielmiessler/SecLists.git\n# Or via package manager\napt install seclists\n`\nKey Paths:\n| Use Case | Path |\n|----------|------|\n| Web directories | Discovery/Web-Content/raft-large-directories.txt |\n| Web files | Discovery/Web-Content/raft-large-files.txt |\n| Common passwords | Passwords/Common-Credentials/10-million-password-list-top-1000000.txt |\n| Default credentials | Passwords/Default-Credentials/ |\n| Usernames | Usernames/Names/names.txt |\n| Subdomains | Discovery/DNS/subdomains-top1million-110000.txt |\n| Parameters | Discovery/Web-Content/burp-parameter-names.txt |\n| API paths | Discovery/Web-Content/api/api-endpoints.txt |\n| SQL injection | Fuzzing/SQLi/ |\n| XSS | Fuzzing/XSS/ |\n| LFI | Fuzzing/LFI/` |"
+                    "heading": "SecLists: The Industry Standard",
+                    "type": "code_block",
+                    "content": [
+                        "# Installation and setup",
+                        "git clone https://github.com/danielmiessler/SecLists.git",
+                        "apt install seclists  # On Debian/Kali",
+                        "",
+                        "# Critical Raft paths for directory discovery",
+                        "/Discovery/Web-Content/raft-large-directories.txt",
+                        "/Discovery/Web-Content/raft-large-files.txt"
+                    ]
                 },
                 {
-                    "heading": "Assetnote Wordlists",
-                    "type": "paragraph",
-                    "content": "High-quality, constantly updated wordlists from bug bounty research.\n``bash\n# Download\nhttps://wordlists.assetnote.io/\n`\nKey Lists:\n| List | Use Case |\n|------|----------|\n| httparchivedirectories1m.txt | Directories from real websites |\n| httparchiveparameterstop1m.txt | Parameters from real traffic |\n| httparchivesubdomains_1m.txt | Subdomains from certificate transparency |\n| technologies/` | Technology-specific wordlists |"
-                },
-                {
-                    "heading": "n0kovo Subdomains",
-                    "type": "paragraph",
-                    "content": "Curated subdomain wordlist with high discovery rate.\n``bash\ngit clone https://github.com/n0kovo/n0kovo_subdomains.git\n``"
+                    "heading": "Specialized Bug Bounty Lists",
+                    "type": "list",
+                    "content": [
+                        "[Assetnote Wordlists](https://wordlists.assetnote.io/) - Real-world data from HTTP Archive and certificate transparency.",
+                        "[n0kovo Subdomains](https://github.com/n0kovo/n0kovo_subdomains) - High-density, curated subdomain datasets.",
+                        "[OneListForAll](https://github.com/six2dez/OneListForAll) - Unified wordlist for rapid multi-vector fuzzing."
+                    ]
                 }
             ]
         },
         {
-            "heading": "By Use Case",
+            "heading": "Categorized Discovery Lists",
             "subheadings": [
                 {
-                    "heading": "Directory/File Discovery",
-                    "type": "code_block",
-                    "content": [
-                        "# Quick scan (fast)",
-                        "/usr/share/seclists/Discovery/Web-Content/common.txt  # 4,700 entries",
-                        "",
-                        "# Standard scan",
-                        "/usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt  # 30,000",
-                        "/usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt  # 17,000",
-                        "",
-                        "# Thorough scan (slower)",
-                        "/usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt  # 62,000",
-                        "/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt  # 1,273,000",
-                        "",
-                        "# Technology-specific",
-                        "/usr/share/seclists/Discovery/Web-Content/CMS/wordpress.txt",
-                        "/usr/share/seclists/Discovery/Web-Content/CMS/drupal.txt",
-                        "/usr/share/seclists/Discovery/Web-Content/apache.txt",
-                        "/usr/share/seclists/Discovery/Web-Content/nginx.txt",
-                        "/usr/share/seclists/Discovery/Web-Content/IIS.txt"
-                    ]
+                    "heading": "Directory & Asset Discovery",
+                    "type": "paragraph",
+                    "content": "| Use Case | Recommended Wordlist | Path Reference |\n|---|---|---|\n| **Quick Scan** | common.txt | `Discovery/Web-Content/common.txt` |\n| **Standard** | raft-medium-directories.txt | `Discovery/Web-Content/raft-medium-directories.txt` |\n| **Thorough** | directory-list-2.3-big.txt | `Discovery/Web-Content/directory-list-2.3-big.txt` |\n| **API/REST** | api-endpoints.txt | `Discovery/Web-Content/api/api-endpoints.txt` |"
                 },
                 {
-                    "heading": "Subdomain Enumeration",
-                    "type": "code_block",
-                    "content": [
-                        "# Quick scan",
-                        "/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt",
-                        "",
-                        "# Standard",
-                        "/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt",
-                        "",
-                        "# Thorough",
-                        "/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt",
-                        "",
-                        "# Alternative: n0kovo (high quality)",
-                        "n0kovo_subdomains/n0kovo_subdomains_huge.txt  # 3,000,000+"
-                    ]
-                },
-                {
-                    "heading": "Password Attacks",
-                    "type": "code_block",
-                    "content": [
-                        "# Top passwords (quick)",
-                        "/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt",
-                        "",
-                        "# Larger list",
-                        "/usr/share/seclists/Passwords/Common-Credentials/10-million-password-list-top-100000.txt",
-                        "",
-                        "# rockyou (classic)",
-                        "/usr/share/wordlists/rockyou.txt  # 14 million",
-                        "",
-                        "# Service-specific",
-                        "/usr/share/seclists/Passwords/Default-Credentials/ftp-betterdefaultpasslist.txt",
-                        "/usr/share/seclists/Passwords/Default-Credentials/ssh-betterdefaultpasslist.txt",
-                        "/usr/share/seclists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt"
-                    ]
-                },
-                {
-                    "heading": "API Testing",
-                    "type": "code_block",
-                    "content": [
-                        "# API endpoints",
-                        "/usr/share/seclists/Discovery/Web-Content/api/api-endpoints.txt",
-                        "/usr/share/seclists/Discovery/Web-Content/api/api-endpoints-res.txt",
-                        "",
-                        "# API documentation paths",
-                        "/usr/share/seclists/Discovery/Web-Content/swagger.txt",
-                        "",
-                        "# GraphQL",
-                        "/usr/share/seclists/Discovery/Web-Content/graphql.txt"
-                    ]
-                },
-                {
-                    "heading": "Parameter Discovery",
-                    "type": "code_block",
-                    "content": [
-                        "# GET/POST parameters",
-                        "/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt",
-                        "",
-                        "# Larger list from Assetnote",
-                        "httparchive_parameters_top_1m.txt"
-                    ]
-                },
-                {
-                    "heading": "Fuzzing/Injection",
-                    "type": "code_block",
-                    "content": [
-                        "# SQL Injection",
-                        "/usr/share/seclists/Fuzzing/SQLi/Generic-SQLi.txt",
-                        "/usr/share/seclists/Fuzzing/SQLi/Generic-BlindSQLi.fuzzdb.txt",
-                        "",
-                        "# XSS",
-                        "/usr/share/seclists/Fuzzing/XSS/XSS-Bypass-Strings-BruteLogic.txt",
-                        "/usr/share/seclists/Fuzzing/XSS/XSS-Jhaddix.txt  # Comprehensive",
-                        "",
-                        "# LFI/Path Traversal",
-                        "/usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt",
-                        "/usr/share/seclists/Fuzzing/LFI/LFI-gracefulsecurity-linux.txt",
-                        "/usr/share/seclists/Fuzzing/LFI/LFI-gracefulsecurity-windows.txt",
-                        "",
-                        "# Command Injection",
-                        "/usr/share/seclists/Fuzzing/command-injection-commix.txt",
-                        "",
-                        "# SSTI",
-                        "/usr/share/seclists/Fuzzing/template-engines-special-vars.txt"
-                    ]
+                    "heading": "Password & Authentication",
+                    "type": "paragraph",
+                    "content": "| Context | Recommended List | Description |\n|---|---|---|\n| **Classic Crack** | rockyou.txt | 14M entries; the universal baseline. |\n| **Password Spray** | 10k-most-common.txt | High-probability targets for spraying. |\n| **Default Creds** | betterdefaultpasslist.txt | Curated lists for SSH, FTP, Tomcat. |\n| **Subdomains** | subdomains-top1million.txt | Top targets from 1M dataset. |"
                 }
             ]
         },
         {
-            "heading": "Custom Wordlist Generation",
+            "heading": "Fuzzing & Injection Matrices",
             "subheadings": [
                 {
-                    "heading": "CeWL (Website Crawler)",
-                    "type": "code_block",
+                    "heading": "Vulnerability-Specific Fuzzing",
+                    "type": "list",
                     "content": [
-                        "# Extract words from target website",
-                        "cewl https://target.com -d 2 -m 5 -w custom_wordlist.txt",
-                        "",
-                        "# Include email addresses",
-                        "cewl https://target.com -e -w wordlist.txt",
-                        "",
-                        "# With authentication",
-                        "cewl https://target.com --auth_type basic --auth_user admin --auth_pass pass"
+                        "**SQL Injection**: `Fuzzing/SQLi/Generic-SQLi.txt` - Baseline for error-based testing.",
+                        "**XSS (Jhaddix)**: `Fuzzing/XSS/XSS-Jhaddix.txt` - Comprehensive polyglot and bypass payload set.",
+                        "**LFI/Traversal**: `Fuzzing/LFI/LFI-Jhaddix.txt` - Balanced list for Linux/Windows traversal.",
+                        "**SSTI**: `Fuzzing/template-engines-special-vars.txt` - Identifying diverse template engine variables."
                     ]
                 },
                 {
-                    "heading": "Username Generation",
+                    "heading": "Parameter & API Auditing",
                     "type": "code_block",
                     "content": [
-                        "# From first/last names",
-                        "# Tools: username-anarchy, namemash",
+                        "# Common Burp parameter names",
+                        "/Discovery/Web-Content/burp-parameter-names.txt",
                         "",
-                        "# username-anarchy",
-                        "./username-anarchy --input-file names.txt --select-format first,flast,firstl",
+                        "# GraphQL introspection and field discovery",
+                        "/Discovery/Web-Content/graphql.txt",
                         "",
-                        "# Common patterns:",
-                        "# john.smith",
-                        "# jsmith",
-                        "# smithj",
-                        "# john_smith",
-                        "# john.s"
-                    ]
-                },
-                {
-                    "heading": "Password Mutations",
-                    "type": "code_block",
-                    "content": [
-                        "# Hashcat rules",
-                        "hashcat -r /usr/share/hashcat/rules/best64.rule wordlist.txt --stdout > mutated.txt",
-                        "",
-                        "# John rules",
-                        "john --wordlist=wordlist.txt --rules --stdout > mutated.txt",
-                        "",
-                        "# Common mutations:",
-                        "# - Add years (2023, 2024, 2025)",
-                        "# - Add special chars (!@#$)",
-                        "# - Leetspeak (a→@, e→3, o→0)",
-                        "# - Capitalize first letter",
-                        "# - Add company name"
-                    ]
-                },
-                {
-                    "heading": "Wordlist Manipulation",
-                    "type": "code_block",
-                    "content": [
-                        "# Remove duplicates",
-                        "sort wordlist.txt | uniq > sorted.txt",
-                        "",
-                        "# Remove entries shorter than 6 chars",
-                        "awk 'length >= 6' wordlist.txt > filtered.txt",
-                        "",
-                        "# Combine wordlists",
-                        "cat list1.txt list2.txt | sort -u > combined.txt",
-                        "",
-                        "# Remove blank lines",
-                        "sed '/^$/d' wordlist.txt > clean.txt",
-                        "",
-                        "# Lowercase everything",
-                        "tr '[:upper:]' '[:lower:]' < wordlist.txt > lowercase.txt"
+                        "# Swagger/OpenAPI documentation paths",
+                        "/Discovery/Web-Content/swagger.txt"
                     ]
                 }
             ]
         },
         {
-            "heading": "DNS Resolvers",
-            "type": "code_block",
-            "content": [
-                "# Trusted resolvers for subdomain enumeration",
-                "# https://github.com/trickest/resolvers",
-                "",
-                "# Quick download",
-                "wget https://raw.githubusercontent.com/trickest/resolvers/main/resolvers.txt",
-                "",
-                "# Validate resolvers (remove dead ones)",
-                "dnsvalidator -tL resolvers.txt -threads 100 -o valid_resolvers.txt"
-            ]
-        },
-        {
-            "heading": "Quick Reference Table",
-            "type": "table",
-            "headers": [
-                "Task",
-                "Wordlist",
-                "Size"
-            ],
-            "rows": [
+            "heading": "Custom Generation & Manipulation",
+            "subheadings": [
                 {
-                    "Task": "Quick dir scan",
-                    "Wordlist": "common.txt",
-                    "Size": "4.7K"
+                    "heading": "CeWL: Targeted Web Crawling",
+                    "type": "code_block",
+                    "content": [
+                        "# Extract words (min 5 chars) from target with depth 2",
+                        "cewl https://target.com -d 2 -m 5 -w custom.txt",
+                        "",
+                        "# Include email addresses and handle basic auth",
+                        "cewl https://target.com -e --auth_user admin --auth_pass pass"
+                    ]
                 },
                 {
-                    "Task": "Standard dir scan",
-                    "Wordlist": "raft-medium-directories.txt",
-                    "Size": "30K"
-                },
-                {
-                    "Task": "Thorough dir scan",
-                    "Wordlist": "directory-list-2.3-big.txt",
-                    "Size": "1.2M"
-                },
-                {
-                    "Task": "Quick subdomain",
-                    "Wordlist": "subdomains-top1million-5000.txt",
-                    "Size": "5K"
-                },
-                {
-                    "Task": "Standard subdomain",
-                    "Wordlist": "subdomains-top1million-20000.txt",
-                    "Size": "20K"
-                },
-                {
-                    "Task": "Password spray",
-                    "Wordlist": "10k-most-common.txt",
-                    "Size": "10K"
-                },
-                {
-                    "Task": "Password crack",
-                    "Wordlist": "rockyou.txt",
-                    "Size": "14M"
-                },
-                {
-                    "Task": "Parameter fuzz",
-                    "Wordlist": "burp-parameter-names.txt",
-                    "Size": "6K"
-                },
-                {
-                    "Task": "XSS fuzz",
-                    "Wordlist": "XSS-Jhaddix.txt",
-                    "Size": "8K"
-                },
-                {
-                    "Task": "SQLi fuzz",
-                    "Wordlist": "Generic-SQLi.txt",
-                    "Size": "267"
-                },
-                {
-                    "Task": "LFI fuzz",
-                    "Wordlist": "LFI-Jhaddix.txt",
-                    "Size": "929"
+                    "heading": "Rule-Based Mutation (Hashcat)",
+                    "type": "code_block",
+                    "content": [
+                        "# Generate mutated wordlist using best64 rules",
+                        "hashcat -r /usr/share/hashcat/rules/best64.rule base.txt --stdout > mutated.txt",
+                        "",
+                        "# Advanced manipulation with sed/awk",
+                        "awk 'length >= 8' list.txt > filtered.txt  # Enforce length",
+                        "sort -u list.txt > unique.txt               # Deduplicate"
+                    ]
                 }
             ]
         },
         {
-            "heading": "Resources",
-            "type": "list",
-            "content": [
-                "SecLists",
-                "PayloadsAllTheThings",
-                "Assetnote Wordlists",
-                "fuzzdb",
-                "n0kovo_subdomains",
-                "OneListForAll"
+            "heading": "Trusted DNS Resolvers",
+            "subheadings": [
+                {
+                    "heading": "High-Throughput Resolution",
+                    "type": "list",
+                    "content": [
+                        "[Trickest Resolvers](https://github.com/trickest/resolvers) - Automatically updated list of verified public resolvers.",
+                        "[dnsvalidator](https://github.com/vortexau/dnsvalidator) - Tooling to verify and remove stale resolvers before high-scale enumeration."
+                    ]
+                }
             ]
+        },
+        {
+            "heading": "Quick Reference Size Matrix",
+            "type": "paragraph",
+            "content": "| Task | Recommended Wordlist | Entries |\n|---|---|---|\n| **Web Fuzzing** | common.txt | 4.7K |\n| **Password Spray** | 10k-most-common.txt | 10K |\n| **Subdomain Enum** | subdomains-top1m-20000.txt | 20K |\n| **Directory Brute** | raft-medium-directories.txt | 30K |\n| **Pass Cracking** | rockyou.txt | 14M |"
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-23T02:30:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/wordlist-reference.md",
         "previous_page": {
-            "title": "Attack Index",
+            "title": "Universal Attack Index",
             "url": "/others/attack-index"
         },
         "next_page": {
-            "title": "Learning Path",
-            "url": "/others/learning-path"
+            "title": "Post-Exploitation",
+            "url": "/post-exploitation"
         }
     }
 }

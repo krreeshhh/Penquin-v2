@@ -21,6 +21,20 @@ function filePathToRoute(filePath: string) {
   return `/${relativePath.replace(/\/index\.json$/, "")}`;
 }
 
+function extractAllText(obj: any): string {
+  if (typeof obj === 'string') return obj;
+  if (Array.isArray(obj)) return obj.map(extractAllText).join(' ');
+  if (typeof obj === 'object' && obj !== null) {
+    return Object.values(obj).map(extractAllText).join(' ');
+  }
+  return '';
+}
+
+function slugify(input: string) {
+  if (!input) return "";
+  return input.toLowerCase().replace(/[\s\W-]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
 export async function GET() {
   const results: any[] = [];
 
@@ -30,14 +44,50 @@ export async function GET() {
     try {
       const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
       const route = filePathToRoute(filePath);
+      
+      const pageTitle = data.title || "Untitled";
 
+      // Main page result
       results.push({
-        title: data.title || "Untitled",
+        title: pageTitle,
         description: data.description || data.subtitle || "",
         url: route,
         emoji: data.emoji,
         icon: data.icon,
+        content: data.sections ? extractAllText(data.sections) : "",
       });
+
+      // Section and Subheading results
+      if (Array.isArray(data.sections)) {
+        for (const section of data.sections) {
+          if (section.heading) {
+            results.push({
+              title: `${pageTitle} > ${section.heading}`,
+              description: `Section in ${pageTitle}`,
+              url: `${route}#${slugify(section.heading)}`,
+              emoji: data.emoji,
+              icon: data.icon,
+              content: extractAllText(section),
+            });
+          }
+
+          if (Array.isArray(section.subheadings)) {
+            for (const sub of section.subheadings) {
+              if (sub.heading) {
+                const parentHeading = section.heading || "section";
+                results.push({
+                  title: `${pageTitle} > ${section.heading ? section.heading + " > " : ""}${sub.heading}`,
+                  description: `Subsection in ${pageTitle}`,
+                  url: `${route}#${slugify(`${parentHeading}-${sub.heading}`)}`,
+                  emoji: data.emoji,
+                  icon: data.icon,
+                  content: extractAllText(sub),
+                });
+              }
+            }
+          }
+        }
+      }
     } catch (e) {
       console.error(`Failed to parse ${filePath}`, e);
     }
@@ -45,3 +95,4 @@ export async function GET() {
 
   return NextResponse.json(results);
 }
+

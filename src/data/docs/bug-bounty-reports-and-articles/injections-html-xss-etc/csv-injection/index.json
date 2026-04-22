@@ -16,28 +16,24 @@
       "type": "link_card",
       "title": "Consensys disclosed on HackerOne: CSV Injection at...",
       "url": "https://hackerone.com/reports/1748961",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Chaturbate disclosed on HackerOne: CSV Injection with the CSV...",
       "url": "https://hackerone.com/reports/386116",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Weblate disclosed on HackerOne: CSV Injection with the CSV export...",
       "url": "https://hackerone.com/reports/223344",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "GitLab disclosed on HackerOne: CSV injection in gitlab.com via...",
       "url": "https://hackerone.com/reports/216243",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     }
   ],

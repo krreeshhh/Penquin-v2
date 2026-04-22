@@ -299,9 +299,9 @@
             "heading": "Resources",
             "type": "list",
             "content": [
-                "Firebase Security Rules Documentation",
-                "Firebase Security Checklist",
-                "OWASP Mobile Security Testing Guide - Firebase"
+                "[Firebase Security Rules Documentation](https://firebase.google.com/docs/rules)",
+                "[Firebase Security Checklist](https://firebase.google.com/support/guides/security-checklist)",
+                "[OWASP Mobile Security Testing Guide - Firebase](https://mas.owasp.org/MASTG/)"
             ]
         }
     ],

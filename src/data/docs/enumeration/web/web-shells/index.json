@@ -12,6 +12,11 @@
     ],
     "sections": [
         {
+            "type": "link",
+            "title": "LocalRoot - Webshell Archive",
+            "url": "https://www.localroot.net/"
+        },
+        {
             "heading": "PHP",
             "type": "code_block",
             "content": [

@@ -11,77 +11,66 @@
       "type": "link_card",
       "title": "CS Money disclosed on HackerOne: [cs.money] Open Redirect Leads to...",
       "url": "https://hackerone.com/reports/905607",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "X / xAI disclosed on HackerOne: XSS and Open Redirect on MoPub Login",
       "url": "https://hackerone.com/reports/683298",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Upserve disclosed on HackerOne: Open redirect at...",
       "url": "https://hackerone.com/reports/469803",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Expedia Group Bug Bounty disclosed on HackerOne: Open Redirect in...",
       "url": "https://hackerone.com/reports/1788006",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Brave Software disclosed on HackerOne: Open redirect due to...",
       "url": "https://hackerone.com/reports/1946534",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Affirm disclosed on HackerOne: Open Redirect",
       "url": "https://hackerone.com/reports/1213580",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Omise disclosed on HackerOne: Open Redirect",
       "url": "https://hackerone.com/reports/504751",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "X / xAI disclosed on HackerOne: Chained open redirects and use of...",
       "url": "https://hackerone.com/reports/1032610",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Chaturbate disclosed on HackerOne: Open redirection at...",
       "url": "https://hackerone.com/reports/411723",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Semrush disclosed on HackerOne: Open Redirect",
       "url": "https://hackerone.com/reports/311330",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Shopify disclosed on HackerOne: Open Redirect possible in...",
       "url": "https://hackerone.com/reports/161991",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     }
   ],

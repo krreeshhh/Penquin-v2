@@ -211,9 +211,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "XSS - Can be used to inject malicious links",
-                "Phishing - Tabnabbing enables phishing",
-                "CSRF - Related browser security issues"
+                "[XSS - Can be used to inject malicious links](/enumeration/web/xss)",
+                "[Phishing - Tabnabbing enables phishing](/others/social-engineering)",
+                "[CSRF - Related browser security issues](/enumeration/web/csrf)"
             ]
         }
     ],

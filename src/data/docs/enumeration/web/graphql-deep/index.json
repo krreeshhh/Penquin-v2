@@ -574,9 +574,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "API Security - REST/gRPC testing",
-                "SSRF - Server-side request forgery",
-                "SQL Injection - Database attacks"
+                "[API Security - REST/gRPC testing](/enumeration/web/api-security)",
+                "[SSRF - Server-side request forgery](/enumeration/web/ssrf)",
+                "[SQL Injection - Database attacks](/enumeration/web/sqli)"
             ]
         }
     ],

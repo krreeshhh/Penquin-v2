@@ -97,7 +97,15 @@ function normalizeDocHref(url?: string) {
   return url.startsWith("/docs") ? url : `/docs${url}`;
 }
 
-function MarkdownContent({ content, className }: { content: string; className?: string }) {
+function MarkdownContent({
+  content,
+  className,
+  variant,
+}: {
+  content: string;
+  className?: string;
+  variant?: "default" | "gitbook";
+}) {
   if (!content) return null;
 
   // Pre-process content to fix mangled backticks and ensure tables have spacing
@@ -113,11 +121,15 @@ function MarkdownContent({ content, className }: { content: string; className?: 
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          p: ({ children }) => <span className="block mt-4 first:mt-0">{children}</span>,
+          p: ({ children }) => (
+            <p data-spotlight-block="p" className="mt-4 first:mt-0">
+              {children}
+            </p>
+          ),
           code: ({ node, className, children }: any) => {
             const match = /language-(\w+)/.exec(className || "");
             return match ? (
-              <div className="relative mt-4 group">
+              <div data-spotlight-block="code" className="relative mt-4 group">
                 <div className="absolute right-3 top-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
                   <CopyButton value={String(children).replace(/\n$/, "")} />
                 </div>
@@ -147,7 +159,10 @@ function MarkdownContent({ content, className }: { content: string; className?: 
           ol: ({ children }) => <ol className="mt-4 list-decimal pl-5 space-y-2">{children}</ol>,
           li: ({ children }) => <li className="text-[15px] leading-7">{children}</li>,
           table: ({ children }) => (
-            <div className="my-8 overflow-x-auto rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg)] shadow-sm">
+            <div
+              data-spotlight-block="table"
+              className="my-8 overflow-x-auto rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg)] shadow-sm"
+            >
               <table className="w-full text-left text-[13.5px] border-collapse">
                 {children}
               </table>
@@ -173,6 +188,26 @@ function MarkdownContent({ content, className }: { content: string; className?: 
               {children}
             </tr>
           ),
+          ...(variant === "gitbook"
+            ? {
+                h1: ({ children }) => {
+                  const text = stripDecorations(resolveTextContent(children));
+                  return text ? <DocHeading as="h2" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
+                },
+                h2: ({ children }) => {
+                  const text = stripDecorations(resolveTextContent(children));
+                  return text ? <DocHeading as="h2" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
+                },
+                h3: ({ children }) => {
+                  const text = stripDecorations(resolveTextContent(children));
+                  return text ? <DocHeading as="h3" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
+                },
+                h4: ({ children }) => {
+                  const text = stripDecorations(resolveTextContent(children));
+                  return text ? <DocHeading as="h3" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
+                },
+              }
+            : null),
         }}
       >
         {processedContent}
@@ -201,6 +236,26 @@ function getFallbackSiteIcon(url?: string) {
   } catch {
     return undefined;
   }
+}
+
+function extractDomainFromLogoUrl(logoUrl?: string): string | undefined {
+  if (!logoUrl || typeof logoUrl !== 'string') return undefined;
+  
+  // Handle GitBook proxy URLs like https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png
+  if (logoUrl.includes('~gitbook/image')) {
+    const urlParam = new URLSearchParams(logoUrl.split('?')[1] || '').get('url');
+    if (urlParam) {
+      try {
+        const decodedUrl = decodeURIComponent(urlParam);
+        const { hostname } = new URL(decodedUrl);
+        return hostname;
+      } catch {
+        return undefined;
+      }
+    }
+  }
+  
+  return undefined;
 }
 
 function isUrlString(value: unknown): value is string {
@@ -270,9 +325,31 @@ function renderPrimitive(value: unknown) {
   return typeof value === "string" ? value : String(value ?? "");
 }
 
-function renderListItem(item: unknown, key: React.Key): React.ReactNode {
+function renderListItem(item: unknown, key: React.Key, variant?: "default" | "gitbook"): React.ReactNode {
   if (typeof item === "string") {
-    return <li key={key} className="mt-1"><MarkdownContent content={item} /></li>;
+    const trimmed = item.trim();
+
+    // GitBook often represents "label + command" as one list item. Render it compactly.
+    if (variant === "gitbook" && trimmed.includes("\n")) {
+      const [first, ...rest] = trimmed.split(/\r?\n/).filter(Boolean);
+      const code = rest.join("\n").trim();
+      return (
+        <li key={key} className="mt-1">
+          <MarkdownContent content={first} variant={variant} />
+          {code ? (
+            <pre className="mt-2 overflow-x-auto rounded-[12px] border border-[var(--vp-code-border)] bg-[var(--vp-code-bg)] px-3 py-2 font-mono text-[13px] leading-6 text-[var(--vp-code-text)]">
+              <code>{code}</code>
+            </pre>
+          ) : null}
+        </li>
+      );
+    }
+
+    return (
+      <li key={key} className="mt-1">
+        <MarkdownContent content={item} variant={variant} />
+      </li>
+    );
   }
 
   if (!isRecord(item)) {
@@ -320,7 +397,7 @@ function renderListItem(item: unknown, key: React.Key): React.ReactNode {
       ) : null}
       {subitems.length ? (
         <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] leading-7 text-[var(--vp-c-text-2)]">
-          {subitems.map((subitem, index) => renderListItem(subitem, `${String(key)}-${index}`))}
+          {subitems.map((subitem, index) => renderListItem(subitem, `${String(key)}-${index}`, variant))}
         </ul>
       ) : null}
     </li>
@@ -435,10 +512,10 @@ const DocHeading = React.memo(function DocHeading({
   const base =
     resolvedVariant === "gitbook"
       ? as === "h1"
-        ? "text-[32px] md:text-[40px] leading-[1.1] tracking-tight mb-8"
+        ? "text-[32px] md:text-[40px] leading-[1.1] tracking-tight mb-6"
         : as === "h2"
-          ? "text-[26px] md:text-[30px] leading-[36px] font-semibold mt-12 pb-2 border-b border-[var(--vp-c-divider)]"
-          : "text-[20px] md:text-[24px] leading-[32px] font-semibold mt-8"
+          ? "text-[26px] md:text-[30px] leading-[36px] font-semibold mt-10 pb-2 border-b border-[var(--vp-c-divider)]"
+          : "text-[20px] md:text-[24px] leading-[32px] font-semibold mt-6"
       : as === "h1"
         ? "text-[36px] md:text-[44px] leading-[1.1] tracking-tight mb-10"
         : as === "h2"
@@ -498,7 +575,12 @@ const LinkCard = React.memo(function LinkCard({ item }: { item: DocLink }) {
   if (!item.url) return null;
 
   const label = stripDecorations(getLinkLabel(item) ?? item.url);
-  const assetUrl = getAssetUrl(item.icon) ?? getAssetUrl(item.logo) ?? getAssetUrl(item.image) ?? getFallbackSiteIcon(item.url);
+  
+  // Extract domain from GitBook proxy URLs in logo
+  const extractedDomain = extractDomainFromLogoUrl(typeof item.logo === 'string' ? item.logo : undefined);
+  
+  // Priority: icon > logo > image > extracted domain favicon > fallback from url
+  const assetUrl = getAssetUrl(item.icon) ?? getAssetUrl(item.logo) ?? getAssetUrl(item.image) ?? (extractedDomain ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(extractedDomain)}&sz=64` : undefined) ?? getFallbackSiteIcon(item.url);
 
   return (
     <CardLink href={normalizeDocHref(item.url) ?? item.url} className="flex items-start justify-between gap-3 rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:bg-[var(--vp-c-bg-soft)]">
@@ -908,6 +990,24 @@ function LinkPill({ href, label }: { href: string; label: string }) {
 
 function SectionBody({ block, variant }: { block: DocBlock; variant: "default" | "gitbook" }) {
   switch (block.type) {
+    case "hint": {
+      const hintVariant = (block as Record<string, unknown>).variant;
+      const kind = typeof hintVariant === "string" ? hintVariant.toLowerCase() : "";
+
+      if (kind === "success") {
+        return (
+          <div className="mt-4 rounded-[14px] border border-[var(--vp-hint-success-border)] bg-[var(--vp-hint-success-bg)] px-4 py-3 text-[14px] leading-6 text-[var(--vp-hint-success-text)]">
+            <MarkdownContent content={resolveTextContent(block.content)} variant={variant} />
+          </div>
+        );
+      }
+
+      return (
+        <div className="mt-4 rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 text-[14px] leading-6 text-[var(--vp-c-text-2)]">
+          <MarkdownContent content={resolveTextContent(block.content)} variant={variant} />
+        </div>
+      );
+    }
     case "heading": {
       const headingSource = typeof block.content !== "undefined"
         ? resolveTextContent(block.content, typeof block.title === "string" ? block.title : "section")
@@ -928,7 +1028,7 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
               : "mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)]"
           }
         >
-          <MarkdownContent content={resolveTextContent(block.content)} />
+          <MarkdownContent content={resolveTextContent(block.content)} variant={variant} />
         </div>
       );
     case "divider":
@@ -944,6 +1044,29 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
       const copyContent = joinContentLines(block.content);
       const lines = copyContent.split("\n");
 
+      if (variant === "gitbook") {
+        const raw = copyContent.replace(/\r\n/g, "\n");
+        const looksLikeMarkdownDoc = /(^|\n)#{1,3}\s+\S/.test(raw) && raw.includes("```");
+        if (looksLikeMarkdownDoc) {
+          // Some imports include a README rendered as a code block; render it as Markdown instead.
+          const withoutTitle = raw.replace(/^#\s+[^\n]+\n+/, "");
+          return (
+            <div className="mt-4">
+              <MarkdownContent content={withoutTitle} variant={variant} />
+            </div>
+          );
+        }
+
+        const trimmed = raw.trim();
+        if (/^This README provides\b/i.test(trimmed)) {
+          return (
+            <div className="mt-4 text-[16px] leading-[26px] text-[var(--vp-c-text-2)]">
+              <MarkdownContent content={trimmed} variant={variant} />
+            </div>
+          );
+        }
+      }
+
       return (
         <div className="relative mt-4 group">
           <div className="absolute right-3 top-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -952,7 +1075,7 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
           <pre
             className={
               variant === "gitbook"
-                ? "overflow-x-auto rounded-[12px] border border-[var(--vp-code-border)] bg-[var(--vp-code-bg)] px-6 py-4 font-mono text-[16px] leading-[26px] text-[#e6edf3]"
+                ? "overflow-x-auto rounded-[12px] border border-[var(--vp-code-border)] bg-[var(--vp-code-bg)] px-5 py-4 font-mono text-[14px] leading-[22px] text-[var(--vp-code-text)]"
                 : "overflow-x-auto rounded-[14px] border border-[var(--vp-code-border)] bg-zinc-900 px-5 py-5 font-mono text-[13.5px] leading-7 text-[#e6edf3] shadow-sm"
             }
           >
@@ -960,9 +1083,14 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
               {lines.map((line, idx) => {
                 const trimmed = line.trim();
                 
+                const cComment = variant === "gitbook" ? "text-gray-500 dark:text-[#8b949e]" : "text-[#8b949e]";
+                const cCmd = variant === "gitbook" ? "text-green-600 dark:text-[#7ee787] font-medium" : "text-[#7ee787] font-medium";
+                const cArg = variant === "gitbook" ? "text-blue-600 dark:text-[#a5d6ff]" : "text-[#a5d6ff]";
+                const cText = variant === "gitbook" ? "text-gray-800 dark:text-[#e6edf3]" : "text-[#e6edf3]";
+
                 // Comments
                 if (trimmed.startsWith("#")) {
-                  return <span key={idx} className="block text-[#8b949e]">{line}</span>;
+                  return <span key={idx} className={`block ${cComment}`}>{line}</span>;
                 }
                 
                 // Prompts or bash commands
@@ -972,9 +1100,9 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
                   const rest = cmdPart.substring(firstWord.length);
                   return (
                     <span key={idx} className="block">
-                      <span className="text-[#8b949e]">$ </span>
-                      <span className="text-[#7ee787] font-medium">{firstWord}</span>
-                      <span className="text-[#a5d6ff]">{rest}</span>
+                      <span className={cComment}>$ </span>
+                      <span className={cCmd}>{firstWord}</span>
+                      <span className={cArg}>{rest}</span>
                     </span>
                   );
                 }
@@ -984,8 +1112,8 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
                 if (cmdMatch && !trimmed.includes("=") && !trimmed.startsWith(".") && !trimmed.startsWith("debug1:") && !trimmed.startsWith("Password:")) {
                   return (
                     <span key={idx} className="block">
-                      <span className="text-[#7ee787] font-medium">{cmdMatch[1]}</span>
-                      <span className="text-[#a5d6ff]">{line.substring(cmdMatch[1].length)}</span>
+                      <span className={cCmd}>{cmdMatch[1]}</span>
+                      <span className={cArg}>{line.substring(cmdMatch[1].length)}</span>
                     </span>
                   );
                 }
@@ -994,13 +1122,13 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
                 if (trimmed.startsWith("debug1:")) {
                    return (
                      <span key={idx} className="block">
-                       <span className="text-[#7ee787] font-medium">debug1:</span>
-                       <span className="text-[#e6edf3]">{line.substring(line.indexOf("debug1:") + 7)}</span>
+                       <span className={cCmd}>debug1:</span>
+                       <span className={cText}>{line.substring(line.indexOf("debug1:") + 7)}</span>
                      </span>
                    );
                 }
 
-                return <span key={idx} className="block text-[#e6edf3]">{line}</span>;
+                return <span key={idx} className={`block ${cText}`}>{line}</span>;
               })}
             </code>
           </pre>
@@ -1010,7 +1138,7 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
     case "list":
     case "ordered_list": {
       const Tag = block.type === "ordered_list" ? "ol" : "ul";
-      const items = Array.isArray(block.items) ? block.items : [];
+      const items = (Array.isArray(block.items) ? block.items : (Array.isArray(block.content) ? block.content : [])) as unknown[];
 
       if (items.length && items.every((item) => isRecord(item))) {
         return (
@@ -1021,8 +1149,14 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
       }
 
       return (
-        <Tag className={`mt-4 space-y-2 pl-5 text-[15px] leading-7 text-[var(--vp-c-text-2)] ${Tag === "ol" ? "list-decimal" : "list-disc"}`}>
-          {items.map((item: unknown, index: number) => renderListItem(item, index))}
+        <Tag
+          className={
+            variant === "gitbook"
+              ? `mt-4 space-y-2 pl-5 text-[16px] leading-[26px] text-[var(--vp-c-text-2)] ${Tag === "ol" ? "list-decimal" : "list-disc"}`
+              : `mt-4 space-y-2 pl-5 text-[15px] leading-7 text-[var(--vp-c-text-2)] ${Tag === "ol" ? "list-decimal" : "list-disc"}`
+          }
+        >
+          {items.map((item: unknown, index: number) => renderListItem(item, index, variant))}
         </Tag>
       );
     }
@@ -1030,13 +1164,7 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
     case "link_card":
     case "page":
       if (variant === "gitbook") {
-        const href = typeof block.url === "string" ? block.url : "";
-        const label = stripDecorations(getLinkLabel(block as unknown as DocLink) ?? href);
-        return href ? (
-          <div className="mt-4">
-            <LinkPill href={href} label={label} />
-          </div>
-        ) : null;
+        return <div className="mt-4"><LinkCard item={block} /></div>;
       }
 
       return <div className="mt-4"><LinkCard item={block} /></div>;
@@ -1044,34 +1172,82 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
     case "articles_list": {
       const items = (Array.isArray(block.items) ? block.items : block.links ?? block.articles ?? []) as DocLink[];
       const headingTitle = typeof block.heading === "string" ? block.heading : undefined;
-      return <LinkGrid title={headingTitle} items={items} />;
+      return <LinkGrid items={items} />;
     }
     case "videos": {
       const items = (Array.isArray(block.items) ? block.items : []) as Array<{ embed_url?: string; url?: string; embedStyle?: string; aspect_ratio?: string; height?: number }>;
       const headingTitle = typeof block.heading === "string" ? block.heading : undefined;
-      return <EmbedGrid title={headingTitle} items={items} />;
+      return <EmbedGrid items={items} />;
     }
     case "embeds": {
       const items = (Array.isArray(block.items) ? block.items : []) as Array<{ embed_url?: string; url?: string; embedStyle?: string; aspect_ratio?: string; height?: number }>;
       const headingTitle = typeof block.heading === "string" ? block.heading : undefined;
-      return <EmbedGrid title={headingTitle} items={items} />;
+      return <EmbedGrid items={items} />;
     }
     case "image": {
-      const src = typeof block.url === "string" ? block.url : undefined;
+      const src =
+        typeof (block as Record<string, unknown>).url === "string"
+          ? ((block as Record<string, unknown>).url as string)
+          : typeof (block as Record<string, unknown>).src === "string"
+            ? ((block as Record<string, unknown>).src as string)
+            : undefined;
       if (!src) return null;
       const alt = typeof block.caption === "string"
         ? block.caption
         : typeof block.title === "string"
           ? block.title
           : "Image";
-      return <img className="mt-6 w-full rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] object-cover" src={src} alt={alt} />;
+      return (
+        <div className="mt-6 overflow-hidden rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)]">
+          <img className="w-full object-cover" src={src} alt={alt} loading="lazy" decoding="async" />
+        </div>
+      );
     }
     case "success_hint":
       return <div className="mt-4 rounded-[14px] border border-[var(--vp-hint-success-border)] bg-[var(--vp-hint-success-bg)] px-4 py-3 text-[14px] leading-6 text-[var(--vp-hint-success-text)]">
-        <MarkdownContent content={resolveTextContent(block.content)} />
+        <MarkdownContent content={resolveTextContent(block.content)} variant={variant} />
       </div>;
-    case "table":
+    case "table": {
+      const headers = (block as Record<string, unknown>).headers;
+      const rawRows = (block as Record<string, unknown>).rows;
+
+      if (Array.isArray(headers) && Array.isArray(rawRows) && rawRows.every((row) => Array.isArray(row))) {
+        return (
+          <div className="mt-6 overflow-hidden rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg)] shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-[13.5px] border-collapse">
+                <thead className="bg-[var(--vp-c-bg-soft)] border-b border-[var(--vp-c-divider)]">
+                  <tr>
+                    {headers.map((h, idx) => (
+                      <th key={idx} className="px-5 py-3.5 font-bold text-[var(--vp-c-text-1)] whitespace-nowrap">
+                        {stripDecorations(String(h ?? ""))}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[var(--vp-c-divider)]/50">
+                  {rawRows.map((row, rIdx) => (
+                    <tr key={rIdx} className="transition-colors hover:bg-[var(--vp-c-bg-soft)]/40 align-top">
+                      {(row as unknown[]).map((cell, cIdx) => (
+                        <td key={cIdx} className="px-5 py-4 text-[var(--vp-c-text-2)] leading-relaxed">
+                          <MarkdownContent content={String(cell ?? "")} variant={variant} />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+      }
+
       return <GenericTable rows={Array.isArray(block.rows) ? block.rows : []} />;
+    }
+    case "youtube": {
+      const url = typeof (block as Record<string, unknown>).url === "string" ? ((block as Record<string, unknown>).url as string) : undefined;
+      return <EmbedVideo url={url} />;
+    }
     default:
       return null;
   }
@@ -1102,7 +1278,36 @@ function SectionBlock({ block, variant }: { block: DocBlock; variant: "default" 
   }
 
   const renderExtras = () => {
-    const knownKeys = new Set(["type", "content", "heading", "id", "subheadings", "title"]);
+    // Ignore common block fields so we don't render noisy "extra" primitives (e.g. hint.variant => "success").
+    const knownKeys = new Set([
+      "type",
+      "content",
+      "heading",
+      "id",
+      "level",
+      "subheadings",
+      "title",
+      "variant",
+      "language",
+      "items",
+      "url",
+      "embed_url",
+      "embedStyle",
+      "aspect_ratio",
+      "rows",
+      "headers",
+      "src",
+      "alt",
+      "width",
+      "height",
+      "caption",
+      "description",
+      "icon",
+      "logo",
+      "image",
+      "links",
+      "articles",
+    ]);
     const extraKeys = Object.entries(block).filter(([key, value]) => !knownKeys.has(key) && value != null);
     
     if (!extraKeys.length) return null;
@@ -1170,7 +1375,12 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
   const navigation = page.navigation ?? {};
   const metadata = page.metadata ?? {};
   const isPentestBook = typeof metadata.edit_url === "string" && /github\.com\/six2dez\/pentest-book\b/.test(metadata.edit_url);
-  const variant: "default" | "gitbook" = isPentestBook ? "gitbook" : "default";
+  // GitBook-like layout is preferred for this page to match the upstream GitBook styling.
+  const isGitBookRoute =
+    route === "/docs/mains/learn-the-basics/learn-wsl" ||
+    route === "/docs/mains/build-your-own-bug-bounty-methodology";
+  const variant: "default" | "gitbook" = (isPentestBook || isGitBookRoute) ? "gitbook" : "default";
+  const isGitBookVariant = variant === "gitbook";
 
   let previous = navigation.previous ?? metadata.previous_page;
   let next = navigation.next ?? metadata.next_page;
@@ -1229,19 +1439,19 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
   return (
     <div
       data-doc-variant={variant}
-      className={isPentestBook ? "mx-auto px-4 md:px-12" : "mx-auto px-6 md:px-10 lg:px-14"}
+      className={isGitBookVariant ? "mx-auto px-4 md:px-12" : "mx-auto px-6 md:px-10 lg:px-14"}
       style={{ 
-        maxWidth: isPentestBook ? "860px" : "var(--content-max-width, 820px)", 
+        maxWidth: isGitBookVariant ? "var(--content-max-width, 860px)" : "var(--content-max-width, 820px)", 
         transition: "max-width 500ms cubic-bezier(0.16, 1, 0.3, 1)",
         paddingBottom: "120px"
       }}
     >
       <div>
-        <div className={isPentestBook
+        <div className={isGitBookVariant
           ? "mb-3 flex flex-wrap items-center gap-2 text-[14px] leading-[26px] text-[var(--vp-c-text-2)]"
           : "mb-6 flex flex-wrap items-center gap-2 text-[13px] text-[var(--vp-c-text-2)]"
         }>
-          {isPentestBook ? (
+          {isGitBookVariant ? (
             <Link href="/docs" className="hover:text-[var(--vp-c-text-1)] transition-colors">Home</Link>
           ) : (
             <Link href="/" className="hover:text-[var(--vp-c-text-1)] transition-colors" aria-label="Home">
@@ -1251,8 +1461,8 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
           {breadcrumbItems.map((item: Record<string, string>, index: number) => {
             const label = stripDecorations(item.label ?? item.name ?? item.title ?? "");
             return (
-              <React.Fragment key={`${label}-${index}`}>
-                <span className="opacity-40">{isPentestBook ? "/" : "›"}</span>
+                <React.Fragment key={`${label}-${index}`}>
+                <span className="opacity-40">{isGitBookVariant ? "/" : "›"}</span>
                 {item.url ? (
                   <Link href={normalizeDocHref(item.url) ?? item.url} className="hover:text-[var(--vp-c-text-1)] transition-colors">{label}</Link>
                 ) : (
@@ -1261,14 +1471,14 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
               </React.Fragment>
             );
           })}
-          <span className="opacity-40">{isPentestBook ? "/" : "›"}</span>
-          <span className={isPentestBook ? "font-normal text-[var(--vp-c-text-2)]" : "font-medium text-[var(--vp-c-text-1)]"}>{cleanTitle}</span>
+          <span className="opacity-40">{isGitBookVariant ? "/" : "›"}</span>
+          <span className={isGitBookVariant ? "font-normal text-[var(--vp-c-text-2)]" : "font-medium text-[var(--vp-c-text-1)]"}>{cleanTitle}</span>
         </div>
 
         <DocHeading as="h1" id={slugify(cleanTitle)} variant={variant}>{cleanTitle}</DocHeading>
 
-        {description ? <div className="mt-5 text-[16px] leading-8 text-[var(--vp-c-text-2)]"><MarkdownContent content={description} /></div> : null}
-        {subtitle ? <div className="mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)]"><MarkdownContent content={subtitle} /></div> : null}
+        {description ? <div className="mt-5 text-[16px] leading-8 text-[var(--vp-c-text-2)]"><MarkdownContent content={description} variant={variant} /></div> : null}
+        {subtitle ? <div className="mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)]"><MarkdownContent content={subtitle} variant={variant} /></div> : null}
         <MetaHighlights skillLevel={skillLevel} prerequisites={prerequisites} />
 
         {page.coverImage?.url ? (
@@ -1285,7 +1495,7 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
 
         <EmbedVideo url={page.embeddedVideo?.url} embedStyle={page.embeddedVideo?.embedStyle} />
 
-        {typeof content.introductoryText === "string" ? <div className="mt-6 text-[15px] leading-7 text-[var(--vp-c-text-2)]"><MarkdownContent content={content.introductoryText} /></div> : null}
+        {typeof content.introductoryText === "string" ? <div className="mt-6 text-[15px] leading-7 text-[var(--vp-c-text-2)]"><MarkdownContent content={content.introductoryText} variant={variant} /></div> : null}
         <EmbedVideo url={content.embeddedVideo?.url} embedStyle={content.embeddedVideo?.embedStyle} />
 
         {content.resumeSection?.heading ? <DocHeading as="h2" id={slugify(content.resumeSection.heading)} variant={variant}>{content.resumeSection.heading}</DocHeading> : null}

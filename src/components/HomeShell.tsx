@@ -3,11 +3,25 @@
 import React, { useEffect, useState, type ReactNode } from "react";
 
 import { Navbar } from "@/components/Navbar";
+import { TakodachiFollower } from "@/components/TakodachiFollower";
 import { DocsSidebar } from "@/components/docs/DocsSidebar";
 import type { SidebarNode } from "@/lib/docs";
 
 export function HomeShell({ children, sidebar }: { children: ReactNode; sidebar: SidebarNode[] }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isTakodachiOn, setIsTakodachiOn] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    // Load takodachi preference from localStorage
+    try {
+      const stored = localStorage.getItem("preference-takodachi");
+      setIsTakodachiOn(stored ? stored === "true" : true);
+    } catch {
+      setIsTakodachiOn(true);
+    }
+  }, []);
 
   useEffect(() => {
     const onResize = () => {
@@ -22,6 +36,7 @@ export function HomeShell({ children, sidebar }: { children: ReactNode; sidebar:
 
   return (
     <>
+      {isMounted && <TakodachiFollower enabled={isTakodachiOn} />}
       <Navbar onDocsMenuClick={() => setSidebarOpen((current) => !current)} />
       <DocsSidebar items={sidebar} open={sidebarOpen} onOpenChange={setSidebarOpen} alwaysVisibleOnDesktop={false} />
       {children}

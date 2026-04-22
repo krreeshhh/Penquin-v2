@@ -1,5 +1,5 @@
 {
-    "title": "Subdomain tools review",
+    "title": "Subdomain Discovery: Tools & Methodology (2025)",
     "breadcrumb": [
         {
             "title": "Others",
@@ -8,555 +8,125 @@
     ],
     "sections": [
         {
-            "heading": "Intro",
-            "type": "paragraph",
-            "content": "What? This is a subdomain tools review. Originally written in December 2020, this page has been updated with current tool status and new additions as of 2025.\nWhy? Sometimes I have doubts if I am actually finding all the subdomains when I start hunting and if the tool I use will find them all. This is the review that I would like to have read before deciding on one tool or another.\nHow? As the main objective is to find subdomains, I have compared tools by their approach:\n Passive: It relies on third-party services with which it collects the largest possible number of subdomains, dead or alive. The problem with this approach is that you can find numerous subdomains, but many of them may be prehistoric, but in return they do it very quickly.\n Active: From any source, for example third-party sources of the passive approach, it verifies through DNS requests (or in any other way) if the subdomain is alive or not. This approach takes a little longer than the passive one, but the results it generates are almost entirely useful.\n Bruteforce: From a wordlist and a domain, it makes DNS requests for each word along with the domain. The advantage of this approach is that the results obtained are always real, but it depends entirely on the quality of the wordlist.\n Alterations/permutations: In this case, from a list of subdomains and a list of alterations or permutations, a new list of subdomains is generated that are verified through DNS requests. With this approach you can find subdomains that with the rest would be impossible.\nRecommended resources:\n Resolvers: trickest/resolvers\n Bruteforce: n0kovosubdomains or assetnote wordlists\n* Alterations: altdns/words.txt\n{% hint style=\"info\" %}\nThis is not intended to be a serious investigation, a technical paper, or anything like that, just a series of tests that I have done for fun. The results shown are my opinion and if at any time you don't like them, or you don't agree, you can stop reading or explain to me how I could have done it better 😉\n{% endhint %}\nOriginal 2020 test results: Google Sheets\n{% embed url=\"https://docs.google.com/spreadsheets/d/1Fadv4jnMCDcpa_RQy12TpEZQNo1l8KsDFJscPjnePo/edit?usp=sharing\" %}"
+            "heading": "Introduction & Methodology",
+            "subheadings": [
+                {
+                    "heading": "Discovery Approaches",
+                    "type": "list",
+                    "content": [
+                        "**Passive**: Collects subdomains from third-party aggregators and historical datasets. Ultra-fast but may include stale records.",
+                        "**Active**: Verifies subdomain existence through direct DNS resolution or probe responses.",
+                        "**Bruteforce**: Systematic DNS querying using curated wordlists (e.g., Assetnote, n0kovo).",
+                        "**Permutations**: Generates new candidates by altering known subdomains using patterns (e.g., AlterX, Altdns)."
+                    ]
+                },
+                {
+                    "heading": "Benchmark Data",
+                    "type": "list",
+                    "content": [
+                        "[Original 2020 Benchmark Results (Google Sheets)](https://docs.google.com/spreadsheets/d/1Fa_dv4jnMCDcpa_RQy12TpEZQNo1l8KsDFJscPjnePo/edit?usp=sharing)",
+                        "Core Resources: [Trickest Resolvers](https://github.com/trickest/resolvers), [Assetnote Wordlists](https://wordlists.assetnote.io/)."
+                    ]
+                }
+            ]
         },
         {
             "heading": "2025 Tool Recommendations",
             "subheadings": [
                 {
-                    "heading": "Quick Summary",
-                    "type": "table",
-                    "headers": [
-                        "Category",
-                        "Top Picks",
-                        "Notes"
-                    ],
-                    "rows": [
-                        {
-                            "Category": "Passive",
-                            "Top Picks": "subfinder, amass",
-                            "Notes": "subfinder is faster, amass more thorough"
-                        },
-                        {
-                            "Category": "Active/Resolution",
-                            "Top Picks": "dnsx, puredns",
-                            "Notes": "puredns for large lists with massdns backend"
-                        },
-                        {
-                            "Category": "Bruteforce",
-                            "Top Picks": "puredns, shuffledns",
-                            "Notes": "puredns recommended for accuracy"
-                        },
-                        {
-                            "Category": "Alterations",
-                            "Top Picks": "alterx, gotator",
-                            "Notes": "alterx is the modern standard"
-                        },
-                        {
-                            "Category": "All-in-One",
-                            "Top Picks": "reconftw",
-                            "Notes": "Automated recon pipeline"
-                        }
-                    ]
-                },
-                {
-                    "heading": "New Tools Since 2020",
-                    "type": "table",
-                    "headers": [
-                        "Tool",
-                        "Type",
-                        "Link",
-                        "Notes"
-                    ],
-                    "rows": [
-                        {
-                            "Tool": "dnsx",
-                            "Type": "Resolution",
-                            "Link": "GitHub",
-                            "Notes": "Fast DNS toolkit, replaced many tools"
-                        },
-                        {
-                            "Tool": "puredns",
-                            "Type": "Brute/Resolve",
-                            "Link": "GitHub",
-                            "Notes": "Best accuracy with massdns"
-                        },
-                        {
-                            "Tool": "alterx",
-                            "Type": "Alterations",
-                            "Link": "GitHub",
-                            "Notes": "Modern altdns replacement"
-                        },
-                        {
-                            "Tool": "gotator",
-                            "Type": "Alterations",
-                            "Link": "GitHub",
-                            "Notes": "Fast permutation generator"
-                        },
-                        {
-                            "Tool": "tlsx",
-                            "Type": "Certificate",
-                            "Link": "GitHub",
-                            "Notes": "TLS/certificate grabbing"
-                        },
-                        {
-                            "Tool": "katana",
-                            "Type": "Crawling",
-                            "Link": "GitHub",
-                            "Notes": "Modern web crawler"
-                        },
-                        {
-                            "Tool": "uncover",
-                            "Type": "Passive",
-                            "Link": "GitHub",
-                            "Notes": "Multi-source API queries"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Tools",
-            "type": "paragraph",
-            "content": "Small summary of each tool with the features and results that I got. This section not follows any special order."
-        },
-        {
-            "heading": "amass",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Lot of third-party integrations",
-                        "Swiss army knife for subdomains enumeration, all the functionalities you can think of and more.",
-                        "It added active subdomains that none of the other tools managed to add."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Not fast at all.",
-                        "Sometimes usability is confusing due to the large number of options"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Sublist3r",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Really fast.",
-                        "Include subbrute for bruteforcing.",
-                        "Include port scan."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Few results compared to others.",
-                        "Limited features, such as bruteforce without the ability to specify a custom wordlist."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "crobat",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Consults in one of the best data sources.",
-                        "Ultra-fast."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Nothing in particular, does a very specific thing and does it well."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "chaos",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Ultra-fast.",
-                        "Allow to update dataset with your own findings.",
-                        "Multiple filters and outputs options."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "API Key limited to invitations."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "subfinder",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Fast compared with others with similar number of integrations.",
-                        "Use 35 third-party services in total.",
-                        "Lot of options for search, filters and output."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Amass got a few subdomains that subfinder missed only in the large scope."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "altdns",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Allows set custom resolver.",
-                        "Output include CNAME."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Really really slow.",
-                        "Not the best alteration wordlist."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "shuffledns",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Fastest.",
-                        "Allows directly massdns output.",
-                        "Wildcard support."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "In some cases, it missed some subdomains that the rest did."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "assetfinder",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Really fast for the amount of services integrated.",
-                        "9 services included.",
-                        "That \"related\" feature."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "No results not found by others."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "waybackurls",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Fast."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Not subdomains feature, you have to filter with some tool like unfurl or grep."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "github-subdomains",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Fast.",
-                        "GitHub is always a useful source."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "With some common names or companies could be very slow."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "dnscan",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Transfer zone feature.",
-                        "Custom insertion points.",
-                        "Provided with 7 wordlists."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Python 2."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "gobuster",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Wildcard support.",
-                        "Option to show CNAME or IP."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "None really."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "knock",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Transfer zone check.",
-                        "CSV output customization."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Python 2.",
-                        "Output is messy.",
-                        "Slow."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "aiodnsbrute",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Multiple output formats.",
-                        "Customizable DNS lookup query.",
-                        "Fast."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Feels outdated and abandoned."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "dmut",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Fastest in its type.",
-                        "Lot of DNS options to optimize."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Output is a bit poor."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "subdomain3",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Fastest in its type.",
-                        "The IP, CDN and CIDR support",
-                        "Multi-level subdomains option."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Python 2.",
-                        "Feels outdated and abandoned.",
-                        "In some cases, it missed some subdomains that the rest did."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Sudomy",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Multiple options apart the subdomain search.",
-                        "Active scan really fast."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "No results not found by others.",
-                        "Active scans output could be better."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Findomain",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Really fast.",
-                        "Free version is still completely useful."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "Paid version has all the features.",
-                        "No customizable output file in free version."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Results",
-            "subheadings": [
-                {
-                    "heading": "Passive",
+                    "heading": "Top Picks by Category",
                     "type": "paragraph",
-                    "content": "With amass and subfinder this part is more than completed, but there are other tools that, depending on the objective, may provide valuable information.\n1. subfinder\n2. amass\n3. Findomain\n4. Sudomy\n5. sublist3r"
+                    "content": "| Category | Recommended Tools | Notes |\n|---|---|---|\n| **Passive** | subfinder, amass | subfinder for speed, amass for depth |\n| **Active/Resolution** | dnsx, puredns | puredns for large-scale massdns backend |\n| **Bruteforce** | puredns, gobuster | puredns is modern standard for accuracy |\n| **Alterations** | alterx, gotator | alterx is the modern standard |\n| **All-in-One** | [reconftw](https://github.com/six2dez/reconftw) | Full automated discovery pipeline |"
                 },
                 {
-                    "heading": "Active",
-                    "type": "paragraph",
-                    "content": "In this field subfinder is the best, I find it to get results incredibly fast.\n1. Findomain\n2. subfinder\n3. Sudomy\n4. Amass"
-                },
-                {
-                    "heading": "Bruteforce",
-                    "type": "paragraph",
-                    "content": "Again projectdiscovery does a great job with shuffledns and is far from the rest of the tools in speed and options.\n1. shuffledns\n2. Findomain\n3. dnscan\n4. gobuster\n5. aiodnsbrute"
-                },
-                {
-                    "heading": "Alterations",
-                    "type": "paragraph",
-                    "content": "I don't find alterations and permutations with resolution useful, but in case you like it, dmut should be your option by far.\n1. dmut\n2. altdns"
+                    "heading": "The ProjectDiscovery Ecosystem",
+                    "type": "list",
+                    "content": [
+                        "**dnsx**: Multi-purpose DNS toolkit that replaced many legacy Python utilities.",
+                        "**alterx**: Modern permutation generator with powerful pattern support.",
+                        "**tlsx**: Advanced certificate transparency and TLS property scanner.",
+                        "**uncover**: API-driven discovery across multiple passive search engines."
+                    ]
                 }
             ]
         },
         {
-            "heading": "Final thoughts",
-            "type": "paragraph",
-            "content": "When I started the review, I believed that amass would be the winner in most cases, but it seems that I have found new tools with which to improve the workflow."
+            "heading": "Detailed Tool Profiles",
+            "subheadings": [
+                {
+                    "heading": "Amass - The Deep Scanner",
+                    "type": "list",
+                    "content": [
+                        "**Pros**: Unrivaled third-party API integrations (AlienVault, Shodan, etc.); creates a complete asset graph.",
+                        "**Cons**: Slower execution; high resource overhead; complexity of configuration flags."
+                    ]
+                },
+                {
+                    "heading": "Subfinder - The Passive King",
+                    "type": "list",
+                    "content": [
+                        "**Pros**: Extremely fast; uses 35+ services; active development; clean JSON/text output.",
+                        "**Cons**: May occasionally miss deeply buried subdomains that Amass captures."
+                    ]
+                },
+                {
+                    "heading": "Puredns - The Resolver Benchmark",
+                    "type": "list",
+                    "content": [
+                        "**Pros**: Massive throughput using `massdns`; handles wildcard detection natively; high accuracy.",
+                        "**Cons**: Requires high-quality resolver lists to maintain performance."
+                    ]
+                }
+            ]
         },
         {
-            "heading": "2025 Update",
-            "type": "paragraph",
-            "content": "The landscape has evolved significantly since 2020:\nWhat's Changed:\n- projectdiscovery tools have become the de facto standard (subfinder, dnsx, puredns ecosystem)\n- puredns has replaced shuffledns for most use cases due to better accuracy\n- alterx is the modern replacement for altdns with better performance\n- Chaos database is now public (no invite needed)\n- crt.sh rate limiting has increased, many tools now cache results\nCurrent Recommended Workflow:\n``bash\n# 1. Passive enumeration\nsubfinder -d target.com -all -o subspassive.txt\n# 2. Bruteforce (optional, time-consuming)\npuredns bruteforce wordlist.txt target.com -r resolvers.txt -w subsbrute.txt\n# 3. Combine and resolve\ncat subspassive.txt subsbrute.txt | sort -u | puredns resolve -r resolvers.txt -w subsresolved.txt\n# 4. Permutations on resolved (optional)\ncat subsresolved.txt | alterx | puredns resolve -r resolvers.txt -w subs_final.txt\n`\nOr use an automated pipeline:\n`bash\n# reconftw handles all of this and more\nreconftw -d target.com -r\n``\nThanks to all the tools developers who facilitate our work and implement the recon methodology better and better."
+            "heading": "Modern Discovery Workflow",
+            "subheadings": [
+                {
+                    "heading": "Execution Pipeline",
+                    "type": "code_block",
+                    "content": [
+                        "# 1. Passive Discovery",
+                        "subfinder -d target.com -all -o passive.txt",
+                        "",
+                        "# 2. Targeted Bruteforce",
+                        "puredns bruteforce wordlist.txt target.com -r resolvers.txt -w brute.txt",
+                        "",
+                        "# 3. Resolution & Cleanup",
+                        "cat passive.txt brute.txt | sort -u | puredns resolve -r resolvers.txt -w alive.txt",
+                        "",
+                        "# 4. Permutation Analysis",
+                        "cat alive.txt | alterx | puredns resolve -r resolvers.txt -w final_subs.txt"
+                    ]
+                },
+                {
+                    "heading": "Pro-Tips for 2025",
+                    "type": "list",
+                    "content": [
+                        "Use `dnsx -retry 3` to handle transient network issues when resolving large lists.",
+                        "Periodically update your `resolvers.txt` using Trickest's public datasets for maximum throughput.",
+                        "Leverage `katana -jc` to find subdomains hidden in JavaScript files and comments."
+                    ]
+                }
+            ]
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-23T01:30:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/subdomain-tools-review.md",
         "previous_page": {
-            "title": "Recon suites review",
+            "title": "Recon Suites Review",
             "url": "/others/recon-suites-review"
         },
         "next_page": {
-            "title": "Random",
-            "url": "/others/dictionaries"
+            "title": "Post-Exploitation",
+            "url": "/post-exploitation"
         }
     }
 }

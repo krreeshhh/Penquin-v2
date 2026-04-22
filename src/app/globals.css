@@ -446,7 +446,15 @@ body {
 .VPSidebarItem.level-1>.item:hover,
 .VPSidebarItem.level-2>.item:hover,
 .VPSidebarItem.level-0>.item:hover {
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-brand-soft);
+}
+
+.VPSidebarItem:hover>.item .indicator {
+  background: color-mix(in srgb, var(--vp-c-brand-1) 40%, transparent);
+}
+
+.VPSidebar .VPLink.link:hover {
+  text-decoration: none !important;
 }
 
 .VPSidebarItem.is-active .item {
@@ -465,6 +473,7 @@ body {
 
 .VPSidebarItem.is-active .text {
   color: var(--vp-c-brand-1);
+  text-decoration: none !important;
 }
 
 .VPSidebarItem .caret {
@@ -493,15 +502,6 @@ body {
 .VPSidebarItem .text>span[aria-hidden="true"] {
   font-size: 16px;
   width: 18px;
-  text-align: center;
-  flex: 0 0 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.VPSidebarItem.collapsible.is-open .caret-icon {
-  transform: rotate(90deg);
 }
 
 .VPSidebarItem.collapsible>.items {
@@ -623,7 +623,7 @@ body {
 }
 
 /* Inline code readability in docs content */
-#doc-content :not(pre) > code {
+#doc-content :not(pre)>code {
   padding: 0.15em 0.4em;
   border-radius: 6px;
   background: var(--vp-code-inline-bg);
@@ -763,6 +763,71 @@ body {
   opacity: 1;
 }
 
+/* Spotlight Effect */
+main.main#doc-content {
+  background-color: var(--app-spotlight-bg-color, transparent);
+  transition: background-color 0.3s ease, background-image 0.3s ease;
+}
+
+/* Background spotlight gradient removed - using hover block only */
+
+html.spotlight-under .VPSidebarItem.is-active>.item .text {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+html.spotlight-aside .VPSidebarItem.is-active>.item {
+  background: color-mix(in srgb, var(--vp-c-brand-soft) 55%, transparent);
+  border-radius: 10px;
+}
+
+/* Blue line fix - to be re-evaluated if still needed after main spotlight is working */
+html.spotlight .VPSidebarItem.is-active .indicator {
+  background: transparent !important;
+}
+
+/* Docs Hover Spotlight (nolebase-style hover block) */
+:root {
+  --app-docs-spotlight-accent: #544a29;
+  --vp-nolebase-enhanced-readabilities-spotlight-under-bg-color: color-mix(in srgb, var(--app-docs-spotlight-accent) 14%, transparent);
+}
+
+.VPNolebaseEnhancedReadabilitiesSpotlightHoverBlock {
+  /* Soft filled highlight (no border) */
+  background: color-mix(in srgb, var(--app-docs-spotlight-accent) 34%, transparent);
+  border: none;
+  /* Keep it subtle: no sharp outline, no heavy shadow */
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.VPNolebaseEnhancedReadabilitiesSpotlightHoverBlockUnder {
+  background-color: color-mix(in srgb, var(--app-docs-spotlight-accent) 26%, transparent);
+}
+
+.VPNolebaseEnhancedReadabilitiesSpotlightHoverBlockAside::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 100%;
+  border-radius: 4px;
+  /* Keep box highlight accent, but use sidebar brand blue for the aside line */
+  background-color: var(--vp-c-brand-1);
+  /* Push line outside the content box for breathing room */
+  left: -16px;
+  top: 0;
+  bottom: 0;
+}
+
+/* Aside style: line only (no box) */
+.VPNolebaseEnhancedReadabilitiesSpotlightHoverBlockAside {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
 ::selection {
   background-color: #6dabe4;
   /* brand-400 equivalent */
@@ -781,6 +846,26 @@ body {
 
 .VPFooter a:hover {
   color: var(--vp-c-text-1);
+}
+
+/* GitBook-like docs tuning (used by specific pages via data-doc-variant="gitbook") */
+div[data-doc-variant="gitbook"] {
+  /* Slightly softer code block surface in dark mode */
+  --vp-code-border: color-mix(in srgb, var(--vp-c-divider) 85%, transparent);
+}
+
+.dark div[data-doc-variant="gitbook"] {
+  --vp-code-bg: #0f1116;
+  --vp-code-border: #242730;
+}
+
+div[data-doc-variant="gitbook"] p {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+div[data-doc-variant="gitbook"] pre {
+  box-shadow: none;
 }
 
 /* Hero Section specifics */

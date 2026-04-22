@@ -428,9 +428,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "OAuth - OAuth vulnerabilities",
-                "OIDC - OpenID Connect",
-                "CI/CD Security - Often integrates with SaaS"
+                "[OAuth - OAuth vulnerabilities](/enumeration/webservices/oauth)",
+                "[OIDC - OpenID Connect](/enumeration/webservices/oidc-open-id-connect)",
+                "[CI/CD Security - Often integrates with SaaS](/enumeration/webservices/ci-cd-security)"
             ]
         }
     ],

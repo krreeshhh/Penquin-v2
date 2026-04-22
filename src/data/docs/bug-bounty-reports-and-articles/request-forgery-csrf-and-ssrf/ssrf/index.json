@@ -16,76 +16,65 @@
       "type": "link_card",
       "title": "inDrive disclosed on HackerOne: SSRF in...",
       "url": "https://hackerone.com/reports/2300358",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I get an easy Blind SSRF by just reading writeups",
       "url": "https://medium.com/@mohamed0xmuslim/how-i-get-an-easy-blind-ssrf-by-just-reading-writeups-a5459bbdf96d",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I Found My First High-Severity Bug and Got Rewarded with 3 Trays of Red Bull!",
       "url": "https://medium.com/@iski/how-i-found-my-first-high-severity-bug-and-got-rewarded-with-3-trays-of-red-bull-29ec0ca6a2e4",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "SSRF (Server Side Request Forgery) worth $4,913 | My Highest Bounty Ever !",
       "url": "https://medium.com/techfenix/ssrf-server-side-request-forgery-worth-4913-my-highest-bounty-ever-7d733bb368cb",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Digging for SSRF in NextJS apps",
       "url": "https://www.assetnote.io/resources/research/digging-for-ssrf-in-nextjs-apps",
-      "source": "www.assetnote.io",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fcdn.prod.website-files.com%2F6422e507d5004f85d107063a%2F649c2686dd142039d6d5ea8e_Frame%25201428.png&width=20&dpr=3&quality=100&sign=815fa772&sv=2"
     },
     {
       "type": "link_card",
       "title": "SSRF on a Headless Browser Becomes Critical!",
       "url": "https://medium.com/@Nightbloodz/ssrf-on-a-headless-browser-becomes-critical-c08daaa1017e",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "The PDF Trojan Horse: Leveraging HTML Injection for SSRF and Internal Resource Access",
       "url": "https://uchihamrx.medium.com/the-pdf-trojan-horse-leveraging-html-injection-for-ssrf-and-internal-resource-access-fbf69efcb33d",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I Uncovered an SSRF Vulnerability in a Private HackerOne Program",
       "url": "https://medium.com/@josekuttykunnelthazhebinu/how-i-uncovered-an-ssrf-vulnerability-in-a-private-hackerone-program-4c3146b414ff",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "https://freedium.cfd/http://medium.com/@iski/when-life-gave-me-a-500-error-i-found-aws-keys-instead-rf-b416f8ca68f8",
-      "url": "https://freedium.cfd/http://medium.com/@iski/when-life-gave-me-a-500-error-i-found-aws-keys-instead-rf-b416f8ca68f8",
-      "source": "freedium.cfd"
+      "url": "https://freedium.cfd/http://medium.com/@iski/when-life-gave-me-a-500-error-i-found-aws-keys-instead-rf-b416f8ca68f8"
     },
     {
       "type": "link_card",
       "title": "SSRF To Internal Data Access Via PDF Print Feature",
       "url": "https://infosecwriteups.com/ssrf-to-internal-data-access-via-pdf-print-feature-b8e6a912844a",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "https://docs.google.com/presentation/d/1JdIjHHPsFSgLbaJcHmMkE904jmwPM4xdhEuwhy2ebvo/htmlpresent",
-      "url": "https://docs.google.com/presentation/d/1JdIjHHPsFSgLbaJcHmMkE904jmwPM4xdhEuwhy2ebvo/htmlpresent",
-      "source": "docs.google.com"
+      "url": "https://docs.google.com/presentation/d/1JdIjHHPsFSgLbaJcHmMkE904jmwPM4xdhEuwhy2ebvo/htmlpresent"
     },
     {
       "type": "video",

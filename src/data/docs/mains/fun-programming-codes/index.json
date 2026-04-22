@@ -4,24 +4,29 @@
     {
       "name": "Mains",
       "url": "/docs/mains"
+    },
+    {
+      "name": "Fun & Experiments",
+      "url": "/docs/mains/fun-experiments",
+      "icon": "🎉"
     }
   ],
   "sections": [
     {
       "type": "heading",
       "level": 2,
-      "id": "id-1.-cpp-codes",
+      "id": "cpp-codes",
       "content": "1. CPP Codes"
     },
     {
       "type": "code_block",
       "language": "cpp",
-      "content": "#include <iostream>\n#include <vector>\n#include <windows.h>\nusing namespace std;\n\n// Print Disco Colors in terminal\nint main()\n{\n    vector<string> combinations = {\"00\",\"10\",\"20\",\"30\",\"40\",\"50\",\"60\",\"70\",\"80\",\n    \"90\",\"a0\",\"b0\",\"c0\",\"d0\",\"e0\",\"f0\"};\n    \n    cout << \"\\n\\n\\t\\tThis is Disco\\n\\n\\t\\t\";\n\n    while (true)\n    {\n        for (const string& combination : combinations)\n        {\n            string command = \"color \" + combination;\n            system(command.c_str());\n            Sleep(100);\n        }\n    }\n}"
+      "content": "#include <iostream>\n#include <vector>\n#include <windows.h>\nusing namespace std;\n\n// Print Disco Colors in terminal\nint main() {\n    vector<string> combinations = {\"00\",\"10\",\"20\",\"30\",\"40\",\"50\",\"60\",\"70\",\"80\",\n    \"90\",\"a0\",\"b0\",\"c0\",\"d0\",\"e0\",\"f0\"};\n    \n    cout << \"\\n\\n\\t\\tThis is Disco\\n\\n\\t\\t\";\n\n    while (true) {\n        for (const string& combination : combinations) {\n            string command = \"color \" + combination;\n            system(command.c_str());\n            Sleep(100);\n        }\n    }\n}"
     },
     {
       "type": "code_block",
       "language": "cpp",
-      "content": "#include <iostream>\n#include <windows.h>\n\nusing namespace std;\n\n// Loading Screen in C++\nvoid loadingBar()\n{\n\tsystem(\"cls\");\n\tsystem(\"color 9F\");\n\n\tchar a = 177, b = 219;\n\t// cout<<\"\\n\\n\\n\\n\\t\\t\\t\\tStudent's Data Management System\";\n\tcout << \"\\n\\t\\t\\t\\tLoading Screen By Raunak Gupta\";\n\tcout << \"\\n\\n\\n\\t\\t\\t\\tLoading...\\n\";\n\tcout << endl;\n\tcout << \"\\t\\t\\t\\t\";\n\n\tfor (int i = 0; i < 26; i++)\n\t{\n\t\tcout << a;\n\t}\n\tcout << \"\\r\";\n\tcout << \"\\t\\t\\t\\t\";\n\tfor (int i = 0; i < 26; i++)\n\t{\n\t\tcout << b;\n\t\tSleep(200);\n\t}\n}\n\nint main()\n{\n\tloadingBar();\n}"
+      "content": "#include <iostream>\n#include <windows.h>\n\nusing namespace std;\n\n// Loading Screen in C++\nvoid loadingBar()\n{\n\tsystem(\"cls\");\n\tsystem(\"color 9F\");\n\n\tchar a = 177, b = 219;\n\t// cout<<\"\\n\\n\\n\\n\\n\\t\\t\\t\\t\\tStudent's Data Management System\";\n\tcout << \"\\n\\t\\t\\t\\t\\tLoading Screen By Raunak Gupta\";\n\tcout << \"\\n\\n\\n\\t\\t\\t\\t\\tLoading...\\n\";\n\tcout << endl;\n\tcout << \"\\t\\t\\t\\t\\t\";\n\n\tfor (int i = 0; i < 26; i++)\n\t{\t\n\t\tcout << a;\n\t}\n\tcout << \"\\r\";\n\tcout << \"\\t\\t\\t\\t\\t\";\n\tfor (int i = 0; i < 26; i++)\n\t{\n\t\tcout << b;\n\t\tSleep(200);\n\t}\n}\n\nint main()\n{\n\tloadingBar();\n}"
     },
     {
       "type": "code_block",
@@ -36,7 +41,7 @@
     {
       "type": "heading",
       "level": 2,
-      "id": "id-2.-c-programming",
+      "id": "c-programming",
       "content": "2. C Programming"
     },
     {
@@ -52,7 +57,7 @@
     {
       "type": "heading",
       "level": 2,
-      "id": "id-3.-python-codes",
+      "id": "python-codes",
       "content": "3. Python Codes"
     },
     {
@@ -68,38 +73,38 @@
     {
       "type": "heading",
       "level": 2,
-      "id": "id-4.-vbs-codes",
+      "id": "vbs-codes",
       "content": "4. VBS Codes"
     },
     {
       "type": "heading",
-      "level": 3,
+      "level": 4,
       "id": "some-cool-bombing-script",
       "content": "Some cool Bombing script"
     },
     {
       "type": "code_block",
-      "language": "vbscript",
+      "language": "vb",
       "content": "do\nmsgbox \"Potential Virus Found\"\nloop"
     },
     {
       "type": "code_block",
-      "language": "vbscript",
+      "language": "vb",
       "content": "name=inputbox(\"Whats your name?                                                                                                                         Please write your name in the box below :                                                                                            Created by Raunak\", \"Your Name\")\n\nmsgbox(\"Have a good day \") + name\nmsgbox(\"Don't forget to change your nappy \") + name\nmsgbox(\"Hahahahahaha \")"
     },
     {
       "type": "code_block",
-      "language": "vbscript",
+      "language": "vb",
       "content": "Set wshShell = wscript.CreateObject(\"WScript.Shell\")\ndo\nwscript.sleep 100\nwshshell.sendkeys \"~(enter)\"\nloop"
     },
     {
       "type": "code_block",
-      "language": "vbscript",
+      "language": "vb",
       "content": "Set wshShell = wscript.CreateObject(\"WScript.Shell\")\ndo\nwscript.sleep 100\nwshshell.sendkeys \"~(enter)\"\nloop"
     },
     {
       "type": "code_block",
-      "language": "vbscript",
+      "language": "vb",
       "content": "Set raunak = CreateObject(\"WScript.Shell\") \nraunak.run \"Notepad\" \nWScript.Sleep 100\nraunak.sendkeys \"H\"\nWScript.Sleep 100\nraunak.sendkeys \"I\"\nWScript.Sleep 100\nraunak.sendkeys \" \"\nWScript.Sleep 100\nraunak.sendkeys \"T\"\nWScript.Sleep 100\nraunak.sendkeys \"H\"\nWScript.Sleep 100\nraunak.sendkeys \"I\"\nWScript.Sleep 100\nraunak.sendkeys \"S\"\nWScript.Sleep 100\nraunak.sendkeys \" \"\nWScript.Sleep 100\nraunak.sendkeys \"I\"\nWScript.Sleep 100\nraunak.sendkeys \"S\"\nWScript.Sleep 100\nraunak.sendkeys \" \"\nWScript.Sleep 100\nraunak.sendkeys \"A\"\nWScript.Sleep 100\nraunak.sendkeys \"U\"\nWScript.Sleep 100\nraunak.sendkeys \"T\"\nWScript.Sleep 100\nraunak.sendkeys \"O\"\nWScript.Sleep 100\nraunak.sendkeys \"T\"\nWScript.Sleep 100\nraunak.sendkeys \"Y\"\nWScript.Sleep 100\nraunak.sendkeys \"P\"\nWScript.Sleep 100\nraunak.sendkeys \"I\"\nWScript.Sleep 100\nraunak.sendkeys \"N\"\nWScript.Sleep 100\nraunak.sendkeys \"G\"\nWScript.Sleep 100\nraunak.sendkeys \"!\"\nWScript.Sleep 100\nraunak.sendkeys \"!\""
     },
     {
@@ -130,23 +135,7 @@
     }
   ],
   "images": [],
-  "hyperlinks": [
-    {
-      "text": "Mains",
-      "url": "/docs/mains"
-    },
-    {
-      "text": "Previous",
-      "url": "/docs/mains/learn-the-basics/learn-wsl",
-      "relation": "prev"
-    },
-    {
-      "text": "Next",
-      "url": "/docs/mains/build-your-own-bug-bounty-methodology",
-      "relation": "next"
-    }
-  ],
   "metadata": {
-    "lastUpdated": "2024-08-02T15:13:48.656Z"
+    "lastUpdated": "2026-04-22T00:00:00.000Z"
   }
 }

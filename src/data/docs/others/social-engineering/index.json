@@ -463,10 +463,10 @@
             "heading": "Resources",
             "type": "list",
             "content": [
-                "Social Engineering: The Science of Human Hacking",
-                "The Art of Deception",
-                "GoPhish Documentation",
-                "Evilginx2 Wiki"
+                "[Social Engineering: The Science of Human Hacking](https://www.amazon.com/Social-Engineering-Science-Human-Hacking/dp/111943338X)",
+                "[The Art of Deception](https://www.amazon.com/Art-Deception-Controlling-Element-Security/dp/076454280X)",
+                "[GoPhish Documentation](https://docs.getgophish.com/)",
+                "[Evilginx2 Wiki](https://github.com/kgretzky/evilginx2/wiki)"
             ]
         }
     ],

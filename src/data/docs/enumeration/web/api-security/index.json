@@ -466,10 +466,10 @@
             "heading": "Resources",
             "type": "list",
             "content": [
-                "OWASP API Security Top 10",
-                "API Security Checklist",
-                "HackTricks - Web API Pentesting",
-                "PortSwigger - API Testing"
+                "[OWASP API Security Top 10](https://owasp.org/www-project-api-security/)",
+                "[API Security Checklist](https://github.com/shieldfy/API-Security-Checklist)",
+                "[HackTricks - Web API Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/web-api-pentesting)",
+                "[PortSwigger - API Testing](https://portswigger.net/web-security/api-testing)"
             ]
         }
     ],

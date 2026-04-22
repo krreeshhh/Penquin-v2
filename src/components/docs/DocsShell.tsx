@@ -4,6 +4,7 @@ import React, { useEffect, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 
 import { Navbar } from "@/components/Navbar";
+import { DocsSpotlightHoverBlock } from "@/components/docs/DocsSpotlightHoverBlock";
 import { DocsSidebar } from "@/components/docs/DocsSidebar";
 import type { SidebarNode } from "@/lib/docs";
 
@@ -24,6 +25,8 @@ export function DocsShell({ children, sidebar }: { children: ReactNode; sidebar:
   return (
     <div id="VPContent" className="VPContent has-sidebar">
       <Navbar onDocsMenuClick={() => setSidebarOpen((current) => !current)} />
+
+      <DocsSpotlightHoverBlock />
 
       <DocsSidebar items={sidebar} open={sidebarOpen} onOpenChange={setSidebarOpen} />
 

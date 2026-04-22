@@ -16,90 +16,77 @@
       "type": "link_card",
       "title": "1500$: CR/LF Injection",
       "url": "https://infosecwriteups.com/1500-cr-lf-injection-0d2a75f02ef3",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "https://www.freedium.cfd/https://infosecwriteups.com/1500-cr-lf-injection-59152daaf413",
-      "url": "https://www.freedium.cfd/https://infosecwriteups.com/1500-cr-lf-injection-59152daaf413",
-      "source": "www.freedium.cfd"
+      "url": "https://www.freedium.cfd/https://infosecwriteups.com/1500-cr-lf-injection-59152daaf413"
     },
     {
       "type": "link_card",
       "title": "From payload to 300$ bounty: A story of CRLF injection and responsible disclosure on HackerOne",
       "url": "https://infosecwriteups.com/from-payload-to-300-bounty-a-story-of-crlf-injection-and-responsible-disclosure-on-hackerone-eeff74aff422",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Web Application Vulnerabilities: CRLF Injection and Beyond",
       "url": "https://infosecwriteups.com/web-application-vulnerabilities-crlf-injection-and-beyond-e7c7144ac0e8",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "$6000 with Microsoft Hall of Fame | Microsoft Firewall Bypass | CRLF to XSS | Microsoft Bug Bounty",
       "url": "https://infosecwriteups.com/6000-with-microsoft-hall-of-fame-microsoft-firewall-bypass-crlf-to-xss-microsoft-bug-bounty-8f6615c47922",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "CRLF Injection",
       "url": "https://medium.com/@ibrahimhussain1228/crlf-injection-7dd360318642",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "CRLF injection",
       "url": "https://medium.com/@R00tendo/crlf-injection-ae26521c5e4c",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Revealing the Intriguing HTTP Response Splitting Vulnerability | Bounty $200",
       "url": "https://mufazmi.medium.com/revealing-the-intriguing-http-response-splitting-vulnerability-bounty-200-6872876abc30",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Understanding CRLF Injection: A Web Application Vulnerability and Mitigation",
       "url": "https://wesecureapp-smm.medium.com/understanding-crlf-injection-a-web-application-vulnerability-and-mitigation-7be81922a4cc",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "CRLF (%0D%0A) Injection - HackTricks",
       "url": "https://book.hacktricks.xyz/pentesting-web/crlf-0d-0a",
-      "source": "HackTricks",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhacktricks.wiki%2Fen%2Ffavicon.svg&width=20&dpr=3&quality=100&sign=af124db5&sv=2"
     },
     {
       "type": "link_card",
       "title": "Understanding CRLF Injection: A Web Application Vulnerability and Mitigation",
       "url": "https://wesecureapp.com/blog/understanding-crlf-injection-a-web-application-vulnerability-and-mitigation/",
-      "source": "WeSecureApp :: Securing Offensively",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwesecureapp.com%2Fwp-content%2Fuploads%2F2020%2F09%2Fwesecure-shield.png&width=20&dpr=3&quality=100&sign=63deb2c3&sv=2"
     },
     {
       "type": "link_card",
       "title": "What is CRLF Injection | Types & Prevention Techniques | Imperva",
       "url": "https://www.imperva.com/learn/application-security/crlf-injection/",
-      "source": "Learning Center",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwww.imperva.com%2Fwp-content%2Fthemes%2Fimpv%2Ficons%2Ffavicon-192.png&width=20&dpr=3&quality=100&sign=a5e2b3a1&sv=2"
     },
     {
       "type": "link_card",
       "title": "CRLF injection | The Hacker Recipes",
       "url": "https://www.thehacker.recipes/web/inputs/crlf-injection",
-      "source": "www.thehacker.recipes",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwww.thehacker.recipes%2Fimages%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=7d94ccef&sv=2"
     },
     {

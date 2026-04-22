@@ -1,5 +1,5 @@
 {
-    "title": "tools everywhere",
+    "title": "The Security Assessment Mindset",
     "breadcrumb": [
         {
             "title": "Others",
@@ -8,47 +8,40 @@
     ],
     "sections": [
         {
-            "type": "image",
-            "url": "../.gitbook/assets/assessment-mindset.png"
-        },
-        {
-            "type": "link",
-            "title": "https://inventory.raw.pm/tools.html",
-            "url": "https://inventory.raw.pm/tools.html"
+            "heading": "Philosophy & Mindset",
+            "subheadings": [
+                {
+                    "heading": "Assessment Methodology",
+                    "type": "image",
+                    "src": "/gitbook/assets/assessment-mindset.png",
+                    "caption": "Visualization of the professional security assessment mindset and tool integration philosophy"
+                },
+                {
+                    "heading": "Curated Tool Repositories",
+                    "type": "list",
+                    "content": [
+                        "[RAW Security Tool Inventory](https://inventory.raw.pm/tools.html) - One of the most comprehensive and updated databases of security tools across all domains."
+                    ]
+                }
+            ]
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2020-11-04T07:28:59.203Z",
+        "last_updated": "2026-04-23T01:45:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/tools-everywhere.md",
         "previous_page": {
-            "title": "Exploiting",
-            "url": "/others/exploiting"
+            "title": "Bug Bounty",
+            "url": "/others/bugbounty"
         },
         "next_page": {
-            "title": "RT/EDR",
-            "url": "/others/rt-edr"
+            "title": "Post-Exploitation",
+            "url": "/post-exploitation"
         }
     }
 }

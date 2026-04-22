@@ -1,5 +1,5 @@
 {
-    "title": "BugBounty",
+    "title": "Bug Bounty Methodology & Reporting",
     "breadcrumb": [
         {
             "title": "Others",
@@ -8,130 +8,85 @@
     ],
     "sections": [
         {
-            "heading": "https://github.com/bugcrowd/templates",
-            "type": "link",
-            "title": "https://github.com/bugcrowd/templates",
-            "url": "https://github.com/bugcrowd/templates"
-        },
-        {
-            "heading": "Good PoC",
-            "type": "table",
-            "headers": [
-                "Issue type",
-                "PoC"
-            ],
-            "rows": [
+            "heading": "Standardized Proof-of-Concepts",
+            "subheadings": [
                 {
-                    "Issue type": "Cross-site scripting",
-                    "PoC": "alert(document.domain) or ` setIntervalalert\\x28document.domain\\x29  if you have to use backticks. [\\[1\\]](https://medium.com/@know.0nix/jumping-to-the-hell-with-10-attempts-to-bypass-devils-waf-4275bfe679dd) Using document.domain instead of alert(1)` can help avoid reporting XSS bugs in sandbox domains."
+                    "heading": "Safe PoC Reference Table",
+                    "type": "paragraph",
+                    "content": "| Issue Type | Recommended Proof of Concept (PoC) |\n|---|---|\n| **Cross-site Scripting** | `alert(document.domain)` or `` setInterval`alert\\x28document.domain\\x29` `` |\n| **Command Execution** | `id`, `cat /proc/1/maps`, or `touch /root/username` (per rules) |\n| **SQL Injection** | `SELECT @@version` (MySQL/MSSQL), `SELECT version()` (Postgres) |\n| **SSRF** | Read local files, cloud metadata (IMDS), or internal Redis/DB access |\n| **Unvalidated Redirect** | Redirect to `google.com` or safe login clones to demonstrate risk |\n| **XXE Injection** | Output random harmless data or local `/etc/hostname` |\n| **Subdomain Takeover** | Claim discreetly and serve a harmless file on a hidden path |"
                 },
                 {
-                    "Issue type": "Command execution",
-                    "PoC": "Depends of program rules:\n- Read (Linux-based): cat /proc/1/maps\n- Write (Linux-based): touch /root/your_username\n- Execute (Linux-based): id"
-                },
-                {
-                    "Issue type": "Code execution",
-                    "PoC": "This involves the manipulation of a web app such that server-side code (e.g. PHP) is executed.\n- PHP: <?php echo 7*7; ?>"
-                },
-                {
-                    "Issue type": "SQL injection",
-                    "PoC": "Zero impact\n- MySQL and MSSQL: SELECT @@version\n- Oracle: SELECT version FROM v$instance;\n- Postgres SQL: SELECT version()"
-                },
-                {
-                    "Issue type": "Unvalidated redirect",
-                    "PoC": "- Set the redirect endpoint to a known safe domain (e.g. google.com), or if looking to demonstrate potential impact, to your own website with an example login screen resembling the target's.\n- If the target uses OAuth, you can try to leak the OAuth token to your server to maximise impact."
-                },
-                {
-                    "Issue type": "Information exposure",
-                    "PoC": "Investigate only with the IDs of your own test accounts — do not leverage the issue against other users' data — and describe your full reproduction process in the report."
-                },
-                {
-                    "Issue type": "Cross-site request forgery",
-                    "PoC": "When designing a real-world example, either hide the form (style=\"display:none;\") and make it submit automatically, or design it so that it resembles a component from the target's page."
-                },
-                {
-                    "Issue type": "Server-side request forgery",
-                    "PoC": "The impact of a SSRF bug will vary — a non-exhaustive list of proof of concepts includes:\n- reading local files\n- obtaining cloud instance metadata\n- making requests to internal services (e.g. Redis)\n- accessing firewalled databases"
-                },
-                {
-                    "Issue type": "Local file read",
-                    "PoC": "Make sure to only retrieve a harmless file. Check the program security policy as a specific file may be designated for testing."
-                },
-                {
-                    "Issue type": "XML external entity processing",
-                    "PoC": "Output random harmless data."
-                },
-                {
-                    "Issue type": "Sub-domain takeover",
-                    "PoC": "Claim the sub-domain discreetly and serve a harmless file on a hidden page. Do not serve content on the index page."
+                    "heading": "PoC Best Practices",
+                    "type": "list",
+                    "content": [
+                        "**Information Exposure**: Only leverage bugs against your own test accounts; never target other users' data.",
+                        "**Local File Read**: Retrieve only harmless system files (e.g., `/etc/hostname`) or files designated by the policy.",
+                        "**CSRF Design**: Hide forms using `style=\"display:none;\"` and implement auto-submit for professional impact demonstration."
+                    ]
                 }
             ]
         },
         {
-            "heading": "Good Report",
-            "type": "code_block",
-            "content": [
-                "# Writeups",
-                "# https://github.com/devanshbatham/Awesome-Bugbounty-Writeups",
-                "# Bug bounty Report",
-                "",
-                "# Summary",
-                "...",
-                "",
-                "# Vulnerability details",
-                "...",
-                "",
-                "# Impact",
-                "...",
-                "",
-                "# Proof of concept",
-                "...",
-                "",
-                "# Browsers verified in",
-                "...",
-                "",
-                "# Mitigation",
-                "..."
+            "heading": "Professional Reporting Standard",
+            "subheadings": [
+                {
+                    "heading": "The Golden Report Template",
+                    "type": "code_block",
+                    "content": [
+                        "# Summary",
+                        "Brief overview of the vulnerability and its location.",
+                        "",
+                        "# Vulnerability Details",
+                        "Technical deep-dive into the root cause.",
+                        "",
+                        "# Impact",
+                        "What can an attacker achieve? (P1-P5 scaling).",
+                        "",
+                        "# Proof of Concept",
+                        "Step-by-step reproduction instructions.",
+                        "",
+                        "# Browsers / Environment",
+                        "Verified on Chrome vXX, Firefox vYY, etc.",
+                        "",
+                        "# Mitigation",
+                        "Recommended fix (e.g., input sanitization, CSP updates)."
+                    ]
+                },
+                {
+                    "heading": "Reporting Workflow",
+                    "type": "image",
+                    "src": "/gitbook/assets/Untitled diagram-2025-03-14-131837.png",
+                    "caption": "Professional workflow from vulnerability discovery to triage and remediation"
+                }
             ]
         },
         {
-            "heading": "Report flow",
-            "type": "paragraph",
-            "content": ""
+            "heading": "Resources & Templates",
+            "type": "list",
+            "content": [
+                "[Bugcrowd Report Templates](https://github.com/bugcrowd/templates)",
+                "[Awesome Bug Bounty Writeups](https://github.com/devanshbatham/Awesome-Bugbounty-Writeups)",
+                "[Intigriti Public Reports](https://www.intigriti.com/public-reports)",
+                "[HackerOne Hacktivity](https://hackerone.com/hacktivity)"
+            ]
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2025-03-14T13:31:54.169Z",
+        "last_updated": "2026-04-23T01:40:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/bugbounty.md",
         "previous_page": {
-            "title": "Master assessment mindmaps",
+            "title": "Master Mindmaps",
             "url": "/others/master-assessment-mindmap"
         },
         "next_page": {
-            "title": "Exploiting",
-            "url": "/others/exploiting"
+            "title": "Post-Exploitation",
+            "url": "/post-exploitation"
         }
     }
 }

@@ -13,8 +13,21 @@
     "sections": [
         {
             "heading": "Tools",
-            "type": "paragraph",
-            "content": "``bash\n# https://github.com/kurobeats/fimap\nfimap -u \"http://10.11.1.111/example.php?test=\"\n# https://github.com/P0cL4bs/Kadimus\n./kadimus -u localhost/?pg=contact -A myuseragent\n# https://github.com/wireghoul/dotdotpwn\ndotdotpwn.pl -m http -h 10.11.1.111 -M GET -o unix\n# Apache specific: https://github.com/imhunterand/ApachSAL\n`\n{% hint style=\"info\" %}\nHow to\n1. Look requests with filename like include=main.inc template=/en/sidebar file=foo/file1.txt\n2. Modify and test: file=foo/bar/../file1.txt \n1. If the response is the same could be vulnerable\n2. If not there is some kind of block or sanitizer\n3. Try to access world-readable files like /etc/passwd /win.ini`\n{% endhint %}"
+            "type": "code_block",
+            "content": [
+                "# https://github.com/kurobeats/fimap",
+                "fimap -u \"http://10.11.1.111/example.php?test=\"",
+                "# https://github.com/P0cL4bs/Kadimus",
+                "./kadimus -u localhost/?pg=contact -A myuseragent",
+                "# https://github.com/wireghoul/dotdotpwn",
+                "dotdotpwn.pl -m http -h 10.11.1.111 -M GET -o unix",
+                "# Apache specific: https://github.com/imhunterand/ApachSAL"
+            ]
+        },
+        {
+            "type": "hint",
+            "variant": "info",
+            "content": "**How to**\n\n1. Look for requests with parameters like `include=main.inc`, `template=/en/sidebar`, or `file=foo/file1.txt`.\n2. Modify and test: `file=foo/bar/../file1.txt`.\n3. If the response is the same, it could be vulnerable to path traversal.\n4. If not, there might be some kind of block or sanitizer in place.\n5. Try to access world-readable files like `/etc/passwd` or `C:\\windows\\win.ini`."
         },
         {
             "heading": "LFI",
@@ -176,11 +189,11 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "SSRF - Server-side request forgery",
-                "Command Injection - RCE via file inclusion",
-                "File Upload - Upload to RCE",
-                "Web Exploits - LFI to RCE chains",
-                "XXE - XML external entity attacks"
+                "[SSRF - Server-side request forgery](/enumeration/web/ssrf)",
+                "[Command Injection - RCE via file inclusion](/enumeration/web/command-injection)",
+                "[File Upload - Upload to RCE](/enumeration/web/upload-bypasses)",
+                "[Web Exploits - LFI to RCE chains](/exploitation/web-exploits)",
+                "[XXE - XML external entity attacks](/enumeration/web/xxe)"
             ]
         }
     ],

@@ -253,8 +253,8 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "Password Cracking - Hash cracking",
-                "Wordlist Reference - Wordlist selection guide"
+                "[Password Cracking - Hash cracking](/others/password-cracking)",
+                "[Wordlist Reference - Wordlist selection guide](/others/wordlist-reference)"
             ]
         }
     ],

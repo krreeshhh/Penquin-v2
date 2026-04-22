@@ -504,11 +504,11 @@
             "heading": "Resources",
             "type": "list",
             "content": [
-                "Hardware Hacking Handbook",
-                "Practical IoT Hacking",
-                "OWASP IoT Project",
-                "Attify Blog",
-                "/dev/ttyS0 Hardware Hacking"
+                "[Hardware Hacking Handbook](https://nostarch.com/hardwarehacking)",
+                "[Practical IoT Hacking](https://nostarch.com/practical-iot-hacking)",
+                "[OWASP IoT Project](https://owasp.org/www-project-internet-of-things/)",
+                "[Attify Blog](https://blog.attify.com/)",
+                "[/dev/ttyS0 Hardware Hacking](https://www.devttys0.com/)"
             ]
         }
     ],

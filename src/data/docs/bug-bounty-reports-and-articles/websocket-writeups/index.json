@@ -9,7 +9,6 @@
   "articles": [
     {
       "title": "aretekzs | Fuzzing WebSockets for Server-Side Vulnerabilities",
-      "domain": "aretekzs.com",
       "url": "https://aretekzs.com/posts/fuzzing-ws/",
       "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Faretekzs.com%2Ffavicon.svg&width=20&dpr=3&quality=100&sign=1756fc92&sv=2"
     }

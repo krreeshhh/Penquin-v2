@@ -52,8 +52,9 @@
         },
         {
             "heading": "Mindmap",
-            "type": "paragraph",
-            "content": ")"
+            "type": "image",
+            "src": "/gitbook/assets/image (14).png",
+            "caption": "SSRF Mindmap"
         }
     ],
     "images": [

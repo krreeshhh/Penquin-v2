@@ -15,42 +15,36 @@
     {
       "type": "link_card",
       "title": "https://riccardomalatesta.com/how-i-earned-500-by-uploading-a-file-write-up-of-one-of-my-first-bug-bounty/",
-      "url": "https://riccardomalatesta.com/how-i-earned-500-by-uploading-a-file-write-up-of-one-of-my-first-bug-bounty/",
-      "source": "riccardomalatesta.com"
+      "url": "https://riccardomalatesta.com/how-i-earned-500-by-uploading-a-file-write-up-of-one-of-my-first-bug-bounty/"
     },
     {
       "type": "link_card",
       "title": "CS Money disclosed on HackerOne: Blind XSS on image upload",
       "url": "https://hackerone.com/reports/1010466",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Semrush disclosed on HackerOne: Unrestricted file upload in...",
       "url": "https://hackerone.com/reports/748903",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Reddit disclosed on HackerOne: Unrestricted File Upload on...",
       "url": "https://hackerone.com/reports/1606957",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Reddit disclosed on HackerOne: Reflected XSS via File Upload",
       "url": "https://hackerone.com/reports/1816181",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "X / xAI disclosed on HackerOne: File Upload XSS in image uploading...",
       "url": "https://hackerone.com/reports/97672",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     }
   ],

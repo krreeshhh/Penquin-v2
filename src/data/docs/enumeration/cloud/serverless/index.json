@@ -495,10 +495,10 @@
             "heading": "Resources",
             "type": "list",
             "content": [
-                "Serverless Security Top 10",
-                "AWS Lambda Security Best Practices",
-                "Azure Functions Security",
-                "GCP Cloud Functions Security"
+                "[Serverless Security Top 10](https://github.com/puresec/sas-top-10)",
+                "[AWS Lambda Security Best Practices](https://docs.aws.amazon.com/lambda/latest/dg/lambda-security.html)",
+                "[Azure Functions Security](https://docs.microsoft.com/en-us/azure/azure-functions/security-concepts)",
+                "[GCP Cloud Functions Security](https://cloud.google.com/functions/docs/securing)"
             ]
         }
     ],

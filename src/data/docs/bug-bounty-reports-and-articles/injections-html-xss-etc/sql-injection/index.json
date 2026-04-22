@@ -16,111 +16,95 @@
       "type": "link_card",
       "title": "How I Got 4 SQLI Vulnerabilities At One Target Manually Using The Repeater Tab",
       "url": "https://medium.com/@bug4y0u/how-i-got-4-sqli-vulnerabilities-at-one-target-manually-using-the-repeater-tab-ed4eb1f84147",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Super Blind SQL Injection- $20000 bounty | Thousands of targets still vulnerable",
       "url": "https://medium.com/@pranshux0x/super-blind-sql-injection-20000-bounty-thousands-of-targets-still-vulnerable-f9b013765448",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "How an accidental step into an out of scope asset lead to unauthenticated SQL injection in OneLogin",
       "url": "https://blog.xdd.fi/how-an-accidental-step-into-an-out-of-scope-asset-lead-to-unauthenticated-sql-injection-in-onelogin/",
-      "source": "Leakim's Bug Bounty Blog",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fblog.xdd.fi%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=293a647e&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I got Time Based SQL Injection in an Old Public Bug Bounty Program",
       "url": "https://medium.com/@kshunya/how-i-got-time-based-sql-injection-in-an-old-public-bug-bounty-program-f6260cd4e75e",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I Found Multiple SQL Injections in 5 Minutes in Bug Bounty",
       "url": "https://infosecwriteups.com/how-i-found-multiple-sql-injections-in-5-minutes-in-bug-bounty-40155964c498",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "My First Bounty: A story of a Blind SQL Injection",
       "url": "https://medium.com/@adebayosec/my-first-bounty-a-story-of-a-blind-sql-injection-69d9ad6716b6",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I Got 4 SQLI Vulnerabilities At One Target Manually Using The Repeater Tab",
       "url": "https://medium.com/@bug4y0u/how-i-got-4-sqli-vulnerabilities-at-one-target-manually-using-the-repeater-tab-ed4eb1f84147",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "#4. Bug Bounty Series: Exploiting Boolean-based SQL Injection",
       "url": "https://cyb3rmind.medium.com/4-bug-bounty-series-exploiting-boolean-based-sql-injection-3455d800892e",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "#2. Bug Bounty POC: Time-Based SQL Injection to Dump Database",
       "url": "https://cyb3rmind.medium.com/2-bug-bounty-poc-time-based-sql-injection-to-dump-database-f8cfa089f393",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "SQL Injections for bug bounty",
       "url": "https://medium.com/@boogsta/sql-injections-for-bug-bounty-3a608babd9b1",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "https://medium.com/@Abhijeet_kumawat_/how-to-find-sql-injection-and-get-bounty-of-100-200-500-ef0db6685e1f",
-      "url": "https://medium.com/@Abhijeet_kumawat_/how-to-find-sql-injection-and-get-bounty-of-100-200-500-ef0db6685e1f",
-      "source": "medium.com"
+      "url": "https://medium.com/@Abhijeet_kumawat_/how-to-find-sql-injection-and-get-bounty-of-100-200-500-ef0db6685e1f"
     },
     {
       "type": "link_card",
       "title": "Exploiting Time-Based SQL Injections: Data Exfiltration",
       "url": "https://medium.com/@vikramroot/exploiting-time-based-sql-injections-data-exfiltration-791aa7f0ae87",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "My Journey of SQL Injection and Database Dump in a Real-World Target",
       "url": "https://medium.com/@nirdesh123raya/my-journey-of-sql-injection-and-database-dump-in-a-real-world-target-575908da2e65",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Error based SQL Injection with WAF bypass manual Exploit 100%",
       "url": "https://c0nqr0r.medium.com/error-based-sql-injection-with-waf-bypass-manual-exploit-100-bab36b769005",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I Found multiple SQL Injection with FFUF and Sqlmap in a few minutes",
       "url": "https://infosecwriteups.com/how-i-found-multiple-sql-injection-with-ffuf-and-sqlmap-in-a-few-minutes-2824cd4dfab",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I Found My First SQLi Vulnerability (€3500 Bounty)",
       "url": "https://dewcode.medium.com/how-i-found-my-first-sqli-vulnerability-3500-bounty-7c441007bcf9",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     }
   ],

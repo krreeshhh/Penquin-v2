@@ -245,16 +245,16 @@
             "heading": "References",
             "type": "list",
             "content": [
-                "The Lone SharePoint",
-                "SharePoint API Misconfigurations"
+                "[The Lone SharePoint](https://www.crummie5.club/the-lone-sharepoint/)",
+                "[SharePoint API Misconfigurations](https://medium.com/@ujmalhotra95/tales-of-sharepoint-api-misconfigurations-11073ad384fd)"
             ]
         },
         {
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "Windows AD - SharePoint often integrated with AD",
-                "SSRF - SharePoint endpoints can be SSRF targets"
+                "[Windows AD - SharePoint often integrated with AD](/post-exploitation/windows/ad)",
+                "[SSRF - SharePoint endpoints can be SSRF targets](/enumeration/web/ssrf)"
             ]
         }
     ],

@@ -52,10 +52,38 @@
             "subheadings": [
                 {
                     "heading": "CVE-2016-0957 - Bypass dispatcher filters",
-                    "type": "paragraph",
-                    "content": "``bash\nhttps://aemsite/bin/querybuilder.json/a.css\nhttps://aemsite/bin/querybuilder.json/a.html\nhttps://aemsite/bin/querybuilder.json/a.ico\nhttps://aemsite/bin/querybuilder.json/a.png\nhttps://aemsite/bin/querybuilder.json;%0aa.css\nhttps://aemsite/bin/querybuilder.json/a.1.json\nhttps://aemsite///bin///querybuilder.json\nhttps://aemsite///etc.json\n#Depending on the version and configuration of the affected AEM installation, the above vulnerability could expose the Publish tier to a number of vulnerabilities, including:\n# Provides a proxy which is able to be used to perform arbitrary server-side requests.\n/libs/opensocial/proxy\n# Exposes a reflected Cross-Site Scripting (XSS) vulnerability in older versions of AEM 5.X.\n/etc/mobile/useragent-test.html\n# Exposes an unauthenticated, browsable view of all content in the repository which may lead to information disclosure.\n/etc/reports/diskusage.html\n``\n{% embed url=\"https://speakerdeck.com/0ang3el/hunting-for-security-bugs-in-aem-webapps\" %}\n{% embed url=\"https://www.infosecinstitute.com/resources/penetration-testing/adobe-cq-pentesting-guide-part-1/\" %}"
+                    "type": "code_block",
+                    "content": [
+                        "https://aemsite/bin/querybuilder.json/a.css",
+                        "https://aemsite/bin/querybuilder.json/a.html",
+                        "https://aemsite/bin/querybuilder.json/a.ico",
+                        "https://aemsite/bin/querybuilder.json/a.png",
+                        "https://aemsite/bin/querybuilder.json;%0aa.css",
+                        "https://aemsite/bin/querybuilder.json/a.1.json",
+                        "https://aemsite///bin///querybuilder.json",
+                        "https://aemsite///etc.json",
+                        "",
+                        "#Depending on the version and configuration of the affected AEM installation, the above vulnerability could expose the Publish tier to a number of vulnerabilities, including:",
+                        "# Provides a proxy which is able to be used to perform arbitrary server-side requests.",
+                        "/libs/opensocial/proxy",
+                        "# Exposes a reflected Cross-Site Scripting (XSS) vulnerability in older versions of AEM 5.X.",
+                        "/etc/mobile/useragent-test.html",
+                        "# Exposes an unauthenticated, browsable view of all content in the repository which may lead to information disclosure.",
+                        "/etc/reports/diskusage.html"
+                    ]
                 }
             ]
+        },
+        {
+            "heading": "References",
+            "type": "link",
+            "title": "Hunting for security bugs in AEM webapps",
+            "url": "https://speakerdeck.com/0ang3el/hunting-for-security-bugs-in-aem-webapps"
+        },
+        {
+            "type": "link",
+            "title": "Adobe CQ Pentesting Guide Part 1",
+            "url": "https://www.infosecinstitute.com/resources/penetration-testing/adobe-cq-pentesting-guide-part-1/"
         }
     ],
     "images": [
@@ -81,7 +109,7 @@
         }
     ],
     "metadata": {
-        "last_updated": "2025-04-10T09:50:17.554Z",
+        "last_updated": "2026-04-23T00:20:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/adobe-aem.md",
         "previous_page": {
             "title": "Tomcat",

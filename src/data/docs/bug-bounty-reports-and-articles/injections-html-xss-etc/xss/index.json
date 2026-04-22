@@ -16,118 +16,101 @@
       "type": "link_card",
       "title": "Glassdoor disclosed on HackerOne: Reflected XSS on...",
       "url": "https://hackerone.com/reports/846338",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I Found a Critical XSS On a Public Bug Bounty Program",
       "url": "https://1-day.medium.com/how-i-found-a-critical-xss-on-a-public-bug-bounty-program-27d492117f61",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "CS Money disclosed on HackerOne: Blind XSS on image upload",
       "url": "https://hackerone.com/reports/1010466",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Reflected XSS on Byjus(My first bug)",
       "url": "https://vikaran101.medium.com/reflected-xss-on-byjus-my-first-bug-a5bbab098748",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Exploiting XSS with Javascript/JPEG Polyglot",
       "url": "https://infosecwriteups.com/exploiting-xss-with-javascript-jpeg-polyglot-4cff06f8201a",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Reddit disclosed on HackerOne: [accounts.reddit.com] Redirect...",
       "url": "https://hackerone.com/reports/1962645",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Starbucks disclosed on HackerOne: Reflected Cross site Scripting...",
       "url": "https://hackerone.com/reports/438240",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Leveraging XSS to get RCE in Textpattern | Pentest Limited",
       "url": "https://pentest.co.uk/labs/leveraging-xss-to-get-rce-in-textpattern/",
-      "source": "Pentest",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fpentest.co.uk%2Fwp-content%2Fuploads%2F2019%2F06%2Fcropped-Fav-1-192x192.png&width=20&dpr=3&quality=100&sign=c8bd9a91&sv=2"
     },
     {
       "type": "link_card",
       "title": "10 Practical scenarios for XSS attacks",
       "url": "https://pentest-tools.com/blog/xss-attacks-practical-scenarios",
-      "source": "Pentest-Tools.com",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fpentest-tools.com%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=b5d0f8e1&sv=2"
     },
     {
       "type": "link_card",
       "title": "Leveraging Reflected XSS",
       "url": "https://thexssrat.medium.com/leveraging-reflected-xss-8125cb010988",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Leveraging XSS to Read Internal Files",
       "url": "https://blog.dixitaditya.com/xss-to-read-internal-files",
-      "source": "All Things Security",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fcdn.hashnode.com%2Fres%2Fhashnode%2Fimage%2Fupload%2Fv1644732341104%2FQZVnNc8oh.png&width=20&dpr=3&quality=100&sign=c89b626d&sv=2"
     },
     {
       "type": "link_card",
       "title": "Super Blind SQL Injection- $20000 bounty | Thousands of targets still vulnerable",
       "url": "https://medium.com/@pranshux0x/super-blind-sql-injection-20000-bounty-thousands-of-targets-still-vulnerable-f9b013765448",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "HOW RECON HELPED ME TO GET A STORED XSS!",
       "url": "https://hacktivator.medium.com/how-recon-helped-me-to-get-a-stored-xss-26c7be17ccfa",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "XSS without parentheses and semi-colons",
       "url": "https://portswigger.net/research/xss-without-parentheses-and-semi-colons",
-      "source": "PortSwigger Research",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fportswigger.net%2Fcontent%2Fimages%2Flogos%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=c5edce39&sv=2"
     },
     {
       "type": "link_card",
       "title": "https://freedium.cfd/https://medium.com/@Mu1berry/an-interesting-case-of-xss-caused-by-file-upload-86bdfb09408f",
-      "url": "https://freedium.cfd/https://medium.com/@Mu1berry/an-interesting-case-of-xss-caused-by-file-upload-86bdfb09408f",
-      "source": "freedium.cfd"
+      "url": "https://freedium.cfd/https://medium.com/@Mu1berry/an-interesting-case-of-xss-caused-by-file-upload-86bdfb09408f"
     },
     {
       "type": "link_card",
       "title": "How I was able to find 50+ Cross-site scripting (XSS) Security Vulnerabilities on Bugcrowd Public…",
       "url": "https://infosecwriteups.com/how-i-was-able-to-find-50-cross-site-scripting-xss-security-vulnerabilities-on-bugcrowd-public-ba33db2b0ab1",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "XYZ of XSS",
       "url": "https://medium.com/@kshunya/xyz-of-xss-62603eb4cba",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {

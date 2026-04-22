@@ -37,11 +37,19 @@ export default function RootLayout({
             __html: `
             (function() {
               try {
-                const theme = localStorage.getItem('wotaku-theme');
+                // Match wotaku.wiki semantics: 3-state appearance stored in localStorage.
+                // Values: 'dark' | 'light' | 'auto' (default).
+                const appearance = localStorage.getItem('vitepress-theme-appearance');
+                const legacyTheme = localStorage.getItem('wotaku-theme');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (theme === 'dark' || (!theme && prefersDark)) {
-                  document.documentElement.classList.add('dark');
-                }
+
+                const effective = (appearance === 'dark' || appearance === 'light')
+                  ? appearance
+                  : (legacyTheme === 'dark' || legacyTheme === 'light')
+                    ? legacyTheme
+                    : (prefersDark ? 'dark' : 'light');
+
+                if (effective === 'dark') document.documentElement.classList.add('dark');
               } catch (e) {}
             })();
           `,

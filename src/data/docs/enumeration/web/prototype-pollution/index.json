@@ -188,9 +188,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "XSS - Prototype pollution often chains to XSS",
-                "Deserialization - Similar object manipulation concepts",
-                "SSTI - Template engines can be affected"
+                "[XSS - Prototype pollution often chains to XSS](/enumeration/web/xss)",
+                "[Deserialization - Similar object manipulation concepts](/enumeration/web/deserialization)",
+                "[SSTI - Template engines can be affected](/enumeration/web/ssti)"
             ]
         }
     ],

@@ -596,10 +596,10 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "OIDC - OpenID Connect testing",
-                "JWT - JSON Web Token attacks",
-                "CSRF - Cross-site request forgery",
-                "Open Redirect - URL redirection"
+                "[OIDC - OpenID Connect testing](/enumeration/webservices/oidc-open-id-connect)",
+                "[JWT - JSON Web Token attacks](/enumeration/web/jwt)",
+                "[CSRF - Cross-site request forgery](/enumeration/web/csrf)",
+                "[Open Redirect - URL redirection](/enumeration/web/open-redirect)"
             ]
         }
     ],

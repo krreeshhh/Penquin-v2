@@ -447,11 +447,11 @@
             "heading": "Resources",
             "type": "list",
             "content": [
-                "Dependency Confusion Research",
-                "Backstabber's Knife Collection",
-                "CI/CD Goat - Vulnerable Pipeline",
-                "SLSA - Supply Chain Security Framework",
-                "OWASP Top 10 CI/CD Security Risks"
+                "[Dependency Confusion Research](https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610)",
+                "[Backstabber's Knife Collection](https://github.com/nickvdyck/backstabbers-knife-collection)",
+                "[CI/CD Goat - Vulnerable Pipeline](https://github.com/cider-security-research/cicd-goat)",
+                "[SLSA - Supply Chain Security Framework](https://slsa.dev/)",
+                "[OWASP Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/)"
             ]
         }
     ],

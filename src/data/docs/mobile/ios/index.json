@@ -1,8 +1,8 @@
 {
-    "title": "iOS",
+    "title": "iOS Security Testing",
     "breadcrumb": [
         {
-            "title": "Mobile",
+            "title": "Mobile Security",
             "url": "/mobile"
         }
     ],
@@ -10,352 +10,96 @@
     "prerequisites": "Swift/ObjC basics, iOS security model",
     "sections": [
         {
-            "heading": "Resources & References",
-            "type": "paragraph",
-            "content": "{% embed url=\"https://martabyte.github.io/ios/hacking/2022/03/13/ios-hacking-en.html\" %}\n{% embed url=\"https://dvuln.com/blog/modern-ios-pentesting-no-jailbreak-needed\" %}\n{% embed url=\"https://kishorbalan.medium.com/start-your-first-ios-application-pentest-with-me-part-1-1692311f1902\" %}\n{% embed url=\"https://inesmartins.github.io/mobsf-ipa-binary-analysis-step-by-step/index.html\" %}"
-        },
-        {
-            "heading": "Non-Jailbreak Testing (Recommended)",
+            "heading": "Environment Setup & Prerequisites",
             "subheadings": [
                 {
-                    "heading": "Environment Setup",
+                    "heading": "Toolchain Configuration",
                     "type": "code_block",
                     "content": [
                         "# Install Xcode command line tools",
                         "xcode-select --install",
                         "",
-                        "# Install Homebrew packages",
+                        "# Install core mobile testing utilities (macOS/Homebrew)",
                         "brew install libimobiledevice ideviceinstaller ios-deploy",
                         "",
-                        "# Install Python tools",
+                        "# Install runtime manipulation frameworks",
                         "pip3 install objection frida-tools",
                         "",
-                        "# Check device connection",
-                        "idevice_id -l",
-                        "ideviceinfo"
+                        "# Verify device connectivity",
+                        "idevice_id -l && ideviceinfo"
                     ]
                 },
                 {
                     "heading": "IPA Acquisition & Analysis",
                     "type": "code_block",
                     "content": [
-                        "# Get IPA from App Store (decrypted)",
-                        "# https://github.com/majd/ipatool",
+                        "# Download decrypted IPAs from App Store",
                         "ipatool auth login -e email@example.com",
                         "ipatool download -b com.app.bundleid -o app.ipa",
                         "",
-                        "# Extract IPA",
-                        "unzip app.ipa -d extracted/",
-                        "",
-                        "# Analyze with MobSF",
-                        "# https://github.com/MobSF/Mobile-Security-Framework-MobSF",
-                        "docker run -it --rm -p 8000:8000 opensecurity/mobile-security-framework-mobsf",
-                        "",
-                        "# Static analysis without device",
-                        "# https://github.com/AnyByte/app-check",
-                        "# https://github.com/nicnocquee/apple-mobile-provision-parser"
+                        "# Static analysis via MobSF (Docker)",
+                        "docker run -it --rm -p 8000:8000 opensecurity/mobile-security-framework-mobsf"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "heading": "Runtime Manipulation (Non-Jailbreak)",
+            "subheadings": [
                 {
-                    "heading": "Objection (Non-Jailbreak Runtime Manipulation)",
+                    "heading": "Objection & IPA Patching",
                     "type": "code_block",
                     "content": [
-                        "# Patch IPA with Frida gadget (no jailbreak needed)",
+                        "# Patch IPA with Frida gadget for side-loading",
                         "objection patchipa --source app.ipa --codesign-signature \"Apple Development: email@example.com\"",
                         "",
-                        "# Install patched IPA",
+                        "# Deploy patched bundle to device",
                         "ios-deploy --bundle Payload/App.app",
                         "",
-                        "# Connect to running app",
-                        "objection explore",
-                        "",
-                        "# Common objection commands",
-                        "ios hooking list classes",
-                        "ios hooking list class_methods <ClassName>",
-                        "ios hooking watch class <ClassName>",
-                        "ios hooking watch method \"<ClassName> <methodName>\" --dump-args --dump-return",
-                        "",
-                        "# Disable SSL pinning",
-                        "ios sslpinning disable",
-                        "",
-                        "# Dump keychain",
-                        "ios keychain dump",
-                        "",
-                        "# List cookies",
-                        "ios cookies get",
-                        "",
-                        "# Dump filesystem",
-                        "ios plist cat <path>",
-                        "ios nsuserdefaults get",
-                        "",
-                        "# Bypass jailbreak detection",
-                        "ios jailbreak disable",
-                        "",
-                        "# Search for strings in memory",
-                        "memory search \"password\" --string",
-                        "",
-                        "# Dump classes and methods",
-                        "ios hooking generate simple <ClassName>"
+                        "# Common objection hooks",
+                        "ios sslpinning disable        # Bypass SSL pinning",
+                        "ios keychain dump             # Extract keychain items",
+                        "ios jailbreak disable         # Bypass JB detection"
                     ]
                 },
                 {
-                    "heading": "Frida Scripting",
+                    "heading": "Frida Instrumentation",
                     "type": "code_block",
                     "content": [
-                        "// frida-script.js - SSL Pinning Bypass",
-                        "// https://codeshare.frida.re/@dki/ios10-ssl-bypass/",
+                        "# List running applications",
+                        "frida-ps -Ua",
                         "",
-                        "Java.perform(function() {",
-                        "    // iOS SSL Pinning Bypass",
-                        "    var resolver = new ApiResolver('objc');",
-                        "    resolver.enumerateMatches('*[* URLSession:didReceiveChallenge:completionHandler:]', {",
-                        "        onMatch: function(match) {",
-                        "            Interceptor.attach(match.address, {",
-                        "                onEnter: function(args) {",
-                        "                    var dominated = ObjC.Object(args[4]);",
-                        "                    dominated.invoke('initWithDisposition:credential:', 0, null);",
-                        "                }",
-                        "            });",
-                        "        },",
-                        "        onComplete: function() {}",
-                        "    });",
-                        "});",
-                        "",
-                        "// Run with: frida -U -f com.app.bundleid -l frida-script.js --no-pause",
-                        "# Frida basics",
-                        "frida-ps -Ua                              # List running apps",
-                        "frida -U -f com.app.bundleid              # Spawn and attach",
-                        "frida -U \"App Name\"                       # Attach to running",
-                        "",
-                        "# Useful Frida scripts",
-                        "# https://github.com/m0bilesecurity/Frida-Mobile-Scripts",
-                        "# https://codeshare.frida.re/"
-                    ]
-                },
-                {
-                    "heading": "Proxy Setup (SSL Pinning Bypass)",
-                    "type": "code_block",
-                    "content": [
-                        "# Install Burp CA on device",
-                        "# Settings > General > About > Certificate Trust Settings > Enable",
-                        "",
-                        "# For SSL pinning bypass (without jailbreak)",
-                        "# Use objection: ios sslpinning disable",
-                        "# Or patch the app with Frida gadget",
-                        "",
-                        "# Network interception with mitmproxy",
-                        "mitmproxy --mode regular --ssl-insecure",
-                        "",
-                        "# Charles Proxy setup",
-                        "# Enable SSL Proxying for specific hosts",
-                        "# Install Charles CA on device"
+                        "# Spawn application with custom script",
+                        "frida -U -f com.app.bundleid -l bypass.js --no-pause"
                     ]
                 }
             ]
         },
         {
-            "heading": "Jailbreak Testing",
-            "type": "code_block",
-            "content": [
-                "# All about Jailbreak & iOS versions",
-                "https://www.theiphonewiki.com/wiki/Jailbreak",
-                "",
-                "# OWASP MSTG",
-                "https://github.com/OWASP/owasp-mstg",
-                "",
-                "# Jailbreak compatibility list",
-                "https://docs.google.com/spreadsheets/d/11DABHIIqwYQKj1L83AK9ywk_hYMjEkcaxpIg6phbTf0/edit#gid=1014970938",
-                "",
-                "# Checklist",
-                "https://mobexler.com/checklist.htm#ios",
-                "",
-                "# Jailbreak tools",
-                "# checkra1n - iPhone 5s though iPhone X, iOS 12.3+",
-                "# https://checkra.in/",
-                "checkra1n ",
-                "",
-                "# unc0ver - https://unc0ver.dev/",
-                "# Taurine - https://taurine.app/",
-                "# palera1n - https://palera.in/ (iOS 15+)",
-                "",
-                "# 3UTools for Windows",
-                "http://www.3u.com/",
-                "",
-                "# Cydia Repositories",
-                "# https://ryleylangus.com/repo",
-                "# Liberty Bypass - Jailbreak detection bypass"
-            ]
-        },
-        {
-            "heading": "Jailbroken Device Tools",
-            "type": "code_block",
-            "content": [
-                "# SSH to device (default: alpine)",
-                "ssh root@device_ip",
-                "",
-                "# Install Frida on device",
-                "# Add https://build.frida.re to Cydia sources",
-                "# Install Frida from Cydia",
-                "",
-                "# SSL Kill Switch 2",
-                "# https://github.com/nabla-c0d3/ssl-kill-switch2",
-                "# Install .deb on device",
-                "",
-                "# Keychain Dumper",
-                "# https://github.com/ptoomey3/Keychain-Dumper",
-                "./keychain-dumper",
-                "",
-                "# FLEXible - In-app debugging",
-                "# Install from Cydia",
-                "",
-                "# Cycript - Runtime manipulation",
-                "cycript -p <pid>",
-                "cy# UIApp.keyWindow.rootViewController"
-            ]
-        },
-        {
-            "heading": "Static Analysis",
+            "heading": "Security Analysis: Static & Dynamic",
             "subheadings": [
                 {
-                    "heading": "Binary Analysis",
+                    "heading": "Binary Protections & Encryption",
                     "type": "code_block",
                     "content": [
-                        "# Get .ipa and extract",
-                        "unzip example.ipa",
-                        "cd Payload/App.app",
-                        "",
-                        "# Check encryption (should be cryptid 1)",
-                        "otool -l BINARY | grep -A 4 LC_ENCRYPTION_INFO",
-                        "",
-                        "# Check PIE (Position Independent Executable)",
+                        "# Check for PIE, Stack Canaries, and ARC",
                         "otool -hv BINARY | grep PIE",
-                        "",
-                        "# Check ARC (Automatic Reference Counting)",
-                        "otool -Iv BINARY | grep objc_release",
-                        "",
-                        "# Check stack canaries",
                         "otool -Iv BINARY | grep stack_chk",
                         "",
-                        "# List dynamic dependencies",
-                        "otool -L BINARY",
-                        "",
-                        "# Dump classes and methods",
-                        "# https://github.com/DerekSelander/dsdump",
-                        "dsdump -a BINARY",
-                        "",
-                        "# Class-dump for Objective-C headers",
-                        "class-dump -H -o output/ BINARY",
-                        "",
-                        "# Swift class dump",
-                        "# https://github.com/nicolo-grazioli/swift-dump"
+                        "# Verify binary encryption (cryptid 1 = encrypted)",
+                        "otool -l BINARY | grep -A 4 LC_ENCRYPTION_INFO"
                     ]
                 },
                 {
-                    "heading": "Info.plist Analysis",
+                    "heading": "Filesystem & Data Audit",
                     "type": "code_block",
                     "content": [
-                        "# Using plutil",
-                        "plutil -p Info.plist",
+                        "# Locate application data and bundle containers",
+                        "find /var/mobile/Containers/Data/Application/ -name \"*.db\"",
+                        "find /var/mobile/Containers/Data/Application/ -name \"*.plist\"",
                         "",
-                        "# Check for sensitive configurations",
-                        "# App Transport Security exceptions",
-                        "grep -A 10 \"NSAppTransportSecurity\" Info.plist",
-                        "",
-                        "# URL schemes",
-                        "grep -A 5 \"CFBundleURLSchemes\" Info.plist",
-                        "",
-                        "# Exported UTIs",
-                        "grep -A 5 \"UTExportedTypeDeclarations\" Info.plist",
-                        "",
-                        "# Background modes",
-                        "grep -A 5 \"UIBackgroundModes\" Info.plist",
-                        "",
-                        "# https://scriptingosx.com/2016/11/editing-property-lists/"
-                    ]
-                },
-                {
-                    "heading": "File System Analysis",
-                    "type": "code_block",
-                    "content": [
-                        "# Interesting locations",
-                        "/private/var/mobile/Containers/Data/Application/{HASH}/",
-                        "/private/var/containers/Bundle/Application/{HASH}/",
-                        "/var/containers/Bundle/Application/{HASH}",
-                        "/var/mobile/Containers/Data/Application/{HASH}",
-                        "/var/mobile/Containers/Shared/AppGroup/{HASH}",
-                        "",
-                        "# SQLite databases",
-                        "find /var/mobile/Containers/Data/Application/ -name \"*.db\" 2>/dev/null",
-                        "find /var/mobile/Containers/Data/Application/ -name \"*.sqlite\" 2>/dev/null",
-                        "",
-                        "# Plist files",
-                        "find /var/mobile/Containers/Data/Application/ -name \"*.plist\" 2>/dev/null",
-                        "",
-                        "# Cache and logs",
-                        "ls -la /var/mobile/Containers/Data/Application/{HASH}/Library/Caches/",
-                        "ls -la /var/mobile/Containers/Data/Application/{HASH}/tmp/"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Dynamic Analysis",
-            "subheadings": [
-                {
-                    "heading": "Runtime Inspection",
-                    "type": "code_block",
-                    "content": [
-                        "# Dump decrypted IPA from device",
-                        "# https://github.com/AloneMonkey/frida-ios-dump",
-                        "python3 dump.py \"App Name\"",
-                        "",
-                        "# Manual IPA extraction (without launching app)",
-                        "ls -lahR /var/containers/Bundle/Application/ | grep -B 2 -i 'appname'",
-                        "scp -r root@127.0.0.1:/var/containers/Bundle/Application/{ID} LOCAL_PATH",
-                        "mkdir Payload",
-                        "cp -r appname.app/ Payload/",
-                        "zip -r app.ipa Payload/",
-                        "",
-                        "# Monitor logs",
-                        "idevicesyslog | grep \"AppName\"",
-                        "",
-                        "# Snapshot inspection (screenshot in memory)",
-                        "ls /var/mobile/Containers/Data/Application/{HASH}/Library/SplashBoard/Snapshots/"
-                    ]
-                },
-                {
-                    "heading": "Keychain Extraction",
-                    "type": "code_block",
-                    "content": [
-                        "# With Objection",
-                        "objection explore",
-                        "ios keychain dump",
-                        "ios keychain dump --json output.json",
-                        "",
-                        "# With keychain-dumper (jailbroken)",
-                        "./keychain-dumper",
-                        "",
-                        "# Check keychain accessibility levels",
-                        "# kSecAttrAccessibleWhenUnlocked - Good",
-                        "# kSecAttrAccessibleAfterFirstUnlock - Okay",
-                        "# kSecAttrAccessibleAlways - Bad!"
-                    ]
-                },
-                {
-                    "heading": "Jailbreak Detection Bypass",
-                    "type": "code_block",
-                    "content": [
-                        "# Using Objection",
-                        "ios jailbreak disable",
-                        "",
-                        "# Using Liberty Lite (Cydia)",
-                        "# Enable for specific app",
-                        "",
-                        "# Using A-Bypass",
-                        "# https://repo.co.kr/",
-                        "",
-                        "# Frida script for jailbreak bypass",
-                        "# https://codeshare.frida.re/@liangxiaoyi1024/ios-jailbreak-detection-bypass/"
+                        "# Extract NSUserDefaults configuration",
+                        "ios nsuserdefaults get"
                     ]
                 }
             ]
@@ -364,205 +108,49 @@
             "heading": "Common Vulnerabilities",
             "subheadings": [
                 {
-                    "heading": "Insecure Data Storage",
-                    "type": "code_block",
+                    "heading": "Data Storage & Hardcoded Secrets",
+                    "type": "list",
                     "content": [
-                        "# Check NSUserDefaults",
-                        "ios nsuserdefaults get",
-                        "",
-                        "# Check for cleartext in plist",
-                        "find . -name \"*.plist\" -exec grep -l \"password\\|token\\|key\" {} \\;",
-                        "",
-                        "# Check SQLite databases",
-                        "sqlite3 database.db \".tables\"",
-                        "sqlite3 database.db \"SELECT * FROM users;\"",
-                        "",
-                        "# Check for hardcoded credentials",
-                        "strings BINARY | grep -i \"api\\|key\\|secret\\|password\\|token\""
+                        "**Insecure Data Storage**: Sensitive info in `NSUserDefaults` or local `SQLite` databases.",
+                        "**Hardcoded Credentials**: API keys, secrets, or tokens found via `strings` on binary.",
+                        "**URL Scheme Injection**: Testing `myapp://` deep links for lack of input validation."
                     ]
                 },
                 {
-                    "heading": "URL Scheme Vulnerabilities",
-                    "type": "code_block",
+                    "heading": "iOS 17-18 Security Features",
+                    "type": "list",
                     "content": [
-                        "# List URL schemes",
-                        "cat Info.plist | grep -A 5 CFBundleURLSchemes",
-                        "",
-                        "# Test URL schemes",
-                        "# On device: Safari > myapp://test",
-                        "# Or programmatically",
-                        "",
-                        "# Check for deep link injection",
-                        "frida -U \"AppName\" -e 'ObjC.classes.UIApplication.sharedApplication().openURL_(ObjC.classes.NSURL.URLWithString_(\"myapp://inject\"))'"
-                    ]
-                },
-                {
-                    "heading": "Clipboard Vulnerabilities",
-                    "type": "code_block",
-                    "content": [
-                        "# Monitor clipboard with Frida",
-                        "frida -U \"AppName\" -e 'ObjC.classes.UIPasteboard.generalPasteboard().string()'",
-                        "",
-                        "# Check if sensitive data copied to clipboard",
-                        "# Look for password fields with copy enabled"
-                    ]
-                },
-                {
-                    "heading": "Binary Protections Check",
-                    "type": "code_block",
-                    "content": [
-                        "# Use MobSF or manual checks",
-                        "# PIE: otool -hv binary | grep PIE",
-                        "# ARC: otool -Iv binary | grep objc_release  ",
-                        "# Stack Canaries: otool -Iv binary | grep stack_chk",
-                        "# Encrypted: otool -l binary | grep cryptid",
-                        "",
-                        "# Missing protections = easier exploitation"
+                        "**Lockdown Mode**: Enhanced JIT and attachment blocking for high-risk targets.",
+                        "**Passkey Sharing**: Improved sync and AirDrop support for biometric auth.",
+                        "**Contact Key Verification**: MITM prevention for iMessage/FaceTime."
                     ]
                 }
             ]
         },
         {
-            "heading": "Tools Summary",
-            "type": "table",
-            "headers": [
-                "Tool",
-                "Purpose",
-                "Jailbreak Required"
-            ],
-            "rows": [
-                {
-                    "Tool": "Objection",
-                    "Purpose": "Runtime manipulation, patching",
-                    "Jailbreak Required": "No"
-                },
-                {
-                    "Tool": "Frida",
-                    "Purpose": "Dynamic instrumentation",
-                    "Jailbreak Required": "No (with patched IPA)"
-                },
-                {
-                    "Tool": "MobSF",
-                    "Purpose": "Static analysis",
-                    "Jailbreak Required": "No"
-                },
-                {
-                    "Tool": "ipatool",
-                    "Purpose": "IPA download",
-                    "Jailbreak Required": "No"
-                },
-                {
-                    "Tool": "Keychain-dumper",
-                    "Purpose": "Keychain extraction",
-                    "Jailbreak Required": "Yes"
-                },
-                {
-                    "Tool": "SSL Kill Switch",
-                    "Purpose": "SSL pinning bypass",
-                    "Jailbreak Required": "Yes"
-                },
-                {
-                    "Tool": "Cycript",
-                    "Purpose": "Runtime exploration",
-                    "Jailbreak Required": "Yes"
-                },
-                {
-                    "Tool": "class-dump",
-                    "Purpose": "Header extraction",
-                    "Jailbreak Required": "No"
-                }
-            ]
-        },
-        {
-            "heading": "iOS 17-18 Security Changes",
+            "heading": "Tools & Resource Summary",
             "subheadings": [
                 {
-                    "heading": "New Security Features",
-                    "type": "code_block",
-                    "content": [
-                        "# iOS 17+ Security Enhancements",
-                        "# ================================",
-                        "",
-                        "# 1. Lockdown Mode Enhancements",
-                        "# - Blocks most message attachment types",
-                        "# - Disables JIT compilation in Safari",
-                        "# - Blocks incoming FaceTime from unknown contacts",
-                        "# - Blocks wired connections when locked",
-                        "# Cannot bypass without physical access and passcode",
-                        "",
-                        "# 2. App Privacy Enhancements",
-                        "# - Sensitive Content Analysis on-device",
-                        "# - Enhanced Link Tracking Protection",
-                        "# - Communication Safety expansions",
-                        "",
-                        "# 3. Passkey Improvements",
-                        "# - Automatic passkey upgrades from passwords",
-                        "# - Passkey sharing via AirDrop",
-                        "# - Cross-platform passkey sync"
-                    ]
-                },
-                {
-                    "heading": "Testing Considerations",
-                    "type": "code_block",
-                    "content": [
-                        "# iOS 17+ Proxy Setup",
-                        "# Safari requires additional trust for custom CA certificates",
-                        "# Settings → General → About → Certificate Trust Settings → Enable full trust",
-                        "",
-                        "# Lockdown Mode Detection",
-                        "# Check if lockdown mode is enabled",
-                        "frida -U \"AppName\" -e '",
-                        "var mode = ObjC.classes.BMSystemContainer.currentSystemContainer().lockdownModeEnabled();",
-                        "console.log(\"Lockdown Mode: \" + mode);",
-                        "'",
-                        "",
-                        "# iOS 18 Specific",
-                        "# Enhanced app sandboxing",
-                        "# Per-app network proxy settings possible",
-                        "# Improved keychain protection",
-                        "",
-                        "# SSL Pinning in iOS 17+",
-                        "# App Transport Security more strictly enforced",
-                        "# Check ATS exceptions in Info.plist",
-                        "plutil -p Info.plist | grep -A 20 NSAppTransportSecurity",
-                        "",
-                        "# Many apps now use Certificate Transparency",
-                        "# Consider CT log bypass techniques"
-                    ]
-                },
-                {
-                    "heading": "iOS 18 New Protections",
-                    "type": "code_block",
-                    "content": [
-                        "# Contact Key Verification",
-                        "# Prevents MITM on iMessage",
-                        "# Cannot intercept verified conversations",
-                        "",
-                        "# Secure Boot Improvements",
-                        "# Stronger chain of trust verification",
-                        "# SEP (Secure Enclave Processor) updates",
-                        "",
-                        "# App Intents & Shortcuts Privacy",
-                        "# More granular permissions for automation",
-                        "",
-                        "# Testing on iOS 18",
-                        "# 1. Check for new entitlements in binary",
-                        "codesign -d --entitlements :- Payload/App.app/App 2>&1",
-                        "",
-                        "# 2. Review privacy manifest requirements",
-                        "# Apps must declare data usage in PrivacyInfo.xcprivacy",
-                        "find . -name \"PrivacyInfo.xcprivacy\" -exec cat {} \\;",
-                        "",
-                        "# 3. Required Reason APIs",
-                        "# Apps must declare why they use certain APIs",
-                        "# Fingerprinting APIs now require justification"
-                    ]
-                },
-                {
-                    "heading": "Bypassing New Protections",
+                    "heading": "Comparison Table",
                     "type": "paragraph",
-                    "content": "``bash\n# iOS 17+ Jailbreak Status\n# Check current jailbreak availability\n# Dopamine, Palera1n for A11 and earlier\n# No public jailbreak for A12+ on iOS 17+\n# Non-Jailbreak Testing Focus\n# Objection + patched IPA remains primary method\n# Focus on static analysis when dynamic not possible\n# Frida Gadget Injection\n# Works without jailbreak\nobjection patchipa --source app.ipa --codesign-signature \"YOUR_SIGNATURE\"\n# Runtime Manipulation\n# iOS 17+ has improved integrity checks\n# May need to bypass more integrity validations\nfrida -U \"AppName\" -e '\nInterceptor.attach(ObjC.classes.PKTrustSettings[\"- evaluateTrust:\"].implementation, {\nonLeave: function(retval) {\nretval.replace(0x1);  // Trust all\n}\n});\n'\n``\n)"
+                    "content": "| Tool | Purpose | Jailbreak Required |\n|---|---|---|\n| Objection | Runtime manipulation, patching | No |\n| Frida | Dynamic instrumentation | Optional |\n| MobSF | Static analysis | No |\n| SSL Kill Switch | SSL pinning bypass | Yes |\n| Keychain-dumper| Keychain extraction | Yes |"
                 }
+            ]
+        },
+        {
+            "heading": "Architecture Visualization",
+            "type": "image",
+            "src": "/gitbook/assets/image (34).png",
+            "caption": "High-level visualization of the iOS Security Sandbox and Memory Protections"
+        },
+        {
+            "heading": "References",
+            "type": "list",
+            "content": [
+                "[OWASP MSTG - iOS Guide](https://github.com/OWASP/owasp-mstg)",
+                "[Modern iOS Pentesting (No Jailbreak)](https://dvuln.com/blog/modern-ios-pentesting-no-jailbreak-needed)",
+                "[Jailbreak Compatibility Wiki](https://www.theiphonewiki.com/wiki/Jailbreak)",
+                "[MobSF Binary Analysis](https://inesmartins.github.io/mobsf-ipa-binary-analysis-step-by-step/index.html)"
             ]
         }
     ],
@@ -570,34 +158,18 @@
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-23T01:05:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/mobile/ios.md",
         "previous_page": {
-            "title": "Android",
+            "title": "Android Security",
             "url": "/mobile/android"
         },
         "next_page": {
-            "title": "Burp Suite",
-            "url": "/others/burp"
+            "title": "Mobile API Security",
+            "url": "/enumeration/web/api-security"
         }
     }
 }

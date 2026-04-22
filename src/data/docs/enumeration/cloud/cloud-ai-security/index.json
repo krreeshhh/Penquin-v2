@@ -456,10 +456,10 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "AWS - AWS security testing",
-                "Azure - Azure security testing",
-                "GCP - GCP security testing",
-                "LLM/AI Testing - Prompt injection"
+                "[AWS - AWS security testing](/enumeration/cloud/aws)",
+                "[Azure - Azure security testing](/enumeration/cloud/azure)",
+                "[GCP - GCP security testing](/enumeration/cloud/gcp)",
+                "[LLM/AI Testing - Prompt injection](/others/llm-ai-ml-prompt-testing)"
             ]
         }
     ],

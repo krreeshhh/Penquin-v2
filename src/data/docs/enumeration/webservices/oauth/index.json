@@ -127,18 +127,18 @@
         },
         {
             "heading": "OAuth scheme",
-            "type": "paragraph",
-            "content": ")"
+            "type": "image",
+            "url": "/gitbook/assets/image (5).png"
         },
         {
             "heading": "Code grant flow",
-            "type": "paragraph",
-            "content": ")"
+            "type": "image",
+            "url": "/gitbook/assets/image (4).png"
         },
         {
             "heading": "OAuth Attack mindmap",
             "type": "image",
-            "url": "../../.gitbook/assets/photo_2020-06-08_07-24-17.jpg"
+            "url": "/gitbook/assets/photo_2020-06-08_07-24-17.jpg"
         }
     ],
     "images": [

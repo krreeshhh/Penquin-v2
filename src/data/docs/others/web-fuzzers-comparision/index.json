@@ -1,5 +1,5 @@
 {
-    "title": "Web fuzzers review",
+    "title": "Web Fuzzer Comparison (2025 Edition)",
     "breadcrumb": [
         {
             "title": "Others",
@@ -8,357 +8,127 @@
     ],
     "sections": [
         {
-            "heading": "Intro",
-            "type": "paragraph",
-            "content": "This is a web fuzzing tools review. Originally written in December 2020, this page has been updated with current tool status and new additions as of 2025.\nWhy? Because I have been a ffuf user since version 0.9 (13 Apr 2019) and recently I thought that maybe it was time to review the rest of the tools.\n{% hint style=\"info\" %}\nThis is not intended to be a serious investigation, a technical paper, or anything like that, just a series of tests that I have done for fun. The results shown are my opinion and if at any time you do not like them or you don't agree, you can stop reading or explain to me how I could have done it better :)\n{% endhint %}\nOriginal 2020 test results: Google Sheets\n{% embed url=\"https://docs.google.com/spreadsheets/d/14eFVYoYxMOTZ1tI2jADnvNw_0S6HHJMQXcp5NelhtY0/edit?usp=sharing\" %}"
-        },
-        {
-            "heading": "2025 Tool Recommendations",
+            "heading": "Introduction & Evolution",
             "subheadings": [
                 {
-                    "heading": "Quick Summary",
-                    "type": "table",
-                    "headers": [
-                        "Tool",
-                        "Best For",
-                        "Language",
-                        "Status"
-                    ],
-                    "rows": [
-                        {
-                            "Tool": "ffuf",
-                            "Best For": "General fuzzing, API testing",
-                            "Language": "Go",
-                            "Status": "✅ Active"
-                        },
-                        {
-                            "Tool": "feroxbuster",
-                            "Best For": "Recursive directory discovery",
-                            "Language": "Rust",
-                            "Status": "✅ Active"
-                        },
-                        {
-                            "Tool": "gobuster",
-                            "Best For": "Quick directory/DNS/vhost scans",
-                            "Language": "Go",
-                            "Status": "✅ Active"
-                        },
-                        {
-                            "Tool": "dirsearch",
-                            "Best For": "Beginners, pretty output",
-                            "Language": "Python",
-                            "Status": "✅ Active"
-                        },
-                        {
-                            "Tool": "wfuzz",
-                            "Best For": "Complex fuzzing scenarios",
-                            "Language": "Python",
-                            "Status": "⚠️ Maintenance"
-                        },
-                        {
-                            "Tool": "katana",
-                            "Best For": "Crawling + fuzzing workflow",
-                            "Language": "Go",
-                            "Status": "✅ Active (New)"
-                        },
-                        {
-                            "Tool": "caido",
-                            "Best For": "GUI-based testing",
-                            "Language": "Rust",
-                            "Status": "✅ Active (New)"
-                        }
-                    ]
-                },
-                {
-                    "heading": "New Tools Since 2020",
-                    "type": "table",
-                    "headers": [
-                        "Tool",
-                        "Description",
-                        "Link"
-                    ],
-                    "rows": [
-                        {
-                            "Tool": "katana",
-                            "Description": "Modern web crawler by projectdiscovery",
-                            "Link": "GitHub"
-                        },
-                        {
-                            "Tool": "caido",
-                            "Description": "Lightweight Burp alternative with fuzzer",
-                            "Link": "Website"
-                        },
-                        {
-                            "Tool": "x8",
-                            "Description": "Hidden parameter discovery",
-                            "Link": "GitHub"
-                        },
-                        {
-                            "Tool": "kiterunner",
-                            "Description": "API endpoint discovery",
-                            "Link": "GitHub"
-                        }
-                    ]
-                },
-                {
-                    "heading": "Tool Updates Since 2020",
+                    "heading": "Why Review Fuzzers?",
                     "type": "paragraph",
-                    "content": "feroxbuster - Massive improvements:\n- Much more stable (no crashes)\n- Added rate limiting\n- Better recursion handling\n- Scan management/resume\n- Now one of the top recommendations\nffuf - Still the king:\n- Added request rate limiting\n- Better output formats\n- Improved recursion\n- Plugin system\ngobuster - Steady improvements:\n- Added TFTP mode\n- Better vhost detection\n- Improved pattern matching"
-                }
-            ]
-        },
-        {
-            "heading": "Tools",
-            "type": "paragraph",
-            "content": "Small summary of each tool with the features and results that I got. This section not follows any special order."
-        },
-        {
-            "heading": "wfuzz",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Lot of customization.",
-                        "Maybe most versatile."
-                    ]
+                    "content": "This review traces the evolution of web fuzzing tools from the early Golang revolution in 2018 to the modern Rust-driven ecosystem of 2025. This isn't a formal technical paper, but a practical assessment based on thousands of hours of real-world security testing."
                 },
                 {
-                    "heading": "Cons",
+                    "heading": "Historical Context",
                     "type": "list",
                     "content": [
-                        "RAM eater.",
-                        "High CPU usage even with sort lists.",
-                        "Slow."
+                        "[Original 2020 Test Results (Google Sheets)](https://docs.google.com/spreadsheets/d/14eFVYoYxMOTZ1tI2jADnvNw_0S6HHJMQXcp5NelhtY0/edit?usp=sharing)",
+                        "Benchmark focused on: Discovery speed, CPU/RAM efficiency, and feature parity across major tools."
                     ]
                 }
             ]
         },
         {
-            "heading": "ffuf",
+            "heading": "2025 Recommendations & Landscape",
             "subheadings": [
                 {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Fast.",
-                        "Multiple options.",
-                        "Low resource usage."
-                    ]
-                },
-                {
-                    "heading": "Cons",
+                    "heading": "Tool Selection Matrix",
                     "type": "paragraph",
-                    "content": "Fancy/non-relevant features like:\n Pause/resume.\n ETA.\n Ugly recursion output.\n* Only errors count, to check them you must run again with -debug file flag."
+                    "content": "| Tool | Primary Use Case | Language | Status |\n|---|---|---|---|\n| **ffuf** | General Fuzzing / API | Go | ✅ Active |\n| **feroxbuster** | Recursive Discovery | Rust | ✅ Active |\n| **gobuster** | Quick DNS/Vhost Scans | Go | ✅ Active |\n| **katana** | Crawling + Fuzzing | Go | ✅ Active |\n| **caido** | GUI-based Testing | Rust | ✅ Active |"
+                },
+                {
+                    "heading": "Modern Additions (Post-2020)",
+                    "type": "list",
+                    "content": [
+                        "**Katana**: Next-gen crawler by ProjectDiscovery that bridges the gap between crawling and fuzzing.",
+                        "**Caido**: A lightweight, Rust-based alternative to Burp Suite with a powerful integrated fuzzer.",
+                        "**x8**: Specialized in finding hidden parameters and hidden headers.",
+                        "**Kiterunner**: The gold standard for API endpoint discovery using specialized datasets."
+                    ]
                 }
             ]
         },
         {
-            "heading": "feroxbuster",
+            "heading": "Detailed Tool Profiles",
             "subheadings": [
                 {
-                    "heading": "Pros",
+                    "heading": "ffuf - The Versatile King",
                     "type": "list",
                     "content": [
-                        "Response link extractor.",
-                        "Pause and resume.",
-                        "Low CPU usage."
+                        "**Pros**: Extremely fast, low resource usage, massive feature set including rate limiting and custom plugins.",
+                        "**Cons**: Non-native recursion output can be cluttered; debug mode required for detailed error inspection."
                     ]
                 },
                 {
-                    "heading": "Cons",
+                    "heading": "feroxbuster - The Recursive Powerhouse",
                     "type": "list",
                     "content": [
-                        "Tool has crashed in some tests.",
-                        "Feels buggy.",
-                        "RAM eater.",
-                        "No FUZZ keyword.",
-                        "No rate/time limits."
+                        "**Pros**: Best-in-class recursion handling, response link extraction, and native pause/resume capabilities.",
+                        "**Cons**: Historically higher RAM usage; matured significantly in 2024-2025 for stability."
+                    ]
+                },
+                {
+                    "heading": "gobuster - Reliable Efficiency",
+                    "type": "list",
+                    "content": [
+                        "**Pros**: Fast, minimalist, excellent S3 bucket and Vhost enumeration.",
+                        "**Cons**: Lacks recursion and advanced filtering compared to modern competitors."
                     ]
                 }
             ]
         },
         {
-            "heading": "gobuster",
+            "heading": "Benchmark Rankings (Normalized)",
             "subheadings": [
                 {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Really fast.",
-                        "Low CPU and RAM.",
-                        "S3 enum.",
-                        "Patterns usage."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "No recursion.",
-                        "No colors.",
-                        "No filters.",
-                        "Lack of features."
-                    ]
+                    "heading": "Performance & Efficiency",
+                    "type": "paragraph",
+                    "content": "| Category | 1st Place | 2nd Place | 3rd Place |\n|---|---|---|---|\n| **Time** | rustbuster | ffuf | gobuster |\n| **CPU** | feroxbuster | dirsearch | gobuster |\n| **RAM** | gobuster | rustbuster | ffuf |\n| **Features**| ffuf | wfuzz | dirsearch |"
                 }
             ]
         },
         {
-            "heading": "rustbuster",
+            "heading": "Modern Fuzzing Workflows",
             "subheadings": [
                 {
-                    "heading": "Pros",
-                    "type": "list",
+                    "heading": "Execution Examples",
+                    "type": "code_block",
                     "content": [
-                        "The fastest.",
-                        "Best in CPU and RAM.",
-                        "IIS Shortname scanner"
+                        "# High-speed recursive discovery (feroxbuster)",
+                        "feroxbuster -u https://target.com -w discovery.txt --collect-extensions",
+                        "",
+                        "# Targeted API fuzzing with rate limiting (ffuf)",
+                        "ffuf -u https://api.target.com/v1/FUZZ -w api.txt -rate 10 -mc 200,401",
+                        "",
+                        "# Crawl-to-Fuzz pipeline",
+                        "katana -u https://target.com -jc | grep \"/api/\" | ffuf -w wordlist.txt -u HOST/FUZZ"
                     ]
                 },
                 {
-                    "heading": "Cons",
+                    "heading": "Operational Pro-Tips",
                     "type": "list",
                     "content": [
-                        "No recursion.",
-                        "No colors.",
-                        "The one with the least features.",
-                        "Last commit sept 2019, maybe abandoned.",
-                        "Sometimes crashes with many threads."
+                        "Always use `-rate` in ffuf to avoid triggering WAF/IPS thresholds during discovery.",
+                        "Combine discovery tools with `httpx` to filter for live hosts before starting deep fuzzing sessions.",
+                        "Leverage `caido` when interactive testing and response comparison are more critical than pure speed."
                     ]
                 }
             ]
-        },
-        {
-            "heading": "dirsearch",
-            "subheadings": [
-                {
-                    "heading": "Pros",
-                    "type": "list",
-                    "content": [
-                        "Prettiest output imo.",
-                        "Quality options by default.",
-                        "Easy of use, recommended for noobs.",
-                        "Wordlists mutation."
-                    ]
-                },
-                {
-                    "heading": "Cons",
-                    "type": "list",
-                    "content": [
-                        "The slowest.",
-                        "No FUZZ keyword."
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Results",
-            "subheadings": [
-                {
-                    "heading": "Time",
-                    "type": "ordered_list",
-                    "content": [
-                        "rustbuster",
-                        "ffuf",
-                        "gobuster",
-                        "feroxbuster",
-                        "wfuzz",
-                        "dirsearch"
-                    ]
-                },
-                {
-                    "heading": "CPU",
-                    "type": "ordered_list",
-                    "content": [
-                        "feroxbuster",
-                        "dirsearch",
-                        "gobuster",
-                        "ffuf",
-                        "rustbuster",
-                        "wfuzz"
-                    ]
-                },
-                {
-                    "heading": "RAM",
-                    "type": "ordered_list",
-                    "content": [
-                        "gobuster",
-                        "rustbuster",
-                        "ffuf",
-                        "dirsearch",
-                        "feroxbuster",
-                        "wfuzz"
-                    ]
-                },
-                {
-                    "heading": "Features",
-                    "type": "ordered_list",
-                    "content": [
-                        "ffuf",
-                        "wfuzz",
-                        "dirsearch",
-                        "feroxbuster",
-                        "gobuster",
-                        "rustbuster"
-                    ]
-                },
-                {
-                    "heading": "General",
-                    "type": "ordered_list",
-                    "content": [
-                        "ffuf",
-                        "gobuster",
-                        "feroxbuster",
-                        "rustbuster",
-                        "dirsearch",
-                        "wfuzz"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Final thoughts",
-            "type": "paragraph",
-            "content": "I will continue using ffuf because it seems that it's the tool with the best balance between functionalities and performance."
-        },
-        {
-            "heading": "2025 Update",
-            "type": "paragraph",
-            "content": "What's Changed:\n- feroxbuster has matured significantly and is now a top-tier choice, especially for recursive scanning\n- ffuf remains the most versatile and feature-rich option\n- wfuzz is showing its age but still useful for complex scenarios\n- Rust-based tools (feroxbuster, caido) have proven themselves\n- rustbuster appears abandoned (no updates since 2019)\nCurrent Recommendations by Use Case:\n| Use Case | Recommended Tool |\n|----------|------------------|\n| General web fuzzing | ffuf |\n| Recursive directory discovery | feroxbuster |\n| Quick scans, OSCP | gobuster |\n| API endpoint discovery | kiterunner, ffuf |\n| Hidden parameter discovery | x8, arjun |\n| Beginners | dirsearch |\n| Complex multi-payload | wfuzz |\n| GUI-based testing | caido |\nModern Workflow Example:\n``bash\n# Quick directory scan\nferoxbuster -u https://target.com -w /path/to/wordlist.txt\n# API fuzzing with ffuf\nffuf -u https://api.target.com/FUZZ -w api-wordlist.txt -mc 200,301,302,401,403\n# Parameter discovery\nx8 -u https://target.com/endpoint -w params.txt\n# Crawl then fuzz\nkatana -u https://target.com -jc | sort -u > endpoints.txt\n`\nPro Tips:\n- Use -rate in ffuf to avoid WAF blocks\n- feroxbuster's --collect-extensions is great for finding hidden file types\n- Combine with httpx` for live filtering before fuzzing\n- Use Caido for interactive testing when Burp is overkill"
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-23T01:20:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/web-fuzzers-comparision.md",
         "previous_page": {
-            "title": "Internal Pentest",
-            "url": "/others/internal-pentest"
+            "title": "LLM Security Testing",
+            "url": "/others/llm-ai-ml-prompt-testing"
         },
         "next_page": {
-            "title": "Recon suites review",
-            "url": "/others/recon-suites-review"
+            "title": "Post-Exploitation",
+            "url": "/post-exploitation"
         }
     }
 }

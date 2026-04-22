@@ -138,9 +138,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "Subdomain Enumeration",
-                "Crawl/Fuzz",
-                "SSRF - VHosts can be internal SSRF targets"
+                "[Subdomain Enumeration](/enumeration/recon/subdomain-enum)",
+                "[Crawl/Fuzz](/enumeration/web/crawl-fuzz)",
+                "[SSRF - VHosts can be internal SSRF targets](/enumeration/web/ssrf)"
             ]
         }
     ],

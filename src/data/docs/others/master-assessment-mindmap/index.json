@@ -1,5 +1,5 @@
 {
-    "title": "Master assessment mindmaps",
+    "title": "Master Assessment Mindmaps",
     "breadcrumb": [
         {
             "title": "Others",
@@ -8,119 +8,68 @@
     ],
     "sections": [
         {
-            "heading": "Web Application Pentesting Mindmap",
-            "type": "paragraph",
-            "content": "Key areas to assess during web application security testing:"
-        },
-        {
-            "heading": "Reconnaissance",
-            "type": "list",
-            "content": [
-                "Subdomain enumeration",
-                "Technology fingerprinting",
-                "Hidden content discovery",
-                "API endpoint mapping"
-            ]
-        },
-        {
-            "heading": "Authentication Testing",
-            "type": "list",
-            "content": [
-                "Brute force protection",
-                "Password policies",
-                "Session management",
-                "Multi-factor authentication bypass",
-                "Account lockout mechanisms"
-            ]
-        },
-        {
-            "heading": "Authorization Testing",
-            "type": "list",
-            "content": [
-                "Horizontal privilege escalation (IDOR)",
-                "Vertical privilege escalation",
-                "Function-level access control",
-                "Insecure direct object references"
-            ]
-        },
-        {
-            "heading": "Input Validation",
-            "type": "list",
-            "content": [
-                "SQL Injection (all types)",
-                "XSS (Reflected, Stored, DOM)",
-                "Command Injection",
-                "SSRF / CSRF",
-                "XXE Injection",
-                "Template Injection (SSTI)"
-            ]
-        },
-        {
-            "heading": "Business Logic",
-            "type": "list",
-            "content": [
-                "Workflow bypass",
-                "Price manipulation",
-                "Quantity tampering",
-                "Feature abuse"
-            ]
-        },
-        {
-            "heading": "Infrastructure",
-            "type": "paragraph",
-            "content": "- Server misconfigurations\n- Default credentials\n- Exposed admin panels\n- Information disclosure\n)"
-        },
-        {
-            "heading": "Bug Bounty Methodology",
-            "type": "image",
-            "url": "https://blog.it-securityguard.com/pbbt.png"
-        },
-        {
-            "heading": "Comprehensive Pentest Methodology",
+            "heading": "Web Application Security Framework",
             "subheadings": [
                 {
-                    "heading": "Phase 1: Information Gathering",
-                    "type": "ordered_list",
+                    "heading": "Assessment Core Areas",
+                    "type": "list",
                     "content": [
-                        "Passive reconnaissance (OSINT)",
-                        "Active scanning and enumeration",
-                        "Vulnerability identification"
+                        "**Reconnaissance**: Subdomain enumeration, technology fingerprinting, and API mapping.",
+                        "**Authentication**: Brute force resilience, session management, and MFA bypass testing.",
+                        "**Authorization**: IDOR, vertical privilege escalation, and function-level access control.",
+                        "**Input Validation**: SQLi, XSS, Command Injection, SSRF, XXE, and SSTI vulnerabilities.",
+                        "**Business Logic**: Workflow bypass, price manipulation, and feature abuse testing.",
+                        "**Infrastructure**: Configuration audit, exposed admin panels, and information disclosure."
                     ]
                 },
                 {
-                    "heading": "Phase 2: Exploitation",
-                    "type": "ordered_list",
-                    "content": [
-                        "Vulnerability validation",
-                        "Exploit development/selection",
-                        "Initial access"
-                    ]
-                },
-                {
-                    "heading": "Phase 3: Post-Exploitation",
-                    "type": "ordered_list",
-                    "content": [
-                        "Privilege escalation",
-                        "Persistence",
-                        "Lateral movement",
-                        "Data exfiltration"
-                    ]
-                },
-                {
-                    "heading": "Phase 4: Reporting",
-                    "type": "paragraph",
-                    "content": "1. Finding documentation\n2. Risk assessment\n3. Remediation recommendations\n../.gitbook/assets/Methodology\\[1].png"
+                    "heading": "Web Security Mindmap",
+                    "type": "image",
+                    "src": "/gitbook/assets/image (24).png",
+                    "caption": "Comprehensive mindmap for professional Web Application Security Testing"
                 }
             ]
         },
         {
-            "heading": "Additional Resources",
-            "type": "list",
-            "content": [
-                "OWASP Testing Guide",
-                "PortSwigger Web Security Academy",
-                "HackTricks",
-                "PayloadsAllTheThings"
+            "heading": "Methodologies & Workflows",
+            "subheadings": [
+                {
+                    "heading": "Bug Bounty Hunting Flow",
+                    "type": "image",
+                    "src": "https://blog.it-securityguard.com/pbbt.png",
+                    "caption": "Standardized Bug Bounty methodology for rapid asset discovery and exploitation"
+                },
+                {
+                    "heading": "Phase-Based Pentest Methodology",
+                    "type": "list",
+                    "content": [
+                        "**Phase 1: Information Gathering**: OSINT, active scanning, and vulnerability identification.",
+                        "**Phase 2: Exploitation**: Validation of findings, exploit selection, and initial access.",
+                        "**Phase 3: Post-Exploitation**: Privilege escalation, lateral movement, and data exfiltration.",
+                        "**Phase 4: Reporting**: Risk assessment, documentation of findings, and remediation advice."
+                    ]
+                },
+                {
+                    "heading": "Execution Framework",
+                    "type": "image",
+                    "src": "/gitbook/assets/Methodology[1].png",
+                    "caption": "Lifecycle of a professional penetration testing engagement"
+                }
+            ]
+        },
+        {
+            "heading": "External Learning & Reference",
+            "subheadings": [
+                {
+                    "heading": "Standardized Guides",
+                    "type": "list",
+                    "content": [
+                        "[OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)",
+                        "[PortSwigger Web Security Academy](https://portswigger.net/web-security)",
+                        "[HackTricks - InfoSec Bible](https://book.hacktricks.xyz/)",
+                        "[PayloadsAllTheThings - Exploitation Wiki](https://github.com/swisskyrepo/PayloadsAllTheThings)"
+                    ]
+                }
             ]
         }
     ],
@@ -128,34 +77,18 @@
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-23T01:35:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/master-assessment-mindmap.md",
         "previous_page": {
-            "title": "Random",
-            "url": "/others/dictionaries"
+            "title": "Subdomain Tools Review",
+            "url": "/others/subdomain-tools-review"
         },
         "next_page": {
-            "title": "BugBounty",
-            "url": "/others/bugbounty"
+            "title": "Post-Exploitation",
+            "url": "/post-exploitation"
         }
     }
 }

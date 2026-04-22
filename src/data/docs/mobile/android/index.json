@@ -706,9 +706,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "iOS Testing - iOS mobile security",
-                "API Security - API testing",
-                "WebAuthn - Passkey testing"
+                "[iOS Testing - iOS mobile security](/mobile/ios)",
+                "[API Security - API testing](/enumeration/web/api-security)",
+                "[WebAuthn - Passkey testing](/others/webauthn-passkeys)"
             ]
         }
     ],

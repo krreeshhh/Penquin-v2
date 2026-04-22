@@ -244,9 +244,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "OAuth - OIDC is built on OAuth 2.0",
-                "JWT - ID tokens are JWTs",
-                "SSRF - URI parameters can be SSRF vectors"
+                "[OAuth - OIDC is built on OAuth 2.0](/enumeration/webservices/oauth)",
+                "[JWT - ID tokens are JWTs](/enumeration/webservices/jwt)",
+                "[SSRF - URI parameters can be SSRF vectors](/enumeration/web/ssrf)"
             ]
         }
     ],

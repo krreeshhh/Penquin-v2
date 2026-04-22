@@ -1,5 +1,5 @@
 {
-    "title": "Pentest Reporting",
+    "title": "Professional Pentest Reporting",
     "breadcrumb": [
         {
             "title": "Others",
@@ -8,358 +8,111 @@
     ],
     "sections": [
         {
-            "heading": "Report Structure",
+            "heading": "Strategic Report Structure",
             "subheadings": [
                 {
-                    "heading": "Executive Summary",
-                    "type": "code_block",
-                    "content": [
-                        "Target Audience: C-level executives, management",
-                        "Length: 1-2 pages",
-                        "",
-                        "Include:",
-                        "- Engagement overview (scope, dates, methodology)",
-                        "- Key findings summary (critical/high count)",
-                        "- Overall risk assessment (Critical/High/Medium/Low)",
-                        "- Top 3-5 recommendations",
-                        "- Business impact statement",
-                        "",
-                        "Avoid:",
-                        "- Technical jargon",
-                        "- Detailed exploitation steps",
-                        "- Overwhelming statistics"
-                    ]
-                },
-                {
-                    "heading": "Technical Findings",
-                    "type": "code_block",
-                    "content": [
-                        "For each finding:",
-                        "",
-                        "1. Title",
-                        "   - Clear, descriptive (e.g., \"SQL Injection in Login Form\")",
-                        "",
-                        "2. Severity Rating",
-                        "   - Critical / High / Medium / Low / Informational",
-                        "   - Include CVSS score if applicable",
-                        "",
-                        "3. Affected Asset(s)",
-                        "   - URL, IP, hostname, application name",
-                        "",
-                        "4. Description",
-                        "   - What the vulnerability is",
-                        "   - Why it matters",
-                        "   - Technical explanation",
-                        "",
-                        "5. Evidence/Proof of Concept",
-                        "   - Screenshots",
-                        "   - Request/response captures",
-                        "   - Step-by-step reproduction",
-                        "",
-                        "6. Impact",
-                        "   - What an attacker could achieve",
-                        "   - Business implications",
-                        "",
-                        "7. Remediation",
-                        "   - Specific fix recommendations",
-                        "   - Code examples if applicable",
-                        "   - Reference documentation",
-                        "",
-                        "8. References",
-                        "   - CVE numbers",
-                        "   - OWASP links",
-                        "   - Vendor advisories"
-                    ]
-                },
-                {
-                    "heading": "Finding Template",
-                    "type": "paragraph",
-                    "content": "```markdown"
-                }
-            ]
-        },
-        {
-            "heading": "[SEVERITY] Finding Title",
-            "subheadings": [
-                {
-                    "heading": "Overview",
-                    "type": "paragraph",
-                    "content": "Brief description of the vulnerability."
-                },
-                {
-                    "heading": "Affected Assets",
+                    "heading": "Executive Summary (C-Level)",
                     "type": "list",
                     "content": [
-                        "https://app.target.com/login",
-                        "192.168.1.100:8080"
+                        "**Audience**: Designed for management and non-technical stakeholders (1-2 pages).",
+                        "**Inclusions**: High-level risk assessment, business impact statements, and prioritized remediation roadmap.",
+                        "**Avoid**: Avoid technical jargon, complex exploitation logs, or excessive raw data statistics."
                     ]
                 },
                 {
-                    "heading": "Technical Details",
-                    "type": "paragraph",
-                    "content": "Detailed explanation of the vulnerability and how it was discovered."
-                },
-                {
-                    "heading": "Proof of Concept",
-                    "type": "paragraph",
-                    "content": "Request:\n``http\nPOST /api/login HTTP/1.1\nHost: app.target.com\nContent-Type: application/json\n{\"username\":\"admin' OR '1'='1\",\"password\":\"test\"}\n`\nResponse:\n`http\nHTTP/1.1 200 OK\n{\"status\":\"authenticated\",\"user\":\"admin\"}\n``"
-                },
-                {
-                    "heading": "Impact",
-                    "type": "paragraph",
-                    "content": "An attacker could bypass authentication and gain administrative access to the application, potentially leading to:\n- Data breach of customer information\n- Unauthorized financial transactions\n- Complete system compromise"
-                },
-                {
-                    "heading": "CVSS Score",
-                    "type": "paragraph",
-                    "content": "8.6 (High) - CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N"
-                },
-                {
-                    "heading": "Remediation",
-                    "type": "paragraph",
-                    "content": "1. Use parameterized queries or prepared statements\n2. Implement input validation\n3. Apply principle of least privilege to database accounts\nSecure Code Example:\n``python\ncursor.execute(\"SELECT * FROM users WHERE username = %s\", (username,))\n``"
-                },
-                {
-                    "heading": "References",
-                    "type": "paragraph",
-                    "content": "- OWASP SQL Injection\n- CWE-89\n```"
+                    "heading": "Technical Finding Components",
+                    "type": "list",
+                    "content": [
+                        "**Severity & Assets**: Clearly defined ratings (CVSS 3.1) and a list of affected IPs/URLs.",
+                        "**Technical Description**: Detailed explanation of the vulnerability and its root cause.",
+                        "**Evidence & PoC**: Reproducible steps with annotated screenshots and request/response captures.",
+                        "**Remediation**: Actionable fix guidance with code examples and vendor references."
+                    ]
                 }
             ]
         },
         {
-            "heading": "Severity Ratings",
+            "heading": "Severity & Risk Methodology",
             "subheadings": [
                 {
-                    "heading": "CVSS 3.1",
+                    "heading": "CVSS 3.1 Base Scoring",
+                    "type": "paragraph",
+                    "content": "| Rating | Score Range | Primary Examples |\n|---|---|---|\n| **Critical** | 9.0 - 10.0 | RCE, Auth Bypass (Admin), Unauth Data Exfiltration |\n| **High** | 7.0 - 8.9 | Stored XSS on Admin, SSRF (Internal), PrivEsc |\n| **Medium** | 4.0 - 6.9 | Reflected XSS, CSRF on Sensitive Actions, Info Disclosure |\n| **Low** | 0.1 - 3.9 | Verbose Errors, Directory Listing, Missing Cookie Flags |"
+                },
+                {
+                    "heading": "Risk Assessment Factors",
+                    "type": "list",
+                    "content": [
+                        "**Likelihood**: Skill level required, exploit availability, and network accessibility.",
+                        "**Impact**: Confidentiality, Integrity, and Availability (CIA) compromise levels.",
+                        "**Ease of Fix**: Quick patches vs. fundamental architectural redesign requirements."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Report Templates & Standards",
+            "subheadings": [
+                {
+                    "heading": "Markdown Finding Template",
                     "type": "code_block",
                     "content": [
-                        "Base Score Range:",
-                        "- 0.0         : None",
-                        "- 0.1 - 3.9   : Low",
-                        "- 4.0 - 6.9   : Medium",
-                        "- 7.0 - 8.9   : High",
-                        "- 9.0 - 10.0  : Critical",
+                        "### [SEVERITY] Finding Title",
                         "",
-                        "Calculator: https://www.first.org/cvss/calculator/3.1",
+                        "**Overview**: Brief vulnerability description.",
+                        "**Affected Assets**: URL/IP list.",
                         "",
-                        "Key Metrics:",
-                        "- Attack Vector (AV): Network/Adjacent/Local/Physical",
-                        "- Attack Complexity (AC): Low/High",
-                        "- Privileges Required (PR): None/Low/High",
-                        "- User Interaction (UI): None/Required",
-                        "- Scope (S): Unchanged/Changed",
-                        "- Confidentiality Impact (C): None/Low/High",
-                        "- Integrity Impact (I): None/Low/High",
-                        "- Availability Impact (A): None/Low/High"
+                        "**Technical Details**: Discover and exploitation deep-dive.",
+                        "",
+                        "**Proof of Concept**:",
+                        "```http",
+                        "POST /api/v1/auth HTTP/1.1",
+                        "Payload: {'user': 'admin' OR '1'='1'}",
+                        "```",
+                        "",
+                        "**Remediation**: Parameterized queries and input validation."
+                    ]
+                }
+            ]
+        },
+        {
+            "heading": "Automation & Deliverables",
+            "subheadings": [
+                {
+                    "heading": "Reporting Frameworks",
+                    "type": "code_block",
+                    "content": [
+                        "# Pwndoc - High-density automated report generator",
+                        "docker-compose up -d  # Deploy local instance",
+                        "",
+                        "# Ghostwriter - Engagement management framework",
+                        "docker-compose up     # Collaborative reporting stack",
+                        "",
+                        "# Screenshot & Annotation tools",
+                        "flameshot gui         # Linux annotation king",
+                        "asciinema rec demo    # Terminal session recording"
                     ]
                 },
                 {
-                    "heading": "Custom Severity Matrix",
-                    "type": "code_block",
+                    "heading": "Final Deliverables Checklist",
+                    "type": "list",
                     "content": [
-                        "CRITICAL:",
-                        "- Remote code execution",
-                        "- Authentication bypass (admin)",
-                        "- SQL injection with data exfiltration",
-                        "- Unauthenticated access to sensitive data",
-                        "",
-                        "HIGH:",
-                        "- Stored XSS affecting admins",
-                        "- SSRF with internal access",
-                        "- Privilege escalation",
-                        "- Sensitive data exposure",
-                        "",
-                        "MEDIUM:",
-                        "- Reflected XSS",
-                        "- CSRF on sensitive functions",
-                        "- Information disclosure",
-                        "- Missing security headers",
-                        "",
-                        "LOW:",
-                        "- Verbose error messages",
-                        "- Directory listing",
-                        "- Missing cookie flags",
-                        "- Minor information disclosure",
-                        "",
-                        "INFORMATIONAL:",
-                        "- Best practice recommendations",
-                        "- Defense in depth suggestions",
-                        "- No direct security impact"
+                        "Executive Summary (PDF) and Technical Deep-Dive (PDF).",
+                        "Raw findings spreadsheet (CSV/Excel) for vulnerability management systems.",
+                        "Encrypted Evidence Archive (ZIP) including logs and raw tool output.",
+                        "Post-engagement debrief meeting and credential revocation confirmation."
                     ]
                 }
             ]
         },
         {
-            "heading": "Writing Tips",
-            "subheadings": [
-                {
-                    "heading": "Do's",
-                    "type": "code_block",
-                    "content": [
-                        "✓ Be clear and concise",
-                        "✓ Provide actionable recommendations",
-                        "✓ Include evidence (screenshots, logs)",
-                        "✓ Explain business impact",
-                        "✓ Prioritize findings by risk",
-                        "✓ Use consistent formatting",
-                        "✓ Proofread for errors",
-                        "✓ Test all PoC steps before including",
-                        "✓ Redact sensitive data appropriately",
-                        "✓ Include positive observations"
-                    ]
-                },
-                {
-                    "heading": "Don'ts",
-                    "type": "code_block",
-                    "content": [
-                        "✗ Use inflammatory language",
-                        "✗ Include personal opinions",
-                        "✗ Provide incomplete findings",
-                        "✗ Use unexplained jargon",
-                        "✗ Include raw tool output without context",
-                        "✗ Make assumptions without evidence",
-                        "✗ Include out-of-scope findings",
-                        "✗ Forget to mention failed attacks",
-                        "✗ Leave credentials in screenshots",
-                        "✗ Submit without review"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Report Templates",
-            "subheadings": [
-                {
-                    "heading": "Markdown Report",
-                    "type": "paragraph",
-                    "content": "```markdown\n# Penetration Test Report"
-                }
-            ]
-        },
-        {
-            "heading": "[Client Name]",
-            "subheadings": [
-                {
-                    "heading": "[Date Range]",
-                    "type": "paragraph",
-                    "content": "---\n# Document Control\n| Version | Date | Author | Changes |\n|---------|------|--------|---------|\n| 1.0 | 2024-01-15 | Tester | Initial draft |\n| 1.1 | 2024-01-17 | Reviewer | Final review |\n# Confidentiality Statement\nThis document contains confidential information...\n---\n# 1. Executive Summary\n[Summary content]\n# 2. Scope"
-                }
-            ]
-        },
-        {
-            "heading": "2.1 In Scope",
+            "heading": "References & Industry Templates",
             "type": "list",
             "content": [
-                "app.target.com",
-                "api.target.com",
-                "192.168.1.0/24"
-            ]
-        },
-        {
-            "heading": "2.2 Out of Scope",
-            "type": "paragraph",
-            "content": "- Production database\n- Third-party integrations\n# 3. Methodology\n[Testing approach, tools used]\n# 4. Findings Summary\n| # | Finding | Severity | Status |\n|---|---------|----------|--------|\n| 1 | SQL Injection | Critical | Open |\n| 2 | XSS in Search | High | Open |\n| 3 | Missing HTTPS | Medium | Open |\n# 5. Detailed Findings\n[Individual findings using template above]\n# 6. Recommendations Summary\n[Prioritized remediation roadmap]\n# Appendix A: Tool Output\n[Raw scan results if needed]\n# Appendix B: Glossary\n[Technical terms explained]\n```"
-        },
-        {
-            "heading": "Report Generation Tools",
-            "subheadings": [
-                {
-                    "heading": "Automated Tools",
-                    "type": "code_block",
-                    "content": [
-                        "# Dradis - Collaboration and reporting",
-                        "# https://dradisframework.com/",
-                        "docker run -d -p 3000:3000 dradis/dradis-ce",
-                        "",
-                        "# Ghostwriter - Report management",
-                        "# https://github.com/GhostManager/Ghostwriter",
-                        "docker-compose up",
-                        "",
-                        "# Pwndoc - Pentest report generator",
-                        "# https://github.com/pwndoc/pwndoc",
-                        "docker-compose up",
-                        "",
-                        "# Serpico - SimplE RePort wrIting and CollaboratiOn",
-                        "# https://github.com/SerpicoProject/Serpico",
-                        "docker-compose up"
-                    ]
-                },
-                {
-                    "heading": "Screenshot Tools",
-                    "type": "code_block",
-                    "content": [
-                        "# Flameshot",
-                        "flameshot gui",
-                        "",
-                        "# Greenshot (Windows)",
-                        "# Capture with annotations",
-                        "",
-                        "# Terminal capture",
-                        "script -q capture.txt",
-                        "# Run commands",
-                        "exit",
-                        "# Output saved to capture.txt",
-                        "",
-                        "# asciinema for terminal recording",
-                        "asciinema rec demo.cast"
-                    ]
-                }
-            ]
-        },
-        {
-            "heading": "Deliverables Checklist",
-            "type": "code_block",
-            "content": [
-                "□ Executive Summary (PDF)",
-                "□ Technical Report (PDF)",
-                "□ Raw findings spreadsheet (Excel/CSV)",
-                "□ Evidence archive (ZIP, encrypted)",
-                "□ Remediation tracker",
-                "□ Presentation slides (if required)",
-                "□ Debrief meeting scheduled",
-                "□ All credentials/access revoked",
-                "□ Test data cleaned up"
-            ]
-        },
-        {
-            "heading": "Common Sections",
-            "subheadings": [
-                {
-                    "heading": "Methodology Description",
-                    "type": "paragraph",
-                    "content": "```markdown"
-                }
-            ]
-        },
-        {
-            "heading": "Testing Methodology",
-            "type": "paragraph",
-            "content": "This assessment followed industry-standard methodologies including:\n- OWASP Testing Guide v4.2 - Web application testing\n- PTES - Penetration Testing Execution Standard\n- NIST SP 800-115 - Technical Guide to Information Security Testing"
-        },
-        {
-            "heading": "Phases:",
-            "type": "paragraph",
-            "content": "1. Reconnaissance - OSINT and passive information gathering\n2. Enumeration - Active scanning and service identification\n3. Vulnerability Analysis - Manual and automated testing\n4. Exploitation - Controlled exploitation of identified vulnerabilities\n5. Post-Exploitation - Impact assessment and lateral movement testing\n6. Reporting - Documentation and remediation guidance\n```"
-        },
-        {
-            "heading": "Risk Rating Explanation",
-            "type": "paragraph",
-            "content": "```markdown"
-        },
-        {
-            "heading": "Risk Rating Methodology",
-            "type": "paragraph",
-            "content": "Findings are rated based on:\n1. Likelihood of Exploitation\n- Skill level required\n- Availability of exploit code\n- Network accessibility\n2. Potential Impact\n- Confidentiality breach\n- Integrity compromise\n- Availability disruption\n- Business/regulatory impact\n3. Ease of Remediation\n- Quick fix vs. architectural change\n- Resource requirements\n- Potential for regression\n```"
-        },
-        {
-            "heading": "Resources",
-            "type": "list",
-            "content": [
-                "PTES - Penetration Testing Execution Standard",
-                "OWASP Testing Guide",
-                "TCM Security Report Template",
-                "SANS Penetration Testing Report Template",
-                "Offensive Security Report Template"
+                "[PTES - Pentest Execution Standard](http://www.pentest-standard.org/)",
+                "[TCM Security Sample Report](https://github.com/hmaverickadams/TCM-Security-Sample-Pentest-Report)",
+                "[Offensive Security (OSCP) Report Template](https://www.offensive-security.com/reports/)",
+                "[SANS Institute Pentest Whitepapers](https://www.sans.org/white-papers/)"
             ]
         }
     ],
@@ -367,34 +120,18 @@
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-23T01:55:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/reporting.md",
         "previous_page": {
-            "title": "Social Engineering",
-            "url": "/others/social-engineering"
+            "title": "Wireless Security",
+            "url": "/others/wireless"
         },
         "next_page": {
-            "title": "Hardware Hacking",
-            "url": "/others/hardware"
+            "title": "Post-Exploitation",
+            "url": "/post-exploitation"
         }
     }
 }

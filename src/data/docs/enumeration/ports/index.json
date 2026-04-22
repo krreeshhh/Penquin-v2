@@ -10,7 +10,7 @@
     {
       "heading": "General",
       "type": "paragraph",
-      "content": "AIO Penetration Testing Methodology - 0DAYsecurity.com"
+      "content": "[AIO Penetration Testing Methodology - 0DAYsecurity.com](http://0daysecurity.com/penetration-testing/enumeration.html)"
     },
     {
       "heading": "Port 21 - FTP",
@@ -531,28 +531,33 @@
       ]
     },
     {
-      "heading": "Port 5601/9200",
+      "heading": "Port 5601/9200 - ELK",
       "type": "paragraph",
-      "content": "ELK"
+      "content": "[ELK](/webservices/elk)"
     },
     {
       "heading": "Port 27017-19/27080/28017 - MongoDB",
       "type": "paragraph",
-      "content": "MongoDB"
+      "content": "[MongoDB](/webservices/nosql-and-and-mongodb)"
     },
     {
       "heading": "Unknown ports",
       "type": "list",
-      "content": [
-        "amap -d 10.11.1.111 8000",
-        "netcat: makes connections to ports. Can echo strings or give shells: nc -nv 10.11.1.111 110",
+      "items": [
+        "`amap -d 10.11.1.111 8000`",
+        "netcat: makes connections to ports. Can echo strings or give shells: `nc -nv 10.11.1.111 110`",
         "sfuzz: can connect to ports, udp or tcp, refrain from closing a connection, using basic HTTP configurations"
       ]
     },
     {
       "heading": "RCE ports",
       "type": "paragraph",
-      "content": ")"
+      "content": "Various ports commonly associated with Remote Code Execution vulnerabilities."
+    },
+    {
+      "type": "image",
+      "src": "/gitbook/assets/image (1) (1) (1).png",
+      "caption": "Common RCE Ports Reference"
     }
   ],
   "images": [

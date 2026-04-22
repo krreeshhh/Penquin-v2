@@ -248,9 +248,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "SSTI - Server-side template injection",
-                "LFI/RFI - For reading files to calculate PIN",
-                "Deserialization - Python pickle attacks"
+                "[SSTI - Server-side template injection](/enumeration/web/ssti)",
+                "[LFI/RFI - For reading files to calculate PIN](/enumeration/web/lfi-rfi)",
+                "[Deserialization - Python pickle attacks](/enumeration/web/deserialization)"
             ]
         }
     ],

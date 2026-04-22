@@ -11,6 +11,7 @@ interface SearchResult {
   url: string;
   emoji?: string;
   icon?: string;
+  content?: string;
 }
 
 interface SearchModalProps {
@@ -59,7 +60,8 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         return (
           page.title.toLowerCase().includes(lowerQuery) ||
           page.description.toLowerCase().includes(lowerQuery) ||
-          page.url.toLowerCase().includes(lowerQuery)
+          page.url.toLowerCase().includes(lowerQuery) ||
+          (page.content && page.content.toLowerCase().includes(lowerQuery))
         );
       })
       .slice(0, 10); // Limit to top 10 results
@@ -154,38 +156,38 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       <a
                         key={result.url}
                         href={result.url}
-                        className={`group flex items-center gap-4 px-4 py-3 rounded-[12px] transition-all ${idx === selectedIndex ? "bg-[var(--vp-c-brand-1)]" : "hover:bg-[var(--vp-c-bg-soft)]"
+                        className={`group flex items-center gap-4 px-4 py-3 rounded-[12px] transition-all ${idx === selectedIndex ? "bg-[var(--vp-c-brand-soft)]" : "hover:bg-[var(--vp-c-bg-soft)]"
                           }`}
                         onClick={onClose}
-                        onMouseEnter={() => setSelectedIndex(idx)}
+                        onPointerMove={() => setSelectedIndex(idx)}
                       >
                         <div
-                          className={`w-10 h-10 shrink-0 rounded-lg flex items-center justify-center transition-colors ${idx === selectedIndex ? "bg-white/20" : "bg-[var(--vp-c-bg-alt)] group-hover:bg-[var(--vp-c-bg-elv)]"
+                          className={`w-10 h-10 shrink-0 rounded-lg flex items-center justify-center transition-colors ${idx === selectedIndex ? "bg-[var(--vp-c-brand-1)]/10" : "bg-[var(--vp-c-bg-alt)] group-hover:bg-[var(--vp-c-bg-elv)]"
                             }`}
                         >
                           <DocIcon
                             emoji={result.emoji}
                             icon={result.icon}
                             fallback={defaultDocIcons.page}
-                            className={`w-5 h-5 ${idx === selectedIndex ? "text-white" : "text-[var(--vp-c-text-1)]"}`}
+                            className={`w-5 h-5 ${idx === selectedIndex ? "text-[var(--vp-c-brand-1)]" : "text-[var(--vp-c-text-1)] group-hover:text-[var(--vp-c-brand-1)]"}`}
                           />
                         </div>
                         <div className="min-w-0 flex-1">
                           <div
-                            className={`text-[15px] font-semibold truncate ${idx === selectedIndex ? "text-white" : "text-[var(--vp-c-text-1)]"
+                            className={`text-[15px] font-semibold truncate ${idx === selectedIndex ? "text-[var(--vp-c-brand-1)]" : "text-[var(--vp-c-text-1)] group-hover:text-[var(--vp-c-brand-1)]"
                               }`}
                           >
                             {result.title}
                           </div>
                           <div
-                            className={`text-[13px] truncate mt-0.5 ${idx === selectedIndex ? "text-white/80" : "text-[var(--vp-c-text-3)]"
+                            className={`text-[13px] truncate mt-0.5 ${idx === selectedIndex ? "text-[var(--vp-c-brand-1)]/70" : "text-[var(--vp-c-text-3)] group-hover:text-[var(--vp-c-brand-1)]/70"
                               }`}
                           >
                             {result.description || result.url}
                           </div>
                         </div>
                         <div
-                          className={`shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ${idx === selectedIndex ? "text-white" : "text-[var(--vp-c-text-3)]"
+                          className={`shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ${idx === selectedIndex ? "text-[var(--vp-c-brand-1)] opacity-100" : "text-[var(--vp-c-text-3)]"
                             }`}
                         >
                           <ChevronRight className="w-4 h-4" />

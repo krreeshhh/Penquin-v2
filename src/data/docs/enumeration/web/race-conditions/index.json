@@ -377,9 +377,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "IDOR - Often chains with race conditions",
-                "API Security - APIs commonly vulnerable",
-                "Authentication Bypass - Rate limit bypass"
+                "[IDOR - Often chains with race conditions](/enumeration/web/idor)",
+                "[API Security - APIs commonly vulnerable](/enumeration/web/api-security)",
+                "[Authentication Bypass - Rate limit bypass](/enumeration/web/bruteforcing)"
             ]
         }
     ],

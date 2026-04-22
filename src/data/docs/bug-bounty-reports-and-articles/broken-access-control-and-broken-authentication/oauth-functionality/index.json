@@ -15,49 +15,42 @@
     {
       "type": "link_card",
       "title": "https://freedium.cfd/https://infosecwriteups.com/the-oauth-misconfiguration-15e66dd19a6e",
-      "url": "https://freedium.cfd/https://infosecwriteups.com/the-oauth-misconfiguration-15e66dd19a6e",
-      "source": "freedium.cfd"
+      "url": "https://freedium.cfd/https://infosecwriteups.com/the-oauth-misconfiguration-15e66dd19a6e"
     },
     {
       "type": "link_card",
       "title": "How I Hijacked OAuth Tokens Through a Parallel Auth Flow Race Condition — $8500 P1 Bug Bounty 💰",
       "url": "https://infosecwriteups.com/how-i-hijacked-oauth-tokens-through-a-parallel-auth-flow-race-condition-8500-p1-bug-bounty-7af1cccc4d4c",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "The OAuth Oversight: When Configuration Errors Turn into Account Hijacks",
       "url": "https://medium.com/@ProwlSec/the-oauth-oversight-when-configuration-errors-turn-into-account-hijacks-5ed1f9c83d16",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "OAUTH MISCONFIGURATION VULNERABILITY",
       "url": "https://medium.com/@paulsamuel484/oauth-misconfiguration-vulnerability-4fb2ad1989d3",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "Bumble disclosed on HackerOne: Misconfigured oauth leads to Pre...",
       "url": "https://hackerone.com/reports/1074047",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "How I Exploited an Auth0 Misconfiguration to Bypass Login Restrictions",
       "url": "https://amjadali110.medium.com/how-i-exploited-an-auth0-misconfiguration-to-bypass-login-restrictions-c5d8c20d5505",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "title": "A click can cause 1600$ | Auth0 misconfig .",
       "url": "https://naumankh4n.medium.com/a-click-can-cause-1600-auth0-misconfig-9234aedad55c",
-      "source": "Medium",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {

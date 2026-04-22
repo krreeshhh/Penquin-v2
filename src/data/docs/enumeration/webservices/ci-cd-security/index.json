@@ -424,9 +424,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "GitLab - GitLab specific attacks",
-                "Supply Chain - Dependency attacks",
-                "Cloud - CI/CD often has cloud access"
+                "[GitLab - GitLab specific attacks](/enumeration/webservices/gitlab)",
+                "[Supply Chain - Dependency attacks](/enumeration/web/supply-chain)",
+                "[Cloud - CI/CD often has cloud access](/enumeration/cloud)"
             ]
         }
     ],

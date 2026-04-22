@@ -231,9 +231,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "C2 Frameworks - C2 framework usage",
-                "RT/EDR Evasion - Evasion techniques",
-                "SSRF - CDN can be SSRF target"
+                "[C2 Frameworks - C2 framework usage](/exploitation/web-exploits)",
+                "[RT/EDR Evasion - Evasion techniques](/others/rt-edr)",
+                "[SSRF - CDN can be SSRF target](/enumeration/web/ssrf)"
             ]
         }
     ],

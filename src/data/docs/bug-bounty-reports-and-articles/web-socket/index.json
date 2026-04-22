@@ -23,14 +23,12 @@
       "type": "link_card",
       "title": "Superhuman (formerly Grammarly) disclosed on HackerOne: Lack or...",
       "url": "https://hackerone.com/reports/535436",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     },
     {
       "type": "link_card",
       "title": "Legal Robot disclosed on HackerOne: Cross Site WebSocket Hijacking",
       "url": "https://hackerone.com/reports/211283",
-      "source": "HackerOne",
       "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
     }
   ],

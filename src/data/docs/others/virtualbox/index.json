@@ -171,8 +171,8 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "Lab Setup Guide - Docker labs and more",
-                "Docker/Kubernetes - Container testing"
+                "[Lab Setup Guide](/others/lab-setup-guide) - Docker labs and more",
+                "[Docker/Kubernetes](/enumeration/cloud/docker-and-and-kubernetes/) - Container testing"
             ]
         }
     ],

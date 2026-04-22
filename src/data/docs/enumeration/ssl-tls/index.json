@@ -293,12 +293,24 @@
         },
         {
             "heading": "Resources",
-            "type": "list",
-            "content": [
-                "SSL Labs Server Test",
-                "testssl.sh",
-                "Mozilla SSL Configuration Generator",
-                "OWASP TLS Cheat Sheet"
+            "type": "links",
+            "items": [
+                {
+                    "title": "SSL Labs Server Test",
+                    "url": "https://www.ssllabs.com/ssltest/"
+                },
+                {
+                    "title": "testssl.sh",
+                    "url": "https://github.com/drwetter/testssl.sh"
+                },
+                {
+                    "title": "Mozilla SSL Configuration Generator",
+                    "url": "https://ssl-config.mozilla.org/"
+                },
+                {
+                    "title": "OWASP TLS Cheat Sheet",
+                    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html"
+                }
             ]
         }
     ],

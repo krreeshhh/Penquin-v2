@@ -25,13 +25,13 @@ const ElasticSlider: React.FC<ElasticSliderProps> = ({
   className = '',
   isStepped = false,
   stepSize = 1,
-  leftIcon = <>-</>,
-  rightIcon = <>+</>,
+  leftIcon = null,
+  rightIcon = null,
   onValueChange,
   onValueCommit,
 }) => {
   return (
-    <div className={`flex items-center justify-center w-full max-w-[200px] mx-auto ${className}`}>
+    <div className={`flex items-center justify-center w-full mx-auto ${className}`}>
       <InnerSlider
         defaultValue={defaultValue}
         startingValue={startingValue}
@@ -131,32 +131,33 @@ const InnerSlider: React.FC<InnerSliderProps> = ({
 
   return (
     <motion.div
-      onHoverStart={() => animate(scale, 1.2)}
+      onHoverStart={() => animate(scale, 1.02)}
       onHoverEnd={() => animate(scale, 1)}
-      onTouchStart={() => animate(scale, 1.2)}
+      onTouchStart={() => animate(scale, 1.02)}
       onTouchEnd={() => animate(scale, 1)}
       style={{
         scale,
-        opacity: useTransform(scale, [1, 1.2], [0.7, 1])
       }}
       className="flex w-full touch-none select-none items-center justify-center gap-3"
     >
-      <motion.div
-        animate={{
-          scale: region === 'left' ? [1, 1.4, 1] : 1,
-          transition: { duration: 0.25 }
-        }}
-        style={{
-          x: useTransform(() => (region === 'left' ? -overflow.get() / scale.get() : 0))
-        }}
-        className="text-[var(--vp-c-text-2)] select-none"
-      >
-        {leftIcon}
-      </motion.div>
+      {leftIcon && (
+        <motion.div
+          animate={{
+            scale: region === 'left' ? [1, 1.4, 1] : 1,
+            transition: { duration: 0.25 }
+          }}
+          style={{
+            x: useTransform(() => (region === 'left' ? -overflow.get() / scale.get() : 0))
+          }}
+          className="text-[var(--vp-c-text-2)] select-none"
+        >
+          {leftIcon}
+        </motion.div>
+      )}
 
       <div
         ref={sliderRef}
-        className="relative flex w-full flex-grow cursor-grab active:cursor-grabbing touch-none select-none items-center py-3"
+        className="relative flex w-full flex-grow cursor-grab active:cursor-grabbing touch-none select-none items-center py-4"
         onPointerMove={handlePointerMove}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
@@ -170,7 +171,7 @@ const InnerSlider: React.FC<InnerSliderProps> = ({
               }
               return 1;
             }),
-            scaleY: useTransform(overflow, [0, MAX_OVERFLOW], [1, 0.8]),
+            scaleY: useTransform(overflow, [0, MAX_OVERFLOW], [1, 0.95]),
             transformOrigin: useTransform(() => {
               if (sliderRef.current) {
                 const { left, width } = sliderRef.current.getBoundingClientRect();
@@ -178,33 +179,45 @@ const InnerSlider: React.FC<InnerSliderProps> = ({
               }
               return 'center';
             }),
-            height: useTransform(scale, [1, 1.2], [4, 8]),
-            marginTop: useTransform(scale, [1, 1.2], [0, -2]),
-            marginBottom: useTransform(scale, [1, 1.2], [0, -2])
+            height: 36,
           }}
           className="flex flex-grow"
         >
-          <div className="relative h-full flex-grow overflow-hidden rounded-full bg-white/10">
-            <div
-              className="absolute h-full rounded-full bg-white/40"
-              style={{ width: `${getRangePercentage()}%` }}
+          <div className="relative h-full flex-grow rounded-xl bg-black overflow-hidden">
+            {/* Filled part (Progress) */}
+            <motion.div
+              className="absolute h-full left-0 bg-[#e0e0da]"
+              animate={{ 
+                width: `calc(${getRangePercentage()}% - ${(getRangePercentage() / 100) * 48}px + 24px)` 
+              }}
+              transition={{ type: "spring", bounce: 0, duration: 0.2 }}
+            />
+            {/* Thumb */}
+            <motion.div 
+              className="absolute top-0 bottom-0 w-[48px] bg-[#eeeee9] rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.2)] border border-white/20 z-10"
+              animate={{ 
+                left: `calc(${getRangePercentage()}% - ${(getRangePercentage() / 100) * 48}px)`,
+              }}
+              transition={{ type: "spring", bounce: 0, duration: 0.2 }}
             />
           </div>
         </motion.div>
       </div>
 
-      <motion.div
-        animate={{
-          scale: region === 'right' ? [1, 1.4, 1] : 1,
-          transition: { duration: 0.25 }
-        }}
-        style={{
-          x: useTransform(() => (region === 'right' ? overflow.get() / scale.get() : 0))
-        }}
-        className="text-[var(--vp-c-text-2)] select-none"
-      >
-        {rightIcon}
-      </motion.div>
+      {rightIcon && (
+        <motion.div
+          animate={{
+            scale: region === 'right' ? [1, 1.4, 1] : 1,
+            transition: { duration: 0.25 }
+          }}
+          style={{
+            x: useTransform(() => (region === 'right' ? overflow.get() / scale.get() : 0))
+          }}
+          className="text-[var(--vp-c-text-2)] select-none"
+        >
+          {rightIcon}
+        </motion.div>
+      )}
     </motion.div>
   );
 };

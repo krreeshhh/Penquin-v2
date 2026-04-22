@@ -265,11 +265,11 @@
             "heading": "Related Topics",
             "type": "list",
             "content": [
-                "Command Injection - OS command execution",
-                "NoSQL Injection - MongoDB, CouchDB attacks",
-                "Web Exploits - SQLi to RCE chains",
-                "API Security - API-specific injection vectors",
-                "WAF Bypass - Bypassing web application firewalls"
+                "[Command Injection - OS command execution](/enumeration/web/command-injection)",
+                "[NoSQL Injection - MongoDB, CouchDB attacks](/enumeration/webservices/nosql-and-and-mongodb)",
+                "[Web Exploits - SQLi to RCE chains](/exploitation/web-exploits)",
+                "[API Security - API-specific injection vectors](/enumeration/web/api-security)",
+                "[WAF Bypass - Bypassing web application firewalls](/enumeration/webservices/wafs)"
             ]
         }
     ],
