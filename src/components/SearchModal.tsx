@@ -109,7 +109,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
           />
 
           {/* Modal Container */}
-          <div className="fixed inset-0 z-[110] flex items-start justify-center pt-24 px-4 sm:px-6 pointer-events-none">
+          <div className="fixed inset-0 z-[110] flex items-start justify-center pt-14 sm:pt-24 px-4 sm:px-6 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -144,7 +144,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               </div>
 
               {/* Results Area */}
-              <div className="max-h-[440px] overflow-y-auto p-2">
+              <div className="max-h-[50vh] sm:max-h-[440px] overflow-y-auto p-2">
                 {!query ? (
                   <div className="py-12 flex flex-col items-center justify-center opacity-40">
                     <Search className="w-12 h-12 mb-4" strokeWidth={1} />
@@ -187,7 +187,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           </div>
                         </div>
                         <div
-                          className={`shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ${idx === selectedIndex ? "text-[var(--vp-c-brand-1)] opacity-100" : "text-[var(--vp-c-text-3)]"
+                          className={`shrink-0 md:opacity-0 md:group-hover:opacity-100 transition-opacity ${idx === selectedIndex ? "text-[var(--vp-c-brand-1)] opacity-100" : "text-[var(--vp-c-text-3)]"
                             }`}
                         >
                           <ChevronRight className="w-4 h-4" />
@@ -204,15 +204,15 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
               {/* Footer Info */}
               <div className="px-4 py-3 border-t border-[var(--vp-c-divider)]/40 bg-[var(--vp-c-bg-soft)]/50 flex items-center gap-4 text-[11px] text-[var(--vp-c-text-3)] uppercase tracking-wider font-semibold">
-                <div className="flex items-center gap-1">
+                <div className="hidden sm:flex items-center gap-1">
                   <kbd className="p-1 rounded bg-[var(--vp-c-bg-elv)] border border-[var(--vp-c-divider)]/60 text-[10px]">ENTER</kbd>
                   <span>Select</span>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="hidden sm:flex items-center gap-1">
                   <kbd className="p-1 rounded bg-[var(--vp-c-bg-elv)] border border-[var(--vp-c-divider)]/60 text-[10px]">↑↓</kbd>
                   <span>Navigate</span>
                 </div>
-                <div className="ml-auto flex items-center gap-1 opacity-60">
+                <div className="ml-auto sm:ml-0 flex items-center gap-1 opacity-60">
                   <span>Penquin Search</span>
                 </div>
               </div>

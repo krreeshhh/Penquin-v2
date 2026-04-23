@@ -584,7 +584,19 @@ body {
 
 .VPDoc {
   position: relative;
-  padding: var(--vp-nav-height) 32px 48px;
+  padding: var(--vp-nav-height) 16px 48px;
+}
+
+@media (min-width: 640px) {
+  .VPDoc {
+    padding: var(--vp-nav-height) 24px 48px;
+  }
+}
+
+@media (min-width: 768px) {
+  .VPDoc {
+    padding: var(--vp-nav-height) 32px 48px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -606,14 +618,37 @@ body {
 .VPDoc .content {
   flex: 1 1 auto;
   min-width: 0;
+  overflow-x: hidden;
 }
 
 .VPDoc .content-container {
   margin: 0 auto;
+  min-width: 0;
+}
+
+/* Prevent any long URL/text from breaking out of the page on mobile */
+#doc-content {
+  overflow-x: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* But keep code blocks scrollable, not word-breaking */
+#doc-content pre,
+#doc-content code {
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: pre;
 }
 
 .VPDoc main.main {
-  padding-top: 48px;
+  padding-top: 32px;
+}
+
+@media (min-width: 768px) {
+  .VPDoc main.main {
+    padding-top: 48px;
+  }
 }
 
 /* Compact scrollbars for docs code blocks (matches sidebar density). */

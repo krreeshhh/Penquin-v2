@@ -130,7 +130,7 @@ function MarkdownContent({
             const match = /language-(\w+)/.exec(className || "");
             return match ? (
               <div data-spotlight-block="code" className="relative mt-4 group">
-                <div className="absolute right-3 top-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute right-3 top-3 z-10 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                   <CopyButton value={String(children).replace(/\n$/, "")} />
                 </div>
                 <pre className="overflow-x-auto rounded-[14px] border border-[var(--vp-code-border)] bg-[var(--vp-code-bg)] px-4 py-4 font-mono text-[12px] leading-6 text-[var(--vp-code-text)]">
@@ -540,7 +540,7 @@ const DocHeading = React.memo(function DocHeading({
         <a
           href={`#${id}`}
           aria-label={`Permalink to ${typeof children === "string" ? children : "section"}`}
-          className="header-anchor opacity-0 group-hover:opacity-100 transition-opacity text-[var(--vp-c-text-3)] hover:text-[var(--vp-c-text-1)] ml-1"
+          className="header-anchor md:opacity-0 md:group-hover:opacity-100 transition-opacity text-[var(--vp-c-text-3)] hover:text-[var(--vp-c-text-1)] ml-1"
         >
           #
         </a>
@@ -583,9 +583,9 @@ const LinkCard = React.memo(function LinkCard({ item }: { item: DocLink }) {
   const assetUrl = getAssetUrl(item.icon) ?? getAssetUrl(item.logo) ?? getAssetUrl(item.image) ?? (extractedDomain ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(extractedDomain)}&sz=64` : undefined) ?? getFallbackSiteIcon(item.url);
 
   return (
-    <CardLink href={normalizeDocHref(item.url) ?? item.url} className="flex items-start justify-between gap-3 rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:bg-[var(--vp-c-bg-soft)]">
+    <CardLink href={normalizeDocHref(item.url) ?? item.url} className="flex items-start justify-between gap-3 rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:bg-[var(--vp-c-bg-soft)] overflow-hidden">
       <div className="min-w-0">
-        <div className="flex items-center gap-2 text-[14px] font-semibold text-[var(--vp-c-text-1)]">
+        <div className="flex items-center gap-2 text-[14px] font-semibold text-[var(--vp-c-text-1)] min-w-0">
           {assetUrl ? (
             <img
               src={assetUrl}

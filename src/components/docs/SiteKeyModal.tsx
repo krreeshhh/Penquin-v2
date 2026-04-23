@@ -32,7 +32,7 @@ export function SiteKeyModal({ isOpen, onClose }: SiteKeyModalProps) {
           />
 
           {/* Modal Container for Page Scroll */}
-          <div className="fixed inset-0 z-[210] flex items-start justify-center pt-16 pb-16 px-4 overflow-y-auto pointer-events-none scrollbar-thin">
+          <div className="fixed inset-0 z-[210] flex items-start justify-center pt-10 sm:pt-16 pb-10 sm:pb-16 px-3 sm:px-4 overflow-y-auto pointer-events-none scrollbar-thin">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -41,7 +41,7 @@ export function SiteKeyModal({ isOpen, onClose }: SiteKeyModalProps) {
               className="w-full max-w-[860px] flex flex-col bg-[#161618] border border-white/5 rounded-lg shadow-2xl pointer-events-auto"
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-white/5 flex-shrink-0">
+              <div className="flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 border-b border-white/5 flex-shrink-0">
                 <div className="flex items-center gap-2 text-[var(--vp-c-text-1)]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] opacity-80"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
                   <span className="text-[15px] font-bold">Site key</span>
@@ -56,7 +56,7 @@ export function SiteKeyModal({ isOpen, onClose }: SiteKeyModalProps) {
               </div>
 
               {/* Body (No internal scroll) */}
-              <div className="px-6 py-5 space-y-6">
+              <div className="px-4 sm:px-6 py-4 sm:py-5 space-y-5 sm:space-y-6">
                 {Object.entries(data).map(([category, entries]) => (
                   <div key={category}>
                     {/* Category heading */}

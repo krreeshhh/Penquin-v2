@@ -279,7 +279,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
                 type="button"
                 aria-label="Toggle docs sidebar"
                 onClick={onDocsMenuClick}
-                className={`ml-2 mr-0 p-[6px] rounded-[10px] transition-colors ${isDocs ? "lg:hidden" : ""}`}
+                className="ml-2 mr-0 p-[6px] rounded-[10px] transition-colors lg:hidden"
               >
                 <TextAlignStart
                   className="cursor-pointer w-[20px] h-[20px] text-[var(--vp-c-text-2)] hover:text-[var(--vp-c-text-1)] transition duration-300 ease-in-out"
@@ -288,15 +288,13 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
               </button>
             )}
 
-            {!isDocs && (
-              <Link
-                href="/"
-                className="flex items-center gap-0 -ml-1 mr-1 sm:mr-2 group cursor-pointer text-[var(--vp-c-text-1)] h-full transition-colors"
-              >
-                <img className="w-14 h-14" src="/v2/PFPs/Transparent/2.png" alt="Logo" />
-                <span className="font-semibold text-[18px] mr-2 leading-3">Penquin</span>
-              </Link>
-            )}
+            <Link
+              href="/"
+              className={`flex items-center gap-0 -ml-1 mr-1 sm:mr-2 group cursor-pointer text-[var(--vp-c-text-1)] h-full transition-colors ${isDocs ? "lg:hidden" : ""}`}
+            >
+              <img className="w-14 h-14" src="/v2/PFPs/Transparent/2.png" alt="Logo" />
+              <span className="font-semibold text-[18px] mr-2 leading-3 hidden sm:block">Penquin</span>
+            </Link>
 
             <div className={`${isDocs ? "lg:pl-[336px]" : ""}`}>
               <button
@@ -369,7 +367,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="absolute right-0 top-full mt-2 w-[320px] bg-[var(--vp-c-bg-elv)] border border-[var(--vp-c-divider)] rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.4)] overflow-hidden p-5 z-50"
+                      className="absolute right-0 top-full mt-2 w-[320px] max-w-[calc(100vw-24px)] max-h-[85vh] overflow-y-auto bg-[var(--vp-c-bg-elv)] border border-[var(--vp-c-divider)] rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.4)] overflow-hidden p-5 z-50"
                     >
                       <div className="flex flex-col gap-6">
                         {/* Layout Switch */}
