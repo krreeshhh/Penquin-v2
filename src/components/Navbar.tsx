@@ -279,7 +279,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
                 type="button"
                 aria-label="Toggle docs sidebar"
                 onClick={onDocsMenuClick}
-                className="ml-2 mr-0 p-[6px] rounded-[10px] transition-colors lg:hidden"
+                className={`ml-2 mr-0 p-[6px] rounded-[10px] transition-colors ${isDocs ? "lg:hidden" : ""}`}
               >
                 <TextAlignStart
                   className="cursor-pointer w-[20px] h-[20px] text-[var(--vp-c-text-2)] hover:text-[var(--vp-c-text-1)] transition duration-300 ease-in-out"
