@@ -1,0 +1,33 @@
+{
+  "title": "Learn WSL",
+  "breadcrumb": [
+    {
+      "name": "Mains",
+      "url": "/mains"
+    },
+    {
+      "name": "Learn The Basics",
+      "url": "/mains/learn-the-basics",
+      "icon": "🏅"
+    }
+  ],
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "Here's a README file for your WSL guide:"
+    },
+    {
+      "type": "code_block",
+      "language": "markdown",
+      "content": "# WSL Guide (Windows Subsystem for Linux)\n\nThis guide provides step-by-step instructions for installing and configuring the Windows Subsystem for Linux (WSL) and using additional tools like Win-KeX for graphical interface support.\n\n## 1. Installation\n\n### 1.1 Enable Windows Features\nEnable the following features in the Windows Feature app:\n- **Windows Subsystem for Linux**\n- **Virtual Machine Platform**\n\n### 1.2 Install WSL\nOpen CMD as an administrator and type:\n```bash\nwsl --install\n```\n\n#### 1.3 Restart Your PC\n\nRestart your computer to apply changes.\n\n#### 1.4 Install Applications from Microsoft Store\n\nGo to the Microsoft Store and install the following:\n\n* **Windows Subsystem for Linux**\n* Your preferred Linux Distribution (e.g., Ubuntu, Kali Linux, Debian, Oracle, Arch, etc.)\n\n#### 1.5 Set Up the Linux Distribution\n\nOpen the Linux app and complete the installation process for your chosen Linux distribution.\n\n#### 1.6 Final Restart\n\nRestart your PC to finalize the setup.\n\n#### 1.7 Installation Complete\n\nYour WSL installation is now complete.\n\n### 2. Extra WSL Commands to Get Started\n\n#### 2.1 Update WSL\n\nTo update the WSL version:\n\n```bash\nwsl --update\n```\n\n#### 2.2 WSL Version Information\n\nTo get information about WSL, WSLg, and the kernel version:\n\n```bash\nwsl --version\n```\n\n#### 2.3 List Installed Distributions\n\nTo get a list of all installed distributions:\n\n```bash\nwsl --list\n```\n\nAdditional options:\n\n* List all distributions, including those being installed or uninstalled:\n\n  ```bash\n  wsl --all\n  ```\n* List only currently running distributions:\n\n  ```bash\n  wsl --running\n  ```\n* Show only distribution names:\n\n  ```bash\n  wsl --quiet\n  ```\n* Show detailed information about all distributions:\n\n  ```bash\n  wsl --verbose\n  ```\n* List available distributions for installation:\n\n  ```bash\n  wsl --online\n  ```\n\n#### 2.4 Set Default Distribution\n\nTo set the default Linux distribution:\n\n```bash\nwsl --set-default <Distro>\n```\n\n### 3. WSLg Installation\n\n#### 3.1 Update and Upgrade Linux Distribution\n\nOpen your Linux distribution and run:\n\n```bash\nsudo apt update && sudo apt upgrade\n```\n\n#### 3.2 Install Win-KeX\n\nInstall Win-KeX for GUI support:\n\n```bash\nsudo apt install kali-win-kex\n```\n\n#### 3.3 Configure Win-KeX\n\nFollow the prompts to fill in the required information.\n\n#### 3.4 Start GUI\n\nTo start the GUI, type in the terminal:\n\n```bash\nkex\n```\n\n### 4. Additional Info on WSLg\n\n#### Modes\n\n* **Window Mode (default)**: [none]\n* **Enhanced Session Mode**: `--esm` - Launch Win-KeX desktop in a dedicated window using Windows native RDP.\n* **Seamless Mode**: `--sl` - Integrate Win-KeX into the Windows desktop seamlessly.\n* **Window Mode**: `--win` - Launch Win-KeX desktop in a dedicated window.\n\n#### Commands\n\n* **Start Win-KeX server and client**: [none]\n* **Start Win-KeX server**: `--start`\n* **Start Win-KeX client**: `--start-client`\n* **Launch in Windows Terminal**: `--wtstart`\n* **Stop Win-KeX server**: `--stop`\n* **Check Win-KeX server status**: `--status`\n* **Stop server and kill processes**: `--kill`\n* **Set server password**: `--passwd`\n* **Start/Stop Windows sound server**: `--start-sound` / `--stop-sound`\n* **Manage WSLg unix socket**: `--wslg-restore`, `--wslg-remove`, `--wslg-status`\n* **Display Win-KeX version**: `--version`\n* **Display help**: `--help`\n\n#### Optional Parameters\n\n* **Use container IP address**: `--ip` or `-i`\n* **Optimized for multiscreen**: `--multiscreen` or `-m`\n* **Sound support**: `--sound` or `-s`\n* **Disable Windows OpenGL**: `--nowgl` or `-n`\n* **Disable client reconnecting**: `--norc` or `-r`\n* **Wait longer for desktop in SL mode**: `--wait` or `-w`\n* **Verbose output**: `--verbose`\n\n#### Examples\n\n* Start Win-KeX server in window mode and launch Win-KeX client with sound support:\n\n  ```bash\n  kex -s\n  ```\n* Start Win-KeX in seamless mode and launch Win-KeX client with sound support:\n\n  ```bash\n  kex --sl -s\n  ```\n* Start Win-KeX in Enhanced Session Mode with ARM workaround and launch Win-KeX client with sound support:\n\n  ```bash\n  kex --esm -i -s\n  ```\n* Start Win-KeX server as root in window mode and launch Win-KeX client:\n\n  ```bash\n  sudo kex\n  ```\n\nThis README provides a comprehensive guide to installing and configuring WSL and WSLg on Windows. Let me know if you need any changes or additions!"
+    },
+    {
+      "type": "paragraph",
+      "content": "This README provides a comprehensive guide to installing and configuring WSL and WSLg on Windows. Let me know if you need any changes or additions!"
+    }
+  ],
+  "images": [],
+  "metadata": {
+    "lastUpdated": "2024-08-02T14:27:03.808Z"
+  }
+}

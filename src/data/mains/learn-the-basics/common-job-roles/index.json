@@ -1,0 +1,75 @@
+{
+  "title": "Common Job Roles",
+  "description": "Here are the names of Cyber Security job roles categorized by level and focus",
+  "breadcrumb": [
+    {
+      "label": "Mains",
+      "url": "/mains"
+    },
+    {
+      "label": "Learn The Basics",
+      "url": "/mains/learn-the-basics"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Blue Teaming Roles",
+      "levels": [
+        {
+          "level": "Junior Level",
+          "roles": [
+            "Security Analyst",
+            "Security Operations Center (SOC) Analyst",
+            "Incident Response Analyst",
+            "Network Security Administrator"
+          ]
+        },
+        {
+          "level": "Senior Level",
+          "roles": [
+            "Security Engineer",
+            "Incident Response Manager",
+            "Security Architect",
+            "SOC Manager"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Red Teaming Roles",
+      "levels": [
+        {
+          "level": "Junior Level",
+          "roles": [
+            "Penetration Tester",
+            "Red Team Operator",
+            "Vulnerability Analyst",
+            "Ethical Hacker"
+          ]
+        },
+        {
+          "level": "Senior Level",
+          "roles": [
+            "Senior Penetration Tester",
+            "Red Team Lead",
+            "Offensive Security Engineer",
+            "Threat Hunter"
+          ]
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Type Of Cyber Security",
+      "url": "/mains/learn-the-basics/type-of-cyber-security"
+    },
+    "next": {
+      "title": "Get Started With InfoSec",
+      "url": "/mains/learn-the-basics/get-started-with-infosec"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2024-08-02T14:16:05.060Z"
+  }
+}

@@ -89,7 +89,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   const [currentLayoutMode, setCurrentLayoutMode] = useState<LayoutMode>("original");
   const [isSpotlightOn, setIsSpotlightOn] = useState(false);
   const [spotlightStyle, setSpotlightStyle] = useState<SpotlightStyle>("aside");
-  const [isTakodachiOn, setIsTakodachiOn] = useState(true);
+  const [isTakodachiOn, setIsTakodachiOn] = useState(false);
   const [pageMaxWidth, setPageMaxWidth] = useState(1200);
   const [contentWidth, setContentWidth] = useState(1152);
   const [docsContentWidth, setDocsContentWidth] = useState(756);
@@ -98,7 +98,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   const [pendingLayoutMode, setPendingLayoutMode] = useState<LayoutMode>("original");
   const [pendingSpotlightOn, setPendingSpotlightOn] = useState(false);
   const [pendingSpotlightStyle, setPendingSpotlightStyle] = useState<SpotlightStyle>("aside");
-  const [pendingTakodachiOn, setPendingTakodachiOn] = useState(true);
+  const [pendingTakodachiOn, setPendingTakodachiOn] = useState(false);
   const [pendingPageMaxWidth, setPendingPageMaxWidth] = useState(1200);
   const [pendingContentWidth, setPendingContentWidth] = useState(1152);
   const [pendingDocsContentWidth, setPendingDocsContentWidth] = useState(756);
@@ -115,7 +115,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
       setSpotlightStyle(localStorage.getItem(LS.spotlightStyles) === "1" ? "under" : "aside");
 
       const tako = localStorage.getItem(LS.takodachi);
-      setIsTakodachiOn(tako ? tako === "true" : true);
+      setIsTakodachiOn(tako ? tako === "true" : false);
 
       const pageMax = localStorage.getItem(LS.pageMaxWidth) ?? localStorage.getItem(LS.legacyNavWidth);
       if (pageMax) setPageMaxWidth(Math.min(1200, Math.max(600, parseInt(pageMax) || 1200)));

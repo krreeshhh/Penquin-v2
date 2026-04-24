@@ -15,67 +15,67 @@
           "type": "page",
           "title": "Resume For Cyber Security Freshie",
           "emoji": " ",
-          "url": "/docs/mains/resume-for-cyber-security-freshie"
+          "url": "/mains/resume-for-cyber-security-freshie"
         },
         {
           "type": "page",
           "title": "Browser extension For Bug Bounty",
           "emoji": " ",
-          "url": "/docs/mains/browser-extension"
+          "url": "/mains/browser-extension"
         },
         {
           "type": "page",
           "title": "POC Videos YT Channel",
           "emoji": " ",
-          "url": "/docs/mains/poc-videos-yt-channel"
+          "url": "/mains/poc-videos-yt-channel"
         },
         {
           "type": "page",
           "title": "55 YouTube Channels To Learn Hacking",
           "emoji": " ",
-          "url": "/docs/mains/55-youtube-channels-to-learn-hacking"
+          "url": "/mains/55-youtube-channels-to-learn-hacking"
         },
         {
           "type": "group",
           "title": "Hackers to Follow on Social Media",
           "emoji": " ",
-          "url": "/docs/mains/hackers-to-follow-on-social-media",
+          "url": "/mains/hackers-to-follow-on-social-media",
           "pages": [
             {
               "type": "page",
               "title": "Twitter",
               "emoji": " ",
-              "url": "/docs/mains/hackers-to-follow-on-social-media/twitter"
+              "url": "/mains/hackers-to-follow-on-social-media/twitter"
             },
             {
               "type": "page",
               "title": "Medium",
               "emoji": " ",
-              "url": "/docs/mains/hackers-to-follow-on-social-media/medium"
+              "url": "/mains/hackers-to-follow-on-social-media/medium"
             },
             {
               "type": "page",
               "title": "YouTube",
               "emoji": " ",
-              "url": "/docs/mains/hackers-to-follow-on-social-media/youtube"
+              "url": "/mains/hackers-to-follow-on-social-media/youtube"
             },
             {
               "type": "page",
               "title": "GitHub",
               "emoji": " ",
-              "url": "/docs/mains/hackers-to-follow-on-social-media/github"
+              "url": "/mains/hackers-to-follow-on-social-media/github"
             },
             {
               "type": "page",
               "title": "Discord Server",
               "emoji": " ",
-              "url": "/docs/mains/hackers-to-follow-on-social-media/discord-server"
+              "url": "/mains/hackers-to-follow-on-social-media/discord-server"
             },
             {
               "type": "page",
               "title": "Security Gitbooks",
               "emoji": " ",
-              "url": "/docs/mains/hackers-to-follow-on-social-media/security-gitbooks"
+              "url": "/mains/hackers-to-follow-on-social-media/security-gitbooks"
             }
           ]
         },
@@ -83,55 +83,55 @@
           "type": "group",
           "title": "Learn The Basics",
           "emoji": " ",
-          "url": "/docs/mains/learn-the-basics",
+          "url": "/mains/learn-the-basics",
           "pages": [
             {
               "type": "page",
               "title": "Best Bug Bounty Platform",
               "emoji": " ",
-              "url": "/docs/mains/learn-the-basics/best-bug-bounty-platform"
+              "url": "/mains/learn-the-basics/best-bug-bounty-platform"
             },
             {
               "type": "page",
               "title": "Best InfoSec Writeups Website",
               "emoji": " ",
-              "url": "/docs/mains/learn-the-basics/best-infosec-writeups-website"
+              "url": "/mains/learn-the-basics/best-infosec-writeups-website"
             },
             {
               "type": "page",
               "title": "CLI Commands",
               "emoji": " ",
-              "url": "/docs/mains/learn-the-basics/cli-commands"
+              "url": "/mains/learn-the-basics/cli-commands"
             },
             {
               "type": "page",
               "title": "Common Job Roles",
               "emoji": " ",
-              "url": "/docs/mains/learn-the-basics/common-job-roles"
+              "url": "/mains/learn-the-basics/common-job-roles"
             },
             {
               "type": "page",
               "title": "Get Started With InfoSec",
               "emoji": " ",
-              "url": "/docs/mains/learn-the-basics/get-started-with-infosec"
+              "url": "/mains/learn-the-basics/get-started-with-infosec"
             },
             {
               "type": "page",
               "title": "Hacking Books",
               "emoji": " ",
-              "url": "/docs/mains/learn-the-basics/hacking-books"
+              "url": "/mains/learn-the-basics/hacking-books"
             },
             {
               "type": "page",
               "title": "Learn WSL",
               "emoji": " ",
-              "url": "/docs/mains/learn-the-basics/learn-wsl"
+              "url": "/mains/learn-the-basics/learn-wsl"
             },
             {
               "type": "page",
               "title": "Type Of Cyber Security",
               "emoji": " ",
-              "url": "/docs/mains/learn-the-basics/type-of-cyber-security"
+              "url": "/mains/learn-the-basics/type-of-cyber-security"
             }
           ]
         },
@@ -139,31 +139,31 @@
           "type": "page",
           "title": "Fun Programming Codes",
           "emoji": "",
-          "url": "/docs/mains/fun-programming-codes"
+          "url": "/mains/fun-programming-codes"
         },
         {
           "type": "page",
           "title": "Build your own Bug Bounty Methodology",
           "emoji": "",
-          "url": "/docs/mains/build-your-own-bug-bounty-methodology"
+          "url": "/mains/build-your-own-bug-bounty-methodology"
         },
         {
           "type": "page",
           "title": "Bug Bounty Checklist",
           "emoji": "",
-          "url": "/docs/mains/bug-bounty-checklist"
+          "url": "/mains/bug-bounty-checklist"
         },
         {
           "type": "page",
           "title": "JS Analysis for Bug Bounty",
           "emoji": "",
-          "url": "/docs/mains/js-analysis-for-bug-bounty"
+          "url": "/mains/js-analysis-for-bug-bounty"
         },
         {
           "type": "page",
           "title": "Learn to Use Burp Suite",
           "emoji": "",
-          "url": "/docs/mains/learn-to-use-burp-suite"
+          "url": "/mains/learn-to-use-burp-suite"
         }
       ]
     },

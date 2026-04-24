@@ -17,9 +17,9 @@ export function HomeShell({ children, sidebar }: { children: ReactNode; sidebar:
     // Load takodachi preference from localStorage
     try {
       const stored = localStorage.getItem("preference-takodachi");
-      setIsTakodachiOn(stored ? stored === "true" : true);
+      setIsTakodachiOn(stored ? stored === "true" : false);
     } catch {
-      setIsTakodachiOn(true);
+      setIsTakodachiOn(false);
     }
   }, []);
 

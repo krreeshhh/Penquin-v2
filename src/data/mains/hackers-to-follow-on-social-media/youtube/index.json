@@ -1,0 +1,309 @@
+{
+  "title": "YouTube",
+  "description": "YouTube offers a visual and auditory learning experience. Watching video tutorials and demonstrations makes complex concepts easier to understand and apply.",
+  "breadcrumb": [
+    {
+      "label": "Mains",
+      "url": "/mains"
+    },
+    {
+      "label": "Hackers to Follow on Social Media",
+      "url": "/mains/hackers-to-follow-on-social-media"
+    }
+  ],
+  "channels": [
+    {
+      "username": "0x61",
+      "url": "https://www.youtube.com/@0x61"
+    },
+    {
+      "username": "BePracticalTech",
+      "url": "https://www.youtube.com/@BePracticalTech"
+    },
+    {
+      "username": "BittenTech",
+      "url": "https://www.youtube.com/@BittenTech"
+    },
+    {
+      "username": "BringusStudios",
+      "url": "https://www.youtube.com/@BringusStudios"
+    },
+    {
+      "username": "BruceTetsuya",
+      "url": "https://www.youtube.com/@BruceTetsuya"
+    },
+    {
+      "username": "BugBountyReportsExplained",
+      "url": "https://www.youtube.com/@BugBountyReportsExplained"
+    },
+    {
+      "username": "BugHuntingPoc",
+      "url": "https://www.youtube.com/@BugHuntingPoc"
+    },
+    {
+      "username": "CodeWithHarry",
+      "url": "https://www.youtube.com/@CodeWithHarry"
+    },
+    {
+      "username": "CosmodiumCS",
+      "url": "https://www.youtube.com/@CosmodiumCS"
+    },
+    {
+      "username": "CyberFlow10",
+      "url": "https://www.youtube.com/@CyberFlow10"
+    },
+    {
+      "username": "CyberYodha",
+      "url": "https://www.youtube.com/@CyberYodha"
+    },
+    {
+      "username": "EngineerMan",
+      "url": "https://www.youtube.com/@EngineerMan"
+    },
+    {
+      "username": "Hac1337",
+      "url": "https://www.youtube.com/@Hac1337"
+    },
+    {
+      "username": "HackerSploit",
+      "url": "https://www.youtube.com/@HackerSploit"
+    },
+    {
+      "username": "InsiderPhD",
+      "url": "https://www.youtube.com/@InsiderPhD"
+    },
+    {
+      "username": "JoeGrand",
+      "url": "https://www.youtube.com/@JoeGrand"
+    },
+    {
+      "username": "LeetCipher",
+      "url": "https://www.youtube.com/@LeetCipher"
+    },
+    {
+      "username": "Linuxndroid",
+      "url": "https://www.youtube.com/@Linuxndroid"
+    },
+    {
+      "username": "LiveOverflow",
+      "url": "https://www.youtube.com/@LiveOverflow"
+    },
+    {
+      "username": "LoiLiangYang",
+      "url": "https://www.youtube.com/@LoiLiangYang"
+    },
+    {
+      "username": "LokmatHindi",
+      "url": "https://www.youtube.com/@LokmatHindi"
+    },
+    {
+      "username": "MrBeast",
+      "url": "https://www.youtube.com/@MrBeast"
+    },
+    {
+      "username": "NahamSec",
+      "url": "https://www.youtube.com/@NahamSec"
+    },
+    {
+      "username": "NetworkChuck",
+      "url": "https://www.youtube.com/@NetworkChuck"
+    },
+    {
+      "username": "NeuralNine",
+      "url": "https://www.youtube.com/@NeuralNine"
+    },
+    {
+      "username": "NickDiGiovanni",
+      "url": "https://www.youtube.com/@NickDiGiovanni"
+    },
+    {
+      "username": "NileRed",
+      "url": "https://www.youtube.com/@NileRed"
+    },
+    {
+      "username": "PwnFunction",
+      "url": "https://www.youtube.com/@PwnFunction"
+    },
+    {
+      "username": "RealEngineering",
+      "url": "https://www.youtube.com/@RealEngineering"
+    },
+    {
+      "username": "STOKfredrik",
+      "url": "https://www.youtube.com/@STOKfredrik"
+    },
+    {
+      "username": "SankalpaBaral1337",
+      "url": "https://www.youtube.com/@SankalpaBaral1337"
+    },
+    {
+      "username": "ShashwatMaheshwari",
+      "url": "https://www.youtube.com/@ShashwatMaheshwari"
+    },
+    {
+      "username": "TCMSecurityAcademy",
+      "url": "https://www.youtube.com/@TCMSecurityAcademy"
+    },
+    {
+      "username": "TechAltar",
+      "url": "https://www.youtube.com/@TechAltar"
+    },
+    {
+      "username": "TechRaj156",
+      "url": "https://www.youtube.com/@TechRaj156"
+    },
+    {
+      "username": "TheCyberExpert",
+      "url": "https://www.youtube.com/@TheCyberExpert"
+    },
+    {
+      "username": "Virdoex",
+      "url": "https://www.youtube.com/@Virdoex"
+    },
+    {
+      "username": "WebWonders1",
+      "url": "https://www.youtube.com/@WebWonders1"
+    },
+    {
+      "username": "XSSLover",
+      "url": "https://www.youtube.com/@XSSLover"
+    },
+    {
+      "username": "_CryptoCat",
+      "url": "https://www.youtube.com/@_CryptoCat"
+    },
+    {
+      "username": "_JohnHammond",
+      "url": "https://www.youtube.com/@_JohnHammond"
+    },
+    {
+      "username": "abhishekmorla1",
+      "url": "https://www.youtube.com/@abhishekmorla1"
+    },
+    {
+      "username": "an0n_ali",
+      "url": "https://www.youtube.com/@an0n_ali"
+    },
+    {
+      "username": "bugbountypoc395",
+      "url": "https://www.youtube.com/@bugbountypoc395"
+    },
+    {
+      "username": "cangetrootacccess",
+      "url": "https://www.youtube.com/@cangetrootacccess"
+    },
+    {
+      "username": "codeprefer9108",
+      "url": "https://www.youtube.com/@codeprefer9108"
+    },
+    {
+      "username": "collinsinfosec",
+      "url": "https://www.youtube.com/@collinsinfosec"
+    },
+    {
+      "username": "criticalthinkingpodcast",
+      "url": "https://www.youtube.com/@criticalthinkingpodcast"
+    },
+    {
+      "username": "cybertix",
+      "url": "https://www.youtube.com/@cybertix"
+    },
+    {
+      "username": "davidbombal",
+      "url": "https://www.youtube.com/@davidbombal"
+    },
+    {
+      "username": "defronix",
+      "url": "https://www.youtube.com/@defronix"
+    },
+    {
+      "username": "dream",
+      "url": "https://www.youtube.com/@dream"
+    },
+    {
+      "username": "esharmaji",
+      "url": "https://www.youtube.com/@esharmaji"
+    },
+    {
+      "username": "ezsnippat",
+      "url": "https://www.youtube.com/@ezsnippat"
+    },
+    {
+      "username": "firstindiatv",
+      "url": "https://www.youtube.com/@firstindiatv"
+    },
+    {
+      "username": "freecodecamp",
+      "url": "https://www.youtube.com/@freecodecamp"
+    },
+    {
+      "username": "hackbin0007",
+      "url": "https://www.youtube.com/@hackbin0007"
+    },
+    {
+      "username": "hackerhaltLiveTarget",
+      "url": "https://www.youtube.com/@hackerhaltLiveTarget"
+    },
+    {
+      "username": "intigriti",
+      "url": "https://www.youtube.com/@intigriti"
+    },
+    {
+      "username": "ippsec",
+      "url": "https://www.youtube.com/@ippsec"
+    },
+    {
+      "username": "jasminetea11",
+      "url": "https://www.youtube.com/@jasminetea11"
+    },
+    {
+      "username": "jaylikesmakingthings222",
+      "url": "https://www.youtube.com/@jaylikesmakingthings222"
+    },
+    {
+      "username": "mah3sec",
+      "url": "https://www.youtube.com/@mah3sec"
+    },
+    {
+      "username": "noobsanetworkchuckpodcast3009",
+      "url": "https://www.youtube.com/@noobsanetworkchuckpodcast3009"
+    },
+    {
+      "username": "rs0n_live",
+      "url": "https://www.youtube.com/@rs0n_live"
+    },
+    {
+      "username": "ryan_phdsec",
+      "url": "https://www.youtube.com/@ryan_phdsec"
+    },
+    {
+      "username": "stuffhai",
+      "url": "https://www.youtube.com/@stuffhai"
+    },
+    {
+      "username": "tadii",
+      "url": "https://www.youtube.com/@tadii"
+    },
+    {
+      "username": "techiehunter08",
+      "url": "https://www.youtube.com/@techiehunter08"
+    },
+    {
+      "username": "vivekverma5467",
+      "url": "https://www.youtube.com/@vivekverma5467"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Medium",
+      "url": "/mains/hackers-to-follow-on-social-media/medium"
+    },
+    "next": {
+      "title": "GitHub",
+      "url": "/mains/hackers-to-follow-on-social-media/github"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2024-06-29T02:48:58.157Z"
+  }
+}

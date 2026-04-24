@@ -1,0 +1,471 @@
+{
+  "title": "Bug Bounty Checklist",
+  "breadcrumb": [
+    {
+      "name": "Mains",
+      "url": "/mains"
+    }
+  ],
+  "sections": [
+    {
+      "type": "success_hint",
+      "content": "Build your own Bug Bounty Check List or scroll down and check mine mostly inspired by these resources only."
+    },
+    {
+      "type": "link_card",
+      "title": "GitHub - 0xmaximus/Galaxy-Bugbounty-Checklist: Tips and Tutorials for Bug Bounty and also Penetration Tests.",
+      "url": "https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Bugs-detailed | Notion",
+      "url": "https://jeweled-lathe-d5e.notion.site/Bugs-detailed-25ae98f3d3b648bba4e1ab155e6760cb",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwww.notion.so%2Ffront-static%2Flogo-ios.png&width=20&dpr=3&quality=100&sign=32c746fd&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "GitHub - daffainfo/AllAboutBugBounty: All about bug bounty (bypasses, payloads, and etc)",
+      "url": "https://github.com/daffainfo/AllAboutBugBounty",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Bug-bounty/bugbounty_checklist.md at master · sehno/Bug-bounty",
+      "url": "https://github.com/sehno/Bug-bounty/blob/master/bugbounty_checklist.md",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "GitHub - KathanP19/HowToHunt: Collection of methodology and test case for various web vulnerabilities.",
+      "url": "https://github.com/KathanP19/HowToHunt",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Web Application Penetration Testing Checklist | Notion",
+      "url": "https://alike-lantern-72d.notion.site/Web-Application-Penetration-Testing-Checklist-4792d95add7d4ffd85dd50a5f50659c6",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwww.notion.so%2Ffront-static%2Flogo-ios.png&width=20&dpr=3&quality=100&sign=32c746fd&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Pentesting Web checklist | Pentest Book",
+      "url": "https://pentestbook.six2dez.com/others/web-checklist",
+      "logo": "https://www.pentest-book.com/~gitbook/image?url=https%3A%2F%2F1729840239-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-M5x1LJiRQvXWpt04_ee%252Favatar-1589202873787.png%3Fgeneration%3D1589202874039238%26alt%3Dmedia&width=48&height=48&sign=1dafa1f5&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Web Attacks | Pentest Book",
+      "url": "https://pentestbook.six2dez.com/enumeration/web",
+      "logo": "https://www.pentest-book.com/~gitbook/image?url=https%3A%2F%2F1729840239-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-M5x1LJiRQvXWpt04_ee%252Favatar-1589202873787.png%3Fgeneration%3D1589202874039238%26alt%3Dmedia&width=48&height=48&sign=1dafa1f5&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Web Technologies | Pentest Book",
+      "url": "https://pentestbook.six2dez.com/enumeration/webservices",
+      "logo": "https://www.pentest-book.com/~gitbook/image?url=https%3A%2F%2F1729840239-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-M5x1LJiRQvXWpt04_ee%252Favatar-1589202873787.png%3Fgeneration%3D1589202874039238%26alt%3Dmedia&width=48&height=48&sign=1dafa1f5&sv=2"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "id": "my-bug-bounty-check-check-list",
+      "content": "My Bug Bounty Check Check List"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "success_hint",
+      "content": "Grab PDF format: https://drive.google.com/file/d/150VFlq7yzC3NydvoWLHGOZ_mjdUR3pXB/view?usp=sharing"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "id": "functionality",
+      "content": "Functionality"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "oauth",
+      "content": "Oauth"
+    },
+    {
+      "type": "list",
+      "items": [
+        "1st Scenario"
+      ]
+    },
+    {
+      "type": "code_block",
+      "language": "markdown",
+      "content": "**Reference: https://hackerone.com/reports/1074047\n1. Attacker signs up on website using the victim's email (which is not registered yet).\n2. Attacker sets a password and waits.\n3. Later, the victim tries to sign up using OAuth (Google, MSN, etc.).\n4. website allows the victim to log in via OAuth but does not check if \n   the account was already created with a password.\n5. Since OAuth skips email verification, the attacker can now log in \n   using the password they set earlier.**"
+    },
+    {
+      "type": "list",
+      "items": [
+        "2nd scenario"
+      ]
+    },
+    {
+      "type": "code_block",
+      "language": "markdown",
+      "content": "**Reference: https://www.youtube.com/watch?v=GfIC_qiZb-E\n           https://medium.com/@ProwlSec/the-oauth-oversight-when-configuration-errors-turn-into-account-hijacks-5ed1f9c83d16\n1. Log in using the attacker's email via OAuth.\n2. Change the attacker's email to the victim's email.\n3. The victim attempts to register or reset their password.\n4. The attacker can still access the victim's account using OAuth with the attacker's email.**        "
+    },
+    {
+      "type": "list",
+      "items": [
+        "4th Scenario Host-Header Injection in Oauth\n- https://hackerone.com/reports/317476",
+        "Exploiting callback_urls= parameter\n- https://www.linkedin.com/pulse/account-takeover-via-google-oauth-misconfiguration-izyits-e76ef/?trackingId=8AI%2FWBa3TECMDxldWaTWSw%3D%3D"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "captcha",
+      "content": "CAPTCHA"
+    },
+    {
+      "type": "list",
+      "items": [
+        "set value to true (https://cysky0x1.medium.com/registration-captcha-bypass-ecdb6cd382d1)",
+        "set captcha value to 1 and also set new content-length",
+        "Send old captcha value.",
+        "Send old captcha value with old session ID.",
+        "Request captcha absolute path like www.url.com/captcha/1.png",
+        "Change from POST to GET",
+        "Remove captcha parameter"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "otp-system",
+      "content": "OTP System"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Keep adding zero or country code before actual phone number eg 0XXXXXXXXXX, 00XXXXXXXXXX, 000XXXXXXXXXX, +91XXXXXXXXXX",
+        "let the intruder run till correct OTP even if there is 401 or 429 status code\nreference: https://mokhansec.medium.com/the-2-200-ato-most-bug-hunters-overlooked-by-closing-intruder-too-soon-505f21d56732",
+        "if OTP in json format try make it array",
+        "Response manipulation / false to true / correct OTP response.",
+        "check developer tools",
+        "Generate two OTP one from victim account second is attacker account\nReference: https://strangerwhite.medium.com/bypassing-otp-verification-another-bug-found-without-any-tools-8b2c1013c3e7"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "id-2fa-misconfiguration",
+      "content": "2FA Misconfiguration"
+    },
+    {
+      "type": "list",
+      "items": [
+        "With null or 000000",
+        "2FA Code Reusability",
+        "2FA Bypass through Oauth",
+        "Lack of Brute-Force Protection",
+        "2FA Code Leakage in Response",
+        "Missing 2FA Code Integrity Validation",
+        "Response Manipulation / Status Code Manipulation\n**Reference: https://likithteki.medium.com/how-i-got-150-on-hackerone-for-my-first-bug-8af0ed515e79\n1. Enable 2FA: Set up 2FA on the account and generate recovery codes.\n2. Save Codes: Securely store these recovery codes.\n3. Disable 2FA: Disable turn off 2FA.\n4. Re-enable 2FA: Reactivate 2FA on the account.\n5. Sign Out: Log out of the account.\n6. Login Attempt: Try logging back in using one of the old recovery codes.\n7. Despite re-enabling 2FA, the old recovery codes still worked, making it easy for an attacker to bypass the security measure.**",
+        "2FA bypass with password reset functionality.\nhttps://www.linkedin.com/posts/alsanosi_bugbounty-hackerone-bugcrowd-activity-7313613977844908033-VBFJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD7i-kYBPFLRnBLZy31myo6GBKvOJ3sZqKI"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "swagger-ui",
+      "content": "Swagger UI"
+    },
+    {
+      "type": "list",
+      "items": [
+        "https://scr1pty.medium.com/how-i-found-xss-in-swagger-ui-leading-to-account-takeover-on-bug-bounty-8d419c6b95d5",
+        "https://infosecwriteups.com/hacking-swagger-ui-101-ccbce66ba028",
+        "FOFA: domain=\"http://redacted.com\" && (icon_hash=\"1120729672\" || icon_hash=\"-1128940573\" || icon_hash=\"-1180440057\")"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "dmarc-policy",
+      "content": "DMARC Policy"
+    },
+    {
+      "type": "link_card",
+      "title": "MX Lookup Tool - Check your DNS MX Records online - MxToolbox",
+      "url": "https://mxtoolbox.com/",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmxtoolbox.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=b305ae28&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "https://www.anonymailer.net/m-mail-03.asp",
+      "url": "https://www.anonymailer.net/m-mail-03.asp"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "wordpress",
+      "content": "WordPress"
+    },
+    {
+      "type": "paragraph",
+      "content": "https://github.com/Raunaksplanet/CustomPayloads-Wordlist.com/blob/main/Fuzz-Wordpress.tx"
+    },
+    {
+      "type": "paragraph",
+      "content": "https://github.com/Raunaksplanet/CustomPayloads-Wordlist.com/blob/main/wp-content.txt"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "my-profile-testing",
+      "content": "My Profile Testing"
+    },
+    {
+      "type": "list",
+      "items": [
+        "1st scenario\n1. User A uploads a picture as \"public\".\n2. User B views the picture, right-clicks on the image, and opens it in a \"new tab\". User B now has the \"direct URL\" to the image.\n3. User A goes to their profile and changes the image's privacy to \"private\".\n4. Despite the privacy change, \"User B can still access the image\" using the \"same direct URL\".\n5. https://github.com/Tedixx/i/raw/i/i.zip",
+        "Change account details (Name, Number, Address, etc.) Try CSRF",
+        "EXIF Geolocation Data Not Stripped From Uploaded Images."
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "signup-form-testing",
+      "content": "Signup Form testing"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Rate limit on creating account",
+        "Try to register with company mail",
+        "Parameter Pollution eg https://www.linkedin.com/feed/update/urn:li:activity:7299260730627756032/",
+        "if email verification on registration then try HTMLI & Hyperlink injection\n<img src=\"https://iplogger.co/142yV4\" width=\"1\" height=\"1\" style=\"display:none;\" />",
+        "Check for insufficient email verification process and enable 2FA for account takeover",
+        "Long password (>10k char) leads to DoS)",
+        "Weak registration implementation-Allows disposable email addresses",
+        "try id@ in registration page\n(reference: https://medium.com/@iski/how-i-found-my-first-high-severity-bug-and-got-rewarded-with-3-trays-of-red-bull-29ec0ca6a2e4)",
+        "If JSON request, add comma {\"email\":\"victim@mail.com\",\"hacker@mail.com\",\"token\":\"xxxxxxxxxx\"}",
+        "try to register with company email."
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "signin-form-testing",
+      "content": "Signin Form testing"
+    },
+    {
+      "type": "list",
+      "items": [
+        "login rate limit bypass",
+        "response manipulations",
+        "directory bruteforce",
+        "XSS on any other parameters found"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "file-upload",
+      "content": "File Upload"
+    },
+    {
+      "type": "ordered_list",
+      "items": [
+        "try adding magic bytes\neg: https://www.youtube.com/watch?v=oUI38IEqimM",
+        "Unrestricted File Upload via Double Extension Bypass\n\nThe application validates uploads using only the file extension \n(e.g., .jpg, .png). Uploading a file like shell.php.png bypasses \nthis check. The server treats it as a valid image but stores it with \nits original name, enabling code execution if accessed directly.\n\n1. Create a PHP web shell (e.g., <?php system($_GET['cmd']); ?>) and save it as shell.php.png.\n2. Upload this file via the image upload feature.\n3. Visit the uploaded file's URL.\n4. If executed as PHP, append ?cmd=whoami to test RCE.",
+        "Unauthenticated Image Upload to Public Cloud Storage\n\nDescription:\nUpload API accepts file uploads without requiring authentication headers \n(e.g., session tokens). The file is stored in a cloud bucket and returns a \npublic URL.\n\nSteps to Reproduce:\n1. Intercept the upload request using Burp Suite.\n2. Remove all authentication headers (like Cookie, Authorization).\n3. Forward the request with the image file.\n4. Observe if the server returns a valid public URL.\n5. Open that URL in an incognito window to verify public access.",
+        "Bypass of Product Image Upload Limit\n\nDescription:\nThe frontend restricts users to 7 images per product. However, this is \nenforced only via JavaScript, not server-side.\n\nSteps to Reproduce:\n1. Begin uploading 7 images via the UI.\n2. Intercept the final image upload request in Burp.\n3. Clone and modify the intercepted request to upload additional images (8th, 9th, etc.).\n4. Send the requests.\n5. Confirm by viewing the product page showing more than 7 images.",
+        "No Rate Limiting or Upload Quotas\n\nDescription:\nThere's no limit to how many files can be uploaded in a short time. \nThis allows abuse via automated tools.\n\nSteps to Reproduce:\n1. Set up Burp Suite Intruder or a script using curl/python to \n\t send multiple upload requests.\n2. Launch a burst of 100+ file uploads in rapid succession.\n\nObserve:\nNo captcha or delay.\nServer accepts all requests.\nAll files are successfully stored.",
+        "File Replacement Attack\n\nSome platforms let users replace existing files. If predictable URLs \nor file IDs are used, you might overwrite other users' files.\n\n1. Upload a file and observe its storage URL or ID.\n2. Try uploading a new file with same ID or URL path via Burp.\n3. If the existing file is replaced without ownership check, report it."
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "session-issue",
+      "content": "Session Issue"
+    },
+    {
+      "type": "paragraph",
+      "content": "1st Scenario"
+    },
+    {
+      "type": "code_block",
+      "language": "markdown",
+      "content": "0. https://hackerone.com/reports/1162443\n1. Go to https://exchangemarketplace.com/ and click on Sign In\n2. Continue with Google Account\n3. Use \"EditThisCookie\" Extension to export the cookies\n4. Once you logged in - click on \"EditThisCookie\" Extension and export the cookies\n5. Now open another browser and import those cookies - you can able to login an account by using cookies\n6. Logout from your first browser - it should logout from another browser as well.\n7. Now, login again with your google account - This time use old cookies.\n8. By using old cookies, you can able to login victim's account. (Whenever victim's session is active)"
+    },
+    {
+      "type": "paragraph",
+      "content": "2nd scenario"
+    },
+    {
+      "type": "code_block",
+      "language": "markdown",
+      "content": "1. Go to `https://targetsite.com` and log in with valid credentials.\n2. Open \"EditThisCookie\" extension and export the current session cookies.\n3. Open another browser (or incognito window) and import the same cookies using \"EditThisCookie\".\n4. Confirm you are logged into the same account in both sessions.\n5. In the original browser, go to account settings and \"change the password\".\n6. Observe: the second session (imported one) is \"still active\" and can perform authenticated actions.\n7. This confirms that \"session was not invalidated\" after the password change.\n8. Impact: An attacker with a stolen session cookie can maintain access even after a password reset."
+    },
+    {
+      "type": "paragraph",
+      "content": "3rd scenario"
+    },
+    {
+      "type": "code_block",
+      "language": "markdown",
+      "content": "1. Login to your account on \"https://targetsite.com\".  \n2. Go to the \"Profile\" section and update any field (e.g., name or bio).  \n3. Intercept the \"update request\" using Burp Suite.  \n4. \"Send the intercepted request to Repeater\" (do not send it yet).  \n5. Now, \"logout\" from the application.  \n6. Go back to \"Repeater\" and \"send the saved update request\".  \n7. Login again and check the profile data.  \n8. If the \"update was successful after logout\", the session is still valid — \"vulnerability confirmed\"."
+    },
+    {
+      "type": "paragraph",
+      "content": "https://www.linkedin.com/posts/rohith-s-0b9b2b267_bugbounty-bugbountyreports-bugbountyjourney-activity-7318306351510683648-7Qug?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD7i-kYBPFLRnBLZy31myo6GBKvOJ3sZqKI"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "test-user-account-lockout-mechanism-on-brute-force-attack",
+      "content": "Test user account lockout mechanism on brute force attack"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Bypass rate limiting by tampering user agent to Mobile User agent",
+        "Bypass rate limiting by using null byte"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "account-deletion-testing",
+      "content": "Account Deletion testing"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Check IDOR",
+        "Lack of password confirmation when deleting your account"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "product-purchase-testing",
+      "content": "Product Purchase Testing"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Buy Now\n- Tamper product ID to purchase other high valued product with low prize\n- Tamper product data in order to increase the number of product with the same prize",
+        "Gift/Voucher\n- Tamper gift/voucher count in the request (if any) to increase/decrease the number of vouchers/gifts to be used\n- Tamper gift/voucher value to increase/decrease the value of the voucher in terms of money. (e.g. $100 is given as a voucher, tamper value to increase, decrease money)\n- Reuse gift/voucher by using old gift values in parameter tampering\n- Check the uniqueness of gift/voucher parameter and try guessing other gift/voucher code\n- Use parameter pollution technique to add the same voucher twice by adding same parameter name and value again with & in the BurpSuite request",
+        "Add/Delete Product from Cart\n- Tamper user id to delete products from other user's cart\n- Tamper cart id to add/delete products from other user's cart\n- Identify cart id/user id for cart feature to view the added items from other user's account",
+        "Place Order\n- Tamper payment options parameter to change the payment method. E.g. Consider some items cannot be ordered for cash on delivery but tampering request parameters from debit/credit/PayPal/net banking option to cash on delivery may allow you to place order for that particular item\n- Tamper the amount value for payment manipulation in each main and sub requests and responses\n- Check if CVV is going in cleartext or not\n- Check if the application itself processes your card details and then performs a transaction or it calls any third-party payment processing company to perform a transaction",
+        "Track Order\n- Track other user's order by guessing order tracking number\n- Brute force tracking number prefix or suffix to track mass orders for other users",
+        "Wish list page testing\n- Check if a user A can add/remote products in Wishlist of other user B's account\n- Check if a user A can add products into user B's cart from his/her (user A's) Wishlist section.",
+        "Post product purchase testing\n- Check if user A can cancel orders for user B's purchase\n- Check if user A can view/check orders already placed by user B\n- Check if user A can modify the shipping address of placed order by user B",
+        "Out of band testing\n- Can user order product which is out of stock?",
+        "Invite User as Different roles (Privilege escalation)\n- invite two user one as admin(user A) second as normal(user B) and then change user B email to user A\nEg https://siratsami71.medium.com/from-user-to-admin-a-privilege-escalation-via-business-logic-7ae901be7d81"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "functionality-where-user-get-credit-on-account-creation",
+      "content": "Functionality where user get credit on account creation"
+    },
+    {
+      "type": "list",
+      "items": [
+        "https://cysky0x1.medium.com/how-i-found-a-critical-bug-affecting-the-organization-and-changed-money-in-the-credit-balance-b92569df5352"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "password-update-and-password-forgot-testing",
+      "content": "Password update & password forgot testing"
+    },
+    {
+      "type": "list",
+      "items": [
+        "1st scenario\n1. Register with the email \"testbug@gmail.com\" on the website.  \n2. Request a \"password reset\" for \"testbug@gmail.com\".  \n3. Do \"not\" open the reset link you receive in your email.  \n4. Log in to the account with the original password.  \n5. Go to the \"profile settings\" and change the email from \"testbug@gmail.com\" to \"testpry@gmail.com\".  \n6. Open the \"previous reset link\" (received for \"testbug@gmail.com\").  \n7. If the reset link is still \"working\", it means the application does not invalidate the reset link after the email change.",
+        "2nd scenario\n0. Password Reset Token Leakage via Host Header Poisoning (add X-FORWADED-HOST: <burp collaborator link> to get token)\n1. Go to the \"password reset page\" on the website, for example: \"https://targetsite.com/password-reset\".\n2. Enter your email (e.g., \"testuser@example.com\") and request a \"password reset\".\n3. The application will send a password reset email with a reset token URL, typically like:\n \"https://targetsite.com/reset-password?token=<token>\"\n4. \"Intercept the request\" for the password reset in a proxy like Burp Suite (or use a browser's developer tools).\n5. \"Modify the Host header\" in the request to a different value, such as:\n \"Host: evil.com\"\n6. \"Forward the modified request\" to the server.\n7. Observe the response from the server.\n8. If the server \"leaks the reset token\" or responds with any sensitive data related to the password reset process in response to the \"poisoned Host header\", this is a \"Password Reset Token Leakage vulnerability\".",
+        "3rd scenario\n0. https://hackerone.com/reports/772886  \n1. Register with the email 'testuser@example.com' on the website.  \n2. Go to the \"password reset page\" and request a reset for 'testuser@example.com'.  \n3. You will receive a password reset email with a link like:  \n   'https://targetsite.com/reset-password?token=<reset_token>'.  \n4. Open the \"reset link\" and change the password.  \n5. Open a \"new tab\" in the browser and visit the same reset link:  \n   'https://targetsite.com/reset-password?token=<reset_token>'.  \n6. If the link \"still works\" and you are able to successfully change the password again, this is a vulnerability — the reset token is not invalidated after use.",
+        "check if backend check email case sensitivity",
+        "IDOR in reset link",
+        "Append second email parameter and value",
+        "Account lockout even after entering right password",
+        "CSRF on update password",
+        "Check if forget password reset link/code uniqueness",
+        "Password reset link not expiring using same link for multiple password reset",
+        "Token leak in referrer header while clicking to another link on new password page",
+        "https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/tree/main/Reset%20Password%20vulnerabilities"
+      ]
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Build your own Bug Bounty Methodology",
+      "url": "/mains/build-your-own-bug-bounty-methodology"
+    },
+    "next": {
+      "title": "JS Analysis for Bug Bounty",
+      "url": "/mains/js-analysis-for-bug-bounty"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-13T13:04:54.229Z"
+  }
+}

@@ -1,0 +1,250 @@
+{
+  "title": "POC Videos YT Channel",
+  "description": "Here are all the YouTube channel listed who upload POC(Proof Of Concept) videos related to Bug-Bounty, Exploiting Vulnerabilities, Bugs, Web-App-Functions and many more.",
+  "breadcrumb": [
+    {
+      "label": "Mains",
+      "url": "/mains"
+    }
+  ],
+  "channels": [
+    {
+      "name": "Sankalpa Baral",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@SankalpaBaral1337/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@lostsecc",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@lostsecc"
+    },
+    {
+      "name": "Virdoex",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@Virdoex/videos"
+    },
+    {
+      "name": "Tech Ghoshal",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@techghoshal/videos"
+    },
+    {
+      "name": "Poc hunter",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@bugbountypoc395/videos"
+    },
+    {
+      "name": "Bug Bounty POC",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@BugHuntingPoc"
+    },
+    {
+      "name": "https://www.youtube.com/@CyberSkb45/videos",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@CyberSkb45/videos"
+    },
+    {
+      "name": "Hacker Shiv",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@HackerShiv/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@bugbountypocdisclosure/videos",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@bugbountypocdisclosure/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@BugBountyPocVideos/videos",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@BugBountyPocVideos/videos"
+    },
+    {
+      "name": "Hacking Blocks",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@HackingBlocks/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@abhishekmorla1/videos",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@abhishekmorla1/videos"
+    },
+    {
+      "name": "Information & Tech",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@bugbounty101/videos"
+    },
+    {
+      "name": "Webcipher101",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@webcipher101/videos"
+    },
+    {
+      "name": "Bug Sec",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@bugsec0x01/videos"
+    },
+    {
+      "name": "Bug Hunter Aryan",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@bughunteraryan/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@techiehunter08/videos",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@techiehunter08/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@HACKERFUDDI/videos",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@HACKERFUDDI/videos"
+    },
+    {
+      "name": "THE BBH",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@THEBBH/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@sudhanshurajbhar9635/videos",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@sudhanshurajbhar9635/videos"
+    },
+    {
+      "name": "Cyberx14",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@cyberx14/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@Jiivahack/videos",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@Jiivahack/videos"
+    },
+    {
+      "name": "sasec",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@0xROI/videos"
+    },
+    {
+      "name": "Tama",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@Security07/videos"
+    },
+    {
+      "name": "Root Access Hacks",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@cangetrootacccess/videos"
+    },
+    {
+      "name": "CodePrefer",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@codeprefer9108/videos"
+    },
+    {
+      "name": "HunterDep",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@HunterDep/videos"
+    },
+    {
+      "name": "Ibnu Fachrizal",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@ibnufachrizal/videos"
+    },
+    {
+      "name": "Rootreboot",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@RootReboot/videos"
+    },
+    {
+      "name": "CyberHacks",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@CyberHacks200/videos"
+    },
+    {
+      "name": "mufazmi",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@mufazmi/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@gotr00t0day/videos",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@gotr00t0day/videos"
+    },
+    {
+      "name": "rashahacks",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@rashahacks/videos"
+    },
+    {
+      "name": "https://www.youtube.com/@sudhanshurajbhar9635",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@sudhanshurajbhar9635"
+    },
+    {
+      "name": "The Cyberboy",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@the_cyb3rb0y"
+    },
+    {
+      "name": "https://www.youtube.com/@techiehunter08",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@techiehunter08"
+    },
+    {
+      "name": "rashahacks",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@rashahacks"
+    },
+    {
+      "name": "Poc hunter",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@bugbountypoc395"
+    },
+    {
+      "name": "mufazmi",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@mufazmi"
+    },
+    {
+      "name": "Information & Tech",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@bugbounty101"
+    },
+    {
+      "name": "𝙀𝙫𝙚𝙧5𝙚𝙘╮",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@hacksys"
+    },
+    {
+      "name": "https://www.youtube.com/@HACKERFUDDI",
+      "platform": "www.youtube.com",
+      "url": "https://www.youtube.com/@HACKERFUDDI"
+    },
+    {
+      "name": "Elite Pwner",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@elit3pwnerr"
+    },
+    {
+      "name": "Bug Sec",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@bugsec0x01"
+    },
+    {
+      "name": "Bug Hunter Aryan",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@bughunteraryan"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Browser extension For Bug Bounty",
+      "url": "/mains/browser-extension"
+    },
+    "next": {
+      "title": "55 YouTube Channels To Learn Hacking",
+      "url": "/mains/55-youtube-channels-to-learn-hacking"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2024-09-01T19:49:27.261Z"
+  }
+}

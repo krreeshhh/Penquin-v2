@@ -22,8 +22,6 @@ export function TakodachiFollower({ enabled }: { enabled: boolean }) {
     // Reset when toggled off.
     if (!enabled || isCoarsePointer()) {
       img.style.opacity = "0";
-      img.style.left = "0px";
-      img.style.top = "0px";
       if (rafRef.current != null) {
         window.cancelAnimationFrame(rafRef.current);
         rafRef.current = null;
