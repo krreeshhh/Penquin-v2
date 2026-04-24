@@ -19,7 +19,7 @@ export const Footer = () => {
             href={`${process.env.NEXT_PUBLIC_GITHUB_REPO}/commit/${process.env.NEXT_PUBLIC_COMMIT_HASH}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[14px] hover:text-[var(--vp-c-text-1)] transition-colors inline-block font-mono"
+            className="text-[14px] hover:text-[var(--vp-c-text-1)] transition-colors inline-block"
           >
             {process.env.NEXT_PUBLIC_COMMIT_HASH}
           </a>
