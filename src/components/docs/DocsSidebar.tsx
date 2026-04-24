@@ -241,10 +241,6 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
           </button>
         </div>
 
-        <div className="mb-4 pr-8">
-          <div className="h-[1px] bg-[var(--vp-c-divider)] opacity-50 w-full" />
-        </div>
-
         <nav id="VPSidebarNav" className="nav pt-0" aria-label="Sidebar Navigation">
           <span className="visually-hidden" id="sidebar-aria-label">wotaku
             Sidebar Navigation
@@ -255,32 +251,32 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
               {items.map((node) => renderNode(node, 0))}
             </div>
           </div>
-        {/* Bottom Artwork Card (Premium) */}
-        <div className="mt-8 mb-4">
-          <button
-            type="button"
-            onClick={() => setIsSiteKeyOpen(true)}
-            className="w-full text-left bg-[var(--vp-c-bg-soft)] hover:bg-[var(--vp-c-bg-alt)] border border-[var(--vp-c-divider)] transition-all duration-300 overflow-hidden hover:-translate-y-1 rounded-xl group/card"
-          >
-            <div className="h-24 w-full overflow-hidden">
-              <img
-                src="/v2/Banners/1.png"
-                alt="Site Key Banner"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-4">
-              <div className="flex items-center gap-2">
-                <BadgeInfo className="w-4 h-4 text-[var(--vp-c-brand-1)]" strokeWidth={2.5} />
-                <div className="text-[14px] font-bold text-[var(--vp-c-text-1)]">Site key</div>
+          {/* Bottom Artwork Card (Premium) */}
+          <div className="mt-8 mb-4">
+            <button
+              type="button"
+              onClick={() => setIsSiteKeyOpen(true)}
+              className="w-full text-left bg-[var(--vp-c-bg-soft)] hover:bg-[var(--vp-c-bg-alt)] border border-[var(--vp-c-divider)] transition-all duration-300 overflow-hidden hover:-translate-y-1 rounded-xl group/card"
+            >
+              <div className="h-24 w-full overflow-hidden">
+                <img
+                  src="/v2/Banners/1.png"
+                  alt="Site Key Banner"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110"
+                  loading="lazy"
+                />
               </div>
-              <div className="text-[12px] text-[var(--vp-c-text-2)] mt-2 leading-relaxed">
-                Reference guide for all external sites & platforms linked.
+              <div className="p-4">
+                <div className="flex items-center gap-2">
+                  <BadgeInfo className="w-4 h-4 text-[var(--vp-c-brand-1)]" strokeWidth={2.5} />
+                  <div className="text-[14px] font-bold text-[var(--vp-c-text-1)]">Site key</div>
+                </div>
+                <div className="text-[12px] text-[var(--vp-c-text-2)] mt-2 leading-relaxed">
+                  Reference guide for all external sites & platforms linked.
+                </div>
               </div>
-            </div>
-          </button>
-        </div>
+            </button>
+          </div>
         </nav>
 
       </aside>
