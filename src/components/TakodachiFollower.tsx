@@ -69,6 +69,9 @@ export function TakodachiFollower({ enabled }: { enabled: boolean }) {
     };
 
     const onPointerMove = (e: PointerEvent) => {
+      if (!visibleRef.current) {
+        currentRef.current = { x: e.clientX + offsetX, y: e.clientY + offsetY };
+      }
       targetRef.current = { x: e.clientX, y: e.clientY };
       visibleRef.current = true;
 
@@ -111,8 +114,8 @@ export function TakodachiFollower({ enabled }: { enabled: boolean }) {
       aria-hidden="true"
       className="pointer-events-none fixed z-[9999] h-16 w-16 opacity-0 transition-opacity duration-500"
       style={{
-        left: "0px",
-        top: "0px",
+        left: "-100px",
+        top: "-100px",
       }}
       decoding="async"
       loading="eager"
