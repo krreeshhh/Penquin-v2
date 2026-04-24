@@ -16,10 +16,12 @@ export const Footer = () => {
           </a>
           <span className="divider mx-2">|</span>
           <a
-            href="#"
-            className="text-[14px] hover:text-[var(--vp-c-text-1)] transition-colors inline-block"
+            href={`${process.env.NEXT_PUBLIC_GITHUB_REPO}/commit/${process.env.NEXT_PUBLIC_COMMIT_HASH}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[14px] hover:text-[var(--vp-c-text-1)] transition-colors inline-block font-mono"
           >
-            1c62c2a
+            {process.env.NEXT_PUBLIC_COMMIT_HASH}
           </a>
         </p>
         <p className="copyright text-[14px] text-[var(--vp-c-text-2)] font-medium leading-[24px] mt-[2px]">
