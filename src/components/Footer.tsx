@@ -12,7 +12,7 @@ export const Footer = () => {
             href="#"
             className="hover:text-[var(--vp-c-text-1)] transition-colors inline-block"
           >
-            Penquin Team
+            The Penquin Team
           </a>
           <span className="divider mx-2">|</span>
           <a
