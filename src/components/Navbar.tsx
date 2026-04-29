@@ -333,12 +333,23 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
             <div className={`transition-all duration-[460ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isDocs ? "lg:pl-[320px]" : ""}`}>
               <button
                 type="button"
+                aria-label="Search"
+                aria-keyshortcuts="/ control+k meta+k"
                 onClick={() => setIsSearchOpen(true)}
-                className={`DocSearch flex items-center justify-center sm:justify-start gap-2 px-3 h-9 rounded-lg bg-[var(--vp-c-bg-soft)] hover:bg-[var(--vp-c-bg-elv)] border border-transparent hover:border-[var(--vp-c-brand-1)] transition-all group ${isDocs ? "w-10 sm:w-[180px]" : "w-10 sm:w-[170px]"}`}
+                className={`DocSearch DocSearch-Button ${isDocs ? "w-10 sm:w-[160px]" : "w-10 sm:w-[150px]"}`}
               >
-                <Search className="w-4 h-4 text-[var(--vp-c-text-3)] group-hover:text-[var(--vp-c-text-1)] transition-colors" strokeWidth={2} />
-                <span className="text-[14px] font-medium text-[var(--vp-c-text-3)] group-hover:text-[var(--vp-c-text-1)] hidden sm:inline-block transition-colors">Search</span>
-                <kbd className="ml-auto font-sans font-medium text-[10px] text-[var(--vp-c-text-3)] group-hover:text-[var(--vp-c-text-1)] group-hover:border-[var(--vp-c-brand-1)] transition-colors border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg)] px-1.5 py-0.5 rounded-[4px] hidden md:flex items-center">Ctrl K</kbd>
+                <span className="DocSearch-Button-Container">
+                  <Search
+                    className="lucide lucide-search-icon lucide-search inline -translate-y-0.25 scale-125 sm:scale-100"
+                    strokeWidth={1.375}
+                    width={15}
+                    height={15}
+                  />
+                  <span className="DocSearch-Button-Placeholder">Search</span>
+                </span>
+                <span className="DocSearch-Button-Keys" aria-hidden>
+                  <kbd className="DocSearch-Button-Key">Ctrl K</kbd>
+                </span>
               </button>
             </div>
           </div>

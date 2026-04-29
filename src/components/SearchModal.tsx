@@ -10,6 +10,7 @@ import {
   Clock,
   Hash,
   CornerDownLeft,
+  TextAlignStart,
   Loader2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -156,6 +157,8 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [selected, setSelected] = useState(0);
   const [loading, setLoading] = useState(false);
   const [recent, setRecent] = useState<string[]>([]);
+  const [groupResults, setGroupResults] = useState(true);
+  const [showTips, setShowTips] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedRef = useRef<HTMLAnchorElement>(null);
@@ -177,7 +180,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     try {
       const stored = localStorage.getItem(RECENT_KEY);
       if (stored) setRecent(JSON.parse(stored));
-    } catch {}
+    } catch { }
   }, []);
 
   // Save recent search
@@ -187,7 +190,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       const updated = [q, ...recent.filter((s) => s !== q)].slice(0, MAX_RECENT);
       localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
       setRecent(updated);
-    } catch {}
+    } catch { }
   }, [recent]);
 
   // Fetch index
@@ -196,6 +199,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       setQuery("");
       setSelected(0);
       setFiltered([]);
+      setShowTips(false);
       return;
     }
     setLoading(true);
@@ -240,16 +244,16 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
         setSelected((p) => (p - 1 + list.length) % list.length);
-        } else if (e.key === "Enter") {
-          e.preventDefault();
-          const item = list[selected];
-          if (item) {
-            saveRecent(query);
-            navigateTo(item.url);
-            onClose();
-          }
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        const item = list[selected];
+        if (item) {
+          saveRecent(query);
+          navigateTo(item.url);
+          onClose();
         }
-      };
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, filtered, selected, onClose, query, saveRecent, navigateTo]);
@@ -280,6 +284,23 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const hasResults = filtered.length > 0;
   const hasQuery = query.trim().length > 0;
 
+  const grouped = React.useMemo(() => {
+    const map = new Map<string, SearchResult[]>();
+    for (const item of filtered) {
+      const key = item.category || "Other";
+      const list = map.get(key) ?? [];
+      list.push(item);
+      map.set(key, list);
+    }
+    return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+  }, [filtered]);
+
+  const indexById = React.useMemo(() => {
+    const map = new Map<string, number>();
+    filtered.forEach((item, index) => map.set(item.id, index));
+    return map;
+  }, [filtered]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -288,7 +309,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] bg-[var(--search-backdrop)]"
             onClick={onClose}
           />
           <div className="fixed inset-0 z-[110] flex items-start justify-center pt-24 px-4 pointer-events-none">
@@ -297,138 +318,217 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: -10 }}
               transition={{ type: "spring", damping: 25, stiffness: 400 }}
-              className="w-full max-w-[640px] bg-[var(--vp-c-bg-elv)] rounded-xl shadow-2xl border border-[var(--vp-c-divider)] overflow-hidden pointer-events-auto flex flex-col"
+              className="w-full max-w-[760px] bg-[var(--search-modal-bg)] rounded-lg shadow-2xl border border-[var(--search-modal-border)] overflow-hidden pointer-events-auto flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-center gap-3 px-4 py-4 border-b border-[var(--vp-c-divider)]">
-                <Search className="w-5 h-5 text-[var(--vp-c-text-3)]" />
+              <div className="flex items-center gap-3 px-5 py-4 border-b border-[var(--search-sep)]">
+                <Search className="w-5 h-5 text-[var(--search-text-3)]" />
                 <input
                   ref={inputRef}
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search documentation"
-                  className="flex-1 bg-transparent outline-none text-base text-[var(--vp-c-text-1)] placeholder:text-[var(--vp-c-text-3)]"
+                  placeholder="Search"
+                  className="flex-1 bg-transparent outline-none text-[15px] text-[var(--search-text-1)] placeholder:text-[var(--search-text-3)]"
                 />
-                <div className="flex items-center gap-2">
-                  {loading && <Loader2 className="w-4 h-4 animate-spin text-[var(--vp-c-text-3)]" />}
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    aria-label={groupResults ? "Ungroup results" : "Group results"}
+                    aria-pressed={groupResults}
+                    onClick={() => setGroupResults((value) => !value)}
+                    className={
+                      "p-2 rounded-lg hover:bg-[var(--search-row-hover)] transition-colors " +
+                      (groupResults ? "text-[var(--search-chip-text)]" : "text-[var(--search-text-3)]")
+                    }
+                  >
+                    <TextAlignStart className="w-[18px] h-[18px]" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label={showTips ? "Hide search tips" : "Show search tips"}
+                    aria-pressed={showTips}
+                    onClick={() => setShowTips((value) => !value)}
+                    className={
+                      "p-2 rounded-lg hover:bg-[var(--search-row-hover)] transition-colors " +
+                      (showTips ? "text-[var(--search-chip-text)]" : "text-[var(--search-chip-text)]")
+                    }
+                  >
+                  </button>
+                  {loading && <Loader2 className="w-4 h-4 animate-spin text-[var(--search-text-3)] mx-1" />}
                   {query && (
                     <button
+                      type="button"
                       onClick={() => {
                         setQuery("");
                         inputRef.current?.focus();
                       }}
-                      className="p-1 hover:bg-[var(--vp-c-bg-soft)] rounded"
+                      className="p-2 rounded-lg text-[var(--search-text-3)] hover:bg-[var(--search-row-hover)] transition-colors"
+                      aria-label="Clear search"
                     >
-                      <X className="w-4 h-4 text-[var(--vp-c-text-3)]" />
+                      <X className="w-[18px] h-[18px]" />
                     </button>
                   )}
-                  <kbd className="hidden sm:flex px-2 py-1 rounded border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] text-[11px] text-[var(--vp-c-text-3)]">
-                    ESC
-                  </kbd>
                 </div>
               </div>
 
               {/* Results */}
               <div
                 ref={containerRef}
-                className="max-h-[60vh] overflow-y-auto scrollbar-thin"
+                className="max-h-[62vh] overflow-y-auto scrollbar-thin"
               >
-                {!hasQuery ? (
-                  <div className="py-14 flex flex-col items-center text-[var(--vp-c-text-3)]">
-                    <Search className="w-14 h-14 opacity-20 mb-4" />
-                    <p className="text-[15px] font-medium">Search documentation</p>
-                    <p className="text-[13px] opacity-60 mt-1">
-                      Type keywords to find pages, sections, and more
-                    </p>
-                    <div className="flex items-center gap-4 mt-6">
-                      <div className="flex items-center gap-1.5 text-[12px]">
-                        <kbd className="px-1.5 py-0.5 rounded border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)]">↑</kbd>
-                        <kbd className="px-1.5 py-0.5 rounded border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)]">↓</kbd>
-                        <span>to navigate</span>
+                {showTips && (
+                  <div className="px-4 pt-4">
+                    <div className="rounded-xl border border-[var(--search-sep)] bg-[var(--search-row-hover)] px-4 py-3">
+                      <div className="text-[12px] font-semibold text-[var(--search-text-2)]">Tips</div>
+                      <div className="mt-2 text-[12px] text-[var(--search-text-2)] leading-5">
+                        Search matches titles first, then descriptions and page text.
                       </div>
-                      <div className="flex items-center gap-1.5 text-[12px]">
-                        <kbd className="px-1.5 py-0.5 rounded border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)]">↵</kbd>
-                        <span>to select</span>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {["recon", "jwt", "xss", "subdomain takeover", "burp"].map((tip) => (
+                          <button
+                            key={tip}
+                            type="button"
+                            onClick={() => {
+                              setQuery(tip);
+                              setTimeout(() => inputRef.current?.focus(), 0);
+                            }}
+                            className="rounded-lg border border-[var(--search-sep)] bg-[var(--search-modal-bg)] px-2.5 py-1 text-[12px] text-[var(--search-chip-text)] hover:bg-[var(--search-row-hover)] transition-colors"
+                          >
+                            {tip}
+                          </button>
+                        ))}
                       </div>
                     </div>
                   </div>
-                ) : hasResults ? (
-                  <div className="py-2 px-2">
-                    {filtered.map((item, i) => {
-                      const isSel = i === selected;
-                      return (
-                        <a
-                          key={item.id}
-                          ref={isSel ? selectedRef : null}
-                          href={item.url}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            onSelect(item);
-                          }}
-                          onMouseEnter={() => setSelected(i)}
-                          className={`group flex items-start gap-3 px-3 py-3 rounded-xl transition-all ${
-                            isSel
-                              ? "bg-[var(--vp-c-brand-soft)]"
-                              : "hover:bg-[var(--vp-c-bg-soft)]"
-                          }`}
-                        >
-                          {/* Icon */}
-                          <div
-                            className={`w-10 h-10 shrink-0 rounded-lg flex items-center justify-center ${
-                              isSel ? "bg-[var(--vp-c-brand-1)]/10" : "bg-[var(--vp-c-bg-alt)]"
-                            }`}
-                          >
-                            <DocIcon
-                              emoji={item.emoji}
-                              icon={item.icon}
-                              fallback={defaultDocIcons.page}
-                              className={`w-5 h-5 ${
-                                isSel ? "text-[var(--vp-c-brand-1)]" : "text-[var(--vp-c-text-2)]"
-                              }`}
-                            />
-                          </div>
-
-                          {/* Content */}
-                          <div className="min-w-0 flex-1 pt-0.5">
-                            {/* Breadcrumbs */}
-                            {item.breadcrumbs && item.breadcrumbs.length > 1 && (
-                              <div className="flex items-center gap-1 text-[11px] text-[var(--vp-c-text-3)] mb-1">
-                                {item.breadcrumbs.slice(0, -1).map((crumb, idx) => (
-                                  <span key={idx} className="flex items-center gap-1">
-                                    <span className="truncate max-w-[80px]">{crumb}</span>
-                                    {idx < item.breadcrumbs!.slice(0, -1).length - 1 && (
-                                      <ChevronRight className="w-3 h-3 shrink-0 opacity-50" />
-                                    )}
-                                  </span>
-                                ))}
-                              </div>
-                            )}
-
-                            {/* Title */}
-                            <div
-                              className={`text-[14px] font-semibold truncate ${
-                                isSel ? "text-[var(--vp-c-brand-1)]" : "text-[var(--vp-c-text-1)]"
-                              }`}
-                            >
-                              <HighlightedText text={item.title} query={query} />
-                            </div>
-
-                            {/* Description */}
-                            {item.description && (
-                              <div className="text-[13px] text-[var(--vp-c-text-3)] truncate mt-0.5">
-                                <HighlightedText text={item.description} query={query} />
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Arrow */}
-                          <div className={`shrink-0 pt-2 transition-opacity ${isSel ? "opacity-100" : "opacity-0"}`}>
-                            <ArrowRight className="w-4 h-4 text-[var(--vp-c-brand-1)]" />
-                          </div>
-                        </a>
-                      );
-                    })}
+                )}
+                {!hasQuery ? (
+                  <div className="py-10 px-6 flex flex-col items-center text-[var(--search-text-2)]">
+                    <img
+                      src="/v2/search-illustration.png"
+                      alt=""
+                      className="w-[120px] h-auto opacity-95 select-none"
+                      draggable={false}
+                    />
+                    <p className="mt-5 text-[14px] font-semibold text-[var(--search-text-2)]">Looking for something?</p>
                   </div>
+                ) : hasResults ? (
+                  groupResults ? (
+                    <div className="py-3 px-4">
+                      {grouped.map(([category, list]) => (
+                        <div key={category} className="mb-6 last:mb-2">
+                          <div className="flex items-center gap-2 px-1 mb-2 text-[13px] font-semibold text-[var(--search-text-2)]">
+                            <Hash className="w-4 h-4 opacity-80" />
+                            <span className="inline-flex items-center rounded-md bg-[var(--search-chip-bg)] text-[var(--search-chip-text)] px-2 py-0.5">
+                              {category}
+                            </span>
+                          </div>
+                          <div className="rounded-xl border border-[var(--search-sep)] bg-transparent overflow-hidden">
+                            {list.map((item) => {
+                              const i = indexById.get(item.id) ?? 0;
+                              const isSel = i === selected;
+                              return (
+                                <a
+                                  key={item.id}
+                                  ref={isSel ? selectedRef : null}
+                                  href={item.url}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    onSelect(item);
+                                  }}
+                                  onMouseEnter={() => setSelected(i)}
+                                  className={
+                                    "group grid grid-cols-[1fr_auto] gap-3 px-4 py-3 border-t border-[var(--search-sep)] first:border-t-0 transition-colors " +
+                                    (isSel ? "bg-[var(--search-row-active)]" : "hover:bg-[var(--search-row-hover)]")
+                                  }
+                                >
+                                  <div className="min-w-0 flex items-start gap-3">
+                                    <div className="mt-0.5 w-9 h-9 shrink-0 rounded-lg bg-[var(--search-modal-bg)] border border-[var(--search-sep)] flex items-center justify-center">
+                                      <DocIcon
+                                        emoji={item.emoji}
+                                        icon={item.icon}
+                                        fallback={defaultDocIcons.page}
+                                        className={
+                                          "w-[18px] h-[18px] " +
+                                          (isSel ? "text-[var(--search-chip-text)]" : "text-[var(--search-text-2)]")
+                                        }
+                                      />
+                                    </div>
+                                    <div className="min-w-0">
+                                      <div className="text-[14px] font-semibold text-[var(--search-text-1)] truncate">
+                                        <HighlightedText text={item.title} query={query} />
+                                      </div>
+                                      {item.parentTitle && (
+                                        <div className="mt-0.5 text-[12px] text-[var(--search-text-2)] truncate">
+                                          {item.parentTitle}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <div className="flex items-center gap-3">
+                                    <span className="hidden sm:inline-flex items-center rounded-md border border-[var(--search-sep)] bg-[var(--search-modal-bg)] px-2 py-0.5 text-[11px] text-[var(--search-text-2)]">
+                                      {item.type}
+                                    </span>
+                                    <ArrowRight
+                                      className={
+                                        "w-4 h-4 transition-opacity " +
+                                        (isSel ? "opacity-100" : "opacity-0") +
+                                        " text-[var(--search-chip-text)]"
+                                      }
+                                    />
+                                  </div>
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="py-3 px-4">
+                      <div className="space-y-1">
+                        {filtered.map((item, i) => {
+                          const isSel = i === selected;
+                          const crumbs = Array.isArray(item.breadcrumbs) && item.breadcrumbs.length
+                            ? item.breadcrumbs
+                            : [item.category, item.parentTitle, item.title].filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+
+                          return (
+                            <a
+                              key={item.id}
+                              ref={isSel ? selectedRef : null}
+                              href={item.url}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onSelect(item);
+                              }}
+                              onMouseEnter={() => setSelected(i)}
+                              className={
+                                "block rounded-xl px-4 py-3 transition-colors " +
+                                (isSel ? "bg-[var(--search-row-active)]" : "hover:bg-[var(--search-row-hover)]")
+                              }
+                            >
+                              <div className="flex items-center gap-2 text-[14px] font-semibold text-[var(--search-text-1)] min-w-0">
+                                <span className="text-[var(--search-text-3)]">#</span>
+                                <div className="min-w-0 flex items-center gap-2 flex-wrap">
+                                  {crumbs.map((crumb, idx) => (
+                                    <React.Fragment key={`${item.id}-c-${idx}`}
+                                    >
+                                      <span className="max-w-[260px] truncate">
+                                        <HighlightedText text={crumb} query={query} />
+                                      </span>
+                                      {idx < crumbs.length - 1 ? (
+                                        <span className="text-[var(--search-text-3)]">→</span>
+                                      ) : null}
+                                    </React.Fragment>
+                                  ))}
+                                </div>
+                              </div>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )
                 ) : (
                   <div className="py-14 flex flex-col items-center text-[var(--vp-c-text-3)]">
                     <div className="w-14 h-14 rounded-full bg-[var(--vp-c-bg-soft)] flex items-center justify-center">
@@ -443,26 +543,28 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               </div>
 
               {/* Footer */}
-              <div className="px-4 py-3 border-t border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)]/50 flex items-center justify-between text-[11px] text-[var(--vp-c-text-3)]">
+              <div className="px-5 py-3 border-t border-[var(--search-sep)] bg-[var(--search-row-hover)] flex items-center justify-between text-[12px] text-[var(--search-text-2)]">
                 <div className="flex items-center gap-4">
-                  <span className="hidden sm:flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 rounded border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-elv)]">Enter</kbd>
-                    <span>to select</span>
+                  <span className="flex items-center gap-2">
+                    <kbd className="px-2 py-0.5 rounded-md border border-[var(--search-sep)] bg-[var(--search-modal-bg)]">↑</kbd>
+                    <kbd className="px-2 py-0.5 rounded-md border border-[var(--search-sep)] bg-[var(--search-modal-bg)]">↓</kbd>
+                    <span className="hidden sm:inline">to navigate</span>
                   </span>
-                  <span className="hidden sm:flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 rounded border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-elv)]">↑</kbd>
-                    <kbd className="px-1.5 py-0.5 rounded border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-elv)]">↓</kbd>
-                    <span>to navigate</span>
+                  <span className="flex items-center gap-2">
+                    <kbd className="px-2 py-0.5 rounded-md border border-[var(--search-sep)] bg-[var(--search-modal-bg)]">↵</kbd>
+                    <span className="hidden sm:inline">to select</span>
+                  </span>
+                  <span className="hidden sm:flex items-center gap-2">
+                    <kbd className="px-2 py-0.5 rounded-md border border-[var(--search-sep)] bg-[var(--search-modal-bg)]">esc</kbd>
+                    <span>to close</span>
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="hidden sm:flex items-center gap-2">
                   {filtered.length > 0 && (
                     <span>
                       {filtered.length} result{filtered.length !== 1 ? "s" : ""}
                     </span>
                   )}
-                  <span className="opacity-40">|</span>
-                  <span className="opacity-60">Penquin Search</span>
                 </div>
               </div>
             </motion.div>

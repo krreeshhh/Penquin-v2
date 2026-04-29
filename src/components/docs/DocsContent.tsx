@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 
 import { DocIcon, defaultDocIcons } from "@/components/docs/doc-icons";
 import { CopyButton } from "@/components/docs/CopyButton";
+import { IconTooltip } from "@/components/ui/IconTooltip";
 import { getNeighbors } from "@/lib/docs";
 
 type DocLink = {
@@ -89,6 +90,27 @@ function formatDate(value?: string) {
 
 function isExternalHref(url?: string) {
   return !!url && /^https?:\/\//.test(url);
+}
+
+function hostnameLabel(url: string) {
+  try {
+    const host = new URL(url).hostname.replace(/^www\./, "").toLowerCase();
+
+    // Common friendly names for social/dev sites.
+    if (host === "x.com" || host.endsWith("twitter.com")) return "Twitter";
+    if (host === "youtu.be" || host.endsWith("youtube.com")) return "YouTube";
+    if (host.endsWith("github.com")) return "GitHub";
+    if (host.endsWith("gitlab.com")) return "GitLab";
+    if (host.endsWith("medium.com")) return "Medium";
+    if (host.endsWith("linkedin.com")) return "LinkedIn";
+    if (host.endsWith("discord.gg") || host.endsWith("discord.com")) return "Discord";
+    if (host.endsWith("udemy.com")) return "Udemy";
+
+    const base = host.split(".")[0] ?? host;
+    return base ? base.charAt(0).toUpperCase() + base.slice(1) : host;
+  } catch {
+    return "Link";
+  }
 }
 
 function normalizeDocHref(url?: string) {
@@ -620,26 +642,34 @@ const LinkCard = React.memo(function LinkCard({ item }: { item: DocLink }) {
   // Priority: icon > logo > image > extracted domain favicon > fallback from url
   const assetUrl = getAssetUrl(item.icon) ?? getAssetUrl(item.logo) ?? getAssetUrl(item.image) ?? (extractedDomain ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(extractedDomain)}&sz=64` : undefined) ?? getFallbackSiteIcon(item.url);
 
+  const tooltipLabel =
+    (typeof item.platform === "string" && item.platform.trim()) ||
+    (typeof item.source === "string" && item.source.trim()) ||
+    (typeof item.domain === "string" && item.domain.trim()) ||
+    (isExternalHref(item.url) ? hostnameLabel(item.url) : "Link");
+
   return (
-    <CardLink href={normalizeDocHref(item.url) ?? item.url} className="flex items-start justify-between gap-3 rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:bg-[var(--vp-c-bg-soft)] overflow-hidden">
+    <CardLink href={normalizeDocHref(item.url) ?? item.url} className="flex items-start justify-between gap-3 rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:bg-[var(--vp-c-bg-soft)]">
       <div className="min-w-0">
         <div className="flex items-center gap-2 text-[14px] font-semibold text-[var(--vp-c-text-1)] min-w-0">
-          {assetUrl ? (
-            <img
-              src={assetUrl}
-              alt=""
-              className="mt-0.5 h-4 w-4 shrink-0 rounded-[4px] object-cover"
-              decoding="async"
-            />
-          ) : (
-            <DocIcon
-              emoji={item.emoji}
-              icon={typeof item.icon === "string" ? item.icon : undefined}
-              domain={(() => { try { return item.url ? new URL(item.url).hostname : undefined } catch { return undefined } })()}
-              fallback={item.fileName ? defaultDocIcons.file : defaultDocIcons.link}
-              className="h-4 w-4"
-            />
-          )}
+          <IconTooltip label={tooltipLabel}>
+            {assetUrl ? (
+              <img
+                src={assetUrl}
+                alt=""
+                className="mt-0.5 h-4 w-4 shrink-0 rounded-[4px] object-cover"
+                decoding="async"
+              />
+            ) : (
+              <DocIcon
+                emoji={item.emoji}
+                icon={typeof item.icon === "string" ? item.icon : undefined}
+                domain={(() => { try { return item.url ? new URL(item.url).hostname : undefined } catch { return undefined } })()}
+                fallback={item.fileName ? defaultDocIcons.file : defaultDocIcons.link}
+                className="h-4 w-4"
+              />
+            )}
+          </IconTooltip>
           <span className="truncate">{label}</span>
         </div>
         {(item.platform || item.source || item.domain || item.browser || item.caption || item.fileType || item.fileSize) && (

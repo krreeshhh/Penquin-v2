@@ -18,13 +18,15 @@ interface DocsSidebarProps {
   alwaysVisibleOnDesktop?: boolean;
   /** When true, sidebar is fixed to the viewport. */
   fixed?: boolean;
+  /** When true, show the dimmed backdrop when open (mobile). */
+  overlay?: boolean;
 }
 
 function keyForPath(parts: string[]) {
   return parts.join("::");
 }
 
-export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop = true, fixed = true }: DocsSidebarProps) {
+export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop = true, fixed = true, overlay = true }: DocsSidebarProps) {
   const pathname = usePathname() || "/";
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
     // Read synchronously to avoid a visible "collapse then expand" on redirects.
@@ -278,7 +280,7 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
   return (
     <>
       <AnimatePresence>
-        {open && (
+        {open && overlay && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
