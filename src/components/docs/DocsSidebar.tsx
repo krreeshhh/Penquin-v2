@@ -26,6 +26,35 @@ function keyForPath(parts: string[]) {
   return parts.join("::");
 }
 
+function normalizePath(value: string) {
+  const trimmed = value.replace(/\/+$/, "") || "/";
+  return trimmed;
+}
+
+function getActiveGroupKeys(items: SidebarNode[], isActiveUrl: (url: string) => boolean) {
+  const keys: string[] = [];
+
+  const visit = (node: SidebarNode, parts: string[]): boolean => {
+    if (node.type === "divider") return false;
+
+    const nodeKey = keyForPath([...parts, node.title]);
+    const selfActive = typeof node.url === "string" && isActiveUrl(node.url);
+
+    let anyChildActive = false;
+    for (const child of node.children ?? []) {
+      if (visit(child, [...parts, node.title])) anyChildActive = true;
+    }
+
+    // Open a group if it or anything inside it is active.
+    if (node.type === "group" && (selfActive || anyChildActive)) keys.push(nodeKey);
+
+    return selfActive || anyChildActive;
+  };
+
+  for (const node of items) visit(node, []);
+  return keys;
+}
+
 export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop = true, fixed = true, overlay = true }: DocsSidebarProps) {
   const pathname = usePathname() || "/";
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
@@ -116,11 +145,60 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
     return () => clearTimeout(timer);
   }, [pathname]);
 
-  const isActive = (url: string) => {
-    const normalizedPath = pathname.replace(/\/$/, "") || "/";
-    const normalizedUrl = url.replace(/\/$/, "") || "/";
-    return normalizedPath === normalizedUrl;
-  };
+  // If the active item isn't visible, scroll it into view after route changes.
+  React.useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+
+    const targetUrl = normalizePath(pathname);
+    // Find matching element (avoid CSS.escape for broader compatibility).
+    const candidates = Array.from(el.querySelectorAll<HTMLElement>("[data-sidebar-url]"));
+    const match = candidates.find((node) => {
+      const url = node.getAttribute("data-sidebar-url");
+      return url ? normalizePath(url) === targetUrl : false;
+    });
+    if (!match) return;
+
+    // Only scroll if it's outside the visible viewport of the sidebar.
+    const cr = el.getBoundingClientRect();
+    const sr = match.getBoundingClientRect();
+    const padding = 8;
+    const isAbove = sr.top < cr.top + padding;
+    const isBelow = sr.bottom > cr.bottom - padding;
+    if (!isAbove && !isBelow) return;
+
+    const raf = window.requestAnimationFrame(() => {
+      match.scrollIntoView({ block: "center" });
+    });
+    return () => window.cancelAnimationFrame(raf);
+  }, [pathname]);
+
+  const isActive = React.useCallback(
+    (url: string) => {
+      const normalizedPath = normalizePath(pathname);
+      const normalizedUrl = normalizePath(url);
+      return normalizedPath === normalizedUrl;
+    },
+    [pathname]
+  );
+
+  // Ensure the currently active page's parent groups are open after navigation.
+  React.useEffect(() => {
+    const keysToOpen = getActiveGroupKeys(items, isActive);
+    if (!keysToOpen.length) return;
+
+    setOpenGroups((current) => {
+      let changed = false;
+      const next = { ...current };
+      for (const key of keysToOpen) {
+        if (!next[key]) {
+          next[key] = true;
+          changed = true;
+        }
+      }
+      return changed ? next : current;
+    });
+  }, [items, isActive]);
 
   const hasActiveDescendant = (node: SidebarNode): boolean => {
     if (node.url && isActive(node.url)) return true;
@@ -367,7 +445,10 @@ function SidebarLink({
   onNavigate: () => void;
 }) {
   return (
-    <div className={`VPSidebarItem is-page level-${level} is-link ${active ? "is-active has-active" : ""}`.trim()}>
+    <div
+      className={`VPSidebarItem is-page level-${level} is-link ${active ? "is-active has-active" : ""}`.trim()}
+      data-sidebar-url={node.url}
+    >
       <div className="item page-item">
         <div className="indicator" />
         {node.external ? (
