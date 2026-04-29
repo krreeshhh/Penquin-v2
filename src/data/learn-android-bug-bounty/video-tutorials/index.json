@@ -1,0 +1,110 @@
+{
+  "title": "Video Tutorials",
+  "breadcrumb": [
+    {
+      "name": "Learn Android Bug Bounty",
+      "url": "/docs/learn-android-bug-bounty",
+      "icon": "android"
+    }
+  ],
+  "sections": [
+    {
+      "type": "success_hint",
+      "content": "A curated collection of learning resources to get started with Android application security, mobile app pentesting, and bug bounty hunting. This repository includes video tutorials, blog posts, hands-on labs, and practice materials for both Android and iOS platforms."
+    },
+    {
+      "type": "list",
+      "items": [
+        {
+          "title": "Mobile Pentesting by Intigriti",
+          "url": "https://www.youtube.com/playlist?list=PLmqenIp2RQcjBWzwMZQbIkbuVDmkYi_KF"
+        },
+        {
+          "title": "Hacker101 – Mobile Crash Course",
+          "url": "https://www.hacker101.com/sessions/mobile_crash_course"
+        },
+        {
+          "title": "Android Bug Bounty Playlist",
+          "url": "https://www.youtube.com/playlist?list=PL1f72Oxv5SylOECx9M34pLZlNa7YkJJ14"
+        },
+        {
+          "title": "How to Hack Android Apps (Frida)",
+          "url": "https://www.youtube.com/watch?v=mr64si_-YwI"
+        },
+        {
+          "title": "How to Bypass SSL Pinning",
+          "url": "https://www.youtube.com/watch?v=vjCF_O6aZIg"
+        },
+        {
+          "title": "How to Root Android Emulator in 2 Minutes",
+          "url": "https://www.youtube.com/watch?v=OLgmPxTHLuY"
+        },
+        {
+          "title": "Intercepting Android App Traffic with BurpSuite",
+          "url": "https://www.youtube.com/watch?v=xp8ufidc514"
+        },
+        {
+          "title": "Mobile Application Pentesting",
+          "url": "https://www.youtube.com/playlist?list=PLxlnw7Sfbtf9pBNKKQPJTSyI8KNHvgoMJ"
+        },
+        {
+          "title": "Finding Sensitive Data in Android Apps with Nerdwell",
+          "url": "https://www.youtube.com/watch?v=D_-mHBkfThI"
+        },
+        {
+          "title": "Exploiting Android Deep Links and Exported Components",
+          "url": "https://www.youtube.com/watch?v=lg1sN8njSYs"
+        },
+        {
+          "title": "Mobile App Pentesting by Hacking Simplified",
+          "url": "https://www.youtube.com/playlist?list=PLGJe0xGh7cH2lszCZ7qwsqouEK23XCMGp"
+        },
+        {
+          "title": "Android Security Testing",
+          "url": "https://www.youtube.com/watch?v=6-M_7O3A8AI"
+        },
+        {
+          "title": "Full Android Penetration Testing Course Playlist",
+          "url": "https://www.youtube.com/playlist?list=PLwk2o8vr7P8EyIA27vaxCXUUaGHRZj49t"
+        },
+        {
+          "title": "Android App Penetration Testing - OWASP Top 10",
+          "url": "https://www.youtube.com/playlist?list=PLdGbzQX3gR8JJkl2J4VmBckqhLhA_mfNY"
+        },
+        {
+          "title": "Bypass Biometrics in Mobile Apps",
+          "url": "https://www.youtube.com/watch?v=zIaKX3zgNF8"
+        },
+        {
+          "title": "Intercept traffic with Objection and Burp",
+          "url": "https://www.youtube.com/watch?v=Ft3H-3J67UE"
+        },
+        {
+          "title": "Hacking and Pentesting Android Apps",
+          "url": "https://www.youtube.com/playlist?list=PL5eTpNI3Q8oUbw9vozVYatATMKKsDtnoJ"
+        },
+        {
+          "title": "Hacking and Pentesting iOS Apps",
+          "url": "https://www.youtube.com/playlist?list=PL5eTpNI3Q8oVedOucH_DAdd6SP6wc-KSD"
+        },
+        {
+          "title": "Android Application Pen-testing Course",
+          "url": "https://www.youtube.com/playlist?list=PL4S940IsHJYWhhYOpBk6Y-U9nTQq2omae"
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Learn to Use Burp Suite",
+      "url": "/docs/learn-to-use-burp-suite"
+    },
+    "next": {
+      "title": "YouTube Channels",
+      "url": "/docs/youtube-channels"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-05-21T07:59:39.743Z"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "title": "Takeover's (Accounts, Sub-domains, etc)",
+  "subtitle": "Takeover's like Account, Sub-Domain or any digital Assets is a very common attack can be done by Hackers. This type of attack happens due to common Misconfiguration & Bugs.",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    }
+  ],
+  "sections": [
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/UzOWEoC"
+    },
+    {
+      "type": "link_card",
+      "title": "Sub Domain Takeover",
+      "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc/sub-domain-takeover",
+      "icon": "🚡"
+    },
+    {
+      "type": "link_card",
+      "title": "Account Takeover",
+      "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc/account-takeover",
+      "icon": "🚠"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Index",
+      "url": "/docs/bug-bounty-reports-and-articles/index"
+    },
+    "next": {
+      "title": "Sub Domain Takeover",
+      "url": "/docs/bug-bounty-reports-and-articles/takeovers-accounts-sub-domains-etc/sub-domain-takeover"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2024-06-29T04:59:39.284Z"
+  }
+}

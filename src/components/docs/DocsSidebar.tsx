@@ -27,6 +27,23 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
   const [isSiteKeyOpen, setIsSiteKeyOpen] = useState(false);
 
+  // Persistence: Load from sessionStorage on mount
+  React.useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem("penquin-sidebar-open-groups");
+      if (saved) setOpenGroups(JSON.parse(saved));
+    } catch (e) {
+      console.error("Failed to load sidebar state", e);
+    }
+  }, []);
+
+  // Persistence: Save to sessionStorage on change
+  React.useEffect(() => {
+    if (Object.keys(openGroups).length > 0) {
+      sessionStorage.setItem("penquin-sidebar-open-groups", JSON.stringify(openGroups));
+    }
+  }, [openGroups]);
+
   const navRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -58,33 +75,13 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
     setOpenGroups((current) => ({ ...current, [key]: !current[key] }));
   };
 
-  const autoOpen = (() => {
-    const next: Record<string, boolean> = {};
-
-    const visit = (nodes: SidebarNode[], parts: string[] = []) => {
-      for (const node of nodes) {
-        const key = keyForPath([...parts, node.title]);
-        if (node.type === "group" && hasActiveDescendant(node)) {
-          next[key] = true;
-        }
-
-        if (node.children?.length) {
-          visit(node.children, [...parts, node.title]);
-        }
-      }
-    };
-
-    visit(items);
-    return next;
-  })();
-
   const isGroupOpen = (key: string) => {
-    if (openGroups[key] !== undefined) return !!openGroups[key];
-    return !!autoOpen[key];
+    return !!openGroups[key];
   };
 
   const sidebarClasses =
-    "VPSidebar fixed top-0 left-0 bottom-0 z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto transition-transform duration-200 will-change-transform " +
+    "VPSidebar fixed top-0 left-0 bottom-0 z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto transition-transform duration-300 will-change-transform " +
+    (open ? "ease-[cubic-bezier(0.32,0,0.67,0)] " : "ease-[cubic-bezier(0,0,0.2,1)] ") +
     (alwaysVisibleOnDesktop ? "lg:translate-x-0 " : "") +
     (open ? "translate-x-0" : "-translate-x-full");
 
@@ -133,15 +130,6 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
       >
         <div
           className="item group-item"
-          tabIndex={0}
-          role="button"
-          onClick={() => !node.url && toggleGroup(key)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              toggleGroup(key);
-            }
-          }}
         >
           <div className="indicator" />
           {node.url ? (
@@ -188,9 +176,14 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
             aria-label="toggle section"
             tabIndex={0}
             onClick={(event) => {
-              if (node.url) {
-                event.preventDefault();
-                event.stopPropagation();
+              event.preventDefault();
+              event.stopPropagation();
+              toggleGroup(key);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                e.stopPropagation();
                 toggleGroup(key);
               }
             }}
@@ -202,10 +195,22 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
         <AnimatePresence initial={false}>
           {isOpen && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ height: 0, opacity: 0, y: -4 }}
+              animate={{ height: "auto", opacity: 1, y: 0 }}
+              exit={{ height: 0, opacity: 0, y: -4 }}
+              transition={{
+                height: {
+                  duration: 0.25,
+                  ease: [0.32, 0, 0.67, 0],
+                },
+                opacity: {
+                  duration: 0.2,
+                },
+                y: {
+                  duration: 0.25,
+                  ease: [0.32, 0, 0.67, 0],
+                },
+              }}
               className="items overflow-hidden"
             >
               {node.children?.map((child) => renderNode(child, level + 1, [...parts, node.title]))}
@@ -218,12 +223,19 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
 
   return (
     <>
-      <button
-        type="button"
-        aria-label="Close sidebar"
-        onClick={() => onOpenChange(false)}
-        className={`fixed inset-0 z-[65] bg-black/30 transition-opacity duration-200 ${alwaysVisibleOnDesktop ? "lg:hidden " : ""}${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
-      />
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className={`fixed inset-0 z-[65] bg-black/40 backdrop-blur-[2px] ${alwaysVisibleOnDesktop ? "lg:hidden" : ""}`}
+            onClick={() => onOpenChange(false)}
+            aria-label="Close sidebar"
+          />
+        )}
+      </AnimatePresence>
 
       <aside className={sidebarClasses} ref={navRef}>
         <div className="pt-3 pb-3 flex items-center justify-between px-4 lg:px-0">

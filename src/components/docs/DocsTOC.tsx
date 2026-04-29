@@ -170,9 +170,9 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
           <div className="outline-marker" aria-hidden />
           <div className="outline-title flex items-center gap-2 mb-3">
             <div className="flex h-5 w-5 items-center justify-center text-[var(--vp-c-text-2)] opacity-80">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-list"><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg>
             </div>
-            <span className="text-[13px] font-bold uppercase tracking-wider text-[var(--vp-c-text-1)]">On this page</span>
+            <span className="text-[13px] font-bold text-[var(--vp-c-text-1)]">On this page</span>
           </div>
           <ul className="VPDocOutlineItem root">
             {grouped.map((item) => (

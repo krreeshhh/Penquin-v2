@@ -1,0 +1,55 @@
+{
+  "title": "7 Prompt Injection",
+  "breadcrumb": [],
+  "labs": [
+    {
+      "title": "Gray Swan AI Arena",
+      "domain": "app.grayswan.ai",
+      "url": "https://app.grayswan.ai/arena",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fapp.grayswan.ai%2Fapple-touch-icon.png&width=20&dpr=3&quality=100&sign=eb92cc7a&sv=2"
+    },
+    {
+      "title": "Gandalf | Lakera – Test your AI hacking skills",
+      "domain": "gandalf.lakera.ai",
+      "url": "https://gandalf.lakera.ai/agent-breaker",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgandalf.lakera.ai%2Ffavicon.png&width=20&dpr=3&quality=100&sign=9c429e16&sv=2"
+    }
+  ],
+  "writeups": [
+    {
+      "title": "How I Convinced an AI to Hack Itself: Prompt Injection to XSS 🕷️",
+      "platform": "Medium",
+      "url": "https://infosecwriteups.com/how-i-convinced-an-ai-to-hack-itself-prompt-injection-to-xss-%EF%B8%8F-dab60010e40d",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "I bypassed Guardrails to Perform Prompt Injection",
+      "platform": "Medium",
+      "url": "https://osintteam.blog/i-bypassed-guardrails-to-perform-prompt-injection-8081195b8018",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "AI Pentesting Methodology for Beginners (Part I)",
+      "platform": "Medium",
+      "url": "https://meetcyber.net/ai-pentesting-methodology-for-beginners-part-i-797d5854a687",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "embeddedVideo": {
+    "url": "https://cdn.iframe.ly/kn71rca2",
+    "embedStyle": "top: 0; left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 56.25%;"
+  },
+  "navigation": {
+    "previous": {
+      "title": "OSINT",
+      "url": "/docs/osint"
+    },
+    "next": {
+      "title": "BugCrowd",
+      "url": "/docs/bug-bounty-platforms/bugcrowd"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2026-02-03T05:37:45.461Z"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "title": "6️ OSINT",
+  "breadcrumb": [],
+  "articles": [
+    {
+      "title": "2024's MUST READ: How to Find Anyone's Exact Location Using Selfie/Image/Photo/Snap — Private AI…",
+      "platform": "Medium",
+      "url": "https://x-it.medium.com/2024s-must-read-how-to-find-anyone-s-exact-location-using-selfie-image-photo-snap-private-ai-3013fb82e7b1",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "RCE",
+      "url": "/docs/rce"
+    },
+    "next": {
+      "title": "Prompt Injection",
+      "url": "/docs/prompt-injection"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2026-02-03T05:36:05.339Z"
+  }
+}

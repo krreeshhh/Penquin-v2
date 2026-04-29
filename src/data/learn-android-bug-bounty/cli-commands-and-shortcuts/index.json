@@ -1,0 +1,423 @@
+{
+  "title": "CLI Commands & Shortcuts",
+  "breadcrumb": [],
+  "sections": [
+    {
+      "type": "table",
+      "headers": [
+        "Category",
+        "Command",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Category": "Emulator Commands",
+          "Command": "emulator -list-avds",
+          "Description": "List available Android Virtual Devices"
+        },
+        {
+          "Category": "",
+          "Command": "emulator -avd New-Pixel_4 -writable-system -no-snapshot",
+          "Description": "Start emulator with writable system"
+        },
+        {
+          "Category": "",
+          "Command": "emulator -avd Pixel_3a_Root -writable-system -no-snapshot -port 5560",
+          "Description": "Start emulator on specific port"
+        },
+        {
+          "Category": "MOBSF",
+          "Command": "docker run -it --rm -p 8000:8000 -p 1337:1337 -e MOBSF_ANALYZER_IDENTIFIER=emulator-5554 opensecurity/mobile-security-framework-mobsf:latest",
+          "Description": "Start MOBSF container"
+        },
+        {
+          "Category": "ADB Commands",
+          "Command": "adb shell pm list packages -3",
+          "Description": "List 3rd party packages"
+        },
+        {
+          "Category": "",
+          "Command": "adb shell getprop ro.product.cpu.abi",
+          "Description": "Get device CPU architecture"
+        },
+        {
+          "Category": "",
+          "Command": "adb push frida-server /data/local/tmp/",
+          "Description": "Push file to device"
+        },
+        {
+          "Category": "",
+          "Command": "adb -s emulator-5560 push C:\\Users\\HP\\Downloads\\frida-server /data/local/tmp",
+          "Description": "Push to specific emulator"
+        },
+        {
+          "Category": "",
+          "Command": "adb shell \"chmod +x /data/local/tmp/frida-server\"",
+          "Description": "Make frida-server executable"
+        },
+        {
+          "Category": "",
+          "Command": "adb shell \"/data/local/tmp/frida-server &\"",
+          "Description": "Start frida-server in background"
+        },
+        {
+          "Category": "Frida Commands",
+          "Command": "frida-ps -Uia",
+          "Description": "List running apps on USB device"
+        },
+        {
+          "Category": "",
+          "Command": "frida -U -f com.target.app --no-pause -l ssl-pinning-bypass.js",
+          "Description": "Inject script into app"
+        },
+        {
+          "Category": "",
+          "Command": "frida --codeshare dzonerzy/fridantiroot -f <package-name> -U",
+          "Description": "Use anti-root detection script"
+        },
+        {
+          "Category": "",
+          "Command": "frida --codeshare masbog/frida-android-unpinning-ssl -f <package-name> -U",
+          "Description": "Use SSL unpinning script"
+        },
+        {
+          "Category": "Objection Commands",
+          "Command": "objection-connect",
+          "Description": "Connect to device"
+        },
+        {
+          "Category": "",
+          "Command": "objection-patch <my.apk>",
+          "Description": "Patch APK for objection"
+        },
+        {
+          "Category": "",
+          "Command": "objection -g <package name> explore",
+          "Description": "Explore app with objection"
+        },
+        {
+          "Category": "",
+          "Command": "android root disable",
+          "Description": "Disable root detection"
+        },
+        {
+          "Category": "",
+          "Command": "android sslpinning disable",
+          "Description": "Disable SSL pinning"
+        },
+        {
+          "Category": "",
+          "Command": "android hooking watch class <package-name>.UserMainActivity",
+          "Description": "Watch class methods"
+        },
+        {
+          "Category": "",
+          "Command": "android hooking list classes",
+          "Description": "List all classes"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "id": "drozer-commands",
+      "content": "Drozer Commands"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Command",
+        "Description",
+        "Example / Notes"
+      ],
+      "rows": [
+        {
+          "Command": "help",
+          "Description": "Show help menu with commands",
+          "Example": "help"
+        },
+        {
+          "Command": "list",
+          "Description": "List all available modules",
+          "Example": "list"
+        },
+        {
+          "Command": "run <module>",
+          "Description": "Run a specific module",
+          "Example": "run app.package.list"
+        },
+        {
+          "Command": "run app.package.list",
+          "Description": "List installed packages",
+          "Example": "run app.package.list"
+        },
+        {
+          "Command": "run app.package.attacksurface -a <package>",
+          "Description": "Show attack surface (exported components)",
+          "Example": "run app.package.attacksurface -a com.example.app"
+        },
+        {
+          "Command": "run app.package.info -a <package>",
+          "Description": "Show detailed info about a package",
+          "Example": "run app.package.info -a com.example.app"
+        },
+        {
+          "Command": "run app.activity.info -a <package>",
+          "Description": "List activities of an app",
+          "Example": "run app.activity.info -a com.example.app"
+        },
+        {
+          "Command": "run app.provider.info -a <package>",
+          "Description": "List content providers",
+          "Example": "run app.provider.info -a com.example.app"
+        },
+        {
+          "Command": "run app.service.info -a <package>",
+          "Description": "List services",
+          "Example": "run app.service.info -a com.example.app"
+        },
+        {
+          "Command": "run app.broadcast.info -a <package>",
+          "Description": "List broadcast receivers",
+          "Example": "run app.broadcast.info -a com.example.app"
+        },
+        {
+          "Command": "run app.activity.start -a <package> -n <activity>",
+          "Description": "Start a specific activity",
+          "Example": "run app.activity.start -a com.example.app -n MainActivity"
+        },
+        {
+          "Command": "run scanner.provider.injection -a <package>",
+          "Description": "Check for SQL injection in content providers",
+          "Example": "run scanner.provider.injection -a com.example.app"
+        },
+        {
+          "Command": "run scanner.provider.access -a <package>",
+          "Description": "Check for content provider access issues",
+          "Example": "run scanner.provider.access -a com.example.app"
+        },
+        {
+          "Command": "run scanner.misc.debuggable -a <package>",
+          "Description": "Check if app is debuggable",
+          "Example": "run scanner.misc.debuggable -a com.example.app"
+        },
+        {
+          "Command": "run scanner.misc.exportedcomponents -a <package>",
+          "Description": "Check for exported components",
+          "Example": "run scanner.misc.exportedcomponents -a com.example.app"
+        },
+        {
+          "Command": "run scanner.permissions.findleaks -a <package>",
+          "Description": "Find permission leaks",
+          "Example": "run scanner.permissions.findleaks -a com.example.app"
+        },
+        {
+          "Command": "run exploit.reinvokeactivity -a <package> -n <activity>",
+          "Description": "Exploit activity re-invocation",
+          "Example": "run exploit.reinvokeactivity -a com.example.app -n MainActivity"
+        },
+        {
+          "Command": "run exploit.debug",
+          "Description": "Exploit debugging features",
+          "Example": "run exploit.debug"
+        },
+        {
+          "Command": "run exploit.serial -a <package>",
+          "Description": "Check for serial number leaks",
+          "Example": "run exploit.serial -a com.example.app"
+        },
+        {
+          "Command": "run shell",
+          "Description": "Get a shell on the device",
+          "Example": "run shell"
+        },
+        {
+          "Command": "run shell pm list packages",
+          "Description": "List all packages via shell",
+          "Example": "run shell pm list packages"
+        },
+        {
+          "Command": "run shell dumpsys package <package>",
+          "Description": "Get package dump information",
+          "Example": "run shell dumpsys package com.example.app"
+        },
+        {
+          "Command": "run file.list -p /path/",
+          "Description": "List files in a directory",
+          "Example": "run file.list -p /data/data/com.example.app/"
+        },
+        {
+          "Command": "run file.download -p <path>",
+          "Description": "Download file from device",
+          "Example": "run file.download -p /data/data/com.example.app/databases/db.sqlite"
+        },
+        {
+          "Command": "run app.package.dump -a <package>",
+          "Description": "Dump manifest & app details",
+          "Example": "run app.package.dump -a com.example.app"
+        },
+        {
+          "Command": "run scanner.activity.launcher -a <package>",
+          "Description": "Check for launcher activities",
+          "Example": "run scanner.activity.launcher -a com.example.app"
+        },
+        {
+          "Command": "run scanner.broadcast.receiver -a <package>",
+          "Description": "Scan for vulnerable broadcast receivers",
+          "Example": "run scanner.broadcast.receiver -a com.example.app"
+        },
+        {
+          "Command": "run scanner.service.exported -a <package>",
+          "Description": "Detect exported services",
+          "Example": "run scanner.service.exported -a com.example.app"
+        },
+        {
+          "Command": "run scanner.file.find -f <filename>",
+          "Description": "Find files matching filename",
+          "Example": "run scanner.file.find -f \"*.db\""
+        },
+        {
+          "Command": "run scanner.file.find -p <path>",
+          "Description": "Search files recursively under path",
+          "Example": "run scanner.file.find -p /sdcard/"
+        },
+        {
+          "Command": "run scanner.intent.receiver -a <package>",
+          "Description": "Test intent receivers for possible hijacking",
+          "Example": "run scanner.intent.receiver -a com.example.app"
+        },
+        {
+          "Command": "run scanner.intent.sender -a <package>",
+          "Description": "Test sending intents to apps",
+          "Example": "run scanner.intent.sender -a com.example.app"
+        },
+        {
+          "Command": "run exploit.activity.intent -a <package> -n <activity>",
+          "Description": "Exploit vulnerable activity intents",
+          "Example": "run exploit.activity.intent -a com.example.app -n MainActivity"
+        },
+        {
+          "Command": "run exploit.provider.injection -a <package>",
+          "Description": "Exploit content provider SQL injection",
+          "Example": "run exploit.provider.injection -a com.example.app"
+        },
+        {
+          "Command": "run exploit.provider.insert -a <package>",
+          "Description": "Insert malicious data into content provider",
+          "Example": "run exploit.provider.insert -a com.example.app"
+        },
+        {
+          "Command": "run exploit.provider.delete -a <package>",
+          "Description": "Delete data via content provider",
+          "Example": "run exploit.provider.delete -a com.example.app"
+        },
+        {
+          "Command": "run exploit.provider.update -a <package>",
+          "Description": "Update data via content provider",
+          "Example": "run exploit.provider.update -a com.example.app"
+        },
+        {
+          "Command": "run exploit.provider.query -a <package>",
+          "Description": "Query data via content provider",
+          "Example": "run exploit.provider.query -a com.example.app"
+        },
+        {
+          "Command": "run scanner.credentials.find",
+          "Description": "Find exposed credentials on device",
+          "Example": "run scanner.credentials.find"
+        },
+        {
+          "Command": "run scanner.storage.find",
+          "Description": "Find sensitive files in storage",
+          "Example": "run scanner.storage.find"
+        },
+        {
+          "Command": "run scanner.intent.injection",
+          "Description": "Detect intent injection vulnerabilities",
+          "Example": "run scanner.intent.injection"
+        },
+        {
+          "Command": "run exploit.sharedprefs.read -a <package> -p <path>",
+          "Description": "Read shared preferences file",
+          "Example": "run exploit.sharedprefs.read -a com.example.app -p /data/data/com.example.app/shared_prefs/config.xml"
+        },
+        {
+          "Command": "run exploit.sharedprefs.write -a <package> -p <path> -k <key> -v <value>",
+          "Description": "Modify shared preferences",
+          "Example": "run exploit.sharedprefs.write -a com.example.app -p /data/data/com.example.app/shared_prefs/config.xml -k isAdmin -v true"
+        },
+        {
+          "Command": "run scanner.webview.loadurl",
+          "Description": "Test if app loads arbitrary URLs in WebView",
+          "Example": "run scanner.webview.loadurl"
+        },
+        {
+          "Command": "run scanner.webview.javascript",
+          "Description": "Detect vulnerable WebView JavaScript interfaces",
+          "Example": "run scanner.webview.javascript"
+        },
+        {
+          "Command": "run exploit.ssl.trustmanager",
+          "Description": "Test SSL trust manager bypass",
+          "Example": "run exploit.ssl.trustmanager"
+        },
+        {
+          "Command": "run scanner.permission.injection",
+          "Description": "Check for permission escalation opportunities",
+          "Example": "run scanner.permission.injection"
+        },
+        {
+          "Command": "run exploit.permission.escalation",
+          "Description": "Try permission escalation",
+          "Example": "run exploit.permission.escalation"
+        },
+        {
+          "Command": "run scanner.database.leak -a <package>",
+          "Description": "Detect database leaks",
+          "Example": "run scanner.database.leak -a com.example.app"
+        },
+        {
+          "Command": "run scanner.crypto.insecure -a <package>",
+          "Description": "Detect insecure crypto usage",
+          "Example": "run scanner.crypto.insecure -a com.example.app"
+        },
+        {
+          "Command": "run scanner.network.manifest",
+          "Description": "Check for insecure network configurations in manifest",
+          "Example": "run scanner.network.manifest -a com.example.app"
+        },
+        {
+          "Command": "run scanner.misc.nativecode",
+          "Description": "Check for native code usage that may be vulnerable",
+          "Example": "run scanner.misc.nativecode -a com.example.app"
+        },
+        {
+          "Command": "run scanner.misc.screenshots",
+          "Description": "Detect if app allows screenshots",
+          "Example": "run scanner.misc.screenshots -a com.example.app"
+        },
+        {
+          "Command": "run exploit.binding.command",
+          "Description": "Try to execute system commands via exported bindings",
+          "Example": "run exploit.binding.command -a com.example.app"
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "PIDCAT for Android Bug Bounty Logging",
+      "url": "/docs/pidcat-for-android-bug-bounty-logging"
+    },
+    "next": {
+      "title": "My Android Bug Bounty Lab Setup",
+      "url": "/docs/my-android-bug-bounty-lab-setup"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-05-21T08:41:05.584Z"
+  }
+}

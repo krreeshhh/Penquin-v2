@@ -1,0 +1,45 @@
+{
+  "title": "Youtube Videos",
+  "breadcrumb": [
+    {
+      "name": "Learn Game Hacking",
+      "url": "/docs/learn-game-hacking",
+      "icon": "🕹️"
+    }
+  ],
+  "sections": [
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/nzur5w8v"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/sqDDMmjG"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/xwUHpAEy"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/RyTKcQZn"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/NG2JWZHh"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Paid Udemy Course",
+      "url": "/docs/paid-udemy-course"
+    },
+    "next": {
+      "title": "Index",
+      "url": "/docs/bug-bounty-reports-and-articles/index"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-03-16T15:28:40.110Z"
+  }
+}

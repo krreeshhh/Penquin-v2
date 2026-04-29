@@ -94,7 +94,10 @@ function isExternalHref(url?: string) {
 function normalizeDocHref(url?: string) {
   if (!url || isExternalHref(url)) return url;
   if (url === "/") return url;
-  return url.startsWith("/docs") ? url : `/docs${url}`;
+
+  // Routes are now served directly from `src/data/**` (e.g. `/recon/...`, `/enumeration/...`).
+  // Keep absolute internal links as-is.
+  return url.endsWith("/") ? url.replace(/\/+$/, "") : url;
 }
 
 function MarkdownContent({

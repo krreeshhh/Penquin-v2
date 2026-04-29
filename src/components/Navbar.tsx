@@ -78,7 +78,9 @@ function effectiveIsDark(appearance: Appearance): boolean {
 
 export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   const pathname = usePathname() || "/";
-  const isDocs = pathname.startsWith("/docs");
+  // Most of the site content is rendered through the docs shell.
+  // Treat any non-home route as "docs" for layout settings.
+  const isDocs = pathname !== "/" && !pathname.startsWith("/api");
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -86,7 +88,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   const [isTakodachiHelpOpen, setIsTakodachiHelpOpen] = useState(false);
 
   const [isDark, setIsDark] = useState(false);
-  const [currentLayoutMode, setCurrentLayoutMode] = useState<LayoutMode>("original");
+  const [currentLayoutMode, setCurrentLayoutMode] = useState<LayoutMode>("expandAll");
   const [isSpotlightOn, setIsSpotlightOn] = useState(false);
   const [spotlightStyle, setSpotlightStyle] = useState<SpotlightStyle>("aside");
   const [isTakodachiOn, setIsTakodachiOn] = useState(false);
@@ -95,7 +97,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   const [docsContentWidth, setDocsContentWidth] = useState(756);
 
   // Pending states for settings (only applied when popup closes)
-  const [pendingLayoutMode, setPendingLayoutMode] = useState<LayoutMode>("original");
+  const [pendingLayoutMode, setPendingLayoutMode] = useState<LayoutMode>("expandAll");
   const [pendingSpotlightOn, setPendingSpotlightOn] = useState(false);
   const [pendingSpotlightStyle, setPendingSpotlightStyle] = useState<SpotlightStyle>("aside");
   const [pendingTakodachiOn, setPendingTakodachiOn] = useState(false);
@@ -107,7 +109,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   useEffect(() => {
     try {
       setIsDark(effectiveIsDark(readAppearance()));
-      setCurrentLayoutMode(parseLayoutMode(localStorage.getItem(LS.layoutMode) ?? localStorage.getItem(LS.legacyLayoutMode)) ?? "original");
+      setCurrentLayoutMode(parseLayoutMode(localStorage.getItem(LS.layoutMode) ?? localStorage.getItem(LS.legacyLayoutMode)) ?? "expandAll");
 
       const spotlight = localStorage.getItem(LS.spotlightMode) ?? localStorage.getItem(LS.legacySpotlight);
       setIsSpotlightOn(spotlight ? (spotlight === "true" || spotlight === "on") : false);
@@ -138,6 +140,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   }, []);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const effectiveDocsContentWidth =
     currentLayoutMode === "expandAll" ? 8000 :
@@ -234,6 +237,33 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
     setDocsContentWidth(pendingDocsContentWidth);
   };
 
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    hoverTimeoutRef.current = setTimeout(() => {
+      if (!isSettingsOpen) {
+        setPendingLayoutMode(currentLayoutMode);
+        setPendingSpotlightOn(isSpotlightOn);
+        setPendingSpotlightStyle(spotlightStyle);
+        setPendingTakodachiOn(isTakodachiOn);
+        setPendingPageMaxWidth(pageMaxWidth);
+        setPendingContentWidth(contentWidth);
+        setPendingDocsContentWidth(docsContentWidth);
+        setIsSettingsOpen(true);
+      }
+    }, 250);
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    hoverTimeoutRef.current = setTimeout(() => {
+      if (isSettingsOpen) {
+        applySettings();
+        setIsSettingsOpen(false);
+        setIsTakodachiHelpOpen(false);
+      }
+    }, 300);
+  };
+
   // Global Ctrl K search
   useEffect(() => {
     const handleGlobalK = (e: KeyboardEvent) => {
@@ -267,7 +297,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
 
       <header className="VPNav fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-300">
         <div
-          className={`VPNavBar h-[64px] flex items-center justify-between mx-auto ${isDocs ? "px-0" : "px-6 md:px-16"}`}
+          className={`VPNavBar h-[64px] flex items-center justify-between mx-auto ${isDocs ? "px-6" : "px-4 sm:px-8"}`}
           style={{
             maxWidth: isMounted ? effectiveNavMaxWidth : (isDocs ? "100%" : "1920px"),
             transition: "max-width 500ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -290,17 +320,17 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
 
             <Link
               href="/"
-              className={`flex items-center gap-0 -ml-1 mr-1 sm:mr-2 group cursor-pointer text-[var(--vp-c-text-1)] h-full transition-colors ${isDocs ? "lg:hidden" : ""}`}
+              className={`flex items-center gap-2 -ml-1 mr-1 sm:mr-2 group cursor-pointer text-[var(--vp-c-text-1)] h-full transition-colors ${isDocs ? "lg:hidden" : ""}`}
             >
-              <img className="w-14 h-14" src="/v2/PFPs/Transparent/2.png" alt="Logo" />
-              <span className="font-semibold text-[18px] mr-2 leading-3 hidden sm:block">Penquin</span>
+              <img className="w-10 h-10" src="/v2/PFPs/Transparent/2.png" alt="Logo" />
+              <span className="font-bold text-[18px] tracking-tight hidden sm:block">Penquin</span>
             </Link>
 
-            <div className={`${isDocs ? "lg:pl-[336px]" : ""}`}>
+            <div className={`transition-all duration-300 ease-[cubic-bezier(0.32,0,0.67,0)] ${isDocs ? "lg:pl-[320px]" : ""}`}>
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className={`DocSearch flex items-center justify-center sm:justify-start gap-2 px-3 h-9 rounded-lg bg-[var(--vp-c-bg-soft)] hover:bg-[var(--vp-c-bg-elv)] border border-transparent hover:border-[var(--vp-c-brand-1)] transition-all group ${isDocs ? "w-10 sm:w-[160px]" : "w-10 sm:w-[150px]"}`}
+                className={`DocSearch flex items-center justify-center sm:justify-start gap-2 px-3 h-9 rounded-lg bg-[var(--vp-c-bg-soft)] hover:bg-[var(--vp-c-bg-elv)] border border-transparent hover:border-[var(--vp-c-brand-1)] transition-all group ${isDocs ? "w-10 sm:w-[180px]" : "w-10 sm:w-[170px]"}`}
               >
                 <Search className="w-4 h-4 text-[var(--vp-c-text-3)] group-hover:text-[var(--vp-c-text-1)] transition-colors" strokeWidth={2} />
                 <span className="text-[14px] font-medium text-[var(--vp-c-text-3)] group-hover:text-[var(--vp-c-text-1)] hidden sm:inline-block transition-colors">Search</span>
@@ -309,8 +339,8 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
             </div>
           </div>
 
-          <div className={`flex items-center justify-end text-[var(--vp-c-text-2)] ${isDocs ? "pr-6" : ""}`}>
-            <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[var(--vp-c-bg-soft)]/30">
+          <div className="flex items-center justify-end text-[var(--vp-c-text-2)]">
+            <div className="flex items-center gap-0.5 px-2 py-1 rounded-3xl bg-[var(--vp-c-bg-soft)]/50">
               <button
                 onClick={toggleTheme}
                 className="hover:text-[var(--vp-c-text-1)] transition-colors p-[6px]"
@@ -322,20 +352,25 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
 
               <a
                 href="https://github.com/xibhi/penquin"
-                className="hover:text-[var(--vp-c-text-1)] transition-colors p-[6px] hidden sm:flex items-center justify-center -mr-0.5"
+                className="hover:text-[var(--vp-c-text-1)] transition-colors p-[6px] hidden sm:flex items-center justify-center"
                 aria-label="GitHub"
               >
                 <FaGithub className="w-[20px] h-[20px]" />
               </a>
               <a
                 href="https://discord.gg/2VPHHpf3Ds"
-                className="hover:text-[var(--vp-c-text-1)] transition-colors p-[6px] hidden sm:flex items-center justify-center -mr-0.5"
+                className="hover:text-[var(--vp-c-text-1)] transition-colors p-[6px] hidden sm:flex items-center justify-center"
                 aria-label="Discord"
               >
                 <FaDiscord className="w-[20px] h-[20px]" />
               </a>
 
-              <div className="relative" ref={dropdownRef}>
+              <div
+                className="relative"
+                ref={dropdownRef}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 <button
                   type="button"
                   className="flex items-center hover:text-[var(--vp-c-text-1)] transition-colors p-[6px] cursor-pointer rounded-full hover:bg-[var(--vp-c-bg-soft)]"
@@ -343,6 +378,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
                   onClick={() => {
                     if (isSettingsOpen) {
                       applySettings();
+                      setIsSettingsOpen(false);
                     } else {
                       // Sync pending state with current when opening
                       setPendingLayoutMode(currentLayoutMode);
@@ -352,8 +388,8 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
                       setPendingPageMaxWidth(pageMaxWidth);
                       setPendingContentWidth(contentWidth);
                       setPendingDocsContentWidth(docsContentWidth);
+                      setIsSettingsOpen(true);
                     }
-                    setIsSettingsOpen((v) => !v);
                   }}
                 >
                   <PiGear className="w-[22px] h-[22px]" strokeWidth={3} />
@@ -448,7 +484,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
                               <div className="flex items-center justify-between">
                                 <h3 className="flex items-center gap-2 text-[15px] font-bold text-[var(--vp-c-text-1)]">
                                   <ArrowLeftRight className="w-5 h-5 opacity-80" />
-                                  Page Max Width
+                                  Navbar Width
                                 </h3>
                                 <span className="text-[11px] font-mono text-[var(--vp-c-text-3)]">{pendingPageMaxWidth}px</span>
                               </div>
@@ -608,6 +644,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
             </div>
           </div>
         </div>
+
         <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
       </header>
     </>

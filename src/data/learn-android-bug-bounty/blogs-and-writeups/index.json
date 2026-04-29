@@ -1,0 +1,249 @@
+{
+  "title": "Blogs & Writeups",
+  "breadcrumb": [],
+  "sections": [
+    {
+      "type": "table",
+      "headers": [
+        "Title",
+        "Description",
+        "Link"
+      ],
+      "rows": [
+        {
+          "Title": "OWASP Mobile Top 10 2016",
+          "Description": "Top mobile security risks",
+          "Link": "https://www.owasp.org/index.php/Mobile_Top_10_2016-Top_10"
+        },
+        {
+          "Title": "Mindmap",
+          "Description": "A comprehensive Checklist for Android Bug Bounty",
+          "Link": "https://xmind.app/m/GkgaYH/"
+        },
+        {
+          "Title": "OWASP Mobile Security Testing Guide",
+          "Description": "Comprehensive testing guide",
+          "Link": "https://github.com/OWASP/owasp-mstg"
+        },
+        {
+          "Title": "Android Applications Reversing 101",
+          "Description": "Beginner's guide to Android reversing",
+          "Link": "https://www.evilsocket.net/2017/04/27/Android-Applications-Reversing-101/"
+        },
+        {
+          "Title": "Detect secret leaks in Android apps",
+          "Description": "Online detection tool",
+          "Link": "https://android.fallible.co/"
+        },
+        {
+          "Title": "Android Security Guidelines",
+          "Description": "Box's security guidelines",
+          "Link": "https://developer.box.com/docs/android-security-guidelines"
+        },
+        {
+          "Title": "Attacking Broadcast Receivers",
+          "Description": "Android security part 18",
+          "Link": "https://manifestsecurity.com/android-application-security-part-18/"
+        },
+        {
+          "Title": "Android WebView Vulnerabilities",
+          "Description": "Common WebView issues",
+          "Link": "https://pentestlab.blog/2017/02/12/android-webview-vulnerabilities/"
+        },
+        {
+          "Title": "Android APK Recon Setup",
+          "Description": "Setup and tips for recon",
+          "Link": "https://b3nac.com/posts/2017-11-10-Setup-and-tips-for-Android-APK-recon.html"
+        },
+        {
+          "Title": "WebView addJavascriptInterface RCE",
+          "Description": "Remote code execution via WebView",
+          "Link": "https://labs.mwrinfosecurity.com/blog/webview-addjavascriptinterface-remote-code-execution/"
+        },
+        {
+          "Title": "Install PlayStore on Emulator",
+          "Description": "Guide for emulator setup",
+          "Link": "https://medium.com/@dai_shi/installing-google-play-services-on-an-android-studio-emulator-fffceb2c28a1"
+        },
+        {
+          "Title": "Android Bug Bounty Tips",
+          "Description": "Targeting mobile apps",
+          "Link": "https://medium.com/bugbountyhunting/bug-bounty-hunting-tips-2-target-their-mobile-apps-android-edition-f88a9f383fcc"
+        },
+        {
+          "Title": "Access to Protected Components",
+          "Description": "Oversecured blog post",
+          "Link": "https://blog.oversecured.com/Android-Access-to-app-protected-components/"
+        },
+        {
+          "Title": "Arbitrary Code Execution",
+          "Description": "Via third-party package contexts",
+          "Link": "https://blog.oversecured.com/Android-arbitrary-code-execution-via-third-party-package-contexts/"
+        },
+        {
+          "Title": "Interception of Implicit Intents",
+          "Description": "Android security issue",
+          "Link": "https://blog.oversecured.com/Interception-of-Android-implicit-intents/"
+        },
+        {
+          "Title": "Evernote Vulnerabilities",
+          "Description": "Universal XSS and cookie theft",
+          "Link": "https://blog.oversecured.com/Evernote-Universal-XSS-theft-of-all-cookies-from-all-sites-and-more/"
+        },
+        {
+          "Title": "Gaining Access to Content Providers",
+          "Description": "Android security issue",
+          "Link": "https://blog.oversecured.com/Gaining-access-to-arbitrary-Content-Providers/"
+        },
+        {
+          "Title": "@vaishalinagori112 on Medium",
+          "Description": "",
+          "Link": "https://medium.com/@vaishalinagori112"
+        },
+        {
+          "Title": "@prasadraj954 on Medium",
+          "Description": "",
+          "Link": "https://medium.com/@prasadraj954"
+        },
+        {
+          "Title": "B3nac's Android Reports and Resources",
+          "Description": "",
+          "Link": "https://github.com/B3nac/Android-Reports-and-Resources"
+        },
+        {
+          "Title": "Sandeep Wawdane",
+          "Description": "",
+          "Link": "https://thecybersandeep.medium.com/"
+        },
+        {
+          "Title": "Oversecured Blog",
+          "Description": "",
+          "Link": "https://blog.oversecured.com/"
+        },
+        {
+          "Title": "CorSecure Blog",
+          "Description": "",
+          "Link": "https://corsecure.blog/"
+        },
+        {
+          "Title": "Frida Official Documentation",
+          "Description": "",
+          "Link": "https://frida.re/docs/"
+        },
+        {
+          "Title": "SecurityBreached (Babayaga47)",
+          "Description": "",
+          "Link": "https://blog.securitybreached.org/author/babayaga47/"
+        },
+        {
+          "Title": "DeeSee's Android Security Resources",
+          "Description": "",
+          "Link": "https://blog.deesee.xyz/android/security/2020/01/13/android-application-hacking-resources.html"
+        },
+        {
+          "Title": "Hacker101: Mobile Crash Course",
+          "Description": "",
+          "Link": "https://www.hacker101.com/sessions/mobile_crash_course.html"
+        },
+        {
+          "Title": "Mobisec Slides",
+          "Description": "",
+          "Link": "https://mobisec.reyammer.io/slides"
+        },
+        {
+          "Title": "Bypassing Certificate Pinning (vavkamil)",
+          "Description": "",
+          "Link": "https://vavkamil.cz/2019/09/15/how-to-bypass-android-certificate-pinning-and-intercept-ssl-traffic/"
+        },
+        {
+          "Title": "Android Hacking Primer",
+          "Description": "",
+          "Link": "https://medium.com/swlh/an-android-hacking-primer-3390fef4e6a0"
+        },
+        {
+          "Title": "OWASP Mobile Top Ten 2023 – fi5t",
+          "Description": "",
+          "Link": "https://fi5t.xyz/posts/owasp-mobile-top-ten-2023/"
+        },
+        {
+          "Title": "Android SMS Stealer – Max Kersten",
+          "Description": "",
+          "Link": "https://maxkersten.nl/binary-analysis-course/malware-analysis/android-sms-stealer/"
+        },
+        {
+          "Title": "Hacking SMS API via Static Analysis – Security Breached",
+          "Description": "",
+          "Link": "https://blog.securitybreached.org/2020/02/19/hacking-sms-api-service-provider-of-a-company-android-app-static-security-analysis-bug-bounty-poc/"
+        },
+        {
+          "Title": "Bug Bounty Hunting Tips (Mobile Apps – Android Edition)",
+          "Description": "",
+          "Link": "https://freedium.cfd/https://medium.com/bugbountyhunting/bug-bounty-hunting-tips-2-target-their-mobile-apps-android-edition-f88a9f383fcc"
+        },
+        {
+          "Title": "Getting Started in Android Pentesting",
+          "Description": "",
+          "Link": "https://blog.securitybreached.org/2020/03/17/getting-started-in-android-apps-pentesting/"
+        },
+        {
+          "Title": "Exploiting Insecure Firebase DB",
+          "Description": "",
+          "Link": "https://blog.securitybreached.org/2020/02/04/exploiting-insecure-firebase-database-bugbounty/"
+        },
+        {
+          "Title": "Finding Leaked AWS Creds in Android Apps",
+          "Description": "",
+          "Link": "https://blog.securitybreached.org/2024/06/28/finding-hidden-threats-how-i-found-leaked-aws-credentials-in-an-android-app-api-using-dast/"
+        },
+        {
+          "Title": "200+ Bounty Payouts: SQLi in Content Providers",
+          "Description": "",
+          "Link": "https://infosecwriteups.com/200-bug-bounty-payouts-exploiting-content-providers-with-sql-injection-abd287179b61"
+        },
+        {
+          "Title": "8 Ways to Bypass SSL Pinning in iOS",
+          "Description": "",
+          "Link": "https://medium.com/@vaishalinagori112/8-different-ways-to-bypass-ssl-pinning-in-ios-applications-427dfcbe8bf7"
+        },
+        {
+          "Title": "YesWeHack guide to Android Bug Bounty",
+          "Description": "",
+          "Link": "https://www.yeswehack.com/learn-bug-bounty/android-lab-mobile-hacking-tools"
+        },
+        {
+          "Title": "RootAVD(Root your android virtual device)",
+          "Description": "",
+          "Link": "https://gitlab.com/newbit/rootAVD"
+        },
+        {
+          "Title": "Intent Abuse in Google Messages for Wear OS",
+          "Description": "",
+          "Link": "https://towerofhanoi.it/writeups/cve-2025-12080/"
+        },
+        {
+          "Title": "Android recon for Bug Bounty hunters: A complete guide from APK extraction to mapping attack surfaces",
+          "Description": "",
+          "Link": "https://www.yeswehack.com/learn-bug-bounty/android-recon-bug-bounty-guide"
+        },
+        {
+          "Title": "More android bug bounty writeups",
+          "Description": "",
+          "Link": "https://medium.com/@amanba13.ab"
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Bug Bounty Reports",
+      "url": "/docs/bug-bounty-reports"
+    },
+    "next": {
+      "title": "GitHub Repository",
+      "url": "/docs/github-repository"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-01-08T06:29:26.060Z"
+  }
+}

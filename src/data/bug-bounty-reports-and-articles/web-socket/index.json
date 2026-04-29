@@ -1,0 +1,48 @@
+{
+  "title": "Web Socket",
+  "subtitle": "WebSocket Vulnerabilities: WebSocket is a communication protocol that enables full-duplex communication between a client and a server over a single, long-lived connection. While it enhances real-time communication capabilities, it also introduces several security concerns.",
+  "breadcrumb": [
+    {
+      "name": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    }
+  ],
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "WebSocket Vulnerabilities: WebSocket is a communication protocol that enables full-duplex communication between a client and a server over a single, long-lived connection. While it enhances real-time communication capabilities, it also introduces several security concerns."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "video",
+      "url": "https://cdn.iframe.ly/2HfS7yE"
+    },
+    {
+      "type": "link_card",
+      "title": "Superhuman (formerly Grammarly) disclosed on HackerOne: Lack or...",
+      "url": "https://hackerone.com/reports/535436",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "type": "link_card",
+      "title": "Legal Robot disclosed on HackerOne: Cross Site WebSocket Hijacking",
+      "url": "https://hackerone.com/reports/211283",
+      "logo": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Business Logic Flow",
+      "url": "/docs/bug-bounty-reports-and-articles/broken-access-control-and-broken-authentication/business-logic-flow"
+    },
+    "next": {
+      "title": "Miscellaneous Reports",
+      "url": "/docs/bug-bounty-reports-and-articles/miscellaneous-reports"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2024-06-29T09:26:18.145Z"
+  }
+}

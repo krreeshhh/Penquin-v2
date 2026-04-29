@@ -1,0 +1,210 @@
+{
+  "title": "Cache Vulnerabilities",
+  "breadcrumb": [
+    {
+      "label": "Bug Bounty Reports & Articles",
+      "url": "/docs/bug-bounty-reports-and-articles"
+    }
+  ],
+  "articles": [
+    {
+      "title": "How I Made $16,500+ By Hacking Caching Servers — Part 1",
+      "platform": "Medium",
+      "url": "https://infosecwriteups.com/how-i-made-15-000-by-hacking-caching-servers-part-1-5541712a61c3",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "How I Made +$16,500 Hacking CDN Caching Servers — Part 2",
+      "platform": "Medium",
+      "url": "https://infosecwriteups.com/how-i-made-16-500-hacking-cdn-caching-servers-part-2-4995ece4c6e6",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "How I Made +$16,500 Hacking CDN Caching Servers — Part 3",
+      "platform": "Medium",
+      "url": "https://infosecwriteups.com/how-i-made-16-500-hacking-cdn-caching-servers-part-3-91f9d836e046",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "3 Easy cash via cache",
+      "platform": "Medium",
+      "url": "https://medium.com/@mohamed0xmuslim/3-easy-cash-via-cache-99d600565ac5",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "My first Web Cache Poisoning bug",
+      "platform": "Medium",
+      "url": "https://infosecwriteups.com/my-first-web-cache-poisoning-bug-af955c8d135b",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "How I Test For Web Cache Vulnerabilities + Tips And Tricks",
+      "platform": "Medium",
+      "url": "https://bxmbn.medium.com/how-i-test-for-web-cache-vulnerabilities-tips-and-tricks-9b138da08ff9",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "web cache deception on private program",
+      "platform": "Medium",
+      "url": "https://medium.com/@0x_karim/web-cache-deception-on-private-program-ccce0a612d46",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "Cache Deception | 450$",
+      "platform": "Medium",
+      "url": "https://medium.com/@0x_karim/cache-deception-450-a02cd655b33f",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "I Found Cache Poisoning & Earned $500 in Just a Few Minutes!",
+      "platform": "Medium",
+      "url": "https://theindiannetwork.medium.com/i-found-cache-poisoning-earned-500-in-just-a-few-minutes-78337a437d55",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
+    },
+    {
+      "title": "Practical Web Cache Poisoning",
+      "platform": "PortSwigger Research",
+      "url": "https://portswigger.net/research/practical-web-cache-poisoning",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fportswigger.net%2Fcontent%2Fimages%2Flogos%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=c5edce39&sv=2"
+    },
+    {
+      "title": "Responsible denial of service with web cache poisoning",
+      "platform": "PortSwigger Research",
+      "url": "https://portswigger.net/research/responsible-denial-of-service-with-web-cache-poisoning",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fportswigger.net%2Fcontent%2Fimages%2Flogos%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=c5edce39&sv=2"
+    },
+    {
+      "title": "Bypassing Web Cache Poisoning Countermeasures",
+      "platform": "PortSwigger Research",
+      "url": "https://portswigger.net/research/bypassing-web-cache-poisoning-countermeasures",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fportswigger.net%2Fcontent%2Fimages%2Flogos%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=c5edce39&sv=2"
+    },
+    {
+      "title": "Cache Poisoning at Scale",
+      "platform": "youst.in",
+      "url": "https://youst.in/posts/cache-poisoning-at-scale/",
+      "icon": null
+    }
+  ],
+  "hackeroneReports": [
+    {
+      "title": "Expedia Group Bug Bounty disclosed on HackerOne: Cache Deception...",
+      "url": "https://hackerone.com/reports/1698316",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Shopify disclosed on HackerOne: Shopify.com Web Cache Deception...",
+      "url": "https://hackerone.com/reports/1271944",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Lyst disclosed on HackerOne: Web Cache poisoning attack leads to...",
+      "url": "https://hackerone.com/reports/631589",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Glassdoor disclosed on HackerOne: Cache Poisoning allows...",
+      "url": "https://hackerone.com/reports/1795197",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Mozilla disclosed on HackerOne: DOS via cache poisoning on...",
+      "url": "https://hackerone.com/reports/1976449",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Expedia Group Bug Bounty disclosed on HackerOne:...",
+      "url": "https://hackerone.com/reports/1888351",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Expedia Group Bug Bounty disclosed on HackerOne: Cache Poisoning...",
+      "url": "https://hackerone.com/reports/1760213",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Glassdoor disclosed on HackerOne: Web Cache Poisoning leads to...",
+      "url": "https://hackerone.com/reports/1424094",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Rockstar Games disclosed on HackerOne: Cache Poisoning DoS on...",
+      "url": "https://hackerone.com/reports/1219038",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Reddit disclosed on HackerOne: Image queue default key of 'None'...",
+      "url": "https://hackerone.com/reports/996041",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "U.S. General Services Administration disclosed on HackerOne: Web...",
+      "url": "https://hackerone.com/reports/1346618",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    },
+    {
+      "title": "Shopify disclosed on HackerOne: https://themes.shopify.com::: Host...",
+      "url": "https://hackerone.com/reports/1096609",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fhackerone.com%2Ffavicon.ico&width=20&dpr=3&quality=100&sign=39079eb2&sv=2"
+    }
+  ],
+  "tools": [
+    {
+      "title": "GitHub - PortSwigger/cache-killer",
+      "platform": "GitHub",
+      "url": "https://github.com/PortSwigger/cache-killer",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
+    },
+    {
+      "title": "GitHub - c0dejump/wcDetect: web cache deception detect",
+      "platform": "GitHub",
+      "url": "https://github.com/c0dejump/wcDetect",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
+    },
+    {
+      "title": "GitHub - PortSwigger/web-cache-deception-scanner: A Burp Extension to test applications for vulnerability to the Web Cache Deception attack",
+      "platform": "GitHub",
+      "url": "https://github.com/PortSwigger/web-cache-deception-scanner",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
+    },
+    {
+      "title": "GitHub - Hackmanit/Web-Cache-Vulnerability-Scanner: Web Cache Vulnerability Scanner is a Go-based CLI tool for testing for web cache poisoning",
+      "platform": "GitHub",
+      "url": "https://github.com/Hackmanit/Web-Cache-Vulnerability-Scanner",
+      "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
+    }
+  ],
+  "videos": [
+    {
+      "url": "https://cdn.iframe.ly/OqLtiivQ"
+    },
+    {
+      "url": "https://cdn.iframe.ly/TA52tyWo"
+    },
+    {
+      "url": "https://cdn.iframe.ly/zU3YJn12"
+    },
+    {
+      "url": "https://cdn.iframe.ly/fkz4po8K"
+    },
+    {
+      "url": "https://cdn.iframe.ly/xmfHAWDq"
+    },
+    {
+      "url": "https://cdn.iframe.ly/EdoWuc0m"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Low Hanging Fruits",
+      "url": "/docs/bug-bounty-reports-and-articles/low-hanging-fruits"
+    },
+    "next": {
+      "title": "DOS/DDOS",
+      "url": "/docs/bug-bounty-reports-and-articles/dos-ddos"
+    }
+  },
+  "footer": {
+    "lastUpdated": "2026-02-03T05:34:37.666Z"
+  }
+}

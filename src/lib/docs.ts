@@ -72,7 +72,10 @@ function buildBreadcrumb(ancestors: Array<{ title: string; url?: string }>) {
 function inferGroupUrl(items: JsonRecord[]) {
   const childUrls = items
     .map((item) => item.url)
-    .filter((value): value is string => typeof value === "string" && value.startsWith("/docs/"));
+    .filter(
+      (value): value is string =>
+        typeof value === "string" && value.startsWith("/") && !/^https?:\/\//.test(value)
+    );
 
   if (!childUrls.length) return undefined;
 
@@ -226,6 +229,10 @@ export function getSidebarTree() {
 
 export function getIntroductionRoutes() {
   return loadDocs().routes.filter((route) => route === "/docs" || route.startsWith("/docs/"));
+}
+
+export function getAllDocRoutes() {
+  return loadDocs().routes;
 }
 
 export function getDocPage(route: string) {

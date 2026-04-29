@@ -1,0 +1,178 @@
+{
+  "title": "PIDCAT for Android Bug Bounty Logging",
+  "breadcrumb": [],
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "A focused logcat wrapper for Android security researchers and bug bounty hunters — helps filter logs from a specific app instead of the entire device, making vulnerability analysis faster and cleaner."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "why-use-pidcat",
+      "content": "Why Use PIDCAT?"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "adb-logcat-default-behavior",
+      "content": "adb logcat (Default behavior)"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "adb devices\nadb -s <device-ip:port> logcat"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Captures all logs from the device: system, apps, services.",
+        "Noisy and difficult to isolate logs for one app."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "pidcat-focused-behavior",
+      "content": "pidcat (Focused behavior)"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "pidcat -s <device-ip:port> <package.name>"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Captures logs only from a specific app using its PID (process ID).",
+        "Automatically updates PID if the app restarts.",
+        "Filters out irrelevant system logs."
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "installation",
+      "content": "Installation"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-1.-clone-the-repository",
+      "content": "1. Clone the Repository"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "git clone https://github.com/JakeWharton/pidcat.git\ncd pidcat"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "id": "id-2.-run-directly",
+      "content": "2. Run Directly"
+    },
+    {
+      "type": "paragraph",
+      "content": "On Linux/macOS:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "./pidcat.py -s <device-ip:port> <package.name>"
+    },
+    {
+      "type": "paragraph",
+      "content": "On Windows:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "python pidcat.py -s <device-ip:port> <package.name>"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "make-it-universal-on-windows",
+      "content": "Make It Universal on Windows"
+    },
+    {
+      "type": "paragraph",
+      "content": "To run pidcat from any directory:"
+    },
+    {
+      "type": "ordered_list",
+      "items": [
+        "Move pidcat.py to a folder like C:\\Tools\\pidcat\\",
+        "Add that folder to the System PATH:\n- Open Environment Variables\n- Edit the Path variable\n- Add: C:\\Tools\\pidcat",
+        "(Optional) Create pidcat.bat in the same folder:\n\n@echo off\npython C:\\Tools\\pidcat\\pidcat.py %*"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "Now you can run:"
+    },
+    {
+      "type": "code_block",
+      "language": "bash",
+      "content": "pidcat -s <device-ip:port> com.target.app"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "example-commands",
+      "content": "Example Commands"
+    },
+    {
+      "type": "list",
+      "items": [
+        {
+          "title": "For a remote device:",
+          "code": "pidcat -s 192.168.0.101:5555 com.target.app"
+        },
+        {
+          "title": "For a USB device:",
+          "code": "pidcat com.target.app"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "id": "original-repository",
+      "content": "Original Repository"
+    },
+    {
+      "type": "paragraph",
+      "content": "https://github.com/JakeWharton/pidcat"
+    }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Security Tools For Android Pentesting",
+      "url": "/docs/security-tools-for-android-pentesting"
+    },
+    "next": {
+      "title": "CLI Commands & Shortcuts",
+      "url": "/docs/cli-commands-and-shortcuts"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-07-19T21:00:55.673Z"
+  }
+}
