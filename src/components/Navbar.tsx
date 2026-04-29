@@ -111,9 +111,9 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
       setIsDark(effectiveIsDark(readAppearance()));
       setCurrentLayoutMode(parseLayoutMode(localStorage.getItem(LS.layoutMode) ?? localStorage.getItem(LS.legacyLayoutMode)) ?? "expandAll");
 
-      const spotlight = localStorage.getItem(LS.spotlightMode) ?? localStorage.getItem(LS.legacySpotlight);
-      setIsSpotlightOn(spotlight ? (spotlight === "true" || spotlight === "on") : false);
-
+      // Spotlight should start OFF on fresh loads (even if previously enabled).
+      // Users can re-enable it from the navbar settings.
+      setIsSpotlightOn(false);
       setSpotlightStyle(localStorage.getItem(LS.spotlightStyles) === "1" ? "under" : "aside");
 
       const tako = localStorage.getItem(LS.takodachi);
