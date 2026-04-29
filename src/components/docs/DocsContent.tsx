@@ -470,23 +470,37 @@ function renderStructuredListItemCard(item: Record<string, unknown>, key: React.
   const assetUrl = getAssetUrl(docItem.icon) ?? getAssetUrl(docItem.logo) ?? getAssetUrl(docItem.image) ?? getFallbackSiteIcon(docItem.url);
   const subitems = Array.isArray(docItem.subitems) ? docItem.subitems : [];
 
+  const tooltipLabel =
+    (typeof docItem.platform === "string" && docItem.platform.trim()) ||
+    (typeof docItem.source === "string" && docItem.source.trim()) ||
+    (typeof docItem.domain === "string" && docItem.domain.trim()) ||
+    (docItem.url && isExternalHref(docItem.url) ? hostnameLabel(docItem.url) : "Link");
+
   return (
-    <div key={key} className="rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3">
+    <div
+      key={key}
+      data-spotlight-block="card"
+      className="rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3"
+    >
       <div className="flex items-start gap-3">
         {ordered ? (
           <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--vp-c-divider)] text-[12px] font-semibold text-[var(--vp-c-text-2)]">
             {String(key)}
           </span>
-        ) : assetUrl ? (
-          <img src={assetUrl} alt="" className="mt-0.5 h-4 w-4 shrink-0 rounded-[4px] object-cover" decoding="async" />
         ) : (
-          <DocIcon
-            emoji={docItem.emoji}
-            icon={typeof docItem.icon === "string" ? docItem.icon : undefined}
-            domain={(() => { try { return docItem.url ? new URL(docItem.url).hostname : undefined } catch { return undefined } })()}
-            fallback={defaultDocIcons.link}
-            className="mt-0.5 h-4 w-4 shrink-0"
-          />
+          <IconTooltip label={tooltipLabel}>
+            {assetUrl ? (
+              <img src={assetUrl} alt="" className="mt-0.5 h-4 w-4 shrink-0 rounded-[4px] object-cover" decoding="async" />
+            ) : (
+              <DocIcon
+                emoji={docItem.emoji}
+                icon={typeof docItem.icon === "string" ? docItem.icon : undefined}
+                domain={(() => { try { return docItem.url ? new URL(docItem.url).hostname : undefined } catch { return undefined } })()}
+                fallback={defaultDocIcons.link}
+                className="mt-0.5 h-4 w-4 shrink-0"
+              />
+            )}
+          </IconTooltip>
         )}
         <div className="min-w-0 flex-1">
           {typeof docItem.url === "string" ? (

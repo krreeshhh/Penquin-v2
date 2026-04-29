@@ -137,6 +137,17 @@ export function DocsSpotlightHoverBlock() {
       // ignore
     }
 
+    // Some routes/layouts can mount this component after Navbar has already
+    // applied the spotlight HTML classes; re-check once on the next frame.
+    const raf = window.requestAnimationFrame(() => {
+      try {
+        setEnabled(readEnabledFromHtml());
+        setStyle(readStyleFromHtml());
+      } catch {
+        // ignore
+      }
+    });
+
     const onSpotlight = (e: Event) => {
       const ev = e as CustomEvent<{ enabled?: boolean; style?: SpotlightStyle }>;
       if (typeof ev.detail?.enabled === "boolean") setEnabled(ev.detail.enabled);
@@ -144,7 +155,10 @@ export function DocsSpotlightHoverBlock() {
     };
 
     window.addEventListener(EVENT_NAME, onSpotlight as EventListener);
-    return () => window.removeEventListener(EVENT_NAME, onSpotlight as EventListener);
+    return () => {
+      window.removeEventListener(EVENT_NAME, onSpotlight as EventListener);
+      window.cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => {
@@ -176,8 +190,25 @@ export function DocsSpotlightHoverBlock() {
 
       if (!vpDocRoot || !contentRoot || !point) return;
 
-      const el = document.elementFromPoint(point.x, point.y);
-      if (!el || !(el instanceof HTMLElement) || !vpDocRoot.contains(el)) {
+      // elementFromPoint can return elements from fixed overlays (nav/sidebar).
+      // When that happens, temporarily disable their pointer events and re-hit-test.
+      let hit: Element | null = document.elementFromPoint(point.x, point.y);
+      if (hit instanceof HTMLElement) {
+        const overlay = hit.closest<HTMLElement>(".VPNav, .VPSidebar, .VPDocAside");
+        if (overlay) {
+          const prev = overlay.style.pointerEvents;
+          overlay.style.pointerEvents = "none";
+          hit = document.elementFromPoint(point.x, point.y);
+          overlay.style.pointerEvents = prev;
+        }
+      }
+      const el =
+        hit instanceof HTMLElement
+          ? hit
+          : hit instanceof SVGElement
+            ? hit.parentElement
+            : null;
+      if (!el || !vpDocRoot.contains(el)) {
         setBox((prev) => ({ ...prev, opacity: 0 }));
         return;
       }
@@ -234,6 +265,7 @@ export function DocsSpotlightHoverBlock() {
         position: "fixed",
         left: 0,
         top: 0,
+        zIndex: 40,
         pointerEvents: "none",
         willChange: "transform, width, height, opacity",
         transition: "transform 420ms cubic-bezier(0.16, 1, 0.3, 1), width 420ms cubic-bezier(0.16, 1, 0.3, 1), height 420ms cubic-bezier(0.16, 1, 0.3, 1), opacity 160ms ease-out, border-radius 420ms cubic-bezier(0.16, 1, 0.3, 1)",
