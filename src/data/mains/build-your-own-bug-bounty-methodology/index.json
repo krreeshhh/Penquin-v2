@@ -32,7 +32,7 @@
     {
       "type": "table",
       "headers": [
-        "Platform",
+        "platform",
         "Number of Methodologies"
       ],
       "rows": [
@@ -60,28 +60,28 @@
       "type": "link_card",
       "url": "https://infosecwriteups.com/what-to-do-after-choosing-a-target-part-01-bug-bounty-0e7eda23d324",
       "title": "What To Do After Choosing a Target? Part 01 | Bug Bounty",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://infosecwriteups.com/part-02-what-to-do-after-choosing-a-target-bug-bounty-eb8d73ee73ee",
       "title": "Part 02 What To Do After Choosing a Target? | Bug Bounty",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://infosecwriteups.com/part-03-what-to-do-after-choosing-a-target-post-recon-bug-bounty-1a7f431b4d79",
       "title": "Part 03 | What To Do After Choosing a Target? | Post Recon | Bug Bounty",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://infosecwriteups.com/main-methodology-1-part-04-what-to-do-after-choosing-a-target-f9cea586d6af",
       "title": "Main Methodology 1 | Part 04 | What To Do After Choosing a Target",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
@@ -91,20 +91,20 @@
       "type": "link_card",
       "url": "https://shubhamrooter.medium.com/deep-subdomains-enumeration-methodology-da606be0c4c3",
       "title": "Deep-Subdomains-Enumeration-Methodology",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://www.freedium.cfd/https://medium.com/@loyalonlytoday/finding-more-subdomains-1f5221e79310",
       "title": "https://www.freedium.cfd/https://medium.com/@loyalonlytoday/finding-more-subdomains-1f5221e79310",
-      "description": "www.freedium.cfd"
+      "platform": "www.freedium.cfd"
     },
     {
       "type": "link_card",
       "url": "https://shubhamrooter.medium.com/best-recon-methodology-shubham-rooter-dcdca8d4caa4",
       "title": "Best Recon methodology (Shubham Rooter)",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
@@ -114,7 +114,7 @@
       "type": "link_card",
       "url": "https://infosecsanyam.medium.com/web-application-security-bug-bounty-methodology-reconnaissance-vulnerabilities-reporting-635073cddcf2",
       "title": "Web Application Security & Bug Bounty (Methodology, Reconnaissance, Vulnerabilities, Reporting)",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
@@ -124,21 +124,21 @@
       "type": "link_card",
       "url": "https://apexvicky.medium.com/bug-bounty-methodology-bug-hunting-checklist-part-1-3274ad868209",
       "title": "Bug Bounty Methodology — Bug Hunting Checklist (PART-1)",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://apexvicky.medium.com/bug-bounty-methodology-bug-hunting-checklist-part-2-4e546533245",
       "title": "Bug Bounty Methodology — Bug Hunting Checklist(PART-2)",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://apexvicky.medium.com/bug-bounty-how-to-approach-vulnerabilities-part-1-47e211331386",
       "title": "Bug Bounty — How to approach Vulnerabilities ( PART 1 )",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
@@ -148,21 +148,21 @@
       "type": "link_card",
       "url": "https://medium.com/@trapp3rhat/bug-hunting-methodology-part-1-91295b2d2066",
       "title": "Bug Hunting Methodology (part-1)",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://medium.com/@trapp3rhat/bug-hunting-methodology-part-2-5579dac06150",
       "title": "Bug Hunting Methodology(Part-2)",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://medium.com/@trapp3rhat/bug-hunting-methodology-part-3-457eaf9768a5",
       "title": "Bug Hunting Methodology(Part-3)",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
@@ -172,7 +172,7 @@
       "type": "link_card",
       "url": "https://medium.com/@batuhanaydinn/bug-bounty-hunter-recon-is-everything-part-1-6ba24a100c13",
       "title": "Bug Bounty Hunter — Recon is everything / Part 1",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
@@ -182,7 +182,7 @@
       "type": "link_card",
       "url": "https://pentestbook.six2dez.com/",
       "title": "/home/six2dez/.pentest-book | Pentest Book",
-      "description": "pentestbook.six2dez.com",
+      "platform": "pentestbook.six2dez.com",
       "icon": "https://www.pentest-book.com/~gitbook/image?url=https%3A%2F%2F1729840239-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-M5x1LJiRQvXWpt04_ee%252Favatar-1589202873787.png%3Fgeneration%3D1589202874039238%26alt%3Dmedia&width=48&height=48&sign=1dafa1f5&sv=2"
     },
     {
@@ -192,21 +192,21 @@
       "type": "link_card",
       "url": "https://infosecwriteups.com/cool-recon-techniques-every-hacker-misses-1c5e0e294e89",
       "title": "Cool Recon techniques every hacker misses! 🔥🔥",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://infosecwriteups.com/cool-recon-techniques-every-hacker-misses-episode-2-8024e8338756",
       "title": "Cool Recon techniques every hacker misses! Episode 2🔥🔥",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://infosecwriteups.com/cool-recon-techniques-every-hacker-misses-episode-3-3812e7da3425",
       "title": "Cool Recon techniques every hacker misses! Episode 3🔥🔥",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
@@ -216,14 +216,14 @@
       "type": "link_card",
       "url": "https://infosecwriteups.com/how-i-hack-web-applications-part-1-0833c002cc9a",
       "title": "How I Hack Web Applications (Part 1)",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://orwaatyat.medium.com/my-methodology-in-recon-and-find-bugs-my-methodology-in-hunting-using-phone-ccc9fe06dd2d",
       "title": "My Methodology In Recon And Find Bugs & My Methodology In Hunting Using Phone",
-      "description": "Medium",
+      "platform": "Medium",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afill%3A304%3A304%2F10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156&width=20&dpr=3&quality=100&sign=7ce5f3bc&sv=2"
     },
     {
@@ -300,7 +300,7 @@
       "type": "link_card",
       "url": "https://www.youtube.com/watch?v=Iapvq-oOaK8&list=PLKAaMVNxvLmAkqBkzFaOxqs3L66z2n8LA&index=12",
       "title": "Live Bug Bounty Recon Session on Yahoo (Part 2 - 7/21/2019)",
-      "description": "YouTube",
+      "platform": "YouTube",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fwww.youtube.com%2Fs%2Fdesktop%2F70bc5332%2Fimg%2Ffavicon_144x144.png&width=20&dpr=3&quality=100&sign=7a11d248&sv=2"
     },
     {
@@ -321,7 +321,7 @@
       "type": "link_card",
       "url": "https://www.youtube.com/@BePracticalTech",
       "title": "BePractical",
-      "description": "YouTube",
+      "platform": "YouTube",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fwww.youtube.com%2Fs%2Fdesktop%2F4329498d%2Fimg%2Ffavicon_144x144.png&width=20&dpr=3&quality=100&sign=4e18cbe&sv=2"
     },
     {
@@ -339,7 +339,7 @@
       "type": "link_card",
       "url": "https://www.youtube.com/@lostsecc/videos",
       "title": "https://www.youtube.com/@lostsecc/videos",
-      "description": "www.youtube.com"
+      "platform": "www.youtube.com"
     },
     {
       "type": "youtube",
@@ -357,7 +357,7 @@
       "type": "link_card",
       "url": "https://www.youtube.com/watch?v=KRpV_fnRjio&t=3s",
       "title": "https://www.youtube.com/watch?v=KRpV_fnRjio&t=3s",
-      "description": "www.youtube.com"
+      "platform": "www.youtube.com"
     },
     {
       "type": "divider"
@@ -431,28 +431,28 @@
       "type": "link_card",
       "url": "https://github.com/daffainfo/AllAboutBugBounty",
       "title": "GitHub - daffainfo/AllAboutBugBounty: All about bug bounty (bypasses, payloads, and etc)",
-      "description": "GitHub",
+      "platform": "GitHub",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://github.com/sehno/Bug-bounty",
       "title": "GitHub - sehno/Bug-bounty: Ressources for bug bounty hunting",
-      "description": "GitHub",
+      "platform": "GitHub",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters",
       "title": "GitHub - nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters: A list of resources for those interested in getting started in bug bounties",
-      "description": "GitHub",
+      "platform": "GitHub",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
     },
     {
       "type": "link_card",
       "url": "https://github.com/bittentech/Bug-Bounty-Beginner-Roadmap",
       "title": "GitHub - bittentech/Bug-Bounty-Beginner-Roadmap: This is a resource factory for anyone looking forward to starting bug hunting and would require guidance as a beginner.",
-      "description": "GitHub",
+      "platform": "GitHub",
       "icon": "https://oreobiscuit.gitbook.io/introduction/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png&width=20&dpr=3&quality=100&sign=1e16c914&sv=2"
     }
   ],

@@ -14,252 +14,294 @@
     {
       "index": 1,
       "name": "Cyberjutsu",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Cyberjutsu.pdf",
       "interesting": "no"
     },
     {
       "index": 2,
       "name": "Black-Hat-Go",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Black-Hat-Go.pdf",
       "interesting": "Yes"
     },
     {
       "index": 3,
       "name": "Violent Python",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Violent%20Python.pdf",
       "interesting": "Yes"
     },
     {
       "index": 4,
       "name": "Black-Hat-Bash",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Black-Hat-Bash.pdf",
       "interesting": "Yes"
     },
     {
       "index": 5,
       "name": "BlackHat GraphQL",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/BlackHat%20GraphQL.pdf",
       "interesting": "Yes"
     },
     {
       "index": 6,
       "name": "Bash Cheat Sheet",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/bash_cheat_sheet.pdf",
       "interesting": "Yes"
     },
     {
       "index": 7,
       "name": "Rust-Programming",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/No-Starch-Press-The-Rust.pdf",
       "interesting": "Yes"
     },
     {
       "index": 8,
       "name": "Make Python Talk",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/make-python-talk.pdf",
       "interesting": "Yes"
     },
     {
       "index": 9,
       "name": "Zseanos Methodology",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/zseanos-methodology.pdf",
       "interesting": "Yes"
     },
     {
       "index": 10,
       "name": "Bug Bounty Bootcamp",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/bug-bounty-bootcamp.pdf",
       "interesting": "Yes"
     },
     {
       "index": 11,
       "name": "A Bug Hunter's Diary",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/a%20bug%20hunters%20diary.pdf",
       "interesting": "no"
     },
     {
       "index": 12,
       "name": "JavaScript Security",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/JavaScript%20Security.pdf",
       "interesting": "No"
     },
     {
       "index": 13,
       "name": "Build an HTML5 Game",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Build%20an%20HTML5%20Game.pdf",
       "interesting": "Yes"
     },
     {
       "index": 14,
       "name": "Red Team Field Manual",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/rtfm-red-team-field-manual.pdf",
       "interesting": "Yes"
     },
     {
       "index": 15,
       "name": "Blue Team Field Manual",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Blue%20Team%20Field%20Manual.pdf",
       "interesting": "Yes"
     },
     {
       "index": 16,
       "name": "The-Linux-Command-Line",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/The-Linux-Command-Line.pdf",
       "interesting": "Yes"
     },
     {
       "index": 17,
       "name": "Linux Basics for Hackers",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/linux-basics-for-hackers.pdf",
       "interesting": "Yes"
     },
     {
       "index": 18,
       "name": "Attacking Network Protocols",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/attacking%20network%20protocols.pdf",
       "interesting": "No"
     },
     {
       "index": 19,
       "name": "Hacking APIs - Early Access",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Hacking%20APIs%20-%20Early%20Access.pdf",
       "interesting": "Yes"
     },
     {
       "index": 20,
       "name": "Web Security For Developers",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/websecurityfordevelopers.pdf",
       "interesting": "No"
     },
     {
       "index": 21,
       "name": "Pentesting Azure Applications",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/pentesting%20azure%20applications.pdf",
       "interesting": "Yes"
     },
     {
       "index": 22,
       "name": "Black Hat Python, 2nd Edition",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Black%20Hat%20Python.pdf",
       "interesting": "Yes"
     },
     {
       "index": 23,
       "name": "How Cybersecurity Really Works",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/how-cybersecurity-really-works.pdf",
       "interesting": "no"
     },
     {
       "index": 24,
       "name": "Beyond-the-Basic-Stuff-with-Python",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Beyond-the-Basic-Stuff-with-Python.pdf",
       "interesting": "Yes"
     },
     {
       "index": 25,
       "name": "Learn Windows PowerShell in a Month of Lunches",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/learn-windows-powershell-in-a-month-of-lunches.pdf",
       "interesting": "Yes"
     },
     {
       "index": 26,
       "name": "Real-World Bug Hunting - A Field Guide to Web Hacking",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Real-World%20Bug%20Hunting%20-%20A%20Field%20Guide%20to%20Web%20Hacking.pdf",
       "interesting": "Yes"
     },
     {
       "index": 27,
       "name": "Penetration Testing - A hands-on introduction to Hacking",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Penetration%20Testing%20-%20A%20hands-on%20introduction%20to%20Hacking.pdf",
       "interesting": "Yes"
     },
     {
       "index": 28,
       "name": "The Hacker Playbook 3 - Practical Guide To Penetration Testing",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/The%20Hacker%20Playbook%203%20-%20Practical%20Guide%20To%20Penetration%20Testing.pdf",
       "interesting": "no"
     },
     {
       "index": 29,
       "name": "Enumerating Esoteric Attack Surfaces by Jann Moon",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Enumerating%20Esoteric%20Attack%20Surfaces%20by%20Jann%20Moon.pdf",
       "interesting": "no"
     },
     {
       "index": 30,
       "name": "Practical Packet Analysis",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/practical%20packet%20analysis%203rd%20edition.pdf",
       "interesting": "Yes"
     },
     {
       "index": 31,
       "name": "Wicked Cool Shell Scripts.pdf",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Wicked%20Cool%20Shell%20Scripts.pdf",
       "interesting": "Yes"
     },
     {
       "index": 32,
       "name": "Wicked Cool Perl Scripts",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Wicked%20Cool%20Perl%20Scripts.pdf",
       "interesting": "Yes"
     },
     {
       "index": 33,
       "name": "wicked-cool-ruby-scripts",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/wicked-cool-ruby-scripts.pdf",
       "interesting": "Yes"
     },
     {
       "index": 34,
       "name": "perl-one-liners",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/perl-one-liners.pdf",
       "interesting": "Yes"
     },
     {
       "index": 35,
       "name": "the-book-of-ruby",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/the-book-of-ruby.pdf",
       "interesting": "Yes"
     },
     {
       "index": 36,
       "name": "Ruby by Example",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Ruby%20by%20Example.pdf",
       "interesting": "no"
     },
     {
       "index": 37,
       "name": "PowerShell_for_Sysadmins",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/PowerShell_for_Sysadmins.pdf",
       "interesting": "Yes"
     },
     {
       "index": 38,
       "name": "Webbots, Spiders, and Screen Scrapers",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Webbots%2C%20Spiders%2C%20and%20Screen%20Scrapers.pdf",
       "interesting": "-"
     },
     {
       "index": 39,
       "name": "mining-social-media",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/mining-social-media.pdf",
       "interesting": "Yes"
     },
     {
       "index": 40,
       "name": "How-Linux-Works",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/How-Linux-Works.pdf",
       "interesting": "Yes"
     },
     {
       "index": 41,
       "name": "Mastering Modern Web Penetration Testing",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/Mastering%20Modern%20Web%20Penetration%20Testing.pdf",
       "interesting": "no"
     },
     {
       "index": 42,
       "name": "The tangled Web a guide to securing modern Web applications",
+      "platform": "Github",
       "url": "https://github.com/Raunaksplanet/My-CS-Store/blob/main/Books/The%20tangled%20Web_%20a%20guide%20to%20securing%20modern%20Web%20applications.pdf",
       "interesting": "no"
     }

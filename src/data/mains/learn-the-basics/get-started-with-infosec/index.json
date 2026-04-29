@@ -21,46 +21,56 @@
     "commandLine": [
       {
         "title": "The Cyber Mentor",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=U1w4T03B30I&list=LL&index=386"
       },
       {
         "title": "freeCodeCamp.org",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=ZtqBQ68cfJc&list=LL&index=404"
       },
       {
         "title": "The Cyber Mentor (Linux Basics)",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=rZsJieGi8os&list=LL&index=406"
       },
       {
         "title": "HackerSploit",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/playlist?list=PLBf0hzazHTGMh2fe2MFf3lCgk0rKmS2by"
       }
     ],
     "fileSystem": [
       {
         "title": "NeuralNine",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=BUnb1PKKMBA"
       },
       {
         "title": "Edureka",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=ePN5igV9ZpY&list=LL&index=235"
       },
       {
         "title": "NetworkChuck",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=A3G-3hp88mo&list=LL&index=399"
       }
     ],
     "resources": [
       {
         "title": "Linux Journey",
+        "platform": "Linux Journey",
         "url": "https://linuxjourney.com/"
       },
       {
         "title": "Edureka CS Videos",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=ePN5igV9ZpY&list=LL&index=235"
       },
       {
         "title": "Explain Shell",
+        "platform": "Explain Shell",
         "url": "https://explainshell.com/#"
       }
     ]
@@ -85,26 +95,32 @@
     "htmlCss": [
       {
         "title": "LoveBabbar",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=k7ELO356Npo&list=LL&index=6&t=6415s"
       },
       {
         "title": "CodeWithHarry",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=BsDoLVMnmZs&list=LL&index=5&t=5s"
       },
       {
         "title": "SuperSimpleDev",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=G3e-cpL7ofc&list=LL&index=4&t=4s"
       },
       {
         "title": "BroCode",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=HGTJBPNC-Gw&list=LL&index=2&t=8s"
       },
       {
         "title": "BroCode (SQL)",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=5OdVJbNCSso"
       },
       {
         "title": "AapnaCollege (SQL)",
+        "platform": "YouTube",
         "url": "https://www.youtube.com/watch?v=hlGoQC332VM"
       }
     ]
@@ -147,105 +163,125 @@
   "learningPlatforms": [
     {
       "name": "JavaTpoint",
+      "platform": "JavaTpoint",
       "url": "https://www.javatpoint.com/"
     },
     {
       "name": "W3Schools",
+      "platform": "W3Schools",
       "url": "https://www.w3schools.com/"
     },
     {
       "name": "GeeksforGeeks",
+      "platform": "GeeksforGeeks",
       "url": "https://www.geeksforgeeks.org/"
     },
     {
       "name": "Tutorialspoint",
+      "platform": "Tutorialspoint",
       "url": "https://www.tutorialspoint.com/index.htm"
     },
     {
       "name": "HackerRank",
+      "platform": "HackerRank",
       "url": "https://www.hackerrank.com/"
     },
     {
       "name": "Programiz",
+      "platform": "Programiz",
       "url": "https://www.programiz.com/"
     }
   ],
   "vulnerableApplications": [
     {
       "name": "TryHackMe",
+      "platform": "TryHackMe",
       "url": "https://tryhackme.com/"
     },
     {
       "name": "THM All Free Labs List",
+      "platform": "GitHub",
       "url": "https://github.com/Raunaksplanet/THM-CTF-Time/tree/main"
     },
     {
       "name": "HTB Academy",
+      "platform": "HTB Academy",
       "url": "https://academy.hackthebox.com/"
     },
     {
       "name": "HTB Labs",
+      "platform": "HTB Labs",
       "url": "https://app.hackthebox.com/home"
     },
     {
       "name": "PicoCTF",
+      "platform": "PicoCTF",
       "url": "https://picoctf.org/"
     },
     {
       "name": "RootMe",
+      "platform": "RootMe",
       "url": "https://www.root-me.org/?page=news&lang=fr"
     },
     {
       "name": "VulnHub (OS Related)",
+      "platform": "VulnHub",
       "url": "https://www.vulnhub.com/"
     },
     {
       "name": "PentesterLab",
+      "platform": "PentesterLab",
       "url": "https://www.pentesterlab.com/"
     },
     {
       "name": "API Security",
+      "platform": "APISec University",
       "url": "https://www.apisecuniversity.com/#:~:text=APIsec%20University%20offers%20free%2C%20hands,courses%20dedicated%20to%20API%20Security."
     },
     {
       "name": "Pwned Labs",
+      "platform": "Pwned Labs",
       "url": "https://pwnedlabs.io/"
     },
     {
       "name": "Hacking Hub",
+      "platform": "Hacking Hub",
       "url": "https://www.hackinghub.io/"
     },
     {
       "name": "PortSwigger (Web Related)",
+      "platform": "PortSwigger",
       "url": "https://portswigger.net/"
     },
     {
       "name": "Trailhead",
+      "platform": "Trailhead",
       "url": "https://trailhead.salesforce.com/en/career-path/cybersecurity/"
     },
     {
       "name": "OverTheWire (Linux)",
+      "platform": "OverTheWire",
       "url": "https://overthewire.org/wargames/"
     },
     {
       "name": "CompTIA Security+ Labs",
+      "platform": "101Labs",
       "url": "https://www.101labs.net/comptia-security/"
     },
     {
       "name": "Exploit Education",
+      "platform": "Exploit Education",
       "url": "https://exploit.education/"
     },
     {
       "name": "HackingHub",
+      "platform": "HackingHub",
       "url": "https://www.hackinghub.io"
     },
     {
       "name": "HBH.sh",
+      "platform": "HBH.sh",
       "url": "https://hbh.sh/home"
-    },
-    {
-      "name": "Metasploitable (Linux)",
-      "url": null
     }
   ],
   "certifications": {
@@ -270,64 +306,79 @@
   "topics": [
     {
       "title": "Reverse & bind shell",
+      "platform": "Medium",
       "url": "https://medium.com/bugbountywriteup/reverse-shell-vs-bind-shell-d5a1e80b6a6c"
     },
     {
       "title": "Cyber Security Roadmap by TCM 2023",
+      "platform": "TCM-Sec",
       "url": "https://tcm-sec.com/so-you-want-to-be-a-hacker-2023-edition/"
     },
     {
       "title": "Network Pentesting",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/playlist?list=PL-DxAN1jsRa-zHjDOfbpi6OAVwpCkyRYn"
     },
     {
       "title": "Reverse Engineering",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/playlist?list=PL-DxAN1jsRa9151ezNuCbh7UkGS0bMPdw"
     },
     {
       "title": "Binary Exploitation",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/playlist?list=PL-DxAN1jsRa9151ezNuCbh7UkGS0bMPdw"
     },
     {
       "title": "MYSQL & SQL",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/watch?v=hlGoQC332VM&list=LL&index=9&t=2s"
     }
   ],
   "burpSuiteTutorials": [
     {
       "title": "Bitten Tech",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/playlist?list=PLkW9FMxqUvybgx3pI9x9HyU-_HcJJFWQY"
     },
     {
       "title": "Ethical Sharmaji",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/watch?v=mK3Hr6ktgNg&t=4118s"
     },
     {
       "title": "hackbin",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/watch?v=eKPpGLn9G3w&t=185s"
     },
     {
       "title": "David Bombal",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/watch?v=IWWYNDiwYOA"
     },
     {
       "title": "PortSwigger1",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/playlist?list=PLoX0sUafNGbEXtfr-f4n0g4AqzU-CDvcQ"
     },
     {
       "title": "PortSwigger2",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/playlist?list=PLSbrmTUy4daN1ep7pkBZw4PRRmx7F0EaS"
     },
     {
       "title": "Cyber World Hindi",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/playlist?list=PLSbrmTUy4daN1ep7pkBZw4PRRmx7F0EaS"
     },
     {
       "title": "Cyberwings Security",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/playlist?list=PLa2xctTiNSCjVzFfxTn_UKkd-sS34EQaF"
     },
     {
       "title": "Technical MotaBhai",
+      "platform": "YouTube",
       "url": "https://www.youtube.com/playlist?list=PLBCWFgREB971jxEXKbiAZSNQZqIxH9L47"
     }
   ],

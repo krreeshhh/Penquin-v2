@@ -13,102 +13,127 @@
   "blogs": [
     {
       "name": "Weekly Infosec Writeups",
+      "platform": "InfosecWriteups",
       "url": "https://weekly.infosecwriteups.com/"
     },
     {
       "name": "Evan Connelly's Blog",
+      "platform": "Github",
       "url": "https://evanconnelly.github.io/"
     },
     {
       "name": "Embrace The Red Blog",
+      "platform": "EmbraceThered",
       "url": "https://embracethered.com/blog/index.html"
     },
     {
       "name": "Bug Bounty Hunter Disclosed",
+      "platform": "BugBountyHunter",
       "url": "https://www.bugbountyhunter.com/disclosed/"
     },
     {
       "name": "Chybeta's Blog",
+      "platform": "Github",
       "url": "https://chybeta.github.io/"
     },
     {
       "name": "Infosec Writeups",
+      "platform": "InfosecWriteups",
       "url": "https://infosecwriteups.com/"
     },
     {
       "name": "Writeups.io",
+      "platform": "Writeups",
       "url": "https://writeups.io/"
     },
     {
       "name": "Pentester Land Writeups",
+      "platform": "PentesterLand",
       "url": "https://pentester.land/writeups/"
     },
     {
       "name": "Bug Bounty Hunting",
+      "platform": "BugBountyHunting",
       "url": "https://www.bugbountyhunting.com/"
     },
     {
       "name": "Byte Blogger Base",
+      "platform": "ByteBloggerBase",
       "url": "https://bytebloggerbase.com/#Blogs"
     },
     {
       "name": "Medium",
+      "platform": "Medium",
       "url": "https://medium.com/"
     },
     {
       "name": "Freedium",
+      "platform": "Freedium",
       "url": "https://freedium.cfd/"
     },
     {
       "name": "Zhero Web Sec",
+      "platform": "ZheroWebSec",
       "url": "https://zhero-web-sec.github.io/"
     },
     {
       "name": "Cybertix",
+      "platform": "Cybertix",
       "url": "https://cybertix.in/blog/"
     },
     {
       "name": "0xpatrik",
+      "platform": "0xpatrik",
       "url": "https://0xpatrik.com/"
     },
     {
       "name": "Codean Labs",
+      "platform": "CodeanLabs",
       "url": "https://codeanlabs.com/blog/"
     },
     {
       "name": "Twitter",
+      "platform": "Twitter",
       "url": "https://x.com/search?q=%23bugbountytips+&src=typed_query&f=live"
     },
     {
       "name": "Twitter 2",
+      "platform": "Twitter",
       "url": "https://x.com/disclosedh1"
     },
     {
       "name": "Intigriti",
+      "platform": "Intigriti",
       "url": "https://blog.intigriti.com/"
     },
     {
       "name": "Shreyas Chavhan's Collection",
+      "platform": "Notion",
       "url": "https://shreyaschavhan.notion.site/fffa53e43119815e8c7fef7bd9be6824?v=fffa53e431198122a88b000cf89bf37e"
     },
     {
       "name": "Supras.io",
+      "platform": "Supras",
       "url": "https://supras.io/"
     },
     {
       "name": "KoalaSec Blog",
+      "platform": "KoalaSec",
       "url": "https://blog.koalasec.co/?source=top_nav_blog_home"
     },
     {
       "name": "Medusa0xf",
+      "platform": "Medusa0xf",
       "url": "https://medusa0xf.medium.com/"
     },
     {
       "name": "Mizu",
+      "platform": "Mizu",
       "url": "https://mizu.re/"
     },
     {
       "name": "Hacker Writeups",
+      "platform": "HackerWriteups",
       "url": "https://hacker-writeups.github.io/"
     }
   ],

@@ -520,6 +520,22 @@ function renderStructuredListItemCard(item: Record<string, unknown>, key: React.
               <MarkdownContent content={docItem.description} />
             </div>
           ) : null}
+          {(docItem.platform || docItem.source || docItem.domain || docItem.browser || docItem.caption || docItem.fileType || docItem.fileSize || (docItem.url && isExternalHref(docItem.url))) && (
+            <p className="mt-1 text-[12px] text-[var(--vp-c-text-2)]">
+              {[
+                docItem.platform || (docItem.url && isExternalHref(docItem.url) ? hostnameLabel(docItem.url) : undefined),
+                docItem.source,
+                docItem.domain,
+                docItem.browser,
+                docItem.fileType,
+                docItem.fileSize,
+                docItem.caption,
+              ]
+                .filter(Boolean)
+                .map((entry) => (typeof entry === "string" ? stripDecorations(entry) : entry))
+                .join(" • ")}
+            </p>
+          )}
           {typeof docItem.secondary_url === "string" ? (
             <p className="mt-1 text-[13px] leading-6 text-[var(--vp-c-text-2)]">
               <a
@@ -686,9 +702,17 @@ const LinkCard = React.memo(function LinkCard({ item }: { item: DocLink }) {
           </IconTooltip>
           <span className="truncate">{label}</span>
         </div>
-        {(item.platform || item.source || item.domain || item.browser || item.caption || item.fileType || item.fileSize) && (
+        {(item.platform || item.source || item.domain || item.browser || item.caption || item.fileType || item.fileSize || (item.url && isExternalHref(item.url))) && (
           <p className="mt-1 text-[12px] text-[var(--vp-c-text-2)]">
-            {[item.platform, item.source, item.domain, item.browser, item.fileType, item.fileSize, item.caption]
+            {[
+              item.platform || (item.url && isExternalHref(item.url) ? hostnameLabel(item.url) : undefined),
+              item.source,
+              item.domain,
+              item.browser,
+              item.fileType,
+              item.fileSize,
+              item.caption,
+            ]
               .filter(Boolean)
               .map((entry) => (typeof entry === "string" ? stripDecorations(entry) : entry))
               .join(" • ")}
@@ -1384,6 +1408,12 @@ function SectionBlock({ block, variant }: { block: DocBlock; variant: "default" 
       "height",
       "caption",
       "description",
+      "platform",
+      "source",
+      "domain",
+      "browser",
+      "fileType",
+      "fileSize",
       "icon",
       "logo",
       "image",
