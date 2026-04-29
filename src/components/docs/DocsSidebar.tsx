@@ -211,31 +211,19 @@ export function DocsSidebar({
     return !!openGroups[key];
   };
 
-  // Calculate sidebar visibility with mount animation
-  // Desktop sidebar needs mounted to animate in, mobile sidebar shows immediately when open
-  const isVisibleOnDesktop = alwaysVisibleOnDesktop && mounted;
-  // Mobile sidebar: if alwaysVisibleOnDesktop is false, show based on open prop
-  const isVisibleMobile = alwaysVisibleOnDesktop ? false : open;
-
   // Build sidebar classes based on visibility state
-  // Use translate-x with explicit opacity handling
-  const baseClasses = `VPSidebar ${fixed ? "fixed top-0 left-0 bottom-0" : "absolute top-0 left-0 h-[100dvh]"} z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto transition-all duration-500 ease-out `;
+  // For mobile/HomeShell: show immediately when open
+  // For desktop DocsShell: use mounted state to animate in properly
+  const showSidebar = alwaysVisibleOnDesktop ? mounted : open;
 
-  let translateClass = "";
-  let opacityClass = "";
+  // Base static classes (no transition yet)
+  const baseClasses = `VPSidebar ${fixed ? "fixed top-0 left-0 bottom-0" : "absolute top-0 left-0 h-[100dvh]"} z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto will-change-transform `;
 
-  if (isVisibleOnDesktop) {
-    translateClass = alwaysVisibleOnDesktop ? "translate-x-0" : "lg:translate-x-0 translate-x-0";
-    opacityClass = alwaysVisibleOnDesktop ? "opacity-100" : "lg:opacity-100 opacity-100";
-  } else if (isVisibleMobile) {
-    translateClass = "translate-x-0";
-    opacityClass = "opacity-100";
-  } else {
-    translateClass = alwaysVisibleOnDesktop ? "-translate-x-full" : "lg:-translate-x-full -translate-x-full";
-    opacityClass = alwaysVisibleOnDesktop ? "opacity-0" : "lg:opacity-0 opacity-0";
-  }
+  // Determine visibility state - always use the correct state based on showSidebar
+  // Don't mix lg: prefixes with non-prefixed classes to avoid conflicts
+  const visibilityClass = showSidebar ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0";
 
-  const sidebarClasses = baseClasses + translateClass + " " + opacityClass;
+  const sidebarClasses = `${baseClasses}transition-all duration-500 ease-out ${visibilityClass}`;
 
   const renderNode = (node: SidebarNode, level: number, parts: string[] = []) => {
     const key = keyForPath([...parts, node.title]);
