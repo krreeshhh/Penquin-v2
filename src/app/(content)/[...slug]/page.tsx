@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   };
 }
 
-export default async function DocsLikePage({ params }: { params: Promise<Params> }) {
+export default async function ContentPage({ params }: { params: Promise<Params> }) {
   const resolvedParams = await params;
   const route = paramsToRoute(resolvedParams);
   const page = getDocPage(route);

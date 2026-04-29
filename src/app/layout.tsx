@@ -52,6 +52,17 @@ export default function RootLayout({
                 if (effective === 'dark') document.documentElement.classList.add('dark');
               } catch (e) {}
             })();
+
+            (function() {
+              try {
+                // Only enable mount animations on initial document load.
+                // Remove quickly so client-side navigations/redirections don't re-trigger them.
+                document.documentElement.classList.add('enable-enter-animations');
+                window.setTimeout(function() {
+                  document.documentElement.classList.remove('enable-enter-animations');
+                }, 800);
+              } catch (e) {}
+            })();
           `,
           }}
         />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Soup, CookingPot, Sparkles } from 'lucide-react';
+import Link from "next/link";
 
 const categories = [
   {
@@ -12,7 +13,7 @@ const categories = [
     icon: CookingPot,
     title: 'Main Course',
     description: 'Heavy plates only with real commands and real execution in the field',
-    link: '/docs/recon#main-course',
+    link: '/recon#main-course',
   },
   {
     icon: Sparkles,
@@ -50,7 +51,7 @@ export const Categories = () => {
                   </article>
                 </div>
               ) : (
-                <a className="VPLink link no-icon VPFeature relative z-10 group flex-1 block rounded-xl border border-[var(--vp-c-bg-soft)] bg-[var(--vp-c-bg-soft)] hover:border-[var(--vp-c-brand-1)] transition-colors h-[198px] overflow-hidden" href={category.link}>
+                <Link className="VPLink link no-icon VPFeature relative z-10 group flex-1 block rounded-xl border border-[var(--vp-c-bg-soft)] bg-[var(--vp-c-bg-soft)] hover:border-[var(--vp-c-brand-1)] transition-colors h-[198px] overflow-hidden" href={category.link} scroll={false}>
                   <article className="h-full p-6 flex flex-col">
                     <div className="icon w-12 h-12 rounded-[6px] bg-[rgba(142,150,170,0.14)] flex items-center justify-center mb-5">
                       <category.icon
@@ -63,7 +64,7 @@ export const Categories = () => {
                       {category.description}
                     </p>
                   </article>
-                </a>
+                </Link>
               )}
             </div>
           ))}

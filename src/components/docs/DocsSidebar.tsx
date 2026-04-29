@@ -16,35 +16,89 @@ interface DocsSidebarProps {
   onOpenChange: (open: boolean) => void;
   /** When true, behaves like the docs layout (visible on desktop). */
   alwaysVisibleOnDesktop?: boolean;
+  /** When true, sidebar is fixed to the viewport. */
+  fixed?: boolean;
 }
 
 function keyForPath(parts: string[]) {
   return parts.join("::");
 }
 
-export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop = true }: DocsSidebarProps) {
+export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop = true, fixed = true }: DocsSidebarProps) {
   const pathname = usePathname() || "/";
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
-  const [isSiteKeyOpen, setIsSiteKeyOpen] = useState(false);
-
-  // Persistence: Load from sessionStorage on mount
-  React.useEffect(() => {
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
+    // Read synchronously to avoid a visible "collapse then expand" on redirects.
+    if (typeof window === "undefined") return {};
     try {
       const saved = sessionStorage.getItem("penquin-sidebar-open-groups");
-      if (saved) setOpenGroups(JSON.parse(saved));
-    } catch (e) {
-      console.error("Failed to load sidebar state", e);
+      if (saved) return JSON.parse(saved);
+    } catch {
+      // ignore
     }
-  }, []);
+    return {};
+  });
+  const [isSiteKeyOpen, setIsSiteKeyOpen] = useState(false);
 
   // Persistence: Save to sessionStorage on change
   React.useEffect(() => {
-    if (Object.keys(openGroups).length > 0) {
+    try {
       sessionStorage.setItem("penquin-sidebar-open-groups", JSON.stringify(openGroups));
+    } catch {
+      // ignore
     }
   }, [openGroups]);
 
-  const navRef = React.useRef<HTMLDivElement>(null);
+  // The actual scroll container is the inner <nav> (it has overflow-y-auto).
+  const navRef = React.useRef<HTMLElement>(null);
+
+  const restoreSidebarScroll = React.useCallback(() => {
+    const el = navRef.current;
+    if (!el) return;
+    try {
+      const saved = sessionStorage.getItem("penquin-sidebar-scrollTop");
+      if (!saved) return;
+      const value = Number(saved);
+      if (Number.isFinite(value)) el.scrollTop = value;
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  // Keep sidebar scroll position stable across internal navigations/redirections.
+  React.useLayoutEffect(() => {
+    restoreSidebarScroll();
+  }, [restoreSidebarScroll]);
+
+  // Some navigations can cause the nav contents to reflow and reset scrollTop.
+  // Re-apply after the route changes.
+  React.useEffect(() => {
+    const raf = window.requestAnimationFrame(() => restoreSidebarScroll());
+    return () => window.cancelAnimationFrame(raf);
+  }, [pathname, restoreSidebarScroll]);
+
+  React.useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        try {
+          sessionStorage.setItem("penquin-sidebar-scrollTop", String(el.scrollTop));
+        } catch {
+          // ignore
+        }
+      });
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, []);
 
   React.useEffect(() => {
     const hash = window.location.hash.slice(1);
@@ -80,8 +134,8 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
   };
 
   const sidebarClasses =
-    "VPSidebar fixed top-0 left-0 bottom-0 z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto transition-transform duration-300 will-change-transform " +
-    (open ? "ease-[cubic-bezier(0.32,0,0.67,0)] " : "ease-[cubic-bezier(0,0,0.2,1)] ") +
+    `VPSidebar ${fixed ? "fixed top-0 left-0 bottom-0" : "absolute top-0 left-0 h-[100dvh]"} z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto transition-transform duration-[600ms] will-change-transform ` +
+    (open ? "ease-[cubic-bezier(0.16,1,0.3,1)] " : "ease-[cubic-bezier(0,0,0.2,1)] ") +
     (alwaysVisibleOnDesktop ? "lg:translate-x-0 " : "") +
     (open ? "translate-x-0" : "-translate-x-full");
 
@@ -237,7 +291,7 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
         )}
       </AnimatePresence>
 
-      <aside className={sidebarClasses} ref={navRef}>
+      <aside className={sidebarClasses}>
         <div className="pt-3 pb-3 flex items-center justify-between px-4 lg:px-0">
           <Link href="/" className="flex items-center gap-3 px-0 group transition-all duration-300" onClick={() => onOpenChange(false)}>
             <img className="w-12 h-12 rounded-lg ml-1 group-hover:scale-105 transition-transform duration-300" src="/v2/PFPs/Transparent/2.png" alt="Logo" />
@@ -253,7 +307,7 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
           </button>
         </div>
 
-        <nav id="VPSidebarNav" className="nav pt-0" aria-label="Sidebar Navigation">
+        <nav id="VPSidebarNav" className="nav pt-0" aria-label="Sidebar Navigation" ref={navRef}>
           <span className="visually-hidden" id="sidebar-aria-label">wotaku
             Sidebar Navigation
           </span>

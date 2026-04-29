@@ -95,9 +95,16 @@ function normalizeDocHref(url?: string) {
   if (!url || isExternalHref(url)) return url;
   if (url === "/") return url;
 
+  // In-page anchors.
+  if (url.startsWith("#")) return url;
+
+  // Some sources provide internal links without a leading slash.
+  // Treat them as absolute app routes to avoid full reloads / notFound flashes.
+  const absolute = url.startsWith("/") ? url : `/${url.replace(/^\/+/, "")}`;
+
   // Routes are now served directly from `src/data/**` (e.g. `/recon/...`, `/enumeration/...`).
   // Keep absolute internal links as-is.
-  return url.endsWith("/") ? url.replace(/\/+$/, "") : url;
+  return absolute.endsWith("/") ? absolute.replace(/\/+$/, "") : absolute;
 }
 
 function MarkdownContent({
@@ -149,14 +156,42 @@ function MarkdownContent({
             );
           },
           a: ({ href, children }) => (
-            <a
-              href={normalizeDocHref(href)}
-              className="text-[var(--vp-c-brand-1)] underline-offset-4 hover:underline"
-              target={isExternalHref(href) ? "_blank" : undefined}
-              rel={isExternalHref(href) ? "noreferrer" : undefined}
-            >
-              {children}
-            </a>
+            (() => {
+              const normalized = normalizeDocHref(href);
+              const className = "text-[var(--vp-c-brand-1)] underline-offset-4 hover:underline";
+
+              if (!normalized) {
+                return (
+                  <a href={href} className={className}>
+                    {children}
+                  </a>
+                );
+              }
+
+              if (isExternalHref(normalized)) {
+                return (
+                  <a href={normalized} className={className} target="_blank" rel="noreferrer">
+                    {children}
+                  </a>
+                );
+              }
+
+              // In-page anchor
+              if (normalized.startsWith("#")) {
+                return (
+                  <a href={normalized} className={className}>
+                    {children}
+                  </a>
+                );
+              }
+
+              // Internal navigation should stay client-side (no full reload flashing).
+              return (
+                <Link href={normalized} className={className} scroll={false}>
+                  {children}
+                </Link>
+              );
+            })()
           ),
           ul: ({ children }) => <ul className="mt-4 list-disc pl-5 space-y-2">{children}</ul>,
           ol: ({ children }) => <ol className="mt-4 list-decimal pl-5 space-y-2">{children}</ol>,
@@ -1344,9 +1379,9 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
   if (!previous && !next) return null;
 
   return (
-    <div className="mt-12 grid gap-3 border-t border-[var(--vp-c-divider)] pt-6 md:grid-cols-2">
+    <div className="mt-8 grid gap-2 border-t border-[var(--vp-c-divider)] pt-4 md:grid-cols-2">
       {previous ? (
-        <Link href={normalizeDocHref(previous.url) ?? "#"} className="rounded-[14px] border border-[var(--vp-c-divider)] px-4 py-4 transition-colors hover:bg-[var(--vp-c-bg-soft)]">
+        <Link href={normalizeDocHref(previous.url) ?? "#"} className="rounded-[14px] border border-[var(--vp-c-divider)] px-4 py-3 transition-colors hover:bg-[var(--vp-c-bg-soft)]">
           <p className="flex items-center gap-2 text-[12px] uppercase tracking-[0.08em] text-[var(--vp-c-text-3)]">
             <ChevronLeft className="h-4 w-4" />
             Previous
@@ -1355,7 +1390,7 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
         </Link>
       ) : <div />}
       {next ? (
-        <Link href={normalizeDocHref(next.url) ?? "#"} className="rounded-[14px] border border-[var(--vp-c-divider)] px-4 py-4 text-right transition-colors hover:bg-[var(--vp-c-bg-soft)]">
+        <Link href={normalizeDocHref(next.url) ?? "#"} className="rounded-lg border border-[var(--vp-c-divider)] px-4 py-3 text-right transition-colors hover:bg-[var(--vp-c-bg-soft)]">
           <p className="flex items-center justify-end gap-2 text-[12px] uppercase tracking-[0.08em] text-[var(--vp-c-text-3)]">
             Next
             <ChevronRight className="h-4 w-4" />
@@ -1445,8 +1480,8 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
       className={isGitBookVariant ? "mx-auto px-4 md:px-12" : "mx-auto px-6 md:px-10 lg:px-14"}
       style={{ 
         maxWidth: isGitBookVariant ? "var(--content-max-width, 860px)" : "var(--content-max-width, 820px)", 
-        transition: "max-width 500ms cubic-bezier(0.16, 1, 0.3, 1)",
-        paddingBottom: "120px"
+        transition: "max-width 700ms cubic-bezier(0.16, 1, 0.3, 1)",
+        paddingBottom: "64px"
       }}
     >
       <div>

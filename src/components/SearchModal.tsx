@@ -13,6 +13,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { DocIcon, defaultDocIcons } from "@/components/docs/doc-icons";
 
 interface SearchResult {
@@ -148,6 +149,7 @@ const RECENT_KEY = "penquin-recent-searches";
 const MAX_RECENT = 5;
 
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [allResults, setAllResults] = useState<SearchResult[]>([]);
   const [filtered, setFiltered] = useState<SearchResult[]>([]);
@@ -157,6 +159,18 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedRef = useRef<HTMLAnchorElement>(null);
+
+  const navigateTo = useCallback(
+    (url: string) => {
+      // Keep internal navigation client-side to avoid page refresh flashing.
+      if (/^https?:\/\//.test(url)) {
+        window.open(url, "_blank", "noopener,noreferrer");
+        return;
+      }
+      router.push(url);
+    },
+    [router]
+  );
 
   // Load recent searches
   useEffect(() => {
@@ -226,19 +240,19 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
         setSelected((p) => (p - 1 + list.length) % list.length);
-      } else if (e.key === "Enter") {
-        e.preventDefault();
-        const item = list[selected];
-        if (item) {
-          saveRecent(query);
-          window.location.href = item.url;
-          onClose();
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          const item = list[selected];
+          if (item) {
+            saveRecent(query);
+            navigateTo(item.url);
+            onClose();
+          }
         }
-      }
-    };
+      };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [isOpen, filtered, selected, onClose, query, saveRecent]);
+  }, [isOpen, filtered, selected, onClose, query, saveRecent, navigateTo]);
 
   // Scroll selected into view
   useEffect(() => {
@@ -254,7 +268,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   const onSelect = (item: SearchResult) => {
     saveRecent(query);
-    window.location.href = item.url;
+    navigateTo(item.url);
     onClose();
   };
 

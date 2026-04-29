@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 
 type TocItem = {
@@ -8,6 +8,32 @@ type TocItem = {
   text: string;
   level: number;
 };
+
+function prefersReducedMotion() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+}
+
+function smoothScrollToY(targetY: number, durationMs: number) {
+  const startY = window.scrollY;
+  const delta = targetY - startY;
+  if (delta === 0) return;
+
+  const start = performance.now();
+
+  // Ease in/out cubic.
+  const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+  const step = (now: number) => {
+    const elapsed = now - start;
+    const t = Math.min(1, elapsed / durationMs);
+    const y = startY + delta * ease(t);
+    window.scrollTo(0, y);
+    if (t < 1) requestAnimationFrame(step);
+  };
+
+  requestAnimationFrame(step);
+}
 
 function normalizeHeadingText(value: string) {
   return value
@@ -39,7 +65,32 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
   const [activeId, setActiveId] = useState<string>("");
   const [tocVersion, setTocVersion] = useState(0);
 
-  useEffect(() => {
+  const onTocNavigate = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    // Keep URL hash in sync without a sudden jump.
+    try {
+      history.pushState(null, "", `#${id}`);
+    } catch {
+      // ignore
+    }
+
+    const navOffset = 80; // accounts for the top nav / content padding
+    const targetY = Math.max(0, Math.round(el.getBoundingClientRect().top + window.scrollY - navOffset));
+
+    if (prefersReducedMotion()) {
+      window.scrollTo(0, targetY);
+      setActiveId(id);
+      return;
+    }
+
+    // Slower than the browser default smooth scrolling.
+    smoothScrollToY(targetY, 900);
+    setActiveId(id);
+  };
+
+  useLayoutEffect(() => {
     const root = document.querySelector(contentSelector);
     if (!root) return;
 
@@ -84,11 +135,7 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
       next.push({ id: h.id, text, level });
     }
 
-    let cancelled = false;
-    queueMicrotask(() => {
-      if (cancelled) return;
-      setItems(next);
-    });
+    setItems(next);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -111,7 +158,6 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
     for (const h of headings) observer.observe(h);
 
     return () => {
-      cancelled = true;
       observer.disconnect();
       window.removeEventListener("scroll", onScroll);
     };
@@ -161,10 +207,11 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  if (!hasItems) return null;
-
   return (
-    <aside className="VPDocAside fixed right-8 top-[88px] bottom-0 w-[224px] hidden xl:block">
+    <aside
+      className={`VPDocAside fixed right-8 top-[88px] bottom-0 w-[224px] hidden xl:block ${hasItems ? "" : "opacity-0 pointer-events-none"}`}
+      aria-hidden={!hasItems}
+    >
       <nav className="VPDocAsideOutline sticky top-[88px] max-h-[calc(100vh-88px)] overflow-y-auto py-0">
         <div className="content">
           <div className="outline-marker" aria-hidden />
@@ -180,6 +227,10 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
                 <a
                   href={`#${item.id}`}
                   className={`outline-link ${activeId === item.id ? "active" : ""}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onTocNavigate(item.id);
+                  }}
                 >
                   {item.text}
                 </a>
@@ -190,6 +241,10 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
                         <a
                           href={`#${child.id}`}
                           className={`outline-link ${activeId === child.id ? "active" : ""}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            onTocNavigate(child.id);
+                          }}
                         >
                           {child.text}
                         </a>

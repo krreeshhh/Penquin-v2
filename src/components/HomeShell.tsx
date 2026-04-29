@@ -23,7 +23,7 @@ export function HomeShell({ children, sidebar }: { children: ReactNode; sidebar:
   return (
     <>
       <Navbar onDocsMenuClick={() => setSidebarOpen((current) => !current)} />
-      <DocsSidebar items={sidebar} open={sidebarOpen} onOpenChange={setSidebarOpen} alwaysVisibleOnDesktop={false} />
+      <DocsSidebar items={sidebar} open={sidebarOpen} onOpenChange={setSidebarOpen} alwaysVisibleOnDesktop={false} fixed={false} />
       {children}
     </>
   );

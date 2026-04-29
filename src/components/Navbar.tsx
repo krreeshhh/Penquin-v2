@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { startTransition, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -143,12 +143,12 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const effectiveDocsContentWidth =
-    currentLayoutMode === "expandAll" ? 8000 :
+    currentLayoutMode === "expandAll" ? 1200 :
       currentLayoutMode === "original" ? 756 :
         docsContentWidth;
 
   const effectiveContentWidth =
-    currentLayoutMode === "expandAll" ? 8000 :
+    currentLayoutMode === "expandAll" ? 1200 :
       currentLayoutMode === "original" ? 1200 :
         contentWidth;
 
@@ -228,13 +228,17 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   };
 
   const applySettings = () => {
-    setCurrentLayoutMode(pendingLayoutMode);
-    setIsSpotlightOn(pendingSpotlightOn);
-    setSpotlightStyle(pendingSpotlightStyle);
-    setIsTakodachiOn(pendingTakodachiOn);
-    setPageMaxWidth(pendingPageMaxWidth);
-    setContentWidth(pendingContentWidth);
-    setDocsContentWidth(pendingDocsContentWidth);
+    // These settings change layout measurements; keep updates batched/low-priority
+    // so the resulting CSS transitions feel smooth instead of jumpy.
+    startTransition(() => {
+      setCurrentLayoutMode(pendingLayoutMode);
+      setIsSpotlightOn(pendingSpotlightOn);
+      setSpotlightStyle(pendingSpotlightStyle);
+      setIsTakodachiOn(pendingTakodachiOn);
+      setPageMaxWidth(pendingPageMaxWidth);
+      setContentWidth(pendingContentWidth);
+      setDocsContentWidth(pendingDocsContentWidth);
+    });
   };
 
   const handleMouseEnter = () => {
@@ -295,12 +299,12 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
     <>
       {isMounted && <TakodachiFollower enabled={isTakodachiOn} />}
 
-      <header className="VPNav fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-300">
+      <header className="VPNav fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-[460ms]">
         <div
           className={`VPNavBar h-[64px] flex items-center justify-between mx-auto ${isDocs ? "px-6" : "px-4 sm:px-8"}`}
           style={{
             maxWidth: isMounted ? effectiveNavMaxWidth : (isDocs ? "100%" : "1920px"),
-            transition: "max-width 500ms cubic-bezier(0.16, 1, 0.3, 1)",
+            transition: "max-width 700ms cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
           <div className="flex items-center h-full">
@@ -326,7 +330,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
               <span className="font-bold text-[18px] tracking-tight hidden sm:block">Penquin</span>
             </Link>
 
-            <div className={`transition-all duration-300 ease-[cubic-bezier(0.32,0,0.67,0)] ${isDocs ? "lg:pl-[320px]" : ""}`}>
+            <div className={`transition-all duration-[460ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isDocs ? "lg:pl-[320px]" : ""}`}>
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
