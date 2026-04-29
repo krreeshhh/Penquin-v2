@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronRight, BadgeInfo, X, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,6 +20,7 @@ interface DocsSidebarProps {
   fixed?: boolean;
   /** When true, show the dimmed backdrop when open (mobile). */
   overlay?: boolean;
+
 }
 
 function keyForPath(parts: string[]) {
@@ -55,29 +56,26 @@ function getActiveGroupKeys(items: SidebarNode[], isActiveUrl: (url: string) => 
   return keys;
 }
 
-export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop = true, fixed = true, overlay = true }: DocsSidebarProps) {
-  const pathname = usePathname() || "/";
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
-    // Read synchronously to avoid a visible "collapse then expand" on redirects.
-    if (typeof window === "undefined") return {};
-    try {
-      const saved = sessionStorage.getItem("penquin-sidebar-open-groups");
-      if (saved) return JSON.parse(saved);
-    } catch {
-      // ignore
-    }
-    return {};
-  });
-  const [isSiteKeyOpen, setIsSiteKeyOpen] = useState(false);
+export function DocsSidebar({
+  items,
+  open,
+  onOpenChange,
+  alwaysVisibleOnDesktop = true,
+  fixed = true,
+  overlay = true,
 
-  // Persistence: Save to sessionStorage on change
-  React.useEffect(() => {
-    try {
-      sessionStorage.setItem("penquin-sidebar-open-groups", JSON.stringify(openGroups));
-    } catch {
-      // ignore
-    }
-  }, [openGroups]);
+}: DocsSidebarProps) {
+  const pathname = usePathname() || "/";
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
+  const [isSiteKeyOpen, setIsSiteKeyOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Trigger mount animation for sidebar
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
+
 
   // The actual scroll container is the inner <nav> (it has overflow-y-auto).
   const navRef = React.useRef<HTMLElement>(null);
@@ -213,11 +211,31 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
     return !!openGroups[key];
   };
 
-  const sidebarClasses =
-    `VPSidebar ${fixed ? "fixed top-0 left-0 bottom-0" : "absolute top-0 left-0 h-[100dvh]"} z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto transition-transform duration-[600ms] will-change-transform ` +
-    (open ? "ease-[cubic-bezier(0.16,1,0.3,1)] " : "ease-[cubic-bezier(0,0,0.2,1)] ") +
-    (alwaysVisibleOnDesktop ? "lg:translate-x-0 " : "") +
-    (open ? "translate-x-0" : "-translate-x-full");
+  // Calculate sidebar visibility with mount animation
+  // Desktop sidebar needs mounted to animate in, mobile sidebar shows immediately when open
+  const isVisibleOnDesktop = alwaysVisibleOnDesktop && mounted;
+  // Mobile sidebar: if alwaysVisibleOnDesktop is false, show based on open prop
+  const isVisibleMobile = alwaysVisibleOnDesktop ? false : open;
+
+  // Build sidebar classes based on visibility state
+  // Use translate-x with explicit opacity handling
+  const baseClasses = `VPSidebar ${fixed ? "fixed top-0 left-0 bottom-0" : "absolute top-0 left-0 h-[100dvh]"} z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto transition-all duration-500 ease-out `;
+
+  let translateClass = "";
+  let opacityClass = "";
+
+  if (isVisibleOnDesktop) {
+    translateClass = alwaysVisibleOnDesktop ? "translate-x-0" : "lg:translate-x-0 translate-x-0";
+    opacityClass = alwaysVisibleOnDesktop ? "opacity-100" : "lg:opacity-100 opacity-100";
+  } else if (isVisibleMobile) {
+    translateClass = "translate-x-0";
+    opacityClass = "opacity-100";
+  } else {
+    translateClass = alwaysVisibleOnDesktop ? "-translate-x-full" : "lg:-translate-x-full -translate-x-full";
+    opacityClass = alwaysVisibleOnDesktop ? "opacity-0" : "lg:opacity-0 opacity-0";
+  }
+
+  const sidebarClasses = baseClasses + translateClass + " " + opacityClass;
 
   const renderNode = (node: SidebarNode, level: number, parts: string[] = []) => {
     const key = keyForPath([...parts, node.title]);
@@ -326,7 +344,7 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
           </div>
         </div>
 
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} key={pathname}>
           {isOpen && (
             <motion.div
               initial={{ height: 0, opacity: 0, y: -4 }}
@@ -357,7 +375,7 @@ export function DocsSidebar({ items, open, onOpenChange, alwaysVisibleOnDesktop 
 
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence key={pathname}>
         {open && overlay && (
           <motion.div
             initial={{ opacity: 0 }}

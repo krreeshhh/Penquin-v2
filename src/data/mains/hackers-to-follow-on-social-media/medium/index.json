@@ -14,343 +14,428 @@
   "authors": [
     {
       "username": "0xSnowmn",
-      "url": "https://medium.com/@0xSnowmn"
+      "url": "https://medium.com/@0xSnowmn",
+      "platform": "Medium"
     },
     {
       "username": "0xd3vil",
-      "url": "https://medium.com/@0xd3vil"
+      "url": "https://medium.com/@0xd3vil",
+      "platform": "Medium"
     },
     {
       "username": "19whoami19",
-      "url": "https://medium.com/@19whoami19"
+      "url": "https://medium.com/@19whoami19",
+      "platform": "Medium"
     },
     {
       "username": "7h3h4ckv157",
-      "url": "https://medium.com/@7h3h4ckv157"
+      "url": "https://medium.com/@7h3h4ckv157",
+      "platform": "Medium"
     },
     {
       "username": "Ajakcybersecurity",
-      "url": "https://medium.com/@Ajakcybersecurity"
+      "url": "https://medium.com/@Ajakcybersecurity",
+      "platform": "Medium"
     },
     {
       "username": "Hacker0x01",
-      "url": "https://medium.com/@Hacker0x01"
+      "url": "https://medium.com/@Hacker0x01",
+      "platform": "Medium"
     },
     {
       "username": "MediumStaff",
-      "url": "https://medium.com/@MediumStaff"
+      "url": "https://medium.com/@MediumStaff",
+      "platform": "Medium"
     },
     {
       "username": "RaunakGupta1922",
-      "url": "https://medium.com/@RaunakGupta1922"
+      "url": "https://medium.com/@RaunakGupta1922",
+      "platform": "Medium"
     },
     {
       "username": "ahmdhalabi",
-      "url": "https://medium.com/@ahmdhalabi"
+      "url": "https://medium.com/@ahmdhalabi",
+      "platform": "Medium"
     },
     {
       "username": "amolverma.246",
-      "url": "https://medium.com/@amolverma.246"
+      "url": "https://medium.com/@amolverma.246",
+      "platform": "Medium"
     },
     {
       "username": "anandadhakal13",
-      "url": "https://medium.com/@anandadhakal13"
+      "url": "https://medium.com/@anandadhakal13",
+      "platform": "Medium"
     },
     {
       "username": "anmol.sh",
-      "url": "https://medium.com/@anmol.sh"
+      "url": "https://medium.com/@anmol.sh",
+      "platform": "Medium"
     },
     {
       "username": "apexvicky",
-      "url": "https://medium.com/@apexvicky"
+      "url": "https://medium.com/@apexvicky",
+      "platform": "Medium"
     },
     {
       "username": "arunkl_author",
-      "url": "https://medium.com/@arunkl_author"
+      "url": "https://medium.com/@arunkl_author",
+      "platform": "Medium"
     },
     {
       "username": "aryan321",
-      "url": "https://medium.com/@aryan321"
+      "url": "https://medium.com/@aryan321",
+      "platform": "Medium"
     },
     {
       "username": "avbhijitdutta99",
-      "url": "https://medium.com/@avbhijitdutta99"
+      "url": "https://medium.com/@avbhijitdutta99",
+      "platform": "Medium"
     },
     {
       "username": "bamania-ashish",
-      "url": "https://medium.com/@bamania-ashish"
+      "url": "https://medium.com/@bamania-ashish",
+      "platform": "Medium"
     },
     {
       "username": "bug_vs_me",
-      "url": "https://medium.com/@bug_vs_me"
+      "url": "https://medium.com/@bug_vs_me",
+      "platform": "Medium"
     },
     {
       "username": "bxmbn",
-      "url": "https://medium.com/@bxmbn"
+      "url": "https://medium.com/@bxmbn",
+      "platform": "Medium"
     },
     {
       "username": "canmustdie",
-      "url": "https://medium.com/@canmustdie"
+      "url": "https://medium.com/@canmustdie",
+      "platform": "Medium"
     },
     {
       "username": "cristivlad",
-      "url": "https://medium.com/@cristivlad"
+      "url": "https://medium.com/@cristivlad",
+      "platform": "Medium"
     },
     {
       "username": "cupc4k3",
-      "url": "https://medium.com/@cupc4k3"
+      "url": "https://medium.com/@cupc4k3",
+      "platform": "Medium"
     },
     {
       "username": "geekymuch",
-      "url": "https://medium.com/@geekymuch"
+      "url": "https://medium.com/@geekymuch",
+      "platform": "Medium"
     },
     {
       "username": "hacktivator",
-      "url": "https://medium.com/@hacktivator"
+      "url": "https://medium.com/@hacktivator",
+      "platform": "Medium"
     },
     {
       "username": "hari-haran-s",
-      "url": "https://medium.com/@hari-haran-s"
+      "url": "https://medium.com/@hari-haran-s",
+      "platform": "Medium"
     },
     {
       "username": "hbenja47",
-      "url": "https://medium.com/@hbenja47"
+      "url": "https://medium.com/@hbenja47",
+      "platform": "Medium"
     },
     {
       "username": "hbothra22",
-      "url": "https://medium.com/@hbothra22"
+      "url": "https://medium.com/@hbothra22",
+      "platform": "Medium"
     },
     {
       "username": "hengkysanjaya",
-      "url": "https://medium.com/@hengkysanjaya"
+      "url": "https://medium.com/@hengkysanjaya",
+      "platform": "Medium"
     },
     {
       "username": "iggyyuson09",
-      "url": "https://medium.com/@iggyyuson09"
+      "url": "https://medium.com/@iggyyuson09",
+      "platform": "Medium"
     },
     {
       "username": "ikhaleelkhan",
-      "url": "https://medium.com/@ikhaleelkhan"
+      "url": "https://medium.com/@ikhaleelkhan",
+      "platform": "Medium"
     },
     {
       "username": "impratikdabhi",
-      "url": "https://medium.com/@impratikdabhi"
+      "url": "https://medium.com/@impratikdabhi",
+      "platform": "Medium"
     },
     {
       "username": "jake.mayhew",
-      "url": "https://medium.com/@jake.mayhew"
+      "url": "https://medium.com/@jake.mayhew",
+      "platform": "Medium"
     },
     {
       "username": "jay_rana",
-      "url": "https://medium.com/@jay_rana"
+      "url": "https://medium.com/@jay_rana",
+      "platform": "Medium"
     },
     {
       "username": "jedus0r",
-      "url": "https://medium.com/@jedus0r"
+      "url": "https://medium.com/@jedus0r",
+      "platform": "Medium"
     },
     {
       "username": "karimelsayed0x1",
-      "url": "https://medium.com/@karimelsayed0x1"
+      "url": "https://medium.com/@karimelsayed0x1",
+      "platform": "Medium"
     },
     {
       "username": "kd-200",
-      "url": "https://medium.com/@kd-200"
+      "url": "https://medium.com/@kd-200",
+      "platform": "Medium"
     },
     {
       "username": "kr1shna4garwal",
-      "url": "https://medium.com/@kr1shna4garwal"
+      "url": "https://medium.com/@kr1shna4garwal",
+      "platform": "Medium"
     },
     {
       "username": "kuroH",
-      "url": "https://medium.com/@kuroH"
+      "url": "https://medium.com/@kuroH",
+      "platform": "Medium"
     },
     {
       "username": "mah3sec",
-      "url": "https://medium.com/@mah3sec"
+      "url": "https://medium.com/@mah3sec",
+      "platform": "Medium"
     },
     {
       "username": "mchklt",
-      "url": "https://medium.com/@mchklt"
+      "url": "https://medium.com/@mchklt",
+      "platform": "Medium"
     },
     {
       "username": "mo9khu93r",
-      "url": "https://medium.com/@mo9khu93r"
+      "url": "https://medium.com/@mo9khu93r",
+      "platform": "Medium"
     },
     {
       "username": "mohamed0xmuslim",
-      "url": "https://medium.com/@mohamed0xmuslim"
+      "url": "https://medium.com/@mohamed0xmuslim",
+      "platform": "Medium"
     },
     {
       "username": "nadaparaananta",
-      "url": "https://medium.com/@nadaparaananta"
+      "url": "https://medium.com/@nadaparaananta",
+      "platform": "Medium"
     },
     {
       "username": "nairuzabulhul",
-      "url": "https://medium.com/@nairuzabulhul"
+      "url": "https://medium.com/@nairuzabulhul",
+      "platform": "Medium"
     },
     {
       "username": "nullr3x",
-      "url": "https://medium.com/@nullr3x"
+      "url": "https://medium.com/@nullr3x",
+      "platform": "Medium"
     },
     {
       "username": "nvk0x",
-      "url": "https://medium.com/@nvk0x"
+      "url": "https://medium.com/@nvk0x",
+      "platform": "Medium"
     },
     {
       "username": "ott3rly",
-      "url": "https://medium.com/@ott3rly"
+      "url": "https://medium.com/@ott3rly",
+      "platform": "Medium"
     },
     {
       "username": "p.ra.dee.p_0xx01",
-      "url": "https://medium.com/@p.ra.dee.p_0xx01"
+      "url": "https://medium.com/@p.ra.dee.p_0xx01",
+      "platform": "Medium"
     },
     {
       "username": "ph-hitachi",
-      "url": "https://medium.com/@ph-hitachi"
+      "url": "https://medium.com/@ph-hitachi",
+      "platform": "Medium"
     },
     {
       "username": "raia39499",
-      "url": "https://medium.com/@raia39499"
+      "url": "https://medium.com/@raia39499",
+      "platform": "Medium"
     },
     {
       "username": "rajeevranjancom",
-      "url": "https://medium.com/@rajeevranjancom"
+      "url": "https://medium.com/@rajeevranjancom",
+      "platform": "Medium"
     },
     {
       "username": "ravaan21",
-      "url": "https://medium.com/@ravaan21"
+      "url": "https://medium.com/@ravaan21",
+      "platform": "Medium"
     },
     {
       "username": "realm3ter",
-      "url": "https://medium.com/@realm3ter"
+      "url": "https://medium.com/@realm3ter",
+      "platform": "Medium"
     },
     {
       "username": "red.whisperer",
-      "url": "https://medium.com/@red.whisperer"
+      "url": "https://medium.com/@red.whisperer",
+      "platform": "Medium"
     },
     {
       "username": "remonsec",
-      "url": "https://medium.com/@remonsec"
+      "url": "https://medium.com/@remonsec",
+      "platform": "Medium"
     },
     {
       "username": "renganathanofficial",
-      "url": "https://medium.com/@renganathanofficial"
+      "url": "https://medium.com/@renganathanofficial",
+      "platform": "Medium"
     },
     {
       "username": "richdayandnight",
-      "url": "https://medium.com/@richdayandnight"
+      "url": "https://medium.com/@richdayandnight",
+      "platform": "Medium"
     },
     {
       "username": "rohitkhatri111112",
-      "url": "https://medium.com/@rohitkhatri111112"
+      "url": "https://medium.com/@rohitkhatri111112",
+      "platform": "Medium"
     },
     {
       "username": "sM0ky4",
-      "url": "https://medium.com/@sM0ky4"
+      "url": "https://medium.com/@sM0ky4",
+      "platform": "Medium"
     },
     {
       "username": "sapt",
-      "url": "https://medium.com/@sapt"
+      "url": "https://medium.com/@sapt",
+      "platform": "Medium"
     },
     {
       "username": "sechunter",
-      "url": "https://medium.com/@sechunter"
+      "url": "https://medium.com/@sechunter",
+      "platform": "Medium"
     },
     {
       "username": "securitycipher",
-      "url": "https://medium.com/@securitycipher"
+      "url": "https://medium.com/@securitycipher",
+      "platform": "Medium"
     },
     {
       "username": "shahjerry33",
-      "url": "https://medium.com/@shahjerry33"
+      "url": "https://medium.com/@shahjerry33",
+      "platform": "Medium"
     },
     {
       "username": "shubham-srt",
-      "url": "https://medium.com/@shubham-srt"
+      "url": "https://medium.com/@shubham-srt",
+      "platform": "Medium"
     },
     {
       "username": "sudoleox",
-      "url": "https://medium.com/@sudoleox"
+      "url": "https://medium.com/@sudoleox",
+      "platform": "Medium"
     },
     {
       "username": "suneets1ngh",
-      "url": "https://medium.com/@suneets1ngh"
+      "url": "https://medium.com/@suneets1ngh",
+      "platform": "Medium"
     },
     {
       "username": "takshilp",
-      "url": "https://medium.com/@takshilp"
+      "url": "https://medium.com/@takshilp",
+      "platform": "Medium"
     },
     {
       "username": "tamimhasan404",
-      "url": "https://medium.com/@tamimhasan404"
+      "url": "https://medium.com/@tamimhasan404",
+      "platform": "Medium"
     },
     {
       "username": "th3g3nt3l",
-      "url": "https://medium.com/@th3g3nt3l"
+      "url": "https://medium.com/@th3g3nt3l",
+      "platform": "Medium"
     },
     {
       "username": "the_harvester",
-      "url": "https://medium.com/@the_harvester"
+      "url": "https://medium.com/@the_harvester",
+      "platform": "Medium"
     },
     {
       "username": "themarkib",
-      "url": "https://medium.com/@themarkib"
+      "url": "https://medium.com/@themarkib",
+      "platform": "Medium"
     },
     {
       "username": "thexssrat",
-      "url": "https://medium.com/@thexssrat"
+      "url": "https://medium.com/@thexssrat",
+      "platform": "Medium"
     },
     {
       "username": "tomlitchfield",
-      "url": "https://medium.com/@tomlitchfield"
+      "url": "https://medium.com/@tomlitchfield",
+      "platform": "Medium"
     },
     {
       "username": "trapp3rhat",
-      "url": "https://medium.com/@trapp3rhat"
+      "url": "https://medium.com/@trapp3rhat",
+      "platform": "Medium"
     },
     {
       "username": "tushara2517",
-      "url": "https://medium.com/@tushara2517"
+      "url": "https://medium.com/@tushara2517",
+      "platform": "Medium"
     },
     {
       "username": "v3d",
-      "url": "https://medium.com/@v3d"
+      "url": "https://medium.com/@v3d",
+      "platform": "Medium"
     },
     {
       "username": "vickieli",
-      "url": "https://medium.com/@vickieli"
+      "url": "https://medium.com/@vickieli",
+      "platform": "Medium"
     },
     {
       "username": "virdoexhunter",
-      "url": "https://medium.com/@virdoexhunter"
+      "url": "https://medium.com/@virdoexhunter",
+      "platform": "Medium"
     },
     {
       "username": "viveknaskar",
-      "url": "https://medium.com/@viveknaskar"
+      "url": "https://medium.com/@viveknaskar",
+      "platform": "Medium"
     },
     {
       "username": "xamiron",
-      "url": "https://medium.com/@xamiron"
+      "url": "https://medium.com/@xamiron",
+      "platform": "Medium"
     },
     {
       "username": "xcheater",
-      "url": "https://medium.com/@xcheater"
+      "url": "https://medium.com/@xcheater",
+      "platform": "Medium"
     },
     {
       "username": "yogeswaran.m",
-      "url": "https://medium.com/@yogeswaran.m"
+      "url": "https://medium.com/@yogeswaran.m",
+      "platform": "Medium"
     },
     {
       "username": "zseano",
-      "url": "https://medium.com/@zseano"
+      "url": "https://medium.com/@zseano",
+      "platform": "Medium"
     },
     {
       "username": "Debangshu Kundu",
-      "url": "https://medium.com/@DK999"
+      "url": "https://medium.com/@DK999",
+      "platform": "Medium"
     },
     {
       "username": "Irsyad Muhammad Fawwaz",
-      "url": "https://irsyadsec.medium.com/"
+      "url": "https://irsyadsec.medium.com/",
+      "platform": "Medium"
     }
   ],
   "navigation": {

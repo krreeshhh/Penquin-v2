@@ -1,44 +1,49 @@
 {
-    "title": "YouTube Channels",
-    "breadcrumb": [],
-    "sections": [
+  "title": "YouTube Channels",
+  "breadcrumb": [],
+  "sections": [
+    {
+      "type": "list",
+      "items": [
         {
-            "type": "list",
-            "items": [
-                {
-                    "title": "CorSecure",
-                    "url": "https://www.youtube.com/@CorSecure/videos"
-                },
-                {
-                    "title": "B3nacSec",
-                    "url": "https://www.youtube.com/@B3nacSec/videos"
-                },
-                {
-                    "title": "LaurieWired",
-                    "url": "https://www.youtube.com/@lauriewired/videos"
-                },
-                {
-                    "title": "AppSecHub",
-                    "url": "https://www.youtube.com/@appsechub/videos"
-                },
-                {
-                    "title": "Hacking Simplified",
-                    "url": "https://www.youtube.com/@HackingSimplifiedAS/videos"
-                }
-            ]
-        }
-    ],
-    "navigation": {
-        "previous": {
-            "title": "Video Tutorials",
-            "url": "/docs/learn-android-bug-bounty/video-tutorials"
+          "title": "CorSecure",
+          "url": "https://www.youtube.com/@CorSecure/videos",
+          "platform": "YouTube"
         },
-        "next": {
-            "title": "Bug Bounty Reports",
-            "url": "/docs/bug-bounty-reports"
+        {
+          "title": "B3nacSec",
+          "url": "https://www.youtube.com/@B3nacSec/videos",
+          "platform": "YouTube"
+        },
+        {
+          "title": "LaurieWired",
+          "url": "https://www.youtube.com/@lauriewired/videos",
+          "platform": "YouTube"
+        },
+        {
+          "title": "AppSecHub",
+          "url": "https://www.youtube.com/@appsechub/videos",
+          "platform": "YouTube"
+        },
+        {
+          "title": "Hacking Simplified",
+          "url": "https://www.youtube.com/@HackingSimplifiedAS/videos",
+          "platform": "YouTube"
         }
-    },
-    "metadata": {
-        "lastUpdated": "2025-05-25T09:33:03.247Z"
+      ]
     }
+  ],
+  "navigation": {
+    "previous": {
+      "title": "Video Tutorials",
+      "url": "/docs/learn-android-bug-bounty/video-tutorials"
+    },
+    "next": {
+      "title": "Bug Bounty Reports",
+      "url": "/docs/bug-bounty-reports"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-05-25T09:33:03.247Z"
+  }
 }

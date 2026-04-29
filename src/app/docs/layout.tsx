@@ -1,8 +1,11 @@
-import type { ReactNode } from "react";
-
-import { DocsShell } from "@/components/docs/DocsShell";
 import { getSidebarTree } from "@/lib/docs";
+import ClientLayout from "./client-layout"; // Import the renamed client layout
 
-export default function DocsLayout({ children }: { children: ReactNode }) {
-  return <DocsShell sidebar={getSidebarTree()}>{children}</DocsShell>;
+export default async function DocsRootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const sidebar = getSidebarTree(); // Fetch data on the server
+  return <ClientLayout sidebar={sidebar}>{children}</ClientLayout>;
 }

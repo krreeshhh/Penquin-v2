@@ -64,6 +64,13 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
   const [items, setItems] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
   const [tocVersion, setTocVersion] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  // Trigger mount animation
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const onTocNavigate = (id: string) => {
     const el = document.getElementById(id);
@@ -209,7 +216,7 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
 
   return (
     <aside
-      className={`VPDocAside fixed right-8 top-[88px] bottom-0 w-[224px] hidden xl:block ${hasItems ? "" : "opacity-0 pointer-events-none"}`}
+      className={`VPDocAside fixed right-8 top-[88px] bottom-0 w-[224px] hidden xl:block transition-all duration-500 ease-out ${mounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"} ${hasItems ? "" : "opacity-0 pointer-events-none"}`}
       aria-hidden={!hasItems}
     >
       <nav className="VPDocAsideOutline sticky top-[88px] max-h-[calc(100vh-88px)] overflow-y-auto py-0">

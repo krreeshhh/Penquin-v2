@@ -19,55 +19,68 @@
       "items": [
         {
           "title": "Learn Android Bug Bounty",
-          "url": "https://github.com/Raunaksplanet/Learn-android-bug-bounty"
+          "url": "https://github.com/Raunaksplanet/Learn-android-bug-bounty",
+          "platform": "GitHub"
         },
         {
           "title": "Frida Labs",
-          "url": "https://github.com/DERE-ad2001/Frida-Labs"
+          "url": "https://github.com/DERE-ad2001/Frida-Labs",
+          "platform": "GitHub"
         },
         {
           "title": "Objection Framework",
-          "url": "https://github.com/sensepost/objection"
+          "url": "https://github.com/sensepost/objection",
+          "platform": "GitHub"
         },
         {
           "title": "r0capture (Frida Capture Tool)",
-          "url": "https://github.com/r0ysue/r0capture"
+          "url": "https://github.com/r0ysue/r0capture",
+          "platform": "GitHub"
         },
         {
           "title": "Frida",
-          "url": "https://github.com/frida/frida"
+          "url": "https://github.com/frida/frida",
+          "platform": "GitHub"
         },
         {
           "title": "APK MITM",
-          "url": "https://github.com/niklashigi/apk-mitm"
+          "url": "https://github.com/niklashigi/apk-mitm",
+          "platform": "GitHub"
         },
         {
           "title": "BeVigil OSINT CLI",
-          "url": "https://github.com/Bevigil/BeVigil-OSINT-CLI"
+          "url": "https://github.com/Bevigil/BeVigil-OSINT-CLI",
+          "platform": "GitHub"
         },
         {
           "title": "APKiD",
-          "url": "https://github.com/rednaga/APKiD"
+          "url": "https://github.com/rednaga/APKiD",
+          "platform": "GitHub"
         },
         {
           "title": "Genymotion ARM Translation",
-          "url": "https://github.com/m9rco/Genymotion_ARM_Translation"
+          "url": "https://github.com/m9rco/Genymotion_ARM_Translation",
+          "platform": "GitHub"
         },
         {
           "title": "Drozer Agent",
-          "url": "https://github.com/ReversecLabs/drozer-agent"
+          "url": "https://github.com/ReversecLabs/drozer-agent",
+          "platform": "GitHub"
         },
         {
           "title": "Drozer Framework",
-          "url": "https://github.com/ReversecLabs/drozer"
+          "url": "https://github.com/ReversecLabs/drozer",
+          "platform": "GitHub"
         },
         {
           "title": "APKLeaks",
-          "url": "https://github.com/dwisiswant0/apkleaks"
+          "url": "https://github.com/dwisiswant0/apkleaks",
+          "platform": "GitHub"
         },
         {
           "title": "JADX Decompiler",
-          "url": "https://github.com/skylot/jadx"
+          "url": "https://github.com/skylot/jadx",
+          "platform": "GitHub"
         }
       ]
     },
@@ -86,11 +99,13 @@
         },
         {
           "title": "Mobile App Pentest Cheatsheet",
-          "url": "https://github.com/tanprathan/MobileApp-Pentest-Cheatsheet"
+          "url": "https://github.com/tanprathan/MobileApp-Pentest-Cheatsheet",
+          "platform": "GitHub"
         },
         {
           "title": "Android PentestBook",
-          "url": "https://github.com/six2dez/pentest-book/blob/master/mobile/android.md"
+          "url": "https://github.com/six2dez/pentest-book/blob/master/mobile/android.md",
+          "platform": "GitHub"
         }
       ]
     },
@@ -105,23 +120,28 @@
       "items": [
         {
           "title": "All Things Android Security",
-          "url": "https://github.com/jdonsec/AllThingsAndroid"
+          "url": "https://github.com/jdonsec/AllThingsAndroid",
+          "platform": "GitHub"
         },
         {
           "title": "Android Reports & Resources",
-          "url": "https://github.com/B3nac/Android-Reports-and-Resources"
+          "url": "https://github.com/B3nac/Android-Reports-and-Resources",
+          "platform": "GitHub"
         },
         {
           "title": "Awesome Android Security",
-          "url": "https://github.com/saeidshirazi/awesome-android-security"
+          "url": "https://github.com/saeidshirazi/awesome-android-security",
+          "platform": "GitHub"
         },
         {
           "title": "Android Security Awesome",
-          "url": "https://github.com/ashishb/android-security-awesome"
+          "url": "https://github.com/ashishb/android-security-awesome",
+          "platform": "GitHub"
         },
         {
           "title": "Awesome Mobile CTF Resources",
-          "url": "https://github.com/xtiankisutsa/awesome-mobile-CTF"
+          "url": "https://github.com/xtiankisutsa/awesome-mobile-CTF",
+          "platform": "GitHub"
         }
       ]
     }

@@ -9,26 +9,33 @@ import { DocsTOC } from "@/components/docs/DocsTOC";
 import type { SidebarNode } from "@/lib/docs";
 
 export function DocsShell({ children, sidebar }: { children: ReactNode; sidebar: SidebarNode[] }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarDesktopVisible, setSidebarDesktopVisible] = useState(true);
-  const [isDesktop, setIsDesktop] = useState(false);
+  // Initialize isDesktop based on window.innerWidth, defaulting to true if window is undefined (SSR)
+  const [isDesktop, setIsDesktop] = useState(
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : true
+  );
+  // sidebarDesktopVisible should be true by default for desktop
+  const [sidebarDesktopVisible, setSidebarDesktopVisible] = useState(isDesktop);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Mobile sidebar is initially closed
 
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 1024) setSidebarOpen(false);
+      const currentIsDesktop = window.innerWidth >= 1024;
+      setIsDesktop(currentIsDesktop);
+      // If resizing to desktop, ensure mobile sidebar is closed
+      if (currentIsDesktop) {
+        setSidebarOpen(false);
+      }
+      // Re-evaluate sidebarDesktopVisible on resize if needed, but keep it persistent if set by user
+      // For now, let's keep it simple: if it becomes desktop, it should be visible by default unless user toggles it.
+      // Or, maintain its last state. For this fix, we assume it should be visible if desktop.
+      if (currentIsDesktop && !sidebarDesktopVisible) {
+        setSidebarDesktopVisible(true);
+      }
     };
 
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const onChange = () => setIsDesktop(mq.matches);
-    onChange();
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  }, [sidebarDesktopVisible]); // Added sidebarDesktopVisible to dependency array
 
   return (
     <div id="VPContent" className={`VPContent ${sidebarDesktopVisible ? "has-sidebar" : ""}`.trim()}>
