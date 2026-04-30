@@ -78,8 +78,10 @@
       "type": "divider"
     },
     {
-      "type": "success_hint",
-      "content": "Grab PDF format: https://drive.google.com/file/d/150VFlq7yzC3NydvoWLHGOZ_mjdUR3pXB/view?usp=sharing"
+      "type": "link_card",
+      "title": "Grab Bug Bounty Checklist PDF format",
+      "url": "https://drive.google.com/file/d/150VFlq7yzC3NydvoWLHGOZ_mjdUR3pXB/view?usp=sharing",
+      "platform": "Google Drive"
     },
     {
       "type": "heading",
@@ -118,8 +120,16 @@
     {
       "type": "list",
       "items": [
-        "4th Scenario Host-Header Injection in Oauth\n- https://hackerone.com/reports/317476",
-        "Exploiting callback_urls= parameter\n- https://www.linkedin.com/pulse/account-takeover-via-google-oauth-misconfiguration-izyits-e76ef/?trackingId=8AI%2FWBa3TECMDxldWaTWSw%3D%3D"
+        {
+          "title": "4th Scenario Host-Header Injection in Oauth",
+          "url": "https://hackerone.com/reports/317476",
+          "platform": "HackerOne"
+        },
+        {
+          "title": "Exploiting callback_urls= parameter",
+          "url": "https://www.linkedin.com/pulse/account-takeover-via-google-oauth-misconfiguration-izyits-e76ef/?trackingId=8AI%2FWBa3TECMDxldWaTWSw%3D%3D",
+          "platform": "LinkedIn"
+        }
       ]
     },
     {
@@ -195,10 +205,20 @@
       "content": "Swagger UI"
     },
     {
+      "type": "link_card",
+      "title": "How I found XSS in Swagger UI leading to account takeover",
+      "url": "https://scr1pty.medium.com/how-i-found-xss-in-swagger-ui-leading-to-account-takeover-on-bug-bounty-8d419c6b95d5",
+      "platform": "Medium"
+    },
+    {
+      "type": "link_card",
+      "title": "Hacking Swagger UI 101",
+      "url": "https://infosecwriteups.com/hacking-swagger-ui-101-ccbce66ba028",
+      "platform": "InfosecWriteups"
+    },
+    {
       "type": "list",
       "items": [
-        "https://scr1pty.medium.com/how-i-found-xss-in-swagger-ui-leading-to-account-takeover-on-bug-bounty-8d419c6b95d5",
-        "https://infosecwriteups.com/hacking-swagger-ui-101-ccbce66ba028",
         "FOFA: domain=\"http://redacted.com\" && (icon_hash=\"1120729672\" || icon_hash=\"-1128940573\" || icon_hash=\"-1180440057\")"
       ]
     },
@@ -232,12 +252,16 @@
       "content": "WordPress"
     },
     {
-      "type": "paragraph",
-      "content": "https://github.com/Raunaksplanet/CustomPayloads-Wordlist.com/blob/main/Fuzz-Wordpress.tx"
+      "type": "link_card",
+      "title": "Fuzz-Wordpress.txt Payload List",
+      "url": "https://github.com/Raunaksplanet/CustomPayloads-Wordlist.com/blob/main/Fuzz-Wordpress.tx",
+      "platform": "GitHub"
     },
     {
-      "type": "paragraph",
-      "content": "https://github.com/Raunaksplanet/CustomPayloads-Wordlist.com/blob/main/wp-content.txt"
+      "type": "link_card",
+      "title": "wp-content.txt Payload List",
+      "url": "https://github.com/Raunaksplanet/CustomPayloads-Wordlist.com/blob/main/wp-content.txt",
+      "platform": "GitHub"
     },
     {
       "type": "divider"
@@ -355,8 +379,10 @@
       "content": "1. Login to your account on \"https://targetsite.com\".  \n2. Go to the \"Profile\" section and update any field (e.g., name or bio).  \n3. Intercept the \"update request\" using Burp Suite.  \n4. \"Send the intercepted request to Repeater\" (do not send it yet).  \n5. Now, \"logout\" from the application.  \n6. Go back to \"Repeater\" and \"send the saved update request\".  \n7. Login again and check the profile data.  \n8. If the \"update was successful after logout\", the session is still valid — \"vulnerability confirmed\"."
     },
     {
-      "type": "paragraph",
-      "content": "https://www.linkedin.com/posts/rohith-s-0b9b2b267_bugbounty-bugbountyreports-bugbountyjourney-activity-7318306351510683648-7Qug?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD7i-kYBPFLRnBLZy31myo6GBKvOJ3sZqKI"
+      "type": "link_card",
+      "title": "Bug Bounty Reports Journey - Session Issues",
+      "url": "https://www.linkedin.com/posts/rohith-s-0b9b2b267_bugbounty-bugbountyreports-bugbountyjourney-activity-7318306351510683648-7Qug?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD7i-kYBPFLRnBLZy31myo6GBKvOJ3sZqKI",
+      "platform": "LinkedIn"
     },
     {
       "type": "divider"
@@ -410,8 +436,14 @@
         "Wish list page testing\n- Check if a user A can add/remote products in Wishlist of other user B's account\n- Check if a user A can add products into user B's cart from his/her (user A's) Wishlist section.",
         "Post product purchase testing\n- Check if user A can cancel orders for user B's purchase\n- Check if user A can view/check orders already placed by user B\n- Check if user A can modify the shipping address of placed order by user B",
         "Out of band testing\n- Can user order product which is out of stock?",
-        "Invite User as Different roles (Privilege escalation)\n- invite two user one as admin(user A) second as normal(user B) and then change user B email to user A\nEg https://siratsami71.medium.com/from-user-to-admin-a-privilege-escalation-via-business-logic-7ae901be7d81"
+        "Invite User as Different roles (Privilege escalation)\n- invite two user one as admin(user A) second as normal(user B) and then change user B email to user A"
       ]
+    },
+    {
+      "type": "link_card",
+      "title": "From User to Admin: A Privilege Escalation via Business Logic",
+      "url": "https://siratsami71.medium.com/from-user-to-admin-a-privilege-escalation-via-business-logic-7ae901be7d81",
+      "platform": "Medium"
     },
     {
       "type": "divider"
@@ -423,10 +455,10 @@
       "content": "Functionality where user get credit on account creation"
     },
     {
-      "type": "list",
-      "items": [
-        "https://cysky0x1.medium.com/how-i-found-a-critical-bug-affecting-the-organization-and-changed-money-in-the-credit-balance-b92569df5352"
-      ]
+      "type": "link_card",
+      "title": "How I found a Critical bug affecting the organization and changed money in the credit balance",
+      "url": "https://cysky0x1.medium.com/how-i-found-a-critical-bug-affecting-the-organization-and-changed-money-in-the-credit-balance-b92569df5352",
+      "platform": "Medium"
     },
     {
       "type": "divider"
@@ -450,9 +482,14 @@
         "CSRF on update password",
         "Check if forget password reset link/code uniqueness",
         "Password reset link not expiring using same link for multiple password reset",
-        "Token leak in referrer header while clicking to another link on new password page",
-        "https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/tree/main/Reset%20Password%20vulnerabilities"
+        "Token leak in referrer header while clicking to another link on new password page"
       ]
+    },
+    {
+      "type": "link_card",
+      "title": "Reset Password Vulnerabilities Collection",
+      "url": "https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist/tree/main/Reset%20Password%20vulnerabilities",
+      "platform": "GitHub"
     }
   ],
   "navigation": {

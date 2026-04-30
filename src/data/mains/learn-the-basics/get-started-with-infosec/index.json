@@ -11,13 +11,13 @@
       "url": "/mains/learn-the-basics"
     }
   ],
-  "notionRoadmap": {
+  "NotionRoadmap": {
     "title": "The Most Practical Cyber Security Roadmap | Notion",
     "url": "https://whimsical-poultry-9ad.notion.site/The-Most-Practical-Cyber-Security-Roadmap-133b841caed9806c9b8be6e59a8236a2",
     "domain": "whimsical-poultry-9ad on Notion",
     "icon": "https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fwww.notion.so%2Ffront-static%2Flogo-ios.png&width=20&dpr=3&quality=100&sign=32c746fd&sv=2"
   },
-  "linuxLearning": {
+  "LinuxLearning": {
     "commandLine": [
       {
         "title": "The Cyber Mentor",

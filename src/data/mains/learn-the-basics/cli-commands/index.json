@@ -10,7 +10,7 @@
       "url": "/mains/learn-the-basics"
     }
   ],
-  "commands": [
+  "Commands": [
     {
       "command": "pwd",
       "description": "Print working directory.",

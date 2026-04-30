@@ -1,13 +1,13 @@
 {
   "title": "POC Videos YT Channel",
-  "description": "Here are all the YouTube channel listed who upload POC(Proof Of Concept) videos related to Bug-Bounty, Exploiting Vulnerabilities, Bugs, Web-App-Functions and many more.",
+  "description": "Here are all the YouTube Channels listed who upload POC(Proof Of Concept) videos related to Bug-Bounty, Exploiting Vulnerabilities, Bugs, Web-App-Functions and many more.",
   "breadcrumb": [
     {
       "label": "Mains",
       "url": "/mains"
     }
   ],
-  "channels": [
+  "Channels": [
     {
       "name": "Sankalpa Baral",
       "platform": "YouTube",
@@ -29,7 +29,7 @@
       "url": "https://www.youtube.com/@techghoshal/videos"
     },
     {
-      "name": "Poc hunter",
+      "name": "Poc Hunter",
       "platform": "YouTube",
       "url": "https://www.youtube.com/@bugbountypoc395/videos"
     },
@@ -119,7 +119,7 @@
       "url": "https://www.youtube.com/@Jiivahack/videos"
     },
     {
-      "name": "sasec",
+      "name": "Sasec",
       "platform": "YouTube",
       "url": "https://www.youtube.com/@0xROI/videos"
     },
@@ -159,7 +159,7 @@
       "url": "https://www.youtube.com/@CyberHacks200/videos"
     },
     {
-      "name": "mufazmi",
+      "name": "Mufazmi",
       "platform": "YouTube",
       "url": "https://www.youtube.com/@mufazmi/videos"
     },
@@ -169,7 +169,7 @@
       "url": "https://www.youtube.com/@gotr00t0day/videos"
     },
     {
-      "name": "rashahacks",
+      "name": "Rashahacks",
       "platform": "YouTube",
       "url": "https://www.youtube.com/@rashahacks/videos"
     },
@@ -189,17 +189,17 @@
       "url": "https://www.youtube.com/@techiehunter08"
     },
     {
-      "name": "rashahacks",
+      "name": "Rashahacks",
       "platform": "YouTube",
       "url": "https://www.youtube.com/@rashahacks"
     },
     {
-      "name": "Poc hunter",
+      "name": "Poc Hunter",
       "platform": "YouTube",
       "url": "https://www.youtube.com/@bugbountypoc395"
     },
     {
-      "name": "mufazmi",
+      "name": "Mufazmi",
       "platform": "YouTube",
       "url": "https://www.youtube.com/@mufazmi"
     },

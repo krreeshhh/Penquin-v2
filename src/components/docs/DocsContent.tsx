@@ -65,14 +65,21 @@ function stripDecorations(value: string) {
   return value.replace(/^[^A-Za-z0-9]+/, "").trim();
 }
 
+function capitalizeFirst(value: string) {
+  if (!value) return "";
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
 function formatLabel(value: string) {
   const clean = stripDecorations(value);
   if (!clean) return "";
 
-  return clean
+  const formatted = clean
     .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
     .replace(/[_-]+/g, " ")
     .trim();
+
+  return capitalizeFirst(formatted);
 }
 
 function formatDate(value?: string) {
@@ -250,23 +257,23 @@ function MarkdownContent({
           ),
           ...(variant === "gitbook"
             ? {
-                h1: ({ children }) => {
-                  const text = stripDecorations(resolveTextContent(children));
-                  return text ? <DocHeading as="h2" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
-                },
-                h2: ({ children }) => {
-                  const text = stripDecorations(resolveTextContent(children));
-                  return text ? <DocHeading as="h2" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
-                },
-                h3: ({ children }) => {
-                  const text = stripDecorations(resolveTextContent(children));
-                  return text ? <DocHeading as="h3" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
-                },
-                h4: ({ children }) => {
-                  const text = stripDecorations(resolveTextContent(children));
-                  return text ? <DocHeading as="h3" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
-                },
-              }
+              h1: ({ children }) => {
+                const text = stripDecorations(resolveTextContent(children));
+                return text ? <DocHeading as="h2" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
+              },
+              h2: ({ children }) => {
+                const text = stripDecorations(resolveTextContent(children));
+                return text ? <DocHeading as="h2" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
+              },
+              h3: ({ children }) => {
+                const text = stripDecorations(resolveTextContent(children));
+                return text ? <DocHeading as="h3" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
+              },
+              h4: ({ children }) => {
+                const text = stripDecorations(resolveTextContent(children));
+                return text ? <DocHeading as="h3" id={slugify(text)} variant="gitbook">{text}</DocHeading> : null;
+              },
+            }
             : null),
         }}
       >
@@ -300,7 +307,7 @@ function getFallbackSiteIcon(url?: string) {
 
 function extractDomainFromLogoUrl(logoUrl?: string): string | undefined {
   if (!logoUrl || typeof logoUrl !== 'string') return undefined;
-  
+
   // Handle GitBook proxy URLs like https://Penquin.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2Fgithub.com%2Ffluidicon.png
   if (logoUrl.includes('~gitbook/image')) {
     const urlParam = new URLSearchParams(logoUrl.split('?')[1] || '').get('url');
@@ -314,7 +321,7 @@ function extractDomainFromLogoUrl(logoUrl?: string): string | undefined {
       }
     }
   }
-  
+
   return undefined;
 }
 
@@ -466,7 +473,7 @@ function renderListItem(item: unknown, key: React.Key, variant?: "default" | "gi
 
 function renderStructuredListItemCard(item: Record<string, unknown>, key: React.Key, ordered: boolean): React.ReactNode {
   const docItem = item as DocLink & { description?: string; secondary_url?: string; code?: string; subitems?: unknown[] };
-  const label = stripDecorations(getLinkLabel(docItem) ?? `Item ${String(key)}`);
+  const label = capitalizeFirst(stripDecorations(getLinkLabel(docItem) ?? `Item ${String(key)}`));
   const assetUrl = getAssetUrl(docItem.icon) ?? getAssetUrl(docItem.logo) ?? getAssetUrl(docItem.image) ?? getFallbackSiteIcon(docItem.url);
   const subitems = Array.isArray(docItem.subitems) ? docItem.subitems : [];
 
@@ -506,14 +513,14 @@ function renderStructuredListItemCard(item: Record<string, unknown>, key: React.
           {typeof docItem.url === "string" ? (
             <a
               href={normalizeDocHref(docItem.url)}
-              className="font-semibold text-[var(--vp-c-text-1)] underline-offset-4 hover:text-[var(--vp-c-brand-1)] hover:underline"
+              className="font-semibold text-[var(--vp-c-text-1)] underline-offset-4 hover:text-[var(--vp-c-brand-1)] hover:underline break-words"
               target={isExternalHref(docItem.url) ? "_blank" : undefined}
               rel={isExternalHref(docItem.url) ? "noreferrer" : undefined}
             >
               {label}
             </a>
           ) : (
-            <div className="font-semibold text-[var(--vp-c-text-1)]">{label}</div>
+            <div className="font-semibold text-[var(--vp-c-text-1)] break-words">{label}</div>
           )}
           {typeof docItem.description === "string" && docItem.description.trim() ? (
             <div className="mt-1 text-[14px] leading-6 text-[var(--vp-c-text-2)]">
@@ -607,9 +614,9 @@ const DocHeading = React.memo(function DocHeading({
           ? "text-[26px] md:text-[30px] leading-[36px] font-semibold mt-10 pb-2 border-b border-[var(--vp-c-divider)]"
           : "text-[20px] md:text-[24px] leading-[32px] font-semibold mt-6"
       : as === "h1"
-        ? "text-[36px] md:text-[44px] leading-[1.1] tracking-tight mb-10"
+        ? "text-[36px] md:text-[44px] leading-[1.1] tracking-tight mb-6"
         : as === "h2"
-          ? "text-[24px] md:text-[28px] mt-16 pb-3 border-b border-[var(--vp-c-divider)] group/h2"
+          ? "text-[24px] md:text-[28px] mt-10 pb-3 border-b border-[var(--vp-c-divider)] group/h2"
           : "text-[18px] md:text-[20px] mt-10 font-semibold";
 
   return (
@@ -626,11 +633,11 @@ const DocHeading = React.memo(function DocHeading({
             <span className="text-[var(--vp-c-text-3)] font-medium">|</span>
             <span className="text-[var(--vp-c-text-1)]">{portMatch[2].trim()}</span>
           </span>
-        ) : children}
+        ) : (typeof children === "string" ? capitalizeFirst(children) : children)}
         <a
           href={`#${id}`}
           aria-label={`Permalink to ${typeof children === "string" ? children : "section"}`}
-          className="header-anchor md:opacity-0 md:group-hover:opacity-100 transition-opacity text-[var(--vp-c-text-3)] hover:text-[var(--vp-c-text-1)] ml-1"
+          className="header-anchor hidden md:inline-flex md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100 transition-opacity text-[var(--vp-c-text-3)] hover:text-[var(--vp-c-text-1)] ml-1"
         >
           #
         </a>
@@ -664,11 +671,14 @@ function EmbedVideo({ url, embedStyle }: { url?: string; embedStyle?: string }) 
 const LinkCard = React.memo(function LinkCard({ item }: { item: DocLink }) {
   if (!item.url) return null;
 
-  const label = stripDecorations(getLinkLabel(item) ?? item.url);
-  
+  const rawLabel = getLinkLabel(item);
+  const labelFromUrl = !rawLabel || rawLabel === item.url;
+  const displayUrl = item.url.replace(/^https?:\/\//, "").replace(/^www\./, "");
+  const label = stripDecorations(rawLabel ?? (labelFromUrl ? displayUrl : item.url));
+
   // Extract domain from GitBook proxy URLs in logo
   const extractedDomain = extractDomainFromLogoUrl(typeof item.logo === 'string' ? item.logo : undefined);
-  
+
   // Priority: icon > logo > image > extracted domain favicon > fallback from url
   const assetUrl = getAssetUrl(item.icon) ?? getAssetUrl(item.logo) ?? getAssetUrl(item.image) ?? (extractedDomain ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(extractedDomain)}&sz=64` : undefined) ?? getFallbackSiteIcon(item.url);
 
@@ -679,9 +689,9 @@ const LinkCard = React.memo(function LinkCard({ item }: { item: DocLink }) {
     (isExternalHref(item.url) ? hostnameLabel(item.url) : "Link");
 
   return (
-    <CardLink href={normalizeDocHref(item.url) ?? item.url} className="flex items-start justify-between gap-3 rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:bg-[var(--vp-c-bg-soft)]">
-      <div className="min-w-0">
-        <div className="flex items-center gap-2 text-[14px] font-semibold text-[var(--vp-c-text-1)] min-w-0">
+    <CardLink href={normalizeDocHref(item.url) ?? item.url} className="flex w-full items-start justify-between gap-3 overflow-hidden rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:bg-[var(--vp-c-bg-soft)]">
+      <div className="min-w-0 flex-1">
+        <div className="flex min-w-0 flex-1 flex-nowrap items-center gap-2 text-[14px] font-semibold text-[var(--vp-c-text-1)]">
           <IconTooltip label={tooltipLabel}>
             {assetUrl ? (
               <img
@@ -700,10 +710,15 @@ const LinkCard = React.memo(function LinkCard({ item }: { item: DocLink }) {
               />
             )}
           </IconTooltip>
-          <span className="truncate">{label}</span>
+          <span
+            className="block min-w-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+            title={labelFromUrl ? item.url : undefined}
+          >
+            {label}
+          </span>
         </div>
         {(item.platform || item.source || item.domain || item.browser || item.caption || item.fileType || item.fileSize || (item.url && isExternalHref(item.url))) && (
-          <p className="mt-1 text-[12px] text-[var(--vp-c-text-2)]">
+          <p className="mt-1 max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-[12px] text-[var(--vp-c-text-2)]">
             {[
               item.platform || (item.url && isExternalHref(item.url) ? hostnameLabel(item.url) : undefined),
               item.source,
@@ -861,13 +876,15 @@ function renderExtraSection(title: string, value: unknown, keyPrefix: string, de
             {depth === 0 && title && <DocHeading as="h2" id={slugify(title)}>{title}</DocHeading>}
             <div className={`mt-6 ${depth === 0 ? "space-y-12" : "space-y-8"}`}>
               {records.map((item, index) => {
-                const heading = typeof item.name === "string"
-                  ? item.name
-                  : typeof item.title === "string"
-                    ? item.title
-                    : typeof item.label === "string"
-                      ? item.label
-                      : `${title} ${index + 1}`;
+                const heading = capitalizeFirst(stripDecorations(
+                  typeof item.name === "string"
+                    ? item.name
+                    : typeof item.title === "string"
+                      ? item.title
+                      : typeof item.label === "string"
+                        ? item.label
+                        : `${title} ${index + 1}`
+                ));
 
                 const nestedEntries = Object.entries(item).filter(([k, entry]) =>
                   (Array.isArray(entry) || isRecord(entry)) && k !== "name" && k !== "title" && k !== "label" && k !== "url" && k !== "emoji" && k !== "icon"
@@ -928,7 +945,9 @@ function renderExtraSection(title: string, value: unknown, keyPrefix: string, de
       <section key={keyPrefix} className="mt-8">
         {depth === 0 && title && <DocHeading as="h2" id={slugify(title)}>{title}</DocHeading>}
         <div className="mt-4 space-y-6">
-          {Object.entries(value).map(([nestedKey, nestedValue]) => renderExtraSection(formatLabel(nestedKey), nestedValue, `${keyPrefix}-${nestedKey}`, depth + 1))}
+          {Object.entries(value)
+            .filter(([k]) => k !== "name" && k !== "title" && k !== "heading")
+            .map(([nestedKey, nestedValue]) => renderExtraSection(formatLabel(nestedKey), nestedValue, `${keyPrefix}-${nestedKey}`, depth + 1))}
         </div>
       </section>
     );
@@ -1188,7 +1207,7 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
             <code>
               {lines.map((line, idx) => {
                 const trimmed = line.trim();
-                
+
                 const cComment = variant === "gitbook" ? "text-gray-500 dark:text-[#8b949e]" : "text-[#8b949e]";
                 const cCmd = variant === "gitbook" ? "text-green-600 dark:text-[#7ee787] font-medium" : "text-[#7ee787] font-medium";
                 const cArg = variant === "gitbook" ? "text-blue-600 dark:text-[#a5d6ff]" : "text-[#a5d6ff]";
@@ -1198,7 +1217,7 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
                 if (trimmed.startsWith("#")) {
                   return <span key={idx} className={`block ${cComment}`}>{line}</span>;
                 }
-                
+
                 // Prompts or bash commands
                 if (trimmed.startsWith("$ ")) {
                   const cmdPart = line.substring(line.indexOf("$ ") + 2);
@@ -1223,15 +1242,15 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
                     </span>
                   );
                 }
-                
+
                 // Logs or standard output
                 if (trimmed.startsWith("debug1:")) {
-                   return (
-                     <span key={idx} className="block">
-                       <span className={cCmd}>debug1:</span>
-                       <span className={cText}>{line.substring(line.indexOf("debug1:") + 7)}</span>
-                     </span>
-                   );
+                  return (
+                    <span key={idx} className="block">
+                      <span className={cCmd}>debug1:</span>
+                      <span className={cText}>{line.substring(line.indexOf("debug1:") + 7)}</span>
+                    </span>
+                  );
                 }
 
                 return <span key={idx} className={`block ${cText}`}>{line}</span>;
@@ -1277,7 +1296,9 @@ function SectionBody({ block, variant }: { block: DocBlock; variant: "default" |
     case "links":
     case "articles_list": {
       const items = (Array.isArray(block.items) ? block.items : block.links ?? block.articles ?? []) as DocLink[];
-      const headingTitle = typeof block.heading === "string" ? block.heading : undefined;
+      if (block.type === "articles_list") {
+        return <ArticlesTable articles={items} />;
+      }
       return <LinkGrid items={items} />;
     }
     case "videos": {
@@ -1386,6 +1407,7 @@ function SectionBlock({ block, variant }: { block: DocBlock; variant: "default" 
   const renderExtras = () => {
     // Ignore common block fields so we don't render noisy "extra" primitives (e.g. hint.variant => "success").
     const knownKeys = new Set([
+      "name",
       "type",
       "content",
       "heading",
@@ -1421,7 +1443,7 @@ function SectionBlock({ block, variant }: { block: DocBlock; variant: "default" 
       "articles",
     ]);
     const extraKeys = Object.entries(block).filter(([key, value]) => !knownKeys.has(key) && value != null);
-    
+
     if (!extraKeys.length) return null;
 
     return (
@@ -1446,6 +1468,54 @@ function SectionBlock({ block, variant }: { block: DocBlock; variant: "default" 
       <SectionBody block={block} variant={variant} />
       {renderExtras()}
     </>
+  );
+}
+
+function ArticlesTable({ articles }: { articles: any[] }) {
+  if (!articles?.length) return null;
+
+  return (
+    <div className="mt-6 overflow-hidden rounded-[16px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg)] shadow-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-[13.5px] border-collapse">
+          <thead className="bg-[var(--vp-c-bg-soft)] border-b border-[var(--vp-c-divider)]">
+            <tr>
+              <th className="px-5 py-3.5 font-bold text-[var(--vp-c-text-1)] whitespace-nowrap w-[60px]">#</th>
+              <th className="px-5 py-3.5 font-bold text-[var(--vp-c-text-1)]">Article Title</th>
+              <th className="px-5 py-3.5 font-bold text-[var(--vp-c-text-1)] whitespace-nowrap">Link</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[var(--vp-c-divider)]/50">
+            {articles.map((article, idx) => {
+              const url = article.link || article.url;
+              return (
+                <tr key={article.id || idx} className="transition-colors hover:bg-[var(--vp-c-bg-soft)]/40 align-middle">
+                  <td className="px-5 py-4 font-bold text-[var(--vp-c-text-1)]">{article.id || idx + 1}</td>
+                  <td className="px-5 py-4 text-[var(--vp-c-text-1)] font-medium leading-relaxed">
+                    {article.title}
+                  </td>
+                  <td className="px-5 py-4 whitespace-nowrap">
+                    {url ? (
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-[var(--vp-c-brand-1)] hover:text-[var(--vp-c-brand-2)] transition-colors flex items-center gap-1.5 font-medium group"
+                      >
+                        Read Article
+                        <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      </a>
+                    ) : (
+                      <span className="text-[var(--vp-c-text-3)] italic">No link available</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 
@@ -1552,8 +1622,8 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
     <div
       data-doc-variant={variant}
       className={isGitBookVariant ? "mx-auto px-4 md:px-12" : "mx-auto px-6 md:px-10 lg:px-14"}
-      style={{ 
-        maxWidth: isGitBookVariant ? "var(--content-max-width, 860px)" : "var(--content-max-width, 820px)", 
+      style={{
+        maxWidth: isGitBookVariant ? "var(--content-max-width, 860px)" : "var(--content-max-width, 820px)",
         transition: "max-width 700ms cubic-bezier(0.16, 1, 0.3, 1)",
         paddingBottom: "64px"
       }}
@@ -1571,9 +1641,9 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
             </Link>
           )}
           {breadcrumbItems.map((item: Record<string, string>, index: number) => {
-            const label = stripDecorations(item.label ?? item.name ?? item.title ?? "");
+            const label = capitalizeFirst(stripDecorations(item.label ?? item.name ?? item.title ?? ""));
             return (
-                <React.Fragment key={`${label}-${index}`}>
+              <React.Fragment key={`${label}-${index}`}>
                 <span className="opacity-40">{isGitBookVariant ? "/" : "›"}</span>
                 {item.url ? (
                   <Link href={normalizeDocHref(item.url) ?? item.url} className="hover:text-[var(--vp-c-text-1)] transition-colors">{label}</Link>

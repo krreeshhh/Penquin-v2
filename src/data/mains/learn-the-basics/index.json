@@ -1,13 +1,12 @@
 {
   "title": "Learn The Basics",
-  "description": "Learn the Basics",
   "breadcrumb": [
     {
       "label": "Mains",
       "url": "/mains"
     }
   ],
-  "subtopics": [
+  "Subtopics": [
     {
       "emoji": "🎖️",
       "title": "Type Of Cyber Security",

@@ -59,7 +59,13 @@ function slugify(input: string) {
     .replace(/-+/g, "-");
 }
 
-export function DocsTOC({ contentSelector }: { contentSelector: string }) {
+export function DocsTOC({ 
+  contentSelector,
+  onHasItemsChange
+}: { 
+  contentSelector: string;
+  onHasItemsChange?: (hasItems: boolean) => void;
+}) {
   const pathname = usePathname();
   const [items, setItems] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
@@ -143,6 +149,7 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
     }
 
     setItems(next);
+    onHasItemsChange?.(next.length > 0);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -193,12 +200,13 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
   }, [items]);
 
   useEffect(() => {
+    const container = document.querySelector<HTMLElement>(".VPDocAsideOutline");
     const nav = document.querySelector<HTMLElement>(".VPDocAsideOutline .content");
     const activeLink = activeId
       ? document.querySelector<HTMLElement>(`.VPDocAsideOutline a[href="#${CSS.escape(activeId)}"]`)
       : document.querySelector<HTMLElement>(".VPDocAsideOutline a");
 
-    if (!nav || !activeLink) return;
+    if (!nav || !activeLink || !container) return;
 
     const navRect = nav.getBoundingClientRect();
     const activeRect = activeLink.getBoundingClientRect();
@@ -206,6 +214,14 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
 
     nav.style.setProperty("--toc-marker-top", `${Math.round(top)}px`);
     nav.style.setProperty("--toc-marker-height", `${Math.round(activeRect.height)}px`);
+
+    // Auto-scroll TOC container if the active item is out of optimal view
+    const containerRect = container.getBoundingClientRect();
+    const relativeTop = activeRect.top - containerRect.top;
+
+    if (relativeTop < 20 || relativeTop > containerRect.height - 40) {
+      container.scrollBy({ top: relativeTop - containerRect.height / 2, behavior: "smooth" });
+    }
   }, [activeId, grouped, tocVersion]);
 
   useEffect(() => {
@@ -216,54 +232,56 @@ export function DocsTOC({ contentSelector }: { contentSelector: string }) {
 
   return (
     <aside
-      className={`VPDocAside fixed right-8 top-[88px] bottom-0 w-[224px] hidden xl:block transition-all duration-500 ease-out ${mounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"} ${hasItems ? "" : "opacity-0 pointer-events-none"}`}
+      className={`VPDocAside fixed right-8 top-[88px] bottom-0 w-[224px] hidden xl:block transition-all duration-500 ease-out ${mounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}
       aria-hidden={!hasItems}
     >
-      <nav className="VPDocAsideOutline sticky top-[88px] max-h-[calc(100vh-88px)] overflow-y-auto py-0">
-        <div className="content">
-          <div className="outline-marker" aria-hidden />
-          <div className="outline-title flex items-center gap-2 mb-3">
-            <div className="flex h-5 w-5 items-center justify-center text-[var(--vp-c-text-2)] opacity-80">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-list"><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg>
+      {hasItems && (
+        <nav className="VPDocAsideOutline sticky top-[88px] max-h-[calc(100vh-88px)] overflow-y-auto pt-0 pb-10">
+          <div className="content">
+            <div className="outline-marker" aria-hidden />
+            <div className="outline-title flex items-center gap-2 mb-3">
+              <div className="flex h-5 w-5 items-center justify-center text-[var(--vp-c-text-2)] opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-list"><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg>
+              </div>
+              <span className="text-[13px] font-bold text-[var(--vp-c-text-1)]">On this page</span>
             </div>
-            <span className="text-[13px] font-bold text-[var(--vp-c-text-1)]">On this page</span>
+            <ul className="VPDocOutlineItem root">
+              {grouped.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className={`outline-link ${activeId === item.id ? "active" : ""}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onTocNavigate(item.id);
+                    }}
+                  >
+                    {item.text}
+                  </a>
+                  {item.children.length ? (
+                    <ul className="VPDocOutlineItem nested">
+                      {item.children.map((child) => (
+                        <li key={child.id}>
+                          <a
+                            href={`#${child.id}`}
+                            className={`outline-link ${activeId === child.id ? "active" : ""}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              onTocNavigate(child.id);
+                            }}
+                          >
+                            {child.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="VPDocOutlineItem root">
-            {grouped.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className={`outline-link ${activeId === item.id ? "active" : ""}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onTocNavigate(item.id);
-                  }}
-                >
-                  {item.text}
-                </a>
-                {item.children.length ? (
-                  <ul className="VPDocOutlineItem nested">
-                    {item.children.map((child) => (
-                      <li key={child.id}>
-                        <a
-                          href={`#${child.id}`}
-                          className={`outline-link ${activeId === child.id ? "active" : ""}`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            onTocNavigate(child.id);
-                          }}
-                        >
-                          {child.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
+        </nav>
+      )}
     </aside>
   );
 }
