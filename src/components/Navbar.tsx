@@ -109,21 +109,22 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
     if (legacyTheme === 'light') return false;
     return true; // Final fallback to dark
   });
-  const [currentLayoutMode, setCurrentLayoutMode] = useState<LayoutMode>(() => 
-    getInitialValue(LS.layoutMode, LS.legacyLayoutMode, "expandAll" as LayoutMode, (v) => parseLayoutMode(v) ?? "expandAll")
+  const defaultLayoutMode: LayoutMode = isDocs ? "original" : "expandAll";
+  const [currentLayoutMode, setCurrentLayoutMode] = useState<LayoutMode>(() =>
+    getInitialValue(LS.layoutMode, LS.legacyLayoutMode, defaultLayoutMode, (v) => parseLayoutMode(v) ?? defaultLayoutMode)
   );
   const [isSpotlightOn, setIsSpotlightOn] = useState(false);
-  const [spotlightStyle, setSpotlightStyle] = useState<SpotlightStyle>(() => 
+  const [spotlightStyle, setSpotlightStyle] = useState<SpotlightStyle>(() =>
     getInitialValue(LS.spotlightStyles, "", "aside" as SpotlightStyle, (v) => v === "1" ? "under" : "aside")
   );
   const [isTakodachiOn, setIsTakodachiOn] = useState(false);
-  const [pageMaxWidth, setPageMaxWidth] = useState(() => 
+  const [pageMaxWidth, setPageMaxWidth] = useState(() =>
     getInitialValue(LS.pageMaxWidth, LS.legacyNavWidth, 1200, (v) => Math.min(1200, Math.max(600, parseInt(v) || 1200)))
   );
-  const [contentWidth, setContentWidth] = useState(() => 
+  const [contentWidth, setContentWidth] = useState(() =>
     getInitialValue(LS.contentMaxWidth, LS.legacyContentWidth, 1152, (v) => Math.min(1200, Math.max(600, parseInt(v) || 1152)))
   );
-  const [docsContentWidth, setDocsContentWidth] = useState(() => 
+  const [docsContentWidth, setDocsContentWidth] = useState(() =>
     getInitialValue(LS.docsContentMaxWidth, LS.legacyDocsContentWidth, 756, (v) => Math.min(1200, Math.max(600, parseInt(v) || 756)))
   );
 
@@ -140,7 +141,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   useEffect(() => {
     try {
       setIsDark(effectiveIsDark(readAppearance()));
-      setCurrentLayoutMode(parseLayoutMode(localStorage.getItem(LS.layoutMode) ?? localStorage.getItem(LS.legacyLayoutMode)) ?? "expandAll");
+      setCurrentLayoutMode(parseLayoutMode(localStorage.getItem(LS.layoutMode) ?? localStorage.getItem(LS.legacyLayoutMode)) ?? defaultLayoutMode);
 
       // Spotlight should start OFF on fresh loads (even if previously enabled).
       // Users can re-enable it from the navbar settings.
@@ -168,7 +169,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
       console.error("Failed to load settings from localStorage", e);
       setIsMounted(true);
     }
-  }, []);
+  }, [defaultLayoutMode]);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);

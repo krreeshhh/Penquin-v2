@@ -10,6 +10,7 @@ import { DocIcon, defaultDocIcons } from "@/components/docs/doc-icons";
 import { CopyButton } from "@/components/docs/CopyButton";
 import { IconTooltip } from "@/components/ui/IconTooltip";
 import { getNeighbors } from "@/lib/docs";
+import next from "next";
 
 type DocLink = {
   title?: string;
@@ -1523,23 +1524,44 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
   if (!previous && !next) return null;
 
   return (
-    <div className="mt-8 grid gap-2 border-t border-[var(--vp-c-divider)] pt-4 md:grid-cols-2">
+    <div className="mt-12 grid gap-4 border-t border-[var(--vp-c-divider)] pt-8 sm:grid-cols-2">
       {previous ? (
-        <Link href={normalizeDocHref(previous.url) ?? "#"} className="rounded-[14px] border border-[var(--vp-c-divider)] px-4 py-3 transition-colors hover:bg-[var(--vp-c-bg-soft)]">
-          <p className="flex items-center gap-2 text-[12px] uppercase tracking-[0.08em] text-[var(--vp-c-text-3)]">
-            <ChevronLeft className="h-4 w-4" />
-            Previous
-          </p>
-          <p className="mt-2 font-semibold text-[var(--vp-c-text-1)]">{stripDecorations(previous.title ?? "")}</p>
+        <Link 
+          href={normalizeDocHref(previous.url) ?? "#"} 
+          className="group flex flex-col gap-2 rounded-[12px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] p-4 transition-all duration-300 hover:border-[var(--vp-c-brand-1)] hover:-translate-y-1 hover:shadow-lg"
+        >
+          <span className="text-[12px] font-medium text-[var(--vp-c-text-2)] transition-colors group-hover:text-[var(--vp-c-brand-1)]/70">
+            Previous page
+          </span>
+          <div className="flex items-center gap-2.5 text-[var(--vp-c-brand-1)]">
+            <DocIcon 
+              emoji={previous.emoji} 
+              icon={previous.icon} 
+              className="h-5 w-5 shrink-0" 
+              defaultIcon={ChevronLeft} 
+            />
+            <span className="text-[15px] font-semibold tracking-tight">{stripDecorations(previous.title ?? "")}</span>
+          </div>
         </Link>
       ) : <div />}
+
       {next ? (
-        <Link href={normalizeDocHref(next.url) ?? "#"} className="rounded-lg border border-[var(--vp-c-divider)] px-4 py-3 text-right transition-colors hover:bg-[var(--vp-c-bg-soft)]">
-          <p className="flex items-center justify-end gap-2 text-[12px] uppercase tracking-[0.08em] text-[var(--vp-c-text-3)]">
-            Next
-            <ChevronRight className="h-4 w-4" />
-          </p>
-          <p className="mt-2 font-semibold text-[var(--vp-c-text-1)]">{stripDecorations(next.title ?? "")}</p>
+        <Link 
+          href={normalizeDocHref(next.url) ?? "#"} 
+          className="group flex flex-col items-end gap-2 rounded-[12px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] p-4 text-right transition-all duration-300 hover:border-[var(--vp-c-brand-1)] hover:-translate-y-1 hover:shadow-lg"
+        >
+          <span className="text-[12px] font-medium text-[var(--vp-c-text-2)] transition-colors group-hover:text-[var(--vp-c-brand-1)]/70">
+            Next page
+          </span>
+          <div className="flex items-center gap-2.5 text-[var(--vp-c-brand-1)]">
+            <span className="text-[15px] font-semibold tracking-tight">{stripDecorations(next.title ?? "")}</span>
+            <DocIcon 
+              emoji={next.emoji} 
+              icon={next.icon} 
+              className="h-5 w-5 shrink-0" 
+              defaultIcon={ChevronRight} 
+            />
+          </div>
         </Link>
       ) : null}
     </div>

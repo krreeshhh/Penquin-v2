@@ -73,7 +73,8 @@ export default function RootLayout({
                 const isDocs = window.location.pathname !== '/' && !window.location.pathname.startsWith('/api');
                 
                 // Effective layout mode
-                let mode = "expandAll";
+                // Default docs/content pages to original width, keep home more expansive.
+                let mode = isDocs ? "original" : "expandAll";
                 if (rawMode === "1" || rawMode === "expandAll") mode = "expandAll";
                 else if (rawMode === "3" || rawMode === "original") mode = "original";
                 else if (rawMode === "4" || rawMode === "expandSidebar") mode = "expandSidebar";
