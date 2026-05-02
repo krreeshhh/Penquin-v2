@@ -116,8 +116,8 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
       setIsSpotlightOn(false);
       setSpotlightStyle(localStorage.getItem(LS.spotlightStyles) === "1" ? "under" : "aside");
 
-      const tako = localStorage.getItem(LS.takodachi);
-      setIsTakodachiOn(tako ? tako === "true" : false);
+      // Takodachi should start OFF on fresh loads (even if previously enabled).
+      setIsTakodachiOn(false);
 
       const pageMax = localStorage.getItem(LS.pageMaxWidth) ?? localStorage.getItem(LS.legacyNavWidth);
       if (pageMax) setPageMaxWidth(Math.min(1200, Math.max(600, parseInt(pageMax) || 1200)));

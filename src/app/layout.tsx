@@ -37,12 +37,10 @@ export default function RootLayout({
             __html: `
             (function() {
               try {
-                // Match wotaku.wiki semantics: 3-state appearance stored in localStorage.
-                // Values: 'dark' | 'light' | 'auto' (default).
+                // 1. Appearance / Theme
                 const appearance = localStorage.getItem('vitepress-theme-appearance');
                 const legacyTheme = localStorage.getItem('wotaku-theme');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
                 const effective = (appearance === 'dark' || appearance === 'light')
                   ? appearance
                   : (legacyTheme === 'dark' || legacyTheme === 'light')
@@ -50,13 +48,43 @@ export default function RootLayout({
                     : (prefersDark ? 'dark' : 'light');
 
                 if (effective === 'dark') document.documentElement.classList.add('dark');
-              } catch (e) {}
-            })();
 
-            (function() {
-              try {
-                // Only enable mount animations on initial document load.
-                // Remove quickly so client-side navigations/redirections don't re-trigger them.
+                // 2. Layout Mode & Content Widths (to prevent layout flash)
+                const LS = {
+                  layoutMode: "vitepress-nolebase-enhanced-readabilities-layout-switch-mode",
+                  legacyLayoutMode: "penquin-layout-mode",
+                  contentMaxWidth: "vitepress-nolebase-enhanced-readabilities-content-layout-max-width",
+                  docsContentMaxWidth: "penquin-docs-content-max-width",
+                  legacyContentWidth: "penquin-content-width",
+                  legacyDocsContentWidth: "penquin-docs-content-width",
+                };
+
+                const rawMode = localStorage.getItem(LS.layoutMode) || localStorage.getItem(LS.legacyLayoutMode);
+                const isDocs = window.location.pathname !== '/' && !window.location.pathname.startsWith('/api');
+                
+                // Effective layout mode
+                let mode = "expandAll";
+                if (rawMode === "1" || rawMode === "expandAll") mode = "expandAll";
+                else if (rawMode === "3" || rawMode === "original") mode = "original";
+                else if (rawMode === "4" || rawMode === "expandSidebar") mode = "expandSidebar";
+                else if (rawMode === "5" || rawMode === "expandAllAdjustable") mode = "expandAllAdjustable";
+
+                // Effective content width
+                let width = isDocs ? 756 : 1152;
+                if (mode === "expandAll") {
+                   width = 1200;
+                } else if (mode === "original") {
+                   width = isDocs ? 756 : 1200;
+                } else {
+                   const stored = isDocs 
+                     ? (localStorage.getItem(LS.docsContentMaxWidth) || localStorage.getItem(LS.contentMaxWidth) || localStorage.getItem(LS.legacyDocsContentWidth))
+                     : (localStorage.getItem(LS.contentMaxWidth) || localStorage.getItem(LS.legacyContentWidth));
+                   if (stored) width = Math.min(1200, Math.max(600, parseInt(stored) || (isDocs ? 756 : 1152)));
+                }
+
+                document.documentElement.style.setProperty("--content-max-width", width + "px");
+
+                // 3. Mount animations
                 document.documentElement.classList.add('enable-enter-animations');
                 window.setTimeout(function() {
                   document.documentElement.classList.remove('enable-enter-animations');
@@ -67,7 +95,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
         {children}
       </body>
     </html>

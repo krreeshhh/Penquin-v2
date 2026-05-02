@@ -620,7 +620,7 @@ const DocHeading = React.memo(function DocHeading({
           : "text-[18px] md:text-[20px] mt-10 font-semibold";
 
   return (
-    <Tag id={id} className={`group scroll-mt-[100px] font-bold text-[var(--vp-c-text-1)] ${base}`}>
+    <Tag id={id} className={`group scroll-mt-[100px] font-semibold text-[var(--vp-c-text-1)] ${base}`}>
       <span className="relative inline-flex items-center gap-2">
         {as === "h2" && !portMatch && (
           <span className="absolute -left-4 top-1/2 -translate-y-1/2 h-6 w-1 rounded-full bg-[var(--vp-c-brand-1)] opacity-0 transition-opacity group-hover/h2:opacity-100 hidden md:block" />
@@ -689,7 +689,7 @@ const LinkCard = React.memo(function LinkCard({ item }: { item: DocLink }) {
     (isExternalHref(item.url) ? hostnameLabel(item.url) : "Link");
 
   return (
-    <CardLink href={normalizeDocHref(item.url) ?? item.url} className="flex w-full items-start justify-between gap-3 overflow-hidden rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:bg-[var(--vp-c-bg-soft)]">
+    <CardLink href={normalizeDocHref(item.url) ?? item.url} className="flex w-full items-start justify-between gap-3 rounded-[14px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] px-4 py-3 transition-colors hover:border-[var(--vp-c-brand-1)]/40 hover:bg-[var(--vp-c-bg-soft)]">
       <div className="min-w-0 flex-1">
         <div className="flex min-w-0 flex-1 flex-nowrap items-center gap-2 text-[14px] font-semibold text-[var(--vp-c-text-1)]">
           <IconTooltip label={tooltipLabel}>

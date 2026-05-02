@@ -43,7 +43,7 @@
   --vp-c-bg-elv: #ffffff;
   --vp-c-bg-soft: #f6f6f7;
   --vp-c-text-1: #213547;
-  --vp-c-text-2: rgba(60, 60, 67, 0.78);
+  --vp-c-text-2: #ababaf;
   --vp-c-text-3: rgba(60, 60, 67, 0.56);
   --vp-c-divider: rgba(60, 60, 67, 0.12);
   --vp-c-brand-1: #3b82f6;
@@ -298,17 +298,17 @@ html.dark {
   transform: translate(-50%, -8px);
   padding: 5px 9px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: #0b0b0c;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 12px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 11px;
   font-weight: 600;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 140ms ease, transform 140ms ease;
-  z-index: 999;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: opacity 150ms ease, transform 150ms ease;
+  z-index: 10000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .IconTooltipBubble::after {
@@ -318,7 +318,7 @@ html.dark {
   left: 50%;
   transform: translateX(-50%);
   border: 6px solid transparent;
-  border-top-color: #0b0b0c;
+  border-top-color: #000000;
 }
 
 .IconTooltip:hover .IconTooltipBubble,
@@ -356,13 +356,27 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
 }
 
 @keyframes sidebar-slide-in {
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes toc-slide-in {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .enable-enter-animations .VPSidebar {
@@ -511,14 +525,14 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
 
 .VPSidebarItem .indicator {
   position: absolute;
-  left: 0;
+  left: 6px;
   top: 50%;
   transform: translateY(-50%);
   width: 2px;
   height: 18px;
   border-radius: 2px;
   background: transparent;
-  transition: background-color 0.2s;
+  transition: none;
   z-index: 2;
 }
 
@@ -555,15 +569,15 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
 }
 
 .VPSidebarItem.level-0>.item .text {
-  font-weight: 600;
-  color: var(--vp-c-text-1);
+  font-weight: 500;
+  color: var(--vp-c-text-2);
   font-size: 14.5px;
 }
 
 .VPSidebarItem.level-1>.item .text,
 .VPSidebarItem.level-2>.item .text {
-  font-weight: 600;
-  color: var(--vp-c-text-1);
+  font-weight: 500;
+  color: var(--vp-c-text-2);
 }
 
 .VPSidebarItem.level-1.collapsible>.item .text,
@@ -575,23 +589,71 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
+
 }
 
 .VPSidebarItem.is-group.level-1>.group-item,
 .VPSidebarItem.is-group.level-2>.group-item {
   min-height: 36px;
-  background: color-mix(in srgb, var(--vp-c-bg-soft) 55%, transparent);
-  border: 1px solid color-mix(in srgb, var(--vp-c-divider) 75%, transparent);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vp-c-bg) 65%, transparent);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: background-color 0.2s ease;
 }
 
-.VPSidebarItem.is-group.level-1.is-open>.group-item,
-.VPSidebarItem.is-group.level-2.is-open>.group-item,
-.VPSidebarItem.is-group.level-1.has-active>.group-item,
-.VPSidebarItem.is-group.level-2.has-active>.group-item {
-  background: color-mix(in srgb, var(--vp-c-brand-soft) 60%, var(--vp-c-bg-soft));
-  border-color: color-mix(in srgb, var(--vp-c-brand-1) 18%, var(--vp-c-divider));
+.VPSidebarItem.is-group.level-1>.group-item:hover,
+.VPSidebarItem.is-group.level-2>.group-item:hover {
+  background: var(--vp-c-brand-soft);
+}
+
+.VPSidebarItem.is-group.level-0:hover>.group-item .indicator {
+  background: var(--vp-c-brand-1);
+  opacity: 1;
+  left: 0;
+}
+
+.VPSidebarItem.is-group.level-1:hover>.group-item .indicator,
+.VPSidebarItem.is-group.level-2:hover>.group-item .indicator {
+  background: var(--vp-c-brand-1);
+  opacity: 1;
+  left: 18px;
+}
+
+.VPSidebarItem.is-group.level-1.is-open:not(.is-active)>.group-item,
+.VPSidebarItem.is-group.level-2.is-open:not(.is-active)>.group-item,
+.VPSidebarItem.is-group.level-1.has-active:not(.is-active)>.group-item,
+.VPSidebarItem.is-group.level-2.has-active:not(.is-active)>.group-item {
+  background: transparent;
+  border: none;
+}
+
+.VPSidebarItem.is-group.is-active>.group-item {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+}
+
+.VPSidebarItem.is-group.level-1.is-active>.group-item .indicator,
+.VPSidebarItem.is-group.level-2.is-active>.group-item .indicator {
+  background: var(--vp-c-brand-1);
+  left: 18px;
+  width: 3px;
+  height: 20px;
+  border-radius: 99px;
+  box-shadow: 0 0 10px var(--vp-c-brand-soft);
+}
+
+/* Root level group indicator stays at the edge to avoid icon overlap */
+.VPSidebarItem.is-group.level-0.is-active>.group-item .indicator {
+  background: var(--vp-c-brand-1);
+  left: 0;
+  width: 3px;
+  height: 20px;
+  border-radius: 99px;
+  box-shadow: 0 0 10px var(--vp-c-brand-soft);
+}
+
+.VPSidebarItem.is-group.is-active>.group-item .text {
+  color: var(--vp-c-brand-1);
 }
 
 .VPSidebarItem.collapsible .caret {
@@ -602,7 +664,7 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
 }
 
 .VPSidebarItem.collapsible.is-open>.item .caret {
-  color: var(--vp-c-text-1);
+  color: var(--vp-c-text-2);
 }
 
 .VPSidebarItem.collapsible .caret-icon {
@@ -661,21 +723,21 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
   text-decoration: none !important;
 }
 
-.VPSidebarItem.is-active .item {
+.VPSidebarItem.is-active>.item {
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
 }
 
-.VPSidebarItem.is-active .indicator {
+.VPSidebarItem.is-active>.item .indicator {
   background: var(--vp-c-brand-1);
-  left: 0;
+  left: 6px;
   width: 3px;
   height: 20px;
   border-radius: 99px;
   box-shadow: 0 0 10px var(--vp-c-brand-soft);
 }
 
-.VPSidebarItem.is-active .text {
+.VPSidebarItem.is-active>.item .text {
   color: var(--vp-c-brand-1);
   text-decoration: none !important;
 }
@@ -702,9 +764,10 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.VPSidebarItem.collapsible.is-open > .item .caret-icon {
+.VPSidebarItem.collapsible.is-open>.item .caret-icon {
   transform: rotate(90deg);
 }
+
 .VPSidebarItem.collapsible>.items {
   margin-left: 12px;
   position: relative;
@@ -743,7 +806,7 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
 
 .VPSidebarItem.level-1 .indicator,
 .VPSidebarItem.level-2 .indicator {
-  left: 0px;
+  left: 16px;
 }
 
 .VPSidebarItem.level-1.is-page .indicator,
@@ -753,11 +816,11 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
   border-radius: 999px;
   background: transparent;
   box-shadow: none;
-  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: none;
 }
 
-.VPSidebarItem.level-1.is-active .indicator,
-.VPSidebarItem.level-2.is-active .indicator {
+.VPSidebarItem.level-1.is-active>.item .indicator,
+.VPSidebarItem.level-2.is-active>.item .indicator {
   width: 3px;
   height: 18px;
   background: var(--vp-c-brand-1);
@@ -766,20 +829,20 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
 
 .VPSidebarItem.level-1.is-page .text,
 .VPSidebarItem.level-2.is-page .text {
-  font-weight: 560;
-  color: color-mix(in srgb, var(--vp-c-text-1) 88%, transparent);
+  font-weight: 480;
+  color: var(--vp-c-text-2);
 }
 
 .VPSidebarItem.level-1.is-page:hover>.item .text,
 .VPSidebarItem.level-2.is-page:hover>.item .text,
 .VPSidebarItem.level-1.is-group:hover>.item .text,
 .VPSidebarItem.level-2.is-group:hover>.item .text {
-  color: var(--vp-c-text-1);
+  color: var(--vp-c-text-2);
 }
 
 .VPSidebarItem.level-1 .indicator,
 .VPSidebarItem.level-2 .indicator {
-  left: 8px;
+  left: 18px;
   /* Aligns blue bar exactly with the vertical guide line */
 }
 
@@ -811,6 +874,7 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
   .VPDoc.has-aside {
     margin-right: var(--vp-aside-width);
   }
+
   .enable-enter-animations .VPDocAside {
     animation: toc-slide-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -997,14 +1061,19 @@ html.dark .DocSearch-Button:hover .DocSearch-Button-Key {
 
 .VPDocAsideOutline .outline-link:hover,
 .VPDocAsideOutline .outline-link.active {
-  color: var(--vp-c-text-1);
+  color: var(--vp-c-text-2);
 }
 
 .VPDocOutlineItem.root>li>.outline-link:hover,
+.VPDocOutlineItem.root>li>.outline-link,
+.VPDocOutlineItem.nested>li>.outline-link {
+  color: var(--vp-c-text-2);
+}
+
 .VPDocOutlineItem.root>li>.outline-link.active,
-.VPDocOutlineItem.nested>li>.outline-link:hover,
-.VPDocOutlineItem.nested>li>.outline-link.active {
-  font-weight: 600;
+.VPDocOutlineItem.nested>li>.outline-link.active,
+.VPDocOutlineItem.nested>li>.outline-link:hover {
+  font-weight: 500;
   color: var(--vp-c-brand-1);
   opacity: 1;
 }

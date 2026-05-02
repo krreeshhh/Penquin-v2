@@ -46,8 +46,8 @@ function getActiveGroupKeys(items: SidebarNode[], isActiveUrl: (url: string) => 
       if (visit(child, [...parts, node.title])) anyChildActive = true;
     }
 
-    // Open a group if it or anything inside it is active.
-    if (node.type === "group" && (selfActive || anyChildActive)) keys.push(nodeKey);
+    // Open a group only if a child inside it is active.
+    if (node.type === "group" && anyChildActive) keys.push(nodeKey);
 
     return selfActive || anyChildActive;
   };
@@ -234,7 +234,7 @@ export function DocsSidebar({
         <div key={key} id={dividerId} className="px-4 py-4">
           <div className="flex items-center gap-3">
             <div className="h-px flex-1 bg-[var(--vp-c-divider)] opacity-70" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--vp-c-text-3)]">
+            <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--vp-c-text-3)]">
               {node.title}
             </span>
             <div className="h-px flex-1 bg-[var(--vp-c-divider)] opacity-70" />
@@ -265,6 +265,7 @@ export function DocsSidebar({
         className={
           `VPSidebarItem is-group level-${Math.min(level, 2)} collapsible ` +
           (isOpen ? "is-open " : "collapsed ") +
+          (active ? "is-active " : "") +
           (hasActive ? "has-active" : "")
         }
       >
@@ -273,7 +274,15 @@ export function DocsSidebar({
         >
           <div className="indicator" />
           {node.url ? (
-            <Link className="VPLink link link" href={node.url} onClick={() => onOpenChange(false)} scroll={false}>
+            <Link
+              className="VPLink link link"
+              href={node.url}
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenChange(false);
+              }}
+              scroll={false}
+            >
               {level === 0 ? (
                 <div className="text">
                   <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center">
@@ -291,7 +300,7 @@ export function DocsSidebar({
               )}
             </Link>
           ) : (
-            <div className="flex items-center flex-1">
+            <div className="flex items-center flex-1" onClick={(e) => e.stopPropagation()}>
               {level === 0 ? (
                 <div className="text">
                   <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center">
@@ -381,12 +390,12 @@ export function DocsSidebar({
         <div className="pt-3 pb-3 flex items-center justify-between px-4 lg:px-0">
           <Link href="/" className="flex items-center gap-3 px-0 group transition-all duration-300" onClick={() => onOpenChange(false)}>
             <img className="w-12 h-12 rounded-lg ml-1 group-hover:scale-105 transition-transform duration-300" src="/v2/PFPs/Transparent/2.png" alt="Logo" />
-            <span className="text-[22px] font-semibold text-[var(--vp-c-text-1)] tracking-tight">Penquin</span>
+            <span className="text-[22px] font-medium text-[var(--vp-c-text-1)] tracking-tight">Penquin</span>
           </Link>
 
           <button
             onClick={() => onOpenChange(false)}
-            className="p-2 lg:hidden text-[var(--vp-c-text-1)] hover:bg-[var(--vp-c-bg-soft)] rounded-[8px] transition-colors"
+            className="p-2 lg:hidden text-[var(--vp-c-text-2)] hover:bg-[var(--vp-c-bg-soft)] rounded-[8px] transition-colors"
             aria-label="Close menu"
           >
             <X className="w-6 h-6" />
@@ -421,7 +430,7 @@ export function DocsSidebar({
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <BadgeInfo className="w-4 h-4 text-[var(--vp-c-brand-1)]" strokeWidth={2.5} />
-                  <div className="text-[14px] font-bold text-[var(--vp-c-text-1)]">Site key</div>
+                  <div className="text-[14px] font-semibold text-[var(--vp-c-text-2)]">Site key</div>
                 </div>
                 <div className="text-[12px] text-[var(--vp-c-text-2)] mt-2 leading-relaxed">
                   Reference guide for all external sites & platforms linked.
