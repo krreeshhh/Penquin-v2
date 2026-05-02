@@ -14,6 +14,9 @@ export const Hero = () => {
               className="VPImage image-src absolute z-10 left-1/2 top-[160px] md:top-[84px] -translate-x-1/2 -translate-y-1/2 w-[220px] h-[208px] md:w-[360px] md:h-[341px] object-contain drop-shadow-[0_0_100px_rgba(59,130,246,0.2)]"
               src="/v2/Hero Section.png"
               alt="Penquin Mascot"
+              loading="eager"
+              fetchPriority="high"
+              decoding="sync"
             />
           </div>
         </div>

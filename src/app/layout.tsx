@@ -29,6 +29,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://cdn.iframe.ly" />
         <link rel="preconnect" href="https://wotaku.wiki" />
         <link rel="preconnect" href="https://www.google.com" />
+        <link rel="preconnect" href="https://cdn.iframe.ly" />
+        <link rel="preconnect" href="https://wotaku.wiki" />
+        <link rel="preconnect" href="https://www.google.com" />
         <link rel="dns-prefetch" href="https://www.google.com" />
         <link rel="preconnect" href="https://oreobiscuit.gitbook.io" />
         <link rel="preconnect" href="https://2149034102-files.gitbook.io" />
@@ -41,13 +44,20 @@ export default function RootLayout({
                 const appearance = localStorage.getItem('vitepress-theme-appearance');
                 const legacyTheme = localStorage.getItem('wotaku-theme');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                // Default to DARK if no preference is stored
                 const effective = (appearance === 'dark' || appearance === 'light')
                   ? appearance
                   : (legacyTheme === 'dark' || legacyTheme === 'light')
                     ? legacyTheme
-                    : (prefersDark ? 'dark' : 'light');
+                    : 'dark';
 
-                if (effective === 'dark') document.documentElement.classList.add('dark');
+                if (effective === 'dark') {
+                  document.documentElement.classList.add('dark');
+                  // Pre-apply background color to both html and body to prevent white flash
+                  const bg = '#1b1b1f';
+                  document.documentElement.style.backgroundColor = bg;
+                  if (document.body) document.body.style.backgroundColor = bg;
+                }
 
                 // 2. Layout Mode & Content Widths (to prevent layout flash)
                 const LS = {

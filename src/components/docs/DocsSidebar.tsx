@@ -214,7 +214,9 @@ export function DocsSidebar({
   // Build sidebar classes based on visibility state
   // For mobile/HomeShell: show immediately when open
   // For desktop DocsShell: use mounted state to animate in properly
-  const showSidebar = alwaysVisibleOnDesktop ? mounted : open;
+  // On desktop, the sidebar should be visible immediately to prevent a flash of unstyled content.
+  // We only use the mounted state for subtle entry animations if needed.
+  const showSidebar = alwaysVisibleOnDesktop || open;
 
   // Base static classes (no transition yet)
   const baseClasses = `VPSidebar ${fixed ? "fixed top-0 left-0 bottom-0" : "absolute top-0 left-0 h-[100dvh]"} z-[70] w-[var(--vp-sidebar-width)] overflow-y-auto will-change-transform `;

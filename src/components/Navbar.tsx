@@ -87,23 +87,54 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isTakodachiHelpOpen, setIsTakodachiHelpOpen] = useState(false);
 
-  const [isDark, setIsDark] = useState(false);
-  const [currentLayoutMode, setCurrentLayoutMode] = useState<LayoutMode>("expandAll");
+  // Initialize from localStorage immediately (if available) to prevent hydration mismatch/flash.
+  // We use a layout-safe approach where we only read if typeof window !== 'undefined'
+  const getInitialValue = <T,>(key: string, legacyKey: string, fallback: T, parser: (v: string) => T): T => {
+    if (typeof window === 'undefined') return fallback;
+    try {
+      const v = localStorage.getItem(key) ?? localStorage.getItem(legacyKey);
+      return v ? parser(v) : fallback;
+    } catch {
+      return fallback;
+    }
+  };
+
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === 'undefined') return true; // Default to dark on server
+    const appearance = localStorage.getItem('vitepress-theme-appearance');
+    const legacyTheme = localStorage.getItem('wotaku-theme');
+    if (appearance === 'dark') return true;
+    if (appearance === 'light') return false;
+    if (legacyTheme === 'dark') return true;
+    if (legacyTheme === 'light') return false;
+    return true; // Final fallback to dark
+  });
+  const [currentLayoutMode, setCurrentLayoutMode] = useState<LayoutMode>(() => 
+    getInitialValue(LS.layoutMode, LS.legacyLayoutMode, "expandAll" as LayoutMode, (v) => parseLayoutMode(v) ?? "expandAll")
+  );
   const [isSpotlightOn, setIsSpotlightOn] = useState(false);
-  const [spotlightStyle, setSpotlightStyle] = useState<SpotlightStyle>("aside");
+  const [spotlightStyle, setSpotlightStyle] = useState<SpotlightStyle>(() => 
+    getInitialValue(LS.spotlightStyles, "", "aside" as SpotlightStyle, (v) => v === "1" ? "under" : "aside")
+  );
   const [isTakodachiOn, setIsTakodachiOn] = useState(false);
-  const [pageMaxWidth, setPageMaxWidth] = useState(1200);
-  const [contentWidth, setContentWidth] = useState(1152);
-  const [docsContentWidth, setDocsContentWidth] = useState(756);
+  const [pageMaxWidth, setPageMaxWidth] = useState(() => 
+    getInitialValue(LS.pageMaxWidth, LS.legacyNavWidth, 1200, (v) => Math.min(1200, Math.max(600, parseInt(v) || 1200)))
+  );
+  const [contentWidth, setContentWidth] = useState(() => 
+    getInitialValue(LS.contentMaxWidth, LS.legacyContentWidth, 1152, (v) => Math.min(1200, Math.max(600, parseInt(v) || 1152)))
+  );
+  const [docsContentWidth, setDocsContentWidth] = useState(() => 
+    getInitialValue(LS.docsContentMaxWidth, LS.legacyDocsContentWidth, 756, (v) => Math.min(1200, Math.max(600, parseInt(v) || 756)))
+  );
 
   // Pending states for settings (only applied when popup closes)
-  const [pendingLayoutMode, setPendingLayoutMode] = useState<LayoutMode>("expandAll");
-  const [pendingSpotlightOn, setPendingSpotlightOn] = useState(false);
-  const [pendingSpotlightStyle, setPendingSpotlightStyle] = useState<SpotlightStyle>("aside");
-  const [pendingTakodachiOn, setPendingTakodachiOn] = useState(false);
-  const [pendingPageMaxWidth, setPendingPageMaxWidth] = useState(1200);
-  const [pendingContentWidth, setPendingContentWidth] = useState(1152);
-  const [pendingDocsContentWidth, setPendingDocsContentWidth] = useState(756);
+  const [pendingLayoutMode, setPendingLayoutMode] = useState<LayoutMode>(currentLayoutMode);
+  const [pendingSpotlightOn, setPendingSpotlightOn] = useState(isSpotlightOn);
+  const [pendingSpotlightStyle, setPendingSpotlightStyle] = useState<SpotlightStyle>(spotlightStyle);
+  const [pendingTakodachiOn, setPendingTakodachiOn] = useState(isTakodachiOn);
+  const [pendingPageMaxWidth, setPendingPageMaxWidth] = useState(pageMaxWidth);
+  const [pendingContentWidth, setPendingContentWidth] = useState(contentWidth);
+  const [pendingDocsContentWidth, setPendingDocsContentWidth] = useState(docsContentWidth);
 
   // Hydration-safe initialization: load from localStorage after mount
   useEffect(() => {
@@ -303,7 +334,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
         <div
           className={`VPNavBar h-[64px] flex items-center justify-between mx-auto ${isDocs ? "px-6" : "px-4 sm:px-8"}`}
           style={{
-            maxWidth: isMounted ? effectiveNavMaxWidth : (isDocs ? "100%" : "1920px"),
+            maxWidth: effectiveNavMaxWidth,
             transition: "max-width 700ms cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
