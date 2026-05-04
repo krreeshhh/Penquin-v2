@@ -62,11 +62,19 @@ export function SectionFeedback({ sectionId, sectionTitle, children }: { section
         text: feedbackText,
       };
 
-      // Save to Firebase
-      await addDoc(collection(db, "feedbacks"), {
-        ...payload,
-        timestamp: serverTimestamp(),
-      });
+      // 12-second timeout — races against the Firebase write
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("TIMEOUT")), 12_000)
+      );
+
+      // Save to Firebase (with timeout)
+      await Promise.race([
+        addDoc(collection(db, "feedbacks"), {
+          ...payload,
+          timestamp: serverTimestamp(),
+        }),
+        timeout,
+      ]);
 
       // Notify Discord in the background — failure won't block the UX
       fetch("/api/feedback-notify", {
@@ -76,9 +84,13 @@ export function SectionFeedback({ sectionId, sectionTitle, children }: { section
       }).catch(() => {}); // silent — Discord is best-effort
 
       setSubmitted(true);
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      setErrorMsg("Failed to send. Adblocker might be blocking the connection.");
+    } catch (error: unknown) {
+      if (error instanceof Error && error.message === "TIMEOUT") {
+        setErrorMsg("Request timed out. Please check your connection and try again.");
+      } else {
+        console.error("Error adding document: ", error);
+        setErrorMsg("Failed to send. Adblocker might be blocking the connection.");
+      }
     } finally {
       setIsSubmitting(false);
     }
