@@ -11,6 +11,7 @@ import { CopyButton } from "@/components/docs/CopyButton";
 import { IconTooltip } from "@/components/ui/IconTooltip";
 import { getNeighbors } from "@/lib/docs";
 import next from "next";
+import { SectionFeedback } from "./SectionFeedback";
 
 type DocLink = {
   title?: string;
@@ -622,7 +623,7 @@ const DocHeading = React.memo(function DocHeading({
 
   return (
     <Tag id={id} className={`group scroll-mt-[100px] font-semibold text-[var(--vp-c-text-1)] ${base}`}>
-      <span className="relative inline-flex items-center gap-2">
+      <SectionFeedback sectionId={id} sectionTitle={typeof children === "string" ? children : "section"}>
         {as === "h2" && !portMatch && (
           <span className="absolute -left-4 top-1/2 -translate-y-1/2 h-6 w-1 rounded-full bg-[var(--vp-c-brand-1)] opacity-0 transition-opacity group-hover/h2:opacity-100 hidden md:block" />
         )}
@@ -635,14 +636,7 @@ const DocHeading = React.memo(function DocHeading({
             <span className="text-[var(--vp-c-text-1)]">{portMatch[2].trim()}</span>
           </span>
         ) : (typeof children === "string" ? capitalizeFirst(children) : children)}
-        <a
-          href={`#${id}`}
-          aria-label={`Permalink to ${typeof children === "string" ? children : "section"}`}
-          className="header-anchor hidden md:inline-flex md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100 transition-opacity text-[var(--vp-c-text-3)] hover:text-[var(--vp-c-text-1)] ml-1"
-        >
-          #
-        </a>
-      </span>
+      </SectionFeedback>
     </Tag>
   );
 });
@@ -1536,9 +1530,9 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
           <div className="flex items-center gap-2.5 text-[var(--vp-c-brand-1)]">
             <DocIcon 
               emoji={previous.emoji} 
-              icon={previous.icon} 
+              icon={typeof previous.icon === 'string' ? previous.icon : previous.icon?.url} 
               className="h-5 w-5 shrink-0" 
-              defaultIcon={ChevronLeft} 
+              fallback={ChevronLeft} 
             />
             <span className="text-[15px] font-semibold tracking-tight">{stripDecorations(previous.title ?? "")}</span>
           </div>
@@ -1557,9 +1551,9 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
             <span className="text-[15px] font-semibold tracking-tight">{stripDecorations(next.title ?? "")}</span>
             <DocIcon 
               emoji={next.emoji} 
-              icon={next.icon} 
+              icon={typeof next.icon === 'string' ? next.icon : next.icon?.url} 
               className="h-5 w-5 shrink-0" 
-              defaultIcon={ChevronRight} 
+              fallback={ChevronRight} 
             />
           </div>
         </Link>
