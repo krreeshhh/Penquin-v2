@@ -386,7 +386,9 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
             </div>
           </div>
 
-          <div className="flex items-center justify-end text-[var(--vp-c-text-2)]">
+          <div
+            className={`flex items-center justify-end text-[var(--vp-c-text-2)]${isDocs ? " xl:mr-[calc(224px+2rem)]" : ""}`}
+          >
             <div className="flex items-center gap-0.5 px-2 py-1 rounded-3xl bg-[var(--vp-c-bg-soft)]/50">
               <button
                 onClick={toggleTheme}
