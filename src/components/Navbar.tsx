@@ -415,7 +415,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
               </a>
 
               <div
-                className="relative"
+                className="relative hidden sm:block"
                 ref={dropdownRef}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
