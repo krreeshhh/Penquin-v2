@@ -1,42 +1,36 @@
 {
   "title": "Introduction to Penquin's Bug Bounty Playbook",
   "description": "In this Gitbook, I have gathered all the important resources, links, writeups, articles, tools, and more that you need to learn about Cyber Security, Bug Bounty, Ethical Hacking, Android Pentesting.",
-  "coverImage": {
-    "url": "https://oreobiscuit.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2F2149034102-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fx5ELyXksPQAu9xsTpTXg%252Fuploads%252Fd6B8DfDV4h2r5sYI58qH%252FEternal%2520Warriors%2520WP%252004.jpg%3Falt%3Dmedia%26token%3Daa2f6c8c-902c-46d7-921d-019e473f6838&width=1248&dpr=3&quality=100&sign=7c0ca7c2&sv=2",
-    "srcset": {
-      "768w": "https://oreobiscuit.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2F2149034102-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fx5ELyXksPQAu9xsTpTXg%252Fuploads%252Fd6B8DfDV4h2r5sYI58qH%252FEternal%2520Warriors%2520WP%252004.jpg%3Falt%3Dmedia%26token%3Daa2f6c8c-902c-46d7-921d-019e473f6838&width=768&dpr=1&quality=100&sign=7c0ca7c2&sv=2",
-      "1024w": "https://oreobiscuit.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2F2149034102-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fx5ELyXksPQAu9xsTpTXg%252Fuploads%252Fd6B8DfDV4h2r5sYI58qH%252FEternal%2520Warriors%2520WP%252004.jpg%3Falt%3Dmedia%26token%3Daa2f6c8c-902c-46d7-921d-019e473f6838&width=1024&dpr=1&quality=100&sign=7c0ca7c2&sv=2",
-      "1248w": "https://oreobiscuit.gitbook.io/docs/~gitbook/image?url=https%3A%2F%2F2149034102-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fx5ELyXksPQAu9xsTpTXg%252Fuploads%252Fd6B8DfDV4h2r5sYI58qH%252FEternal%2520Warriors%2520WP%252004.jpg%3Falt%3Dmedia%26token%3Daa2f6c8c-902c-46d7-921d-019e473f6838&width=1248&dpr=1&quality=100&sign=7c0ca7c2&sv=2"
-    },
-    "aspectRatio": "1990 / 480",
-    "objectPosition": "50% 42.4888%"
-  },
-  "embeddedVideo": {
-    "url": "https://cdn.iframe.ly/hgNsWyy",
-    "embedStyle": "top: 0; left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 66.897%;"
-  },
   "contactSection": {
-    "heading": "Fell Free To Reach Me:",
+    "heading": "Fell Free To Reach Me",
     "links": [
       {
+        "platform": "Book 1:1 Session",
+        "url": "https://cal.com/xibhi"
+      },
+      {
+        "platform": "Portfolio",
+        "url": "http://xibhi.vercel.app/"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://www.instagram.com/_xibhi_"
+      },
+      {
         "platform": "Twitter",
-        "url": "https://x.com/OreoB1scuit"
-      },
-      {
-        "platform": "GitHub",
-        "url": "https://github.com/Raunaksplanet"
-      },
-      {
-        "platform": "Medium",
-        "url": "https://medium.com/@RaunakGupta1922"
+        "url": "https://twitter.com/xibhi_/"
       },
       {
         "platform": "LinkedIn",
-        "url": "https://www.linkedin.com/in/raunak-gupta-772408255/"
+        "url": "https://www.linkedin.com/in/sibhibalamurugan/"
       },
       {
-        "platform": "Paid Training",
-        "url": "https://www.udemy.com/user/ronak-gupta-41/"
+        "platform": "GitHub",
+        "url": "https://github.com/xibhi/"
+      },
+      {
+        "platform": "Medium",
+        "url": "https://medium.com/@xibhi"
       }
     ]
   },

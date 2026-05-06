@@ -44,6 +44,7 @@ import {
   Wrench,
   FileVideo,
   GitBranch,
+  Zap,
 } from "lucide-react";
 
 type DocIconInput = {
@@ -56,6 +57,7 @@ const namedIconMap: Record<string, LucideIcon> = {
   computer: Monitor,
   "user-robot": Cpu,
   github: GitBranch, // Fallback if needed
+  zap: Zap,
 };
 
 const domainIconMap: Record<string, LucideIcon> = {
