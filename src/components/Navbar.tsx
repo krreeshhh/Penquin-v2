@@ -99,43 +99,25 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
     }
   };
 
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === 'undefined') return true; // Default to dark on server
-    const appearance = localStorage.getItem('vitepress-theme-appearance');
-    const legacyTheme = localStorage.getItem('wotaku-theme');
-    if (appearance === 'dark') return true;
-    if (appearance === 'light') return false;
-    if (legacyTheme === 'dark') return true;
-    if (legacyTheme === 'light') return false;
-    return true; // Final fallback to dark
-  });
   const defaultLayoutMode: LayoutMode = isDocs ? "original" : "expandAll";
-  const [currentLayoutMode, setCurrentLayoutMode] = useState<LayoutMode>(() =>
-    getInitialValue(LS.layoutMode, LS.legacyLayoutMode, defaultLayoutMode, (v) => parseLayoutMode(v) ?? defaultLayoutMode)
-  );
+
+  const [isDark, setIsDark] = useState(true);
+  const [currentLayoutMode, setCurrentLayoutMode] = useState<LayoutMode>(defaultLayoutMode);
   const [isSpotlightOn, setIsSpotlightOn] = useState(false);
-  const [spotlightStyle, setSpotlightStyle] = useState<SpotlightStyle>(() =>
-    getInitialValue(LS.spotlightStyles, "", "aside" as SpotlightStyle, (v) => v === "1" ? "under" : "aside")
-  );
+  const [spotlightStyle, setSpotlightStyle] = useState<SpotlightStyle>("aside");
   const [isTakodachiOn, setIsTakodachiOn] = useState(false);
-  const [pageMaxWidth, setPageMaxWidth] = useState(() =>
-    getInitialValue(LS.pageMaxWidth, LS.legacyNavWidth, 1200, (v) => Math.min(1200, Math.max(600, parseInt(v) || 1200)))
-  );
-  const [contentWidth, setContentWidth] = useState(() =>
-    getInitialValue(LS.contentMaxWidth, LS.legacyContentWidth, 1152, (v) => Math.min(1200, Math.max(600, parseInt(v) || 1152)))
-  );
-  const [docsContentWidth, setDocsContentWidth] = useState(() =>
-    getInitialValue(LS.docsContentMaxWidth, LS.legacyDocsContentWidth, 756, (v) => Math.min(1200, Math.max(600, parseInt(v) || 756)))
-  );
+  const [pageMaxWidth, setPageMaxWidth] = useState(1200);
+  const [contentWidth, setContentWidth] = useState(1152);
+  const [docsContentWidth, setDocsContentWidth] = useState(756);
 
   // Pending states for settings (only applied when popup closes)
-  const [pendingLayoutMode, setPendingLayoutMode] = useState<LayoutMode>(currentLayoutMode);
-  const [pendingSpotlightOn, setPendingSpotlightOn] = useState(isSpotlightOn);
-  const [pendingSpotlightStyle, setPendingSpotlightStyle] = useState<SpotlightStyle>(spotlightStyle);
-  const [pendingTakodachiOn, setPendingTakodachiOn] = useState(isTakodachiOn);
-  const [pendingPageMaxWidth, setPendingPageMaxWidth] = useState(pageMaxWidth);
-  const [pendingContentWidth, setPendingContentWidth] = useState(contentWidth);
-  const [pendingDocsContentWidth, setPendingDocsContentWidth] = useState(docsContentWidth);
+  const [pendingLayoutMode, setPendingLayoutMode] = useState<LayoutMode>(defaultLayoutMode);
+  const [pendingSpotlightOn, setPendingSpotlightOn] = useState(false);
+  const [pendingSpotlightStyle, setPendingSpotlightStyle] = useState<SpotlightStyle>("aside");
+  const [pendingTakodachiOn, setPendingTakodachiOn] = useState(false);
+  const [pendingPageMaxWidth, setPendingPageMaxWidth] = useState(1200);
+  const [pendingContentWidth, setPendingContentWidth] = useState(1152);
+  const [pendingDocsContentWidth, setPendingDocsContentWidth] = useState(756);
 
   // Hydration-safe initialization: load from localStorage after mount
   useEffect(() => {
@@ -359,7 +341,7 @@ export const Navbar = ({ onDocsMenuClick }: NavbarProps) => {
               className={`flex items-center gap-2 -ml-1 mr-1 sm:mr-2 group cursor-pointer text-[var(--vp-c-text-1)] h-full transition-colors ${isDocs ? "lg:hidden" : ""}`}
             >
               <img className="w-10 h-10" src="/v2/PFPs/Transparent/2.png" alt="Logo" />
-              <span className="font-bold text-[18px] tracking-tight hidden sm:block">Penquin</span>
+              <span className="text-[22px] font-medium text-[var(--vp-c-text-1)] tracking-tight sm:mr-2">Penquin</span>
             </Link>
 
             <div className={`transition-all duration-[460ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isDocs ? "lg:pl-[320px]" : ""}`}>

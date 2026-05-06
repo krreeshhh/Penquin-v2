@@ -27,7 +27,7 @@ const categories = [
 export const Categories = () => {
   return (
     <section
-      className="VPFeatures VPHomeFeatures relative z-10 w-full px-6 md:px-16"
+      className="VPFeatures VPHomeFeatures relative z-10 w-full px-6 md:px-16 pb-12 md:pb-16"
     >
       <div className="container max-w-[1152px] mx-auto">
         <div className="items flex flex-wrap -m-2 items-stretch">

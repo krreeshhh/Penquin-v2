@@ -1520,19 +1520,19 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
   return (
     <div className="mt-12 grid gap-4 border-t border-[var(--vp-c-divider)] pt-8 sm:grid-cols-2">
       {previous ? (
-        <Link 
-          href={normalizeDocHref(previous.url) ?? "#"} 
+        <Link
+          href={normalizeDocHref(previous.url) ?? "#"}
           className="group flex flex-col gap-2 rounded-[12px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] p-4 transition-all duration-300 hover:border-[var(--vp-c-brand-1)] hover:-translate-y-1 hover:shadow-lg"
         >
           <span className="text-[12px] font-medium text-[var(--vp-c-text-2)] transition-colors group-hover:text-[var(--vp-c-brand-1)]/70">
             Previous page
           </span>
           <div className="flex items-center gap-2.5 text-[var(--vp-c-brand-1)]">
-            <DocIcon 
-              emoji={previous.emoji} 
-              icon={typeof previous.icon === 'string' ? previous.icon : previous.icon?.url} 
-              className="h-5 w-5 shrink-0" 
-              fallback={ChevronLeft} 
+            <DocIcon
+              emoji={previous.emoji}
+              icon={typeof previous.icon === 'string' ? previous.icon : previous.icon?.url}
+              className="h-5 w-5 shrink-0"
+              fallback={ChevronLeft}
             />
             <span className="text-[15px] font-semibold tracking-tight">{stripDecorations(previous.title ?? "")}</span>
           </div>
@@ -1540,8 +1540,8 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
       ) : <div />}
 
       {next ? (
-        <Link 
-          href={normalizeDocHref(next.url) ?? "#"} 
+        <Link
+          href={normalizeDocHref(next.url) ?? "#"}
           className="group flex flex-col items-end gap-2 rounded-[12px] border border-[var(--vp-c-divider)] bg-[var(--vp-c-bg-soft)] p-4 text-right transition-all duration-300 hover:border-[var(--vp-c-brand-1)] hover:-translate-y-1 hover:shadow-lg"
         >
           <span className="text-[12px] font-medium text-[var(--vp-c-text-2)] transition-colors group-hover:text-[var(--vp-c-brand-1)]/70">
@@ -1549,11 +1549,11 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
           </span>
           <div className="flex items-center gap-2.5 text-[var(--vp-c-brand-1)]">
             <span className="text-[15px] font-semibold tracking-tight">{stripDecorations(next.title ?? "")}</span>
-            <DocIcon 
-              emoji={next.emoji} 
-              icon={typeof next.icon === 'string' ? next.icon : next.icon?.url} 
-              className="h-5 w-5 shrink-0" 
-              fallback={ChevronRight} 
+            <DocIcon
+              emoji={next.emoji}
+              icon={typeof next.icon === 'string' ? next.icon : next.icon?.url}
+              className="h-5 w-5 shrink-0"
+              fallback={ChevronRight}
             />
           </div>
         </Link>
