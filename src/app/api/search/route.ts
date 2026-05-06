@@ -53,7 +53,7 @@ function slugify(input: string) {
 function getCategoryFromPath(route: string): string {
   const parts = route.split('/').filter(Boolean);
   if (parts.length === 0) return 'Home';
-  
+
   const categoryMap: Record<string, string> = {
     'recon': 'Reconnaissance',
     'exploitation': 'Exploitation',
@@ -66,11 +66,11 @@ function getCategoryFromPath(route: string): string {
     'bug-bounty-platforms': 'Platforms',
     'mains': 'Resources',
   };
-  
+
   for (const part of parts) {
     if (categoryMap[part]) return categoryMap[part];
   }
-  
+
   return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
 }
 
@@ -84,7 +84,7 @@ export async function GET() {
       const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
       const route = filePathToRoute(filePath);
       const category = getCategoryFromPath(route);
-      const pageTitle = data.title || "Untitled";
+      const pageTitle = data.title || data.name || "Untitled";
 
       // Main page result
       results.push({

@@ -1564,8 +1564,9 @@ function NavigationFooter({ previous, next }: { previous?: DocLink; next?: DocLi
 
 export function DocsContent({ page, route }: { page: Record<string, any>; route?: string }) {
   const breadcrumbItems = Array.isArray(page.breadcrumb) ? page.breadcrumb : [];
-  const title = typeof page.title === "string" ? page.title : "Untitled";
+  const title = (typeof page.title === "string" ? page.title : (typeof page.name === "string" ? page.name : "Untitled"));
   const cleanTitle = stripDecorations(title);
+  const breadcrumbTitle = stripDecorations(typeof page.name === "string" ? page.name : title);
   const description = typeof page.description === "string" ? page.description : undefined;
   const subtitle = typeof page.subtitle === "string" ? page.subtitle : undefined;
   const skillLevel = typeof page.skill_level === "string" ? page.skill_level : undefined;
@@ -1628,6 +1629,7 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
     "categories",  // Special key for 55-youtube-channels (consumes to prevent extraSection heading)
     "internalLinks",
     "headers",
+    "name",
   ]);
   const extraSections = Object.entries(page)
     .filter(([key, value]) => !consumedKeys.has(key) && value != null)
@@ -1670,10 +1672,12 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
             );
           })}
           <span className="opacity-40">{isGitBookVariant ? "/" : "›"}</span>
-          <span className={isGitBookVariant ? "font-normal text-[var(--vp-c-text-2)]" : "font-medium text-[var(--vp-c-text-1)]"}>{cleanTitle}</span>
+          <span className={isGitBookVariant ? "font-normal text-[var(--vp-c-text-2)]" : "font-medium text-[var(--vp-c-text-1)]"}>{breadcrumbTitle}</span>
         </div>
 
-        <DocHeading as="h1" id={slugify(cleanTitle)} variant={variant}>{cleanTitle}</DocHeading>
+        {!page.hide_title && (
+          <DocHeading as="h1" id={slugify(cleanTitle)} variant={variant}>{cleanTitle}</DocHeading>
+        )}
 
         {description ? <div className="mt-5 text-[16px] leading-8 text-[var(--vp-c-text-2)]"><MarkdownContent content={description} variant={variant} /></div> : null}
         {subtitle ? <div className="mt-4 text-[15px] leading-7 text-[var(--vp-c-text-2)]"><MarkdownContent content={subtitle} variant={variant} /></div> : null}
@@ -1727,7 +1731,7 @@ export function DocsContent({ page, route }: { page: Record<string, any>; route?
         ) : null}
 
         <LinkGrid title={subtopics.length ? "Subtopics" : undefined} items={subtopics} />
-        <LinkGrid title={navigationLinks.length ? "Explore More" : undefined} items={navigationLinks} />
+        <LinkGrid title={navigationLinks.length ? "Quick Start" : undefined} items={navigationLinks} />
         <LinkGrid title={articles.length ? "Articles" : undefined} items={articles} />
         <LinkGrid title={programs.length ? "Programs" : undefined} items={programs} />
         <LinkGrid title={contactLinks.length ? page.contactSection?.heading ?? "Contact" : undefined} items={contactLinks} />
