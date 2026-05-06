@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!page) return {};
 
   return {
-    title: `${stripDecorations(typeof page.title === "string" ? page.title : "Untitled")} | Penquin`,
+    title: `${stripDecorations(typeof page.title === "string" ? page.title : "Untitled")} ● Penquin`,
     description: getPageDescription(page),
   };
 }

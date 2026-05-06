@@ -632,7 +632,7 @@ const DocHeading = React.memo(function DocHeading({
             <span className="text-[var(--vp-c-brand-1)] font-extrabold tracking-tight">
               {portMatch[1].replace(/\s*-\s*$/, "").toUpperCase().trim()}
             </span>
-            <span className="text-[var(--vp-c-text-3)] font-medium">|</span>
+            <span className="text-[var(--vp-c-text-3)] font-medium">●</span>
             <span className="text-[var(--vp-c-text-1)]">{portMatch[2].trim()}</span>
           </span>
         ) : (typeof children === "string" ? capitalizeFirst(children) : children)}
@@ -725,7 +725,7 @@ const LinkCard = React.memo(function LinkCard({ item }: { item: DocLink }) {
             ]
               .filter(Boolean)
               .map((entry) => (typeof entry === "string" ? stripDecorations(entry) : entry))
-              .join(" • ")}
+              .join(" ● ")}
           </p>
         )}
       </div>
