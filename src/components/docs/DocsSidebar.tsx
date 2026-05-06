@@ -283,7 +283,6 @@ export function DocsSidebar({
                 e.stopPropagation();
                 onOpenChange(false);
               }}
-              scroll={false}
             >
               {level === 0 ? (
                 <div className="text">
@@ -481,7 +480,7 @@ function SidebarLink({
             </div>
           </a>
         ) : (
-          <Link className="VPLink link link" href={node.url || "#"} onClick={onNavigate} scroll={false}>
+          <Link className="VPLink link link" href={node.url || "#"} onClick={onNavigate}>
             <div className="text">
               <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center">
                 <DocIcon emoji={node.emoji} icon={node.icon} fallback={defaultDocIcons.page} className="w-[18px] h-[18px]" />

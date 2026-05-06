@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   }
 
   return {
-    title: `${stripDecorations(typeof page.title === "string" ? page.title : "Untitled")} ● Penquin`,
+    title: `${stripDecorations(typeof page.title === "string" ? page.title : "Untitled")} ● Penquin by Sibhi`,
     description: getPageDescription(page),
   };
 }

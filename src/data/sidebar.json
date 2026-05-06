@@ -3,9 +3,9 @@
   "sections": [
     {
       "type": "page",
-      "title": "Introduction to Penquin's Bug Bounty Playbook",
+      "title": "Quick Start",
       "emoji": " ",
-      "url": "/docs"
+      "url": "/qs"
     },
     {
       "type": "group",

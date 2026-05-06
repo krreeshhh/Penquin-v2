@@ -7,7 +7,7 @@ const categories = [
     icon: Soup,
     title: 'Starters',
     description: 'Small plates packed with core knowledge so you learn fast without frying your brain',
-    link: '/docs#starters',
+    link: '/qs#starters',
   },
   {
     icon: CookingPot,
@@ -51,7 +51,7 @@ export const Categories = () => {
                   </article>
                 </div>
               ) : (
-                <Link className="VPLink link no-icon VPFeature relative z-10 group flex-1 block rounded-xl border border-[var(--vp-c-bg-soft)] bg-[var(--vp-c-bg-soft)] hover:border-[var(--vp-c-brand-1)] transition-colors h-[198px] overflow-hidden" href={category.link} scroll={false}>
+                <Link className="VPLink link no-icon VPFeature relative z-10 group flex-1 block rounded-xl border border-[var(--vp-c-bg-soft)] bg-[var(--vp-c-bg-soft)] hover:border-[var(--vp-c-brand-1)] transition-colors h-[198px] overflow-hidden" href={category.link}>
                   <article className="h-full p-6 flex flex-col">
                     <div className="icon w-12 h-12 rounded-[6px] bg-[rgba(142,150,170,0.14)] flex items-center justify-center mb-5">
                       <category.icon
