@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Penquin ● Hunt bugs, Not noise",
+  title: "Home ● Penquin by Sibhi",
   description: "A no-BS index of resources, techniques, and field-tested workflows — for people in the field",
 };
 
